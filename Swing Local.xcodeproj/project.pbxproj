@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
+		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */; };
 		D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D224C523189D017000923370 /* SSFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFrontViewController.h; sourceTree = "<group>"; };
+		D224C524189D017000923370 /* SSFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFrontViewController.m; sourceTree = "<group>"; };
+		D224C527189D021400923370 /* SSBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBackViewController.h; sourceTree = "<group>"; };
+		D224C528189D021400923370 /* SSBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBackViewController.m; sourceTree = "<group>"; };
 		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C2E6189CEB6100E6DB16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D224C526189D017A00923370 /* Subclassed */ = {
+			isa = PBXGroup;
+			children = (
+				D224C523189D017000923370 /* SSFrontViewController.h */,
+				D224C524189D017000923370 /* SSFrontViewController.m */,
+				D224C527189D021400923370 /* SSBackViewController.h */,
+				D224C528189D021400923370 /* SSBackViewController.m */,
+			);
+			name = Subclassed;
+			sourceTree = "<group>";
+		};
 		D244C2DA189CEB6100E6DB16 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +175,7 @@
 				D244C32B189CEBCC00E6DB16 /* InitialViewController.m */,
 				D244C345189CEC6500E6DB16 /* Views */,
 				D244C348189CEC8100E6DB16 /* Categories */,
+				D224C526189D017A00923370 /* Subclassed */,
 				D244C352189CECBB00E6DB16 /* SplitPeekViewController */,
 				D244C356189CECE600E6DB16 /* GHViewController.h */,
 				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
@@ -373,10 +391,12 @@
 			files = (
 				D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */,
 				D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */,
+				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
 				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,
 				D244C331189CEBCC00E6DB16 /* InitialViewController.m in Sources */,
 				D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */,
 				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
+				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
@@ -583,6 +603,7 @@
 				D244C317189CEB6100E6DB16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D244C318189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing LocalTests" */ = {
 			isa = XCConfigurationList;
@@ -591,6 +612,7 @@
 				D244C31A189CEB6100E6DB16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

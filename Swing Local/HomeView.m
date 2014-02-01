@@ -80,6 +80,9 @@
         self.citySelectButton.hidden = YES;
         self.selectCityButtonAvailable = NO;
         
+        
+        //pause for select box
+        
         self.changeCityButton.hidden = NO;
         __block CGRect changeCityNewFrame = self.changeCityButton.frame;
         changeCityNewFrame.origin.y = CGRectGetHeight(self.changeCityButton.superview.frame);
@@ -109,6 +112,9 @@
         self.changeCityButton.frame = newFrame;
     } completion:^(BOOL finished) {
         self.changeCityButton.hidden = YES;
+        
+        
+        //pause for select box
         
         self.citySelectButton.hidden = NO;
         __block CGRect changeCityNewFrame = self.citySelectButton.frame;

@@ -9,13 +9,12 @@
 #import "InitialViewController.h"
 #import "GHWalkThroughView.h"
 #import "UIColor+LocalSwingCalendar.h"
-#import "SplitViewController.h"
 
 @interface InitialViewController () <GHWalkThroughViewDataSource, GHWalkThroughViewDelegate>
 
 @property (nonatomic, strong) GHWalkThroughView* ghView ;
 @property (nonatomic, strong) NSArray *imageViews;
-@property (nonatomic,strong) SplitViewController *splitController;
+@property (nonatomic,strong) UINavigationController *splitControllerNav;
 
 @property (nonatomic,strong) NSMutableArray *titles;
 @property (nonatomic,strong) NSMutableArray *descriptions;
@@ -68,7 +67,7 @@
 }
 
 -(void) setupSplitController {
-    self.splitController = (SplitViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"splitController"];
+    self.splitControllerNav = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:@"splitController"];
 }
 
 -(void) setupWalkThrough {
@@ -97,11 +96,7 @@
 
 #pragma mark - GHWalkThroughDelegate
 -(void) skipButtonPressed {
-    [self.splitController.view setAlpha:0.f];
-    [self.view insertSubview:self.splitController.view belowSubview:self.ghView];
-    [UIView animateWithDuration:.4f animations:^{
-        [self.splitController.view setAlpha:1.f];
-    }];
+    [self presentViewController:self.splitControllerNav animated:YES completion:nil];
 }
 
 #pragma mark - GHWalkThroughViewDataSource

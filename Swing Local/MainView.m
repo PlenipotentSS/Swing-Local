@@ -18,7 +18,6 @@
 @implementation MainView
 
 -(void) setup {
-    NSLog(@"hello");
     self.backgroundColor = [UIColor burntScheme];
 }
 

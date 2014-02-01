@@ -7,7 +7,7 @@
         <!--Initial View Controller - Initial Controller-->
         <scene sceneID="ieR-MO-ywA">
             <objects>
-                <viewController storyboardIdentifier="Initial Controller" title="Initial Controller" id="noo-HZ-Tsr" customClass="InitialViewController" sceneMemberID="viewController">
+                <viewController title="Initial Controller" id="noo-HZ-Tsr" customClass="InitialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="umF-qm-zsK"/>
                         <viewControllerLayoutGuide type="bottom" id="54P-B0-xCm"/>
@@ -162,7 +162,7 @@
         <!--Front View Controller-->
         <scene sceneID="MMA-ie-WnE">
             <objects>
-                <viewController id="rLT-2R-r3Y" customClass="FrontViewController" sceneMemberID="viewController">
+                <viewController id="rLT-2R-r3Y" customClass="SSFrontViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dep-by-rmE"/>
                         <viewControllerLayoutGuide type="bottom" id="Hjw-bD-HQR"/>
@@ -229,7 +229,7 @@
         <!--Back View Controller-->
         <scene sceneID="UPo-fT-J3M">
             <objects>
-                <viewController id="9fl-L3-YAT" customClass="BackViewController" sceneMemberID="viewController">
+                <viewController id="9fl-L3-YAT" customClass="SSBackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VMG-92-F2s"/>
                         <viewControllerLayoutGuide type="bottom" id="jok-34-0cs"/>
