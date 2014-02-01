@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F5A7FAFF-1B4D-4729-84C5-8A7FA2A265D8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Swing Local</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6D9342BC-22F3-42C6-8162-45739C50D581</key>
+		<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Swing Local.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6D9342BC-22F3-42C6-8162-45739C50D581</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6D9342BC-22F3-42C6-8162-45739C50D581</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6D9342BC-22F3-42C6-8162-45739C50D581</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Swing-Local</string>
+		</dict>
+	</array>
+</dict>
+</plist>
