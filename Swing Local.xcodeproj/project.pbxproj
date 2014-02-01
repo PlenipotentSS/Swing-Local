@@ -13,14 +13,30 @@
 		D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */; };
 		D244C2F3189CEB6100E6DB16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C2F2189CEB6100E6DB16 /* main.m */; };
 		D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */; };
-		D244C2FA189CEB6100E6DB16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D244C2F8189CEB6100E6DB16 /* Main.storyboard */; };
-		D244C2FD189CEB6100E6DB16 /* SSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C2FC189CEB6100E6DB16 /* SSViewController.m */; };
 		D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D244C2FE189CEB6100E6DB16 /* Images.xcassets */; };
 		D244C306189CEB6100E6DB16 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C305189CEB6100E6DB16 /* XCTest.framework */; };
 		D244C307189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C308189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
 		D244C310189CEB6100E6DB16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D244C30E189CEB6100E6DB16 /* InfoPlist.strings */; };
 		D244C312189CEB6100E6DB16 /* Swing_LocalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C311189CEB6100E6DB16 /* Swing_LocalTests.m */; };
+		D244C325189CEBAE00E6DB16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D244C324189CEBAE00E6DB16 /* Main.storyboard */; };
+		D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C32A189CEBCC00E6DB16 /* HomeView.m */; };
+		D244C331189CEBCC00E6DB16 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C32B189CEBCC00E6DB16 /* InitialViewController.m */; };
+		D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C332189CEBE500E6DB16 /* menu-gear.png */; };
+		D244C337189CEBE600E6DB16 /* menu-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C333189CEBE600E6DB16 /* menu-gear@2x.png */; };
+		D244C338189CEBE600E6DB16 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C334189CEBE600E6DB16 /* menu.png */; };
+		D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C335189CEBE600E6DB16 /* menu@2x.png */; };
+		D244C33E189CEBF100E6DB16 /* bg_01.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33B189CEBF100E6DB16 /* bg_01.png */; };
+		D244C33F189CEBF100E6DB16 /* bg_02.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33C189CEBF100E6DB16 /* bg_02.png */; };
+		D244C340189CEBF100E6DB16 /* bg_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33D189CEBF100E6DB16 /* bg_03.png */; };
+		D244C344189CEC5C00E6DB16 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C343189CEC5C00E6DB16 /* MainView.m */; };
+		D244C347189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m */; };
+		D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C34A189CECA700E6DB16 /* BackViewController.m */; };
+		D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C34D189CECAE00E6DB16 /* FrontViewController.m */; };
+		D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C350189CECB800E6DB16 /* SplitViewController.m */; };
+		D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C354189CECDB00E6DB16 /* GHViewController.m */; };
+		D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C358189CECF100E6DB16 /* GHWalkThroughPageCell.m */; };
+		D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C35A189CECF100E6DB16 /* GHWalkThroughView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +60,40 @@
 		D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swing Local-Prefix.pch"; sourceTree = "<group>"; };
 		D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
-		D244C2F9189CEB6100E6DB16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D244C2FB189CEB6100E6DB16 /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
-		D244C2FC189CEB6100E6DB16 /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
 		D244C2FE189CEB6100E6DB16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D244C304189CEB6100E6DB16 /* Swing LocalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swing LocalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C305189CEB6100E6DB16 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D244C30D189CEB6100E6DB16 /* Swing LocalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing LocalTests-Info.plist"; sourceTree = "<group>"; };
 		D244C30F189CEB6100E6DB16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D244C311189CEB6100E6DB16 /* Swing_LocalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swing_LocalTests.m; sourceTree = "<group>"; };
+		D244C31F189CEB9000E6DB16 /* HomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
+		D244C320189CEB9000E6DB16 /* InitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		D244C321189CEB9000E6DB16 /* MainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		D244C323189CEBA100E6DB16 /* UIColor+LocalSwingCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LocalSwingCalendar.h"; sourceTree = "<group>"; };
+		D244C324189CEBAE00E6DB16 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D244C32A189CEBCC00E6DB16 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
+		D244C32B189CEBCC00E6DB16 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		D244C332189CEBE500E6DB16 /* menu-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-gear.png"; sourceTree = "<group>"; };
+		D244C333189CEBE600E6DB16 /* menu-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-gear@2x.png"; sourceTree = "<group>"; };
+		D244C334189CEBE600E6DB16 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		D244C335189CEBE600E6DB16 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		D244C33B189CEBF100E6DB16 /* bg_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_01.png; sourceTree = "<group>"; };
+		D244C33C189CEBF100E6DB16 /* bg_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_02.png; sourceTree = "<group>"; };
+		D244C33D189CEBF100E6DB16 /* bg_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_03.png; sourceTree = "<group>"; };
+		D244C343189CEC5C00E6DB16 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		D244C346189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LocalSwingCalendar.m"; sourceTree = "<group>"; };
+		D244C349189CECA700E6DB16 /* BackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/BackViewController.h; sourceTree = "<group>"; };
+		D244C34A189CECA700E6DB16 /* BackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/BackViewController.m; sourceTree = "<group>"; };
+		D244C34C189CECAE00E6DB16 /* FrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrontViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/FrontViewController.h; sourceTree = "<group>"; };
+		D244C34D189CECAE00E6DB16 /* FrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrontViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/FrontViewController.m; sourceTree = "<group>"; };
+		D244C34F189CECB800E6DB16 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/SplitViewController.h; sourceTree = "<group>"; };
+		D244C350189CECB800E6DB16 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplitViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/SplitViewController.m; sourceTree = "<group>"; };
+		D244C353189CECDB00E6DB16 /* GHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHViewController.h; path = ../../GHWalkThrough/GHWalkThrough/GHViewController.h; sourceTree = "<group>"; };
+		D244C354189CECDB00E6DB16 /* GHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHViewController.m; path = ../../GHWalkThrough/GHWalkThrough/GHViewController.m; sourceTree = "<group>"; };
+		D244C357189CECF100E6DB16 /* GHWalkThroughPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHWalkThroughPageCell.h; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughPageCell.h; sourceTree = "<group>"; };
+		D244C358189CECF100E6DB16 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughPageCell.m; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughPageCell.m; sourceTree = "<group>"; };
+		D244C359189CECF100E6DB16 /* GHWalkThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHWalkThroughView.h; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughView.h; sourceTree = "<group>"; };
+		D244C35A189CECF100E6DB16 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughView.m; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +153,17 @@
 		D244C2EC189CEB6100E6DB16 /* Swing Local */ = {
 			isa = PBXGroup;
 			children = (
+				D244C324189CEBAE00E6DB16 /* Main.storyboard */,
+				D244C320189CEB9000E6DB16 /* InitialViewController.h */,
+				D244C32B189CEBCC00E6DB16 /* InitialViewController.m */,
+				D244C345189CEC6500E6DB16 /* Views */,
+				D244C348189CEC8100E6DB16 /* Categories */,
+				D244C352189CECBB00E6DB16 /* SplitPeekViewController */,
+				D244C356189CECE600E6DB16 /* GHViewController.h */,
+				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
-				D244C2F8189CEB6100E6DB16 /* Main.storyboard */,
-				D244C2FB189CEB6100E6DB16 /* SSViewController.h */,
-				D244C2FC189CEB6100E6DB16 /* SSViewController.m */,
-				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
+				D244C33A189CEBEA00E6DB16 /* Images */,
 				D244C2ED189CEB6100E6DB16 /* Supporting Files */,
 			);
 			path = "Swing Local";
@@ -150,6 +196,74 @@
 				D244C30E189CEB6100E6DB16 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D244C33A189CEBEA00E6DB16 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D244C33B189CEBF100E6DB16 /* bg_01.png */,
+				D244C33C189CEBF100E6DB16 /* bg_02.png */,
+				D244C33D189CEBF100E6DB16 /* bg_03.png */,
+				D244C332189CEBE500E6DB16 /* menu-gear.png */,
+				D244C333189CEBE600E6DB16 /* menu-gear@2x.png */,
+				D244C334189CEBE600E6DB16 /* menu.png */,
+				D244C335189CEBE600E6DB16 /* menu@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		D244C345189CEC6500E6DB16 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D244C31F189CEB9000E6DB16 /* HomeView.h */,
+				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
+				D244C321189CEB9000E6DB16 /* MainView.h */,
+				D244C343189CEC5C00E6DB16 /* MainView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D244C348189CEC8100E6DB16 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D244C323189CEBA100E6DB16 /* UIColor+LocalSwingCalendar.h */,
+				D244C346189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		D244C352189CECBB00E6DB16 /* SplitPeekViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D244C349189CECA700E6DB16 /* BackViewController.h */,
+				D244C34A189CECA700E6DB16 /* BackViewController.m */,
+				D244C34C189CECAE00E6DB16 /* FrontViewController.h */,
+				D244C34D189CECAE00E6DB16 /* FrontViewController.m */,
+				D244C34F189CECB800E6DB16 /* SplitViewController.h */,
+				D244C350189CECB800E6DB16 /* SplitViewController.m */,
+			);
+			name = SplitPeekViewController;
+			sourceTree = "<group>";
+		};
+		D244C356189CECE600E6DB16 /* GHViewController.h */ = {
+			isa = PBXGroup;
+			children = (
+				D244C353189CECDB00E6DB16 /* GHViewController.h */,
+				D244C354189CECDB00E6DB16 /* GHViewController.m */,
+				D244C35D189CECF500E6DB16 /* View */,
+			);
+			name = GHViewController.h;
+			sourceTree = "<group>";
+		};
+		D244C35D189CECF500E6DB16 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D244C357189CECF100E6DB16 /* GHWalkThroughPageCell.h */,
+				D244C358189CECF100E6DB16 /* GHWalkThroughPageCell.m */,
+				D244C359189CECF100E6DB16 /* GHWalkThroughView.h */,
+				D244C35A189CECF100E6DB16 /* GHWalkThroughView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +343,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D244C33F189CEBF100E6DB16 /* bg_02.png in Resources */,
 				D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */,
+				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
+				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
+				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
 				D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */,
-				D244C2FA189CEB6100E6DB16 /* Main.storyboard in Resources */,
+				D244C33E189CEBF100E6DB16 /* bg_01.png in Resources */,
+				D244C340189CEBF100E6DB16 /* bg_03.png in Resources */,
+				D244C337189CEBE600E6DB16 /* menu-gear@2x.png in Resources */,
+				D244C325189CEBAE00E6DB16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +371,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D244C2FD189CEB6100E6DB16 /* SSViewController.m in Sources */,
+				D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */,
+				D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */,
+				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,
+				D244C331189CEBCC00E6DB16 /* InitialViewController.m in Sources */,
+				D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */,
+				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
+				D244C347189CEC7A00E6DB16 /* UIColor+LocalSwingCalendar.m in Sources */,
+				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
+				D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */,
+				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,14 +411,6 @@
 				D244C2F0189CEB6100E6DB16 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D244C2F8189CEB6100E6DB16 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D244C2F9189CEB6100E6DB16 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		D244C30E189CEB6100E6DB16 /* InfoPlist.strings */ = {

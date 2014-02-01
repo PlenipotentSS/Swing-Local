@@ -5,20 +5,28 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F5A7FAFF-1B4D-4729-84C5-8A7FA2A265D8</string>
+	<string>B7AB3226-442D-44E7-A2A5-A6931F091F50</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Swing Local</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>27A9E621-98CE-40B3-A76D-C282C3E0E72A</key>
+		<string>https://github.com/PlenipotentSS/SplitPeekViewController.git</string>
 		<key>6D9342BC-22F3-42C6-8162-45739C50D581</key>
 		<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
+		<key>B8306EA5-8A33-43DC-8368-56CBFBDF72BC</key>
+		<string>ssh://dev-stevenson.com/git/GHWalkThrough.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Swing Local.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>27A9E621-98CE-40B3-A76D-C282C3E0E72A</key>
+		<string>../../../../CocoaPods/SplitPeekViewController</string>
 		<key>6D9342BC-22F3-42C6-8162-45739C50D581</key>
 		<string>../..</string>
+		<key>B8306EA5-8A33-43DC-8368-56CBFBDF72BC</key>
+		<string>../../../GHWalkThrough</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
@@ -32,9 +40,25 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B8306EA5-8A33-43DC-8368-56CBFBDF72BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GHWalkThrough</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>27A9E621-98CE-40B3-A76D-C282C3E0E72A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SplitPeekViewController</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>6D9342BC-22F3-42C6-8162-45739C50D581</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Swing-Local</string>
+			<string>Swing Local</string>
 		</dict>
 	</array>
 </dict>
