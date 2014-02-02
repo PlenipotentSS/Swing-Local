@@ -9,8 +9,9 @@
 #import "HomeView.h"
 #import "UIColor+SwingLocal.h"
 #import "SSActionSheet.h"
+#import "HomePageManager.h"
 
-@interface HomeView() <UIGestureRecognizerDelegate>
+@interface HomeView() <UIGestureRecognizerDelegate,HomePageManagerDelegate>
 
 //footer view for any separate swipe gestures
 @property (nonatomic) IBOutlet UIView *footerView;
@@ -31,7 +32,14 @@
 //original origin of changeCity Button
 @property (nonatomic) CGPoint changeCityOrigin;
 
+//whether there is a city that this user has selected in the past
 @property (nonatomic) BOOL citySelected;
+
+//the header image set under title
+@property (nonatomic) IBOutlet UIImageView *cityHeaderImage;
+
+//View containing content for home page
+@property (nonatomic) IBOutlet __block UIView *eventsTodayView;
 
 @end
 
@@ -50,8 +58,7 @@
     
     _cityKeys = @[@"Seattle, WA",@"Phoenix, AZ",@"Chicago, IL",@"New Orleans, LA",@"New York, NY",@"Portland, OR",@"San Francisco, CA",@"Denver, CO",@"Los Angeles, CA",@"Washington, D.C.",@"Austin, TX",@"Albuquerque, NM"];
     _title.textColor = [UIColor offWhiteScheme];
-    
-    
+    _eventsTodayView.hidden = YES;
     
     [self setupCityButtons];
     [self setupGesture];
@@ -72,7 +79,6 @@
 }
 
 -(void) setupGesture {
-    NSLog(@"Setup Gesture");
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(footerSlide:)];
     
     pan.minimumNumberOfTouches = 1;
@@ -223,8 +229,22 @@
                  cancel:@"Cancel"
                 buttons:_cityKeys
                  result:^(int nResult) {
-                     [self updateEventsAtCity:nResult];
+                     if (nResult != _currentCityIndex) {
+                         [self updateEventsAtCity:nResult];
+                     }
                      if (self.citySelected) {
+                         if (_eventsTodayView.hidden) {
+                             _eventsTodayView.hidden = NO;
+                         } else {
+                             [UIView animateWithDuration:.4f animations:^{
+                                 _eventsTodayView.alpha = 0.f;
+                             } completion:^(BOOL finished) {
+                                 [UIView animateWithDuration:.4f animations:^{
+                                     _eventsTodayView.alpha = 1.f;
+                                 }];
+                             }];
+                         }
+                         
                          [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
                      } else {
                          [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
@@ -240,7 +260,28 @@
         }
         _currentCityIndex = index;
         [_title setText:[_cityKeys objectAtIndex:index]];
+        [[HomePageManager sharedManager] setDelegate:self];
+        NSURL *headerImageURL = [self getImageFromCity:[_cityKeys objectAtIndex:index]];
+        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL];
     }
 }
+
+#pragma mark - imageviewcreator
+-(NSURL*) getImageFromCity: (NSString*) cityName {
+    cityName = [cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
+    return [NSURL URLWithString:strURL];
+}
+
+#pragma mark - HomePageManagerDelegate methods
+-(void) updateViewWithImage:(UIImage*) theImage {
+    [_cityHeaderImage setAlpha:0.f];
+    [_cityHeaderImage setImage:theImage];
+    [UIView animateWithDuration:.4f animations:^{
+        [_cityHeaderImage setAlpha:1.f];
+    }];
+}
+
+
 
 @end

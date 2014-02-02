@@ -42,6 +42,8 @@
 		D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD06189DC9DE000874FB /* DoActionSheet.m */; };
 		D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
+		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
+		D292FD21189E32FD000874FB /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD20189E32FD000874FB /* EventObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,10 @@
 		D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
+		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
+		D292FD1B189E1E87000874FB /* HomePageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageManager.m; sourceTree = "<group>"; };
+		D292FD1F189E32FD000874FB /* EventObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventObject.h; sourceTree = "<group>"; };
+		D292FD20189E32FD000874FB /* EventObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +186,7 @@
 				D244C324189CEBAE00E6DB16 /* Main.storyboard */,
 				D244C320189CEB9000E6DB16 /* InitialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* InitialViewController.m */,
+				D292FD1D189E1E8B000874FB /* Models */,
 				D244C345189CEC6500E6DB16 /* Views */,
 				D244C348189CEC8100E6DB16 /* Categories */,
 				D224C526189D017A00923370 /* Subclassed */,
@@ -332,6 +339,25 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		D292FD1D189E1E8B000874FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D292FD1E189E32DA000874FB /* Managers */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D292FD1E189E32DA000874FB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D292FD1A189E1E87000874FB /* HomePageManager.h */,
+				D292FD1B189E1E87000874FB /* HomePageManager.m */,
+				D292FD1F189E32FD000874FB /* EventObject.h */,
+				D292FD20189E32FD000874FB /* EventObject.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,8 +472,10 @@
 				D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */,
 				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
+				D292FD21189E32FD000874FB /* EventObject.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
+				D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
 				D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */,
 				D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */,

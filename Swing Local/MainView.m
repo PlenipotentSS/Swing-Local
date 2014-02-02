@@ -28,6 +28,8 @@
     _currentView = currentView;
     [self addSubview:_currentView];
     [(HomeView*)_currentView setup];
+    [_currentView becomeFirstResponder];
+    _currentView.userInteractionEnabled = YES;
 }
 
 @end
