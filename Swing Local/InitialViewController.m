@@ -8,7 +8,7 @@
 
 #import "InitialViewController.h"
 #import "GHWalkThroughView.h"
-#import "UIColor+LocalSwingCalendar.h"
+#import "UIColor+SwingLocal.h"
 
 @interface InitialViewController () <GHWalkThroughViewDataSource, GHWalkThroughViewDelegate>
 

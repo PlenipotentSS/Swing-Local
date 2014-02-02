@@ -69,6 +69,13 @@
                                     <constraint firstAttribute="height" constant="121" id="yZ2-sI-gZs"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-m1-tq7">
+                                <rect key="frame" x="10" y="28" width="300" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -80,6 +87,7 @@
                             <outlet property="changeCityButton" destination="kip-I6-M78" id="wds-mr-n3V"/>
                             <outlet property="citySelectButton" destination="oxv-uf-xTV" id="9TV-6u-WLn"/>
                             <outlet property="footerView" destination="nzi-Lr-RCH" id="0oa-IX-Y5a"/>
+                            <outlet property="title" destination="CXA-m1-tq7" id="jAd-K4-vnm"/>
                         </connections>
                     </view>
                 </viewController>

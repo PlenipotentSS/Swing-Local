@@ -16,6 +16,8 @@
 		<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
 		<key>B8306EA5-8A33-43DC-8368-56CBFBDF72BC</key>
 		<string>ssh://dev-stevenson.com/git/GHWalkThrough.git</string>
+		<key>FAFC600C-AC86-4CE5-B9C7-CC6849C9084D</key>
+		<string>https://github.com/donobono/DoActionSheet.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Swing Local.xcodeproj/project.xcworkspace</string>
@@ -27,6 +29,8 @@
 		<string>../..</string>
 		<key>B8306EA5-8A33-43DC-8368-56CBFBDF72BC</key>
 		<string>../../../GHWalkThrough</string>
+		<key>FAFC600C-AC86-4CE5-B9C7-CC6849C9084D</key>
+		<string>../../../DoActionSheet</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/PlenipotentSS/Swing-Local.git</string>
@@ -36,6 +40,14 @@
 	<string>6D9342BC-22F3-42C6-8162-45739C50D581</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FAFC600C-AC86-4CE5-B9C7-CC6849C9084D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DoActionSheet</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

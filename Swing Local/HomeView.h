@@ -10,13 +10,22 @@
 
 @interface HomeView : UIView
 
+//button to select a city for first run
 @property (nonatomic) IBOutlet UIButton *citySelectButton;
+
+//button to change city after selected
 @property (nonatomic) IBOutlet UIButton *changeCityButton;
 
+//array of all city keys from API
+@property (nonatomic) NSArray *cityKeys;
+
+//setup view
 -(void) setup;
 
+//action to start selecting city
 -(IBAction)selectCity:(id)sender;
 
+//action to change from selected city
 -(IBAction)changeCity:(id)sender;
 
 

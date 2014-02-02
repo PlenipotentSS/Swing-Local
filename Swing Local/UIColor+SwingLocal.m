@@ -1,14 +1,14 @@
 //
-//  UIColor+LocalSwingCalendar.m
+//  UIColor+SwingLocal.m
 //  Local Swing Calendar
 //
 //  Created by Stevenson on 1/31/14.
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
-#import "UIColor+LocalSwingCalendar.h"
+#import "UIColor+SwingLocal.h"
 
-@implementation UIColor (LocalSwingCalendar)
+@implementation UIColor (SwingLocal)
 
 +(UIColor *) aquaScheme {
     //return [UIColor colorWithRed:16.f/255.f green:91.f/255.f blue:99.f/255.f alpha:1.f];

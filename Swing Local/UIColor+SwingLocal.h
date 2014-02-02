@@ -1,5 +1,5 @@
 //
-//  UIColor+LocalSwingCalendar.h
+//  UIColor+SwingLocal.h
 //  Local Swing Calendar
 //
 //  Created by Stevenson on 1/31/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (LocalSwingCalendar)
+@interface UIColor (SwingLocal)
 
 //color scheme
 +(UIColor *) aquaScheme;
