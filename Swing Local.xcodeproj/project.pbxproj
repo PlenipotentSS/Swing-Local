@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CD189F942300F461CE /* DoActionSheet.m */; };
+		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
 		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
 		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
@@ -38,8 +40,6 @@
 		D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C354189CECDB00E6DB16 /* GHViewController.m */; };
 		D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C358189CECF100E6DB16 /* GHWalkThroughPageCell.m */; };
 		D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C35A189CECF100E6DB16 /* GHWalkThroughView.m */; };
-		D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD06189DC9DE000874FB /* DoActionSheet.m */; };
-		D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F98189F534C002F11DA /* UserOptions.m */; };
@@ -66,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D20B26CC189F942300F461CE /* DoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoActionSheet.h; path = "Swing Local/DoActionSheet/DoActionSheet.h"; sourceTree = SOURCE_ROOT; };
+		D20B26CD189F942300F461CE /* DoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoActionSheet.m; path = "Swing Local/DoActionSheet/DoActionSheet.m"; sourceTree = SOURCE_ROOT; };
+		D20B26CE189F942300F461CE /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeMagick.h"; path = "Swing Local/DoActionSheet/UIImage+ResizeMagick.h"; sourceTree = SOURCE_ROOT; };
+		D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeMagick.m"; path = "Swing Local/DoActionSheet/UIImage+ResizeMagick.m"; sourceTree = SOURCE_ROOT; };
 		D224C523189D017000923370 /* SSFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFrontViewController.h; sourceTree = "<group>"; };
 		D224C524189D017000923370 /* SSFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFrontViewController.m; sourceTree = "<group>"; };
 		D224C527189D021400923370 /* SSBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBackViewController.h; sourceTree = "<group>"; };
@@ -113,10 +117,6 @@
 		D244C358189CECF100E6DB16 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughPageCell.m; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughPageCell.m; sourceTree = "<group>"; };
 		D244C359189CECF100E6DB16 /* GHWalkThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHWalkThroughView.h; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughView.h; sourceTree = "<group>"; };
 		D244C35A189CECF100E6DB16 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughView.m; path = ../../GHWalkThrough/GHWalkThrough/GHWalkThroughView.m; sourceTree = "<group>"; };
-		D292FD05189DC9DE000874FB /* DoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoActionSheet.h; path = ../../DoActionSheet/TestActionSheet/DoActionSheet/DoActionSheet.h; sourceTree = "<group>"; };
-		D292FD06189DC9DE000874FB /* DoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoActionSheet.m; path = ../../DoActionSheet/TestActionSheet/DoActionSheet/DoActionSheet.m; sourceTree = "<group>"; };
-		D292FD0D189DC9FD000874FB /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
-		D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -330,9 +330,9 @@
 		D292FD08189DC9ED000874FB /* DoAction */ = {
 			isa = PBXGroup;
 			children = (
+				D20B26CC189F942300F461CE /* DoActionSheet.h */,
+				D20B26CD189F942300F461CE /* DoActionSheet.m */,
 				D292FD09189DC9FD000874FB /* UIImage-ResizeMagick */,
-				D292FD05189DC9DE000874FB /* DoActionSheet.h */,
-				D292FD06189DC9DE000874FB /* DoActionSheet.m */,
 			);
 			name = DoAction;
 			sourceTree = "<group>";
@@ -340,8 +340,8 @@
 		D292FD09189DC9FD000874FB /* UIImage-ResizeMagick */ = {
 			isa = PBXGroup;
 			children = (
-				D292FD0D189DC9FD000874FB /* UIImage+ResizeMagick.h */,
-				D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */,
+				D20B26CE189F942300F461CE /* UIImage+ResizeMagick.h */,
+				D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */,
 			);
 			name = "UIImage-ResizeMagick";
 			path = "../../DoActionSheet/TestActionSheet/3rdSource/UIImage-ResizeMagick";
@@ -570,16 +570,16 @@
 				D2A07FB4189F77C1002F11DA /* MenuTableViewModel.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
 				D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */,
+				D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */,
 				D2A07F9F189F535D002F11DA /* VenueOrganization.m in Sources */,
 				D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
+				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,
 				D2A07FAB189F539A002F11DA /* CityEvents.m in Sources */,
 				D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
-				D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */,
 				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
-				D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */,
 				D2A07FB8189F77E0002F11DA /* SavedEventsTableViewModel.m in Sources */,
 				D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */,
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
