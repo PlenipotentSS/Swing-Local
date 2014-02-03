@@ -50,6 +50,9 @@
 		D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */; };
 		D2A07FAB189F539A002F11DA /* CityEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FAA189F539A002F11DA /* CityEvents.m */; };
 		D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A07FAC189F542D002F11DA /* Main.storyboard */; };
+		D2A07FB4189F77C1002F11DA /* MenuTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FB3189F77C1002F11DA /* MenuTableViewModel.m */; };
+		D2A07FB8189F77E0002F11DA /* SavedEventsTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FB7189F77E0002F11DA /* SavedEventsTableViewModel.m */; };
+		D2A07FBD189F8602002F11DA /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FBC189F8602002F11DA /* NewsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,12 @@
 		D2A07FA9189F539A002F11DA /* CityEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityEvents.h; sourceTree = "<group>"; };
 		D2A07FAA189F539A002F11DA /* CityEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityEvents.m; sourceTree = "<group>"; };
 		D2A07FAC189F542D002F11DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D2A07FB2189F77C1002F11DA /* MenuTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewModel.h; sourceTree = "<group>"; };
+		D2A07FB3189F77C1002F11DA /* MenuTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewModel.m; sourceTree = "<group>"; };
+		D2A07FB6189F77E0002F11DA /* SavedEventsTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedEventsTableViewModel.h; sourceTree = "<group>"; };
+		D2A07FB7189F77E0002F11DA /* SavedEventsTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedEventsTableViewModel.m; sourceTree = "<group>"; };
+		D2A07FBB189F8602002F11DA /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
+		D2A07FBC189F8602002F11DA /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,8 +275,7 @@
 		D244C345189CEC6500E6DB16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D244C31F189CEB9000E6DB16 /* HomeView.h */,
-				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
+				D2A07FBE189F8610002F11DA /* CategoryViews */,
 				D244C343189CEC5C00E6DB16 /* MainView.m */,
 				D244C321189CEB9000E6DB16 /* MainView.h */,
 				D2A07FB0189F5B3F002F11DA /* Buttons */,
@@ -364,8 +372,7 @@
 			children = (
 				D2A07FAF189F54FE002F11DA /* User Settings */,
 				D2A07FAE189F54EF002F11DA /* Event Models */,
-				D2A07FA6189F5387002F11DA /* EventsTableViewModel.h */,
-				D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */,
+				D2A07FB5189F77C5002F11DA /* TableView Models */,
 				D292FD1E189E32DA000874FB /* Managers */,
 			);
 			name = Models;
@@ -418,6 +425,30 @@
 				D2A07FA4189F5382002F11DA /* EventsTableView.m */,
 			);
 			name = Tables;
+			sourceTree = "<group>";
+		};
+		D2A07FB5189F77C5002F11DA /* TableView Models */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FA6189F5387002F11DA /* EventsTableViewModel.h */,
+				D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */,
+				D2A07FB2189F77C1002F11DA /* MenuTableViewModel.h */,
+				D2A07FB3189F77C1002F11DA /* MenuTableViewModel.m */,
+				D2A07FB6189F77E0002F11DA /* SavedEventsTableViewModel.h */,
+				D2A07FB7189F77E0002F11DA /* SavedEventsTableViewModel.m */,
+			);
+			name = "TableView Models";
+			sourceTree = "<group>";
+		};
+		D2A07FBE189F8610002F11DA /* CategoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FBB189F8602002F11DA /* NewsView.h */,
+				D2A07FBC189F8602002F11DA /* NewsView.m */,
+				D244C31F189CEB9000E6DB16 /* HomeView.h */,
+				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
+			);
+			name = CategoryViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */,
+				D2A07FBD189F8602002F11DA /* NewsView.m in Sources */,
 				D2A07F9C189F534C002F11DA /* VenueEvent.m in Sources */,
 				D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */,
 				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
@@ -535,6 +567,7 @@
 				D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */,
 				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
+				D2A07FB4189F77C1002F11DA /* MenuTableViewModel.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
 				D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */,
 				D2A07F9F189F535D002F11DA /* VenueOrganization.m in Sources */,
@@ -547,6 +580,7 @@
 				D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */,
 				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
 				D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */,
+				D2A07FB8189F77E0002F11DA /* SavedEventsTableViewModel.m in Sources */,
 				D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */,
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,

@@ -64,6 +64,9 @@
 //table view model
 @property (nonatomic) EventsTableViewModel *contentModel;
 
+@property (nonatomic) BOOL newsIsActive;
+
+
 @end
 
 @implementation HomeView
@@ -84,6 +87,7 @@
     [self setupCityButtons];
     [self setupGesture];
     [self setupActionSheet];
+    [self setupNews];
     
 }
 
@@ -114,11 +118,11 @@
     
     self.changeCityButton.layer.cornerRadius = CGRectGetWidth(self.changeCityButton.frame)/2;
     self.changeCityButton.layer.masksToBounds = YES;
-    //[self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
+    [self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
     
     self.moreEvents.layer.cornerRadius = CGRectGetWidth(self.moreEvents.frame)/2;
     self.moreEvents.layer.masksToBounds = YES;
-    //[self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
+    [self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
     [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
     
     [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
@@ -141,6 +145,17 @@
     
 }
 
+-(void) setupNews {
+    if (!_citySelected && _newsView) {
+        CGRect newsFrame = _newsView.frame;
+        newsFrame.size.height = CGRectGetHeight(self.frame)-CGRectGetHeight(_footerView.frame);
+        _newsView.frame = newsFrame;
+        [self insertSubview:_newsView aboveSubview:_footerView];
+        _newsIsActive =YES;
+    }
+}
+
+#pragma mark - IBActions to select city
 -(IBAction)selectCity:(id)sender {
     if (!self.cityIsAnimating) {
         [self hideCitySelector];
@@ -279,6 +294,14 @@
                              }
                          }
                          if (self.citySelected) {
+                             if (_newsIsActive) {
+                                 [UIView animateWithDuration:.5f animations:^{
+                                     [_newsView setAlpha:0.f];
+                                 } completion:^(BOOL finished) {
+                                     [_newsView removeFromSuperview];
+                                 }];
+                                 _newsIsActive = NO;
+                             }
                              [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
                          } else {
                              [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];

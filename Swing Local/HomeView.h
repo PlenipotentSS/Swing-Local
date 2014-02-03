@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsView.h"
 
 @interface HomeView : UIView
 
 //array of all city keys from API
 @property (nonatomic) NSArray *cityKeys;
+
+//news view
+@property (nonatomic) NewsView *newsView;
 
 //setup view
 -(void) setup;

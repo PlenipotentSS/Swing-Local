@@ -64,13 +64,13 @@
 }
 
 -(void) animateCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
-    cell.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.33f, 1.33f);
     [_cellOperationQueue addOperationWithBlock:^{
         usleep(250000);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:.4f animations:^{
                 [cell.contentView setAlpha:1.f];
-                cell.transform = CGAffineTransformIdentity;
+                cell.transform = CGAffineTransformScale(transform, .75f, .75f);
             }];
         }];
     }];

@@ -7,6 +7,8 @@
 //
 
 #import "SSFrontViewController.h"
+#import "HomeView.h"
+#import "NewsView.h"
 
 @interface SSFrontViewController ()
 
@@ -28,6 +30,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIViewController *home_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"home_vc"];
+    UIViewController *news_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"news_vc"];
+    [(HomeView*)home_vc.view setNewsView:(NewsView*)news_vc.view];
     
     [self.mainView setAlpha:0.f];
     [self.mainView setup];
