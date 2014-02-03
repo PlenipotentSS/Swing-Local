@@ -8,6 +8,7 @@
 
 #import "SSFrontViewController.h"
 #import "HomeView.h"
+#import <uservoice-iphone-sdk/UserVoice.h>
 #import "NewsView.h"
 
 @interface SSFrontViewController ()
@@ -25,9 +26,8 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)loadViewsToFront
 {
-    [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIViewController *home_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"home_vc"];
     UIViewController *news_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"news_vc"];
@@ -38,10 +38,30 @@
     [self.mainView setCurrentView:home_vc.view];
     [self.mainView setAlpha:1.f];
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    //[self loadViewsToFront];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"showSupport"]) {
+        [self support];
+    } else {
+        [super performSegueWithIdentifier:identifier sender:sender];
+    }
+}
+
+-(void)support{
+    [UserVoice presentUserVoiceInterfaceForParentViewController:self];
+}
+
 
 @end

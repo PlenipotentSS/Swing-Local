@@ -6,23 +6,32 @@
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
-#import "InitialViewController.h"
+#import "AppTutorialViewController.h"
 #import "GHWalkThroughView.h"
 #import "UIColor+SwingLocal.h"
+#import "RootViewController.h"
+#import "SSAppDelegate.h"
 
-@interface InitialViewController () <GHWalkThroughViewDataSource, GHWalkThroughViewDelegate>
+@interface AppTutorialViewController () <GHWalkThroughViewDataSource, GHWalkThroughViewDelegate>
 
+//pod for tutorial view
 @property (nonatomic, strong) GHWalkThroughView* ghView ;
-@property (nonatomic, strong) NSArray *imageViews;
-@property (nonatomic,strong) UINavigationController *splitControllerNav;
 
+//images used for tutorial
+@property (nonatomic, strong) NSArray *imageViews;
+
+//titles for tutorial pages
 @property (nonatomic,strong) NSMutableArray *titles;
+
+//descriptions for each page in tutorial
 @property (nonatomic,strong) NSMutableArray *descriptions;
+
+//background colors for each page in tutorial
 @property (nonatomic,strong) NSMutableArray *backgroundColors;
 
 @end
 
-@implementation InitialViewController
+@implementation AppTutorialViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,7 +47,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor aquaScheme];
     
-    [self setupSplitController];
     
     [self setupDescriptions];
     
@@ -66,12 +74,8 @@
     [self.backgroundColors addObject:[UIColor burntScheme]];
 }
 
--(void) setupSplitController {
-    self.splitControllerNav = (UINavigationController*)[self.storyboard instantiateViewControllerWithIdentifier:@"splitController"];
-}
-
 -(void) setupWalkThrough {
-    _ghView = [[GHWalkThroughView alloc] initWithFrame:self.navigationController.view.bounds];
+    _ghView = [[GHWalkThroughView alloc] initWithFrame:self.view.frame];
     [_ghView setDataSource:self];
     [_ghView setDelegate:self];
     [self.ghView setWalkThroughDirection:GHWalkThroughViewDirectionHorizontal];
@@ -96,7 +100,8 @@
 
 #pragma mark - GHWalkThroughDelegate
 -(void) skipButtonPressed {
-    [self presentViewController:self.splitControllerNav animated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [(RootViewController*)self.parentViewController performSegueWithIdentifier:@"showSplitController" sender:self];
 }
 
 #pragma mark - GHWalkThroughViewDataSource

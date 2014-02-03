@@ -7,12 +7,21 @@
 //
 
 #import "SSAppDelegate.h"
+#import <uservoice-iphone-sdk/UserVoice.h>
+#import "RootViewController.h"
 
 @implementation SSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Set this up once when your application launches
+    UVConfig *config = [UVConfig configWithSite:@"swinglocal.uservoice.com"];
+    config.forumId = 239827;
+    // [config identifyUserWithEmail:@"email@example.com" name:@"User Name", guid:@"USER_ID");
+    [UserVoice initialize:config];
+    
     return YES;
 }
 							

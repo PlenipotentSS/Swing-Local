@@ -19,5 +19,10 @@
 //website to venue
 @property (nonatomic) NSString *website;
 
+//twitter account
+@property (nonatomic) NSString *twitterUsername;
+
+//facebook page
+@property (nonatomic) NSString *facebookPage;
 
 @end

@@ -16,6 +16,8 @@
     _events = [aDecoder decodeObjectForKey:@"events"];
     _venue =[aDecoder decodeObjectForKey:@"venue"];
     _website = [aDecoder decodeObjectForKey:@"website"];
+    _twitterUsername =[aDecoder decodeObjectForKey:@"twitterUsername"];
+    _facebookPage = [aDecoder decodeObjectForKey:@"facebookPage"];
     
     return self;
 }
@@ -24,6 +26,8 @@
     [aCoder encodeObject:self.events forKey:@"events"];
     [aCoder encodeObject:self.venue forKey:@"venue"];
     [aCoder encodeObject:self.website forKey:@"website"];
+    [aCoder encodeObject:self.twitterUsername forKey:@"twitterUsername"];
+    [aCoder encodeObject:self.facebookPage forKey:@"facebookPage"];
 }
 
 @end

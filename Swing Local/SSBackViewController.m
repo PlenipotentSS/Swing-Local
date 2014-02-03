@@ -9,16 +9,15 @@
 #import "SSBackViewController.h"
 #import "UIColor+SwingLocal.h"
 #import "SplitViewController.h"
-#import "MenuTableViewModel.h"
-#import "SavedEventsTableViewModel.h"
+#import "SplitControllerSegue.h"
 
-@interface SSBackViewController ()
 
-@property (weak,nonatomic) IBOutlet UITableView *tableViewMenu;
-@property (weak,nonatomic) IBOutlet UITableView *tableViewSavedEvents;
+@interface SSBackViewController () <UITableViewDataSource,UITableViewDelegate>
 
-@property (weak,nonatomic) IBOutlet MenuTableViewModel *menuModel;
-@property (weak, nonatomic) IBOutlet SavedEventsTableViewModel *savedEventsModel;
+@property (weak,nonatomic) IBOutlet UITableView *theTableView;
+
+@property (nonatomic) NSArray *menuItems;
+@property (nonatomic) NSArray *segueItems;
 
 @end
 
@@ -33,18 +32,24 @@
     return self;
 }
 
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setupTableViews];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    _theTableView.dataSource = self;
+    _theTableView.delegate = self;
+    
+    _menuItems = @[@"newsCell",@"homeCell",@"calendarCell",@"settingsCell",@"supportCell"];
+    _segueItems = @[@"showNews",@"showHome",@"showCalendar",@"showSettings",@"showSupport"];
+    
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -60,10 +65,6 @@
     self.view.backgroundColor = [UIColor aquaScheme];
 }
 
--(void) setupTableViews {
-    [_menuModel setTheTableView:_tableViewMenu];
-    [_savedEventsModel setTheTableView:_tableViewSavedEvents];
-}
 
 #pragma mark - edit events
 -(IBAction)editSavedEvents:(id)sender {
@@ -74,6 +75,21 @@
         [(SplitViewController*)self.parentViewController.parentViewController showMenuSplit];
         [(UIButton*)sender setTitle:@"Edit" forState:UIControlStateNormal];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.frontViewController performSegueWithIdentifier:[_segueItems objectAtIndex:indexPath.row] sender:self];
+    [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.menuItems count];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [_theTableView dequeueReusableCellWithIdentifier:[_menuItems objectAtIndex:indexPath.row] forIndexPath:indexPath];
+    
+    return cell;
 }
 
 @end

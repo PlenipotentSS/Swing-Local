@@ -42,6 +42,10 @@
     [_theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
+    [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -64,13 +68,13 @@
 }
 
 -(void) animateCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.33f, 1.33f);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
     [_cellOperationQueue addOperationWithBlock:^{
         usleep(250000);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:.4f animations:^{
                 [cell.contentView setAlpha:1.f];
-                cell.transform = CGAffineTransformScale(transform, .75f, .75f);
+                cell.contentView.transform = CGAffineTransformScale(transform,.75f,.75f);
             }];
         }];
     }];
