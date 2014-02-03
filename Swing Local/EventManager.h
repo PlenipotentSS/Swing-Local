@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CityEvents.h"
-#import "VenueEvent.h"
-#import "VenueOrganization.h"
+#import "City.h"
+#import "Event.h"
+#import "Venue.h"
 
 @interface EventManager : NSObject
 
+@property (nonatomic) NSArray *allCities;
+
 +(EventManager*) sharedManager;
 
--(NSArray*) downloadEventCities;
+-(void) downloadEventCities;
 
--(NSArray*) downloadEventsInCity:(CityEvents*) city;
+-(NSArray*) downloadEventsInCity:(City*) city;
 
--(NSArray*) downloadEventsForVenue:(VenueOrganization*) venue;
+-(NSArray*) downloadEventsForVenue:(Venue*) venue;
 
 @end

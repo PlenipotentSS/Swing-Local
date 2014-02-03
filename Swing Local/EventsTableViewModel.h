@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CityEvents.h"
+#import "City.h"
 #import "EventsTableView.h"
 
 @interface EventsTableViewModel : NSObject <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic) CityEvents *city;
+@property (nonatomic) City *city;
 @property (nonatomic) EventsTableView *theTableView;
 
 @end

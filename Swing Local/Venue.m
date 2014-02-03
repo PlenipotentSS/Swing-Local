@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
-#import "VenueOrganization.h"
+#import "Venue.h"
 
-@implementation VenueOrganization
+@implementation Venue
 
 
 #pragma mark NSCoding

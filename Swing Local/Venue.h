@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VenueOrganization : NSObject <NSCoding>
+@interface Venue : NSObject <NSCoding>
 
 //list of all events in this venue/organization
 @property (nonatomic) NSMutableArray *events;

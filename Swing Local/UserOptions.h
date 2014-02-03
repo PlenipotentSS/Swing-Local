@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CityEvents.h"
+#import "City.h"
 
 @interface UserOptions : NSObject
 
@@ -15,6 +15,6 @@
 
 @property (nonatomic) NSArray *favoritedCities;
 
-@property (nonatomic) CityEvents *currentCity;
+@property (nonatomic) City *currentCity;
 
 @end

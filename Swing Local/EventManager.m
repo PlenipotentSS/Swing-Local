@@ -21,21 +21,20 @@
     return shared;
 }
 
--(NSArray*) downloadEventCities {
+-(void) downloadEventCities {
     //data from db for all keys
     NSArray *cities = [[NSArray alloc] init];
-    
-    return cities;
+    _allCities = cities;
 }
 
--(NSArray*) downloadEventsInCity:(CityEvents*) city {
+-(NSArray*) downloadEventsInCity:(City*) city {
     //download all venue information for given city
     NSArray *venues = [[NSArray alloc] init];
     
     return venues;
 }
 
--(NSArray*) downloadEventsForVenue:(VenueOrganization*) venue {
+-(NSArray*) downloadEventsForVenue:(Venue*) venue {
     NSArray *events = [[NSArray alloc] init];
     
     return events;

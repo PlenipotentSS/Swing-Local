@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
-#import "VenueEvent.h"
+#import "Event.h"
 
-@implementation VenueEvent
+@implementation Event
 
 #pragma mark NSCoding
 -(id)initWithCoder:(NSCoder *)aDecoder  {

@@ -7,9 +7,9 @@
 //
 
 #import "testData.h"
-#import "CityEvents.h"
-#import "VenueOrganization.h"
-#import "VenueEvent.h"
+#import "City.h"
+#import "Venue.h"
+#import "Event.h"
 
 @implementation testData
 
@@ -27,20 +27,20 @@
     _venues = [[NSMutableArray alloc] init];
     _events = [[NSMutableArray alloc] init];
 
-    CityEvents *city1 = [self setupCity];
+    City *city1 = [self setupCity];
     NSLog(@"%@",city1);
     
 }
 
--(CityEvents*) setupCity {
-    CityEvents *city = [CityEvents new];
+-(City*) setupCity {
+    City *city = [City new];
     
-    VenueOrganization *venue1 = [VenueOrganization new];
+    Venue *venue1 = [Venue new];
     venue1.venueTitle = @"Savoy Swing Club";
     [city.venueOrganizations addObject:venue1];
     
     
-    VenueEvent *event1 = [VenueEvent new];
+    Event *event1 = [Event new];
     event1.eventTitle = @"Savoy Mondays";
     [venue1.events addObject:event1];
     

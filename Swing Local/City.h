@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CityEvents : NSObject <NSCoding>
+@interface City : NSObject <NSCoding>
 
 //array of all venueOrganizations within this city
 @property (nonatomic) NSMutableArray *venueOrganizations;
@@ -24,5 +24,8 @@
 
 //image representing this city
 @property (nonatomic) UIImage *cityImage;
+
+//whether this city is saved in users
+@property (nonatomic,readwrite) BOOL savedCity;
 
 @end

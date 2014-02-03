@@ -29,7 +29,7 @@
     return self;
 }
 
--(void) setCity:(CityEvents *)city {
+-(void) setCity:(City *)city {
     _city = city;
     
     _testData = @[@"Century Ballroom",@"Russian Center",@"Savoy Mondays"];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VenueEvent : NSObject <NSCoding>
+@interface Event : NSObject <NSCoding>
 
 //updated by google calendar and api
 @property (nonatomic) NSString *eventTitle;

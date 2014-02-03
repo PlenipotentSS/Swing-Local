@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
-#import "CityEvents.h"
+#import "City.h"
 
-@implementation CityEvents
+@implementation City
 
 
 #pragma mark NSCoding
