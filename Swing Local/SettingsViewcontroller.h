@@ -1,5 +1,5 @@
 //
-//  CalendarviewController.h
+//  SettingsViewcontroller.h
 //  Swing Local
 //
 //  Created by Stevenson on 2/3/14.
@@ -8,8 +8,6 @@
 
 #import "FrontViewController.h"
 
-@interface CalendarviewController : FrontViewController
-
-@property (nonatomic) NSMutableArray *cities;
+@interface SettingsViewcontroller : FrontViewController
 
 @end

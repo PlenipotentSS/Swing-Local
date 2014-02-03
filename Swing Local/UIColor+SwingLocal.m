@@ -34,16 +34,16 @@
 }
 
 
-+(UIColor *) getRandomColor {
-    //CGFloat r = drand48(255)/255;
-    
-    NSMutableArray *comps = [NSMutableArray new];
-    for (int i=0;i<3;i++) {
-        NSUInteger r = arc4random_uniform(256);
-        CGFloat randomColorComponent = (CGFloat)r/255.f;
-        [comps addObject:@(randomColorComponent)];
-    }
-    return [UIColor colorWithRed:[comps[0] floatValue] green:[comps[1] floatValue] blue:[comps[2] floatValue] alpha:1.0];
-}
+//+(UIColor *) getRandomColor {
+//    //CGFloat r = drand48(255)/255;
+//    
+//    NSMutableArray *comps = [NSMutableArray new];
+//    for (int i=0;i<3;i++) {
+//        NSUInteger r = arc4random_uniform(256);
+//        CGFloat randomColorComponent = (CGFloat)r/255.f;
+//        [comps addObject:@(randomColorComponent)];
+//    }
+//    return [UIColor colorWithRed:[comps[0] floatValue] green:[comps[1] floatValue] blue:[comps[2] floatValue] alpha:1.0];
+//}
 
 @end

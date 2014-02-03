@@ -19,4 +19,10 @@
 //country containing this city
 @property (nonatomic) NSString *country;
 
+//string of url to image for this city
+@property (nonatomic) NSString *imageURLString;
+
+//image representing this city
+@property (nonatomic) UIImage *cityImage;
+
 @end

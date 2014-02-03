@@ -14,7 +14,7 @@
 @property (nonatomic) NSMutableArray *events;
 
 //Venue Manager Or organization of event
-@property (nonatomic) NSString *venue;
+@property (nonatomic) NSString *venueTitle;
 
 //website to venue
 @property (nonatomic) NSString *website;
@@ -24,5 +24,14 @@
 
 //facebook page
 @property (nonatomic) NSString *facebookPage;
+
+//image url string for venue/organization
+@property (nonatomic) NSString *venueImageURLString;
+
+//image for venue/organization
+@property (nonatomic) UIImage *venueImage;
+
+//download the venue's image
+-(void)downloadVenueImage;
 
 @end

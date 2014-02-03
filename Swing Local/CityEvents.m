@@ -26,4 +26,14 @@
     [aCoder encodeObject:self.venueOrganizations forKey:@"venueOrganizations"];
 }
 
+-(void)downloadCityImage {
+    if (_imageURLString) {
+        NSData *cityImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageURLString]];
+        UIImage *cityImage = [UIImage imageWithData:cityImageData];
+        if (cityImage) {
+            _cityImage = cityImage;
+        }
+    }
+}
+
 @end

@@ -18,6 +18,6 @@
 +(UIColor *) burntScheme;
 
 
-+(UIColor *) getRandomColor;
+//+(UIColor *) getRandomColor;
 
 @end

@@ -58,6 +58,9 @@
 		D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890318A0292100A6BD51 /* HomeViewController.m */; };
 		D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890618A02EB100A6BD51 /* NewsViewController.m */; };
 		D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890918A02EC000A6BD51 /* CalendarviewController.m */; };
+		D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */; };
+		D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891018A03AE200A6BD51 /* EventManager.m */; };
+		D2E6891418A045DF00A6BD51 /* testData.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891318A045DF00A6BD51 /* testData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +160,12 @@
 		D2E6890618A02EB100A6BD51 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		D2E6890818A02EC000A6BD51 /* CalendarviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarviewController.h; sourceTree = "<group>"; };
 		D2E6890918A02EC000A6BD51 /* CalendarviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarviewController.m; sourceTree = "<group>"; };
+		D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewcontroller.h; sourceTree = "<group>"; };
+		D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewcontroller.m; sourceTree = "<group>"; };
+		D2E6890F18A03AE200A6BD51 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		D2E6891018A03AE200A6BD51 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
+		D2E6891218A045DF00A6BD51 /* testData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testData.h; sourceTree = "<group>"; };
+		D2E6891318A045DF00A6BD51 /* testData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +202,8 @@
 				D2E6890618A02EB100A6BD51 /* NewsViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
 				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
+				D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */,
+				D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
 				D292FD15189DCA65000874FB /* Subclassed */,
@@ -236,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				D2A07FAC189F542D002F11DA /* Main.storyboard */,
+				D2E6891218A045DF00A6BD51 /* testData.h */,
+				D2E6891318A045DF00A6BD51 /* testData.m */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
 				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
@@ -397,6 +410,8 @@
 			children = (
 				D292FD1A189E1E87000874FB /* HomePageManager.h */,
 				D292FD1B189E1E87000874FB /* HomePageManager.m */,
+				D2E6890F18A03AE200A6BD51 /* EventManager.h */,
+				D2E6891018A03AE200A6BD51 /* EventManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -653,7 +668,10 @@
 				D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */,
 				D2A07F9F189F535D002F11DA /* VenueOrganization.m in Sources */,
 				D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */,
+				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
+				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
+				D2E6891418A045DF00A6BD51 /* testData.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
 				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,
 				D2A07FAB189F539A002F11DA /* CityEvents.m in Sources */,

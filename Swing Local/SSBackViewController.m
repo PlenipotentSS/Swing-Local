@@ -18,6 +18,7 @@
 
 @property (nonatomic) NSArray *menuItems;
 @property (nonatomic) NSArray *segueItems;
+@property (nonatomic) NSMutableArray *savedCities;
 
 @end
 
@@ -38,12 +39,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    
-    _theTableView.dataSource = self;
-    _theTableView.delegate = self;
-    
-    _menuItems = @[@"newsCell",@"homeCell",@"calendarCell",@"settingsCell",@"supportCell"];
-    _segueItems = @[@"showNews",@"showHome",@"showCalendar",@"showSettings",@"showSupport"];
+    [self configureData];
+
     
 }
 
@@ -62,7 +59,17 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    self.view.backgroundColor = [UIColor aquaScheme];
+}
+
+-(void)configureData
+{
+    _theTableView.dataSource = self;
+    _theTableView.delegate = self;
+    
+    _menuItems = @[@"newsCell",@"homeCell",@"calendarCell",@"settingsCell",@"supportCell"];
+    _segueItems = @[@"showNews",@"showHome",@"showCalendar",@"showSettings",@"showSupport"];
+    
+    _savedCities = [[NSMutableArray alloc] initWithArray:@[@"Seattle, WA",@"San Francisco, CA",@"Portland, OR"]];
 }
 
 
@@ -78,17 +85,42 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.frontViewController performSegueWithIdentifier:[_segueItems objectAtIndex:indexPath.row] sender:self];
+    if (indexPath.row < [_menuItems count]) {
+        [self.frontViewController performSegueWithIdentifier:[_segueItems objectAtIndex:indexPath.row] sender:self];
+        if (indexPath.row < [_menuItems count]-1) {
+            [(SplitViewController*)self.parentViewController.parentViewController hideMenu];
+        }
+    }
+    
+    
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [_menuItems count]) {
+        return 60.f;
+    } else {
+        return 35.f;
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.menuItems count];
+    return [self.menuItems count] + 1 + [_savedCities count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [_theTableView dequeueReusableCellWithIdentifier:[_menuItems objectAtIndex:indexPath.row] forIndexPath:indexPath];
-    
+    UITableViewCell *cell ;
+    if (indexPath.row < [_menuItems count]) {
+        cell = [_theTableView dequeueReusableCellWithIdentifier:[_menuItems objectAtIndex:indexPath.row] forIndexPath:indexPath];
+        
+    } else if (indexPath.row == [_menuItems count]) {
+        cell = [_theTableView dequeueReusableCellWithIdentifier:@"savedCityLabelCell" forIndexPath:indexPath];
+    } else {
+        cell = [_theTableView dequeueReusableCellWithIdentifier:@"savedCityCell" forIndexPath:indexPath];
+        NSInteger savedIndex = indexPath.row-[_menuItems count]-1;
+        cell.textLabel.text = [_savedCities objectAtIndex:savedIndex];
+    }
+
     return cell;
 }
 

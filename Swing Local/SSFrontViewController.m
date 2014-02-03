@@ -10,6 +10,8 @@
 #import "HomeView.h"
 #import <uservoice-iphone-sdk/UserVoice.h>
 #import "NewsView.h"
+#import "UVStyleSheet.h"
+#import "UIColor+SwingLocal.h"
 
 @interface SSFrontViewController ()
 
@@ -24,19 +26,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)loadViewsToFront
-{
-	// Do any additional setup after loading the view.
-    UIViewController *home_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"home_vc"];
-    UIViewController *news_vc = [self.storyboard instantiateViewControllerWithIdentifier:@"news_vc"];
-    [(HomeView*)home_vc.view setNewsView:(NewsView*)news_vc.view];
-    
-    [self.mainView setAlpha:0.f];
-    [self.mainView setup];
-    [self.mainView setCurrentView:home_vc.view];
-    [self.mainView setAlpha:1.f];
 }
 
 - (void)viewDidLoad
@@ -60,6 +49,10 @@
 }
 
 -(void)support{
+    [UVStyleSheet instance].tintColor = [UIColor aquaScheme];
+    [UVStyleSheet instance].navigationBarBackgroundColor = [UIColor aquaScheme];
+    [UVStyleSheet instance].navigationBarTextColor = [UIColor aquaScheme];
+    [UVStyleSheet instance].tableViewBackgroundColor = [UIColor groupTableViewBackgroundColor];
     [UserVoice presentUserVoiceInterfaceForParentViewController:self];
 }
 

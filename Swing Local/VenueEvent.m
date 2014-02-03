@@ -10,16 +10,6 @@
 
 @implementation VenueEvent
 
--(void) downloadEventImage {
-    if (self.imageURLString) {
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.imageURLString]];
-        UIImage *eventImage = [UIImage imageWithData:imageData];
-        if (eventImage) {
-            _eventImage = eventImage;
-        }
-    }
-}
-
 #pragma mark NSCoding
 -(id)initWithCoder:(NSCoder *)aDecoder  {
     _eventTitle = [aDecoder decodeObjectForKey:@"eventTitle"];
@@ -46,5 +36,17 @@
     [aCoder encodeObject:self.address forKey:@"address"];
     [aCoder encodeObject:self.imageURLString forKey:@"imageURLString"];
 }
+
+#pragma mark - download methods
+-(void) downloadEventImage {
+    if (_imageURLString) {
+        NSData *eventImageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageURLString]];
+        UIImage *eventImage = [UIImage imageWithData:eventImageData];
+        if (eventImage) {
+            _eventImage = eventImage;
+        }
+    }
+}
+
 
 @end

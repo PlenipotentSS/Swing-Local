@@ -40,7 +40,8 @@
 //the string to lazy load images for this event
 @property (nonatomic) NSString *imageURLString;
 
-
+//download image from imageurlstring
+-(void) downloadEventImage;
 
 
 @end

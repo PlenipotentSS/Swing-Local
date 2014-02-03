@@ -118,11 +118,11 @@
     
     self.changeCityButton.layer.cornerRadius = CGRectGetWidth(self.changeCityButton.frame)/2;
     self.changeCityButton.layer.masksToBounds = YES;
-    [self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
+    //[self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
     
     self.moreEvents.layer.cornerRadius = CGRectGetWidth(self.moreEvents.frame)/2;
     self.moreEvents.layer.masksToBounds = YES;
-    [self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
+    //[self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
     [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
     
     [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
