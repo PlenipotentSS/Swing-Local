@@ -10,15 +10,41 @@
 #import "UIColor+SwingLocal.h"
 #import "SSActionSheet.h"
 #import "HomePageManager.h"
+#import "HollowButton.h"
+#import "EventsTableView.h"
+#import "EventsTableViewModel.h"
 
-@interface HomeView() <UIGestureRecognizerDelegate,HomePageManagerDelegate>
+@interface HomeView() <UIGestureRecognizerDelegate, HomePageManagerDelegate>
+
+//wrapper view
+@property (weak, nonatomic) IBOutlet UIView *wrapper;
+
+//button to select a city for first run
+@property (weak, nonatomic) IBOutlet UIButton *citySelectButton;
+
+//button to change city after selected
+@property (weak, nonatomic) IBOutlet HollowButton *changeCityButton;
+
+//content ScrollView
+@property (weak,nonatomic) IBOutlet EventsTableView *contentScrollView;
+
+//content Header view to display tonight's dances
+@property (weak, nonatomic) IBOutlet UIView *contentHeader;
 
 //footer view for any separate swipe gestures
-@property (nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
 
 //title header of current view
-@property (nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
+//the header image set under title
+@property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
+
+//button for more dances
+@property (weak, nonatomic) IBOutlet HollowButton *moreEvents;
+
+//button for more dances
+@property (weak, nonatomic) IBOutlet UIButton *moreEventsWrapper;
 
 //flag for ongoing animation
 @property (nonatomic) BOOL __block cityIsAnimating;
@@ -35,11 +61,8 @@
 //whether there is a city that this user has selected in the past
 @property (nonatomic) BOOL citySelected;
 
-//the header image set under title
-@property (nonatomic) IBOutlet UIImageView *cityHeaderImage;
-
-//View containing content for home page
-@property (nonatomic) IBOutlet __block UIView *eventsTodayView;
+//table view model
+@property (nonatomic) EventsTableViewModel *contentModel;
 
 @end
 
@@ -56,17 +79,32 @@
 
 -(void) setup {
     
-    _cityKeys = @[@"Seattle, WA",@"Phoenix, AZ",@"Chicago, IL",@"New Orleans, LA",@"New York, NY",@"Portland, OR",@"San Francisco, CA",@"Denver, CO",@"Los Angeles, CA",@"Washington, D.C.",@"Austin, TX",@"Albuquerque, NM"];
-    _title.textColor = [UIColor offWhiteScheme];
-    _eventsTodayView.hidden = YES;
-    
+    [self setupGeneral];
+    [self setupContentTable];
     [self setupCityButtons];
     [self setupGesture];
     [self setupActionSheet];
-
+    
 }
 
 #pragma mark - Setup methods for Home View
+- (void)setupGeneral {
+    _cityKeys = @[@"Seattle, WA",@"Phoenix, AZ",@"Chicago, IL",@"New Orleans, LA",@"New York, NY",@"Portland, OR",@"San Francisco, CA",@"Denver, CO",@"Los Angeles, CA",@"Washington, D.C.",@"Austin, TX",@"Albuquerque, NM"];
+    _title.textColor = [UIColor offWhiteScheme];
+    
+    
+    _contentScrollView.contentSize = CGSizeMake(320.f, 1000.f);
+    _contentScrollView.userInteractionEnabled = YES;
+    _contentScrollView.scrollEnabled = YES;
+}
+
+-(void) setupContentTable {
+    _contentModel = [[EventsTableViewModel alloc] init];
+    _contentScrollView.delegate = _contentModel;
+    _contentScrollView.dataSource = _contentModel;
+    [_contentModel setTheTableView:_contentScrollView];
+}
+
 -(void) setupCityButtons {
     _currentCityIndex = -1;
     self.citySelected = NO;
@@ -76,6 +114,14 @@
     
     self.changeCityButton.layer.cornerRadius = CGRectGetWidth(self.changeCityButton.frame)/2;
     self.changeCityButton.layer.masksToBounds = YES;
+    //[self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
+    
+    self.moreEvents.layer.cornerRadius = CGRectGetWidth(self.moreEvents.frame)/2;
+    self.moreEvents.layer.masksToBounds = YES;
+    //[self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
+    [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) setupGesture {
@@ -117,7 +163,7 @@
             [self moveButton:self.citySelectButton withGesture:pan];
         }
     }
-
+    
 }
 
 -(void) moveButton:(UIButton*) button withGesture:(UIPanGestureRecognizer*) pan {
@@ -178,13 +224,12 @@
         self.citySelectButton.hidden = YES;
         _cityIsAnimating = NO;
         
-        //show action sheet
         [self showActionSheet];
     }];
 }
 
-
-#pragma mark - animations for changeCity button
+#pragma mark - Animation Methods
+#pragma mark animations for changeCity button
 -(void) showChangeCitySelector {
     self.changeCityButton.hidden = NO;
     __block CGRect changeCityNewFrame = self.changeCityButton.frame;
@@ -216,8 +261,6 @@
         self.changeCityButton.hidden = YES;
         _cityIsAnimating = NO;
         
-        
-        //show action sheet
         [self showActionSheet];
         
     }];
@@ -226,30 +269,41 @@
 
 -(void) showActionSheet {
     [_cityActionSheet showC:@"Select Your City:"
-                 cancel:@"Cancel"
-                buttons:_cityKeys
-                 result:^(int nResult) {
-                     if (nResult != _currentCityIndex) {
-                         [self updateEventsAtCity:nResult];
-                     }
-                     if (self.citySelected) {
-                         if (_eventsTodayView.hidden) {
-                             _eventsTodayView.hidden = NO;
-                         } else {
-                             [UIView animateWithDuration:.4f animations:^{
-                                 _eventsTodayView.alpha = 0.f;
-                             } completion:^(BOOL finished) {
-                                 [UIView animateWithDuration:.4f animations:^{
-                                     _eventsTodayView.alpha = 1.f;
-                                 }];
-                             }];
+                     cancel:@"Cancel"
+                    buttons:_cityKeys
+                     result:^(int nResult) {
+                         if (nResult != _currentCityIndex && nResult != -100) {
+                             [self updateEventsAtCity:nResult];
+                             if (self.citySelected) {
+                                 [self animateShowingContent];
+                             }
                          }
-                         
-                         [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
-                     } else {
-                         [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
-                     }
-                 }];
+                         if (self.citySelected) {
+                             [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
+                         } else {
+                             [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
+                         }
+                     }];
+}
+
+#pragma mark animation for sub view methods
+-(void) animateShowingContent {
+    _contentHeader.alpha = 1.f;
+    [UIView animateWithDuration:.4f animations:^{
+        _contentHeader.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [self bounceContentHeader];
+        [UIView animateWithDuration:.8f animations:^{
+            _contentHeader.alpha = 1.f;
+        }];
+    }];
+}
+
+-(void) bounceContentHeader {
+    _contentHeader.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+    [UIView animateKeyframesWithDuration:.4f delay:0.f options:UIViewKeyframeAnimationOptionAllowUserInteraction animations:^{
+        _contentHeader.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 #pragma mark - action sheet result
@@ -263,6 +317,7 @@
         [[HomePageManager sharedManager] setDelegate:self];
         NSURL *headerImageURL = [self getImageFromCity:[_cityKeys objectAtIndex:index]];
         [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL];
+        [_contentModel setCity:[_cityKeys objectAtIndex:index]];
     }
 }
 
@@ -282,6 +337,11 @@
     }];
 }
 
+#pragma mark - outlets
+-(void) presentMoreEvents {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"More Events" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    [alert show];
+}
 
 
 @end

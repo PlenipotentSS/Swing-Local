@@ -21,7 +21,6 @@
 		D244C308189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
 		D244C310189CEB6100E6DB16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D244C30E189CEB6100E6DB16 /* InfoPlist.strings */; };
 		D244C312189CEB6100E6DB16 /* Swing_LocalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C311189CEB6100E6DB16 /* Swing_LocalTests.m */; };
-		D244C325189CEBAE00E6DB16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D244C324189CEBAE00E6DB16 /* Main.storyboard */; };
 		D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C32A189CEBCC00E6DB16 /* HomeView.m */; };
 		D244C331189CEBCC00E6DB16 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C32B189CEBCC00E6DB16 /* InitialViewController.m */; };
 		D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C332189CEBE500E6DB16 /* menu-gear.png */; };
@@ -43,7 +42,14 @@
 		D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD0E189DC9FD000874FB /* UIImage+ResizeMagick.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
-		D292FD21189E32FD000874FB /* EventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD20189E32FD000874FB /* EventObject.m */; };
+		D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F98189F534C002F11DA /* UserOptions.m */; };
+		D2A07F9C189F534C002F11DA /* VenueEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9A189F534C002F11DA /* VenueEvent.m */; };
+		D2A07F9F189F535D002F11DA /* VenueOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9E189F535D002F11DA /* VenueOrganization.m */; };
+		D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FA1189F537A002F11DA /* HollowButton.m */; };
+		D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FA4189F5382002F11DA /* EventsTableView.m */; };
+		D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */; };
+		D2A07FAB189F539A002F11DA /* CityEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FAA189F539A002F11DA /* CityEvents.m */; };
+		D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A07FAC189F542D002F11DA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +87,6 @@
 		D244C320189CEB9000E6DB16 /* InitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		D244C321189CEB9000E6DB16 /* MainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		D244C323189CEBA100E6DB16 /* UIColor+SwingLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+SwingLocal.h"; sourceTree = "<group>"; };
-		D244C324189CEBAE00E6DB16 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D244C32A189CEBCC00E6DB16 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		D244C32B189CEBCC00E6DB16 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		D244C332189CEBE500E6DB16 /* menu-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-gear.png"; sourceTree = "<group>"; };
@@ -113,8 +118,21 @@
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
 		D292FD1B189E1E87000874FB /* HomePageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageManager.m; sourceTree = "<group>"; };
-		D292FD1F189E32FD000874FB /* EventObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventObject.h; sourceTree = "<group>"; };
-		D292FD20189E32FD000874FB /* EventObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventObject.m; sourceTree = "<group>"; };
+		D2A07F97189F534C002F11DA /* UserOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOptions.h; sourceTree = "<group>"; };
+		D2A07F98189F534C002F11DA /* UserOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOptions.m; sourceTree = "<group>"; };
+		D2A07F99189F534C002F11DA /* VenueEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueEvent.h; sourceTree = "<group>"; };
+		D2A07F9A189F534C002F11DA /* VenueEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueEvent.m; sourceTree = "<group>"; };
+		D2A07F9D189F535D002F11DA /* VenueOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueOrganization.h; sourceTree = "<group>"; };
+		D2A07F9E189F535D002F11DA /* VenueOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueOrganization.m; sourceTree = "<group>"; };
+		D2A07FA0189F537A002F11DA /* HollowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HollowButton.h; sourceTree = "<group>"; };
+		D2A07FA1189F537A002F11DA /* HollowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HollowButton.m; sourceTree = "<group>"; };
+		D2A07FA3189F5382002F11DA /* EventsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTableView.h; sourceTree = "<group>"; };
+		D2A07FA4189F5382002F11DA /* EventsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTableView.m; sourceTree = "<group>"; };
+		D2A07FA6189F5387002F11DA /* EventsTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsTableViewModel.h; sourceTree = "<group>"; };
+		D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsTableViewModel.m; sourceTree = "<group>"; };
+		D2A07FA9189F539A002F11DA /* CityEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityEvents.h; sourceTree = "<group>"; };
+		D2A07FAA189F539A002F11DA /* CityEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityEvents.m; sourceTree = "<group>"; };
+		D2A07FAC189F542D002F11DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +201,7 @@
 		D244C2EC189CEB6100E6DB16 /* Swing Local */ = {
 			isa = PBXGroup;
 			children = (
-				D244C324189CEBAE00E6DB16 /* Main.storyboard */,
+				D2A07FAC189F542D002F11DA /* Main.storyboard */,
 				D244C320189CEB9000E6DB16 /* InitialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* InitialViewController.m */,
 				D292FD1D189E1E8B000874FB /* Models */,
@@ -250,8 +268,10 @@
 			children = (
 				D244C31F189CEB9000E6DB16 /* HomeView.h */,
 				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
-				D244C321189CEB9000E6DB16 /* MainView.h */,
 				D244C343189CEC5C00E6DB16 /* MainView.m */,
+				D244C321189CEB9000E6DB16 /* MainView.h */,
+				D2A07FB0189F5B3F002F11DA /* Buttons */,
+				D2A07FB1189F5B44002F11DA /* Tables */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -342,6 +362,10 @@
 		D292FD1D189E1E8B000874FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2A07FAF189F54FE002F11DA /* User Settings */,
+				D2A07FAE189F54EF002F11DA /* Event Models */,
+				D2A07FA6189F5387002F11DA /* EventsTableViewModel.h */,
+				D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */,
 				D292FD1E189E32DA000874FB /* Managers */,
 			);
 			name = Models;
@@ -352,10 +376,48 @@
 			children = (
 				D292FD1A189E1E87000874FB /* HomePageManager.h */,
 				D292FD1B189E1E87000874FB /* HomePageManager.m */,
-				D292FD1F189E32FD000874FB /* EventObject.h */,
-				D292FD20189E32FD000874FB /* EventObject.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		D2A07FAE189F54EF002F11DA /* Event Models */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FA9189F539A002F11DA /* CityEvents.h */,
+				D2A07FAA189F539A002F11DA /* CityEvents.m */,
+				D2A07F99189F534C002F11DA /* VenueEvent.h */,
+				D2A07F9A189F534C002F11DA /* VenueEvent.m */,
+				D2A07F9D189F535D002F11DA /* VenueOrganization.h */,
+				D2A07F9E189F535D002F11DA /* VenueOrganization.m */,
+			);
+			name = "Event Models";
+			sourceTree = "<group>";
+		};
+		D2A07FAF189F54FE002F11DA /* User Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07F97189F534C002F11DA /* UserOptions.h */,
+				D2A07F98189F534C002F11DA /* UserOptions.m */,
+			);
+			name = "User Settings";
+			sourceTree = "<group>";
+		};
+		D2A07FB0189F5B3F002F11DA /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FA0189F537A002F11DA /* HollowButton.h */,
+				D2A07FA1189F537A002F11DA /* HollowButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		D2A07FB1189F5B44002F11DA /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FA3189F5382002F11DA /* EventsTableView.h */,
+				D2A07FA4189F5382002F11DA /* EventsTableView.m */,
+			);
+			name = Tables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,11 +502,11 @@
 				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
+				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
 				D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */,
 				D244C33E189CEBF100E6DB16 /* bg_01.png in Resources */,
 				D244C340189CEBF100E6DB16 /* bg_03.png in Resources */,
 				D244C337189CEBE600E6DB16 /* menu-gear@2x.png in Resources */,
-				D244C325189CEBAE00E6DB16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */,
+				D2A07F9C189F534C002F11DA /* VenueEvent.m in Sources */,
 				D244C35B189CECF100E6DB16 /* GHWalkThroughPageCell.m in Sources */,
 				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
 				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,
@@ -472,12 +535,17 @@
 				D244C35C189CECF100E6DB16 /* GHWalkThroughView.m in Sources */,
 				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
-				D292FD21189E32FD000874FB /* EventObject.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
+				D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */,
+				D2A07F9F189F535D002F11DA /* VenueOrganization.m in Sources */,
+				D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
+				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
+				D2A07FAB189F539A002F11DA /* CityEvents.m in Sources */,
 				D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
 				D292FD13189DC9FD000874FB /* UIImage+ResizeMagick.m in Sources */,
+				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
 				D292FD07189DC9DE000874FB /* DoActionSheet.m in Sources */,
 				D244C355189CECDB00E6DB16 /* GHViewController.m in Sources */,
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,

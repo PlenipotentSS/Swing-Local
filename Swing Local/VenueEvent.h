@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EventObject : NSObject
+@interface VenueEvent : NSObject <NSCoding>
 
 //updated by google calendar and api
-@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *eventTitle;
 
 //start time of this event
 @property (nonatomic) NSDate *startTime;
@@ -40,7 +40,7 @@
 //the string to lazy load images for this event
 @property (nonatomic) NSString *imageURLString;
 
-//Venue Manager Or organization of event
-@property (nonatomic) NSString *venue;
+
+
 
 @end

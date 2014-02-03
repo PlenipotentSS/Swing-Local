@@ -1,0 +1,22 @@
+//
+//  CityEvents.h
+//  Swing Local
+//
+//  Created by Stevenson on 2/2/14.
+//  Copyright (c) 2014 Steven Stevenson. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface CityEvents : NSObject <NSCoding>
+
+//array of all venueOrganizations within this city
+@property (nonatomic) NSMutableArray *venueOrganizations;
+
+//name of this city
+@property (nonatomic) NSString *cityName;
+
+//country containing this city
+@property (nonatomic) NSString *country;
+
+@end
