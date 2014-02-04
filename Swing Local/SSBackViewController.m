@@ -98,11 +98,16 @@
 {
     if (indexPath.row < [_menuItems count]) {
         [self.frontViewController performSegueWithIdentifier:[_segueItems objectAtIndex:indexPath.row] sender:self];
-        if (indexPath.row < [_menuItems count]-1) {
-            [(SplitViewController*)self.parentViewController.parentViewController hideMenu];
-        }
+    }
+    if (indexPath.row > [_menuItems count]) {
+        [self.frontViewController performSegueWithIdentifier:@"showCalendar" sender:self];
     }
     
+    //stay in menu if support is pushed
+    //support needs to be last element in menu
+    if (indexPath.row != [_menuItems count]-1) {
+        [(SplitViewController*)self.parentViewController.parentViewController hideMenu];
+    }
     
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }

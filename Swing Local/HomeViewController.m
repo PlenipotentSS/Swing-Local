@@ -13,7 +13,7 @@
 #import "SSActionSheet.h"
 #import "EventManager.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate, EventManagerAllCitiesDelegate>
 
 //content ScrollView
 @property (weak,nonatomic) IBOutlet EventsTableView *contentTableView;
@@ -71,6 +71,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[EventManager sharedManager] setAllCitiesDelegate:self];
+    [[EventManager sharedManager] downloadCities];
     [self setupContentTable];
     [self setupGesture];
     [self setupButtons];
@@ -110,6 +113,22 @@
     _cityActionSheet = [[SSActionSheet alloc] init];
     _cityActionSheet.nAnimationType = DoTransitionStylePop;
     _cityActionSheet.dButtonRound = 2;
+}
+
+-(void) reloadAllCities {
+    [self loadCities];
+}
+
+-(void) loadCities {
+    NSArray *allCities = [[EventManager sharedManager] allCities];
+    NSMutableArray *cityNames = [NSMutableArray new];
+    for (City *thisCity in allCities) {
+        [cityNames addObject:thisCity.cityName];
+    }
+    
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"" ascending:YES];
+    NSArray *sortDescriptors = @[nameDescriptor];
+    _cityKeys = [cityNames sortedArrayUsingDescriptors:sortDescriptors];
     
 }
 
@@ -152,19 +171,6 @@
         self.citySelected = YES;
         
     }
-}
-
--(void) loadCities {
-    NSArray *allCities = [[EventManager sharedManager] allCities];
-    NSMutableArray *cityNames = [NSMutableArray new];
-    for (City *thisCity in allCities) {
-        [cityNames addObject:thisCity.cityName];
-    }
-    
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"" ascending:YES];
-    NSArray *sortDescriptors = @[nameDescriptor];
-    _cityKeys = [cityNames sortedArrayUsingDescriptors:sortDescriptors];
-    
 }
 
 #pragma mark - IBActions to select city

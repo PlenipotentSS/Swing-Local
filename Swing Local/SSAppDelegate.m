@@ -23,8 +23,6 @@
     // [config identifyUserWithEmail:@"email@example.com" name:@"User Name", guid:@"USER_ID");
     [UserVoice initialize:config];
     
-    [[EventManager sharedManager] downloadCities];
-    
     return YES;
 }
 							

@@ -8,9 +8,8 @@
 
 #import "EventManager.h"
 
-#define URL_TO_CITIES @"http://localhost:3000/cities.json"
-#define BASE_URL_TO_CITY @"http://localhost:3000/cities"
-#define BASE_URL_TO_VENUE @"http://localhost:3000/venues"
+#define URL_TO_CITIES @"http://swinglocal.herokuapp.com/cities.json"
+#define BASE_URL_TO_CITY @"http://swinglocal.herokuapp.com/cities"
 
 @interface EventManager() <NSURLSessionDelegate>
 
@@ -58,21 +57,21 @@
             NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 _allCities = [self convertDataToCityModel:cities];
+                [self.allCitiesDelegate reloadAllCities];
             } else {
-                NSLog(@"%@",err);
+                NSLog(@"error json: %@",err);
             }
         } else {
             
-            NSLog(@"%@",error);
+            NSLog(@"error domain: %@",error);
         }
     }];
     
     [citiesTask resume];
 }
 
--(void) downloadVenuesInCity:(City*) city {
-    NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,city.cityID];
-    
+-(void) downloadVenuesAndEventsInCity:(City*) city {
+    NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,(int)city.cityID];
     NSURLSessionDataTask *venuesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToVenues] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSError *err;
@@ -80,47 +79,20 @@
             if (!err) {
                 NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
                 city.venueOrganizations = [self convertDataToVenueModel:venuesForCity];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.cityDelegate refreshEventTableWithCity:city];
+                }];
             } else {
-                NSLog(@"%@",err);
+                NSLog(@"error json: %@",err);
             }
         } else {
             
-            NSLog(@"%@",error);
+            NSLog(@"error domain: %@",error);
         }
     }];
 
     [venuesTask resume];
 }
-
--(void) downloadEventsInVenue:(Venue*) venue {
-    NSString *urlStringToEvents = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_VENUE,venue.venueID];
-    NSLog(@"%@",urlStringToEvents);
-    NSURLSessionDataTask *eventsTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToEvents] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
-            NSError *err;
-            NSDictionary *venueDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
-            if (!err) {
-                NSLog(@"%i",_counter);
-                _counter++;
-                NSArray *venuesForCity = [venueDictionary objectForKey:@"events"];
-                venue.events = [self convertDataToVenueModel:venuesForCity];
-                
-                //need to call a method to refresh event list!!!!
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.delegate reloadEvents];
-                }];
-            } else {
-                NSLog(@"JSON Error: %@",err);
-            }
-        } else {
-            
-            NSLog(@"Task Error: %@",error);
-        }
-    }];
-    
-    [eventsTask resume];
-}
-
 
 #pragma mark - Conversion methods
 -(NSMutableArray*) convertDataToVenueModel:(NSArray*) venueData {
@@ -130,7 +102,7 @@
         thisVenue.venueTitle = [venue objectForKey:@"title"];
         thisVenue.venueID = [[venue objectForKey:@"id"] integerValue];
         
-        [self downloadEventsInVenue:thisVenue];
+        thisVenue.events = [self convertDataToEventModel:[venue objectForKey:@"events"]];
         [venues addObject:thisVenue];
     }
     

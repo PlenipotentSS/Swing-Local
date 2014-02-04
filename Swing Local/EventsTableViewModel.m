@@ -12,7 +12,7 @@
 #import "Venue.h"
 #import "Event.h"
 
-@interface EventsTableViewModel() <EventManagerDelegate>
+@interface EventsTableViewModel() <EventManagerCityDelegate>
 
 @property (nonatomic) NSMutableArray *events;
 @property (nonatomic) NSOperationQueue *cellOperationQueue;
@@ -53,20 +53,20 @@
     if (_city.venueOrganizations) {
         [self reloadEvents];
     } else {
-        [[EventManager sharedManager] setDelegate:self];
-        [[EventManager sharedManager] downloadVenuesInCity:thisCity];
+        [[EventManager sharedManager] setCityDelegate:self];
+        [[EventManager sharedManager] downloadVenuesAndEventsInCity:thisCity];
     }
 }
 
 -(void) reloadEvents {
+    _events = [NSMutableArray new];
+    //give delay for cell animations
+    [_cellOperationQueue addOperationWithBlock:^{
+        usleep(500000);
+    }];
     for (Venue *thisVenue in _city.venueOrganizations) {
         NSArray *eventsToday = [self eventsTodayForVenue:thisVenue];
         [_events addObjectsFromArray:eventsToday];
-        
-        //give delay for cell animations
-        [_cellOperationQueue addOperationWithBlock:^{
-            usleep(500000);
-        }];
         
         [_theTableView reloadData];
         [_theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -93,10 +93,10 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"eventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    Venue *thisVenue = [_events objectAtIndex:indexPath.row];
+    Event *thisVenue = [_events objectAtIndex:indexPath.row];
     
     
-    cell.textLabel.text = thisVenue.venueTitle;
+    cell.textLabel.text = thisVenue.eventTitle;
     cell.textLabel.textColor = [UIColor offWhiteScheme];
     
     //cell.detailTextLabel.text = [_subTitleData objectAtIndex:indexPath.row];
@@ -110,7 +110,7 @@
 -(void) animateCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
         CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
         [_cellOperationQueue addOperationWithBlock:^{
-            usleep(250000);
+            usleep(25000);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [UIView animateWithDuration:.4f animations:^{
                     [cell.contentView setAlpha:1.f];
