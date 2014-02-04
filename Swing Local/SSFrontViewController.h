@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet MainView *mainView;
 
+-(void)loadHomeVC;
+
 @end

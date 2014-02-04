@@ -144,7 +144,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="selectCity:" destination="jlR-Hd-sxy" eventType="touchUpInside" id="RQO-te-6n7"/>
+                                                    <action selector="selectCity:" destination="b5l-Hh-7rc" eventType="touchUpInside" id="gX4-q4-t5Y"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kip-I6-M78" customClass="HollowButton">
@@ -155,7 +155,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="changeCity:" destination="jlR-Hd-sxy" eventType="touchUpInside" id="ZhU-Uy-jdc"/>
+                                                    <action selector="changeCity:" destination="b5l-Hh-7rc" eventType="touchUpInside" id="C1n-AF-56S"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -226,17 +226,17 @@
                             <outlet property="cityHeaderImage" destination="oaf-bC-edS" id="E6D-M0-xKG"/>
                             <outlet property="citySelectButton" destination="oxv-uf-xTV" id="9TV-6u-WLn"/>
                             <outlet property="contentHeader" destination="Jho-dp-5AI" id="2mS-3b-Ow2"/>
-                            <outlet property="contentScrollView" destination="cdQ-W4-Zm4" id="Ybp-kQ-IUz"/>
-                            <outlet property="footerView" destination="nzi-Lr-RCH" id="0oa-IX-Y5a"/>
-                            <outlet property="moreEvents" destination="8ej-vv-1kV" id="ial-Hv-r3Z"/>
-                            <outlet property="moreEventsWrapper" destination="GH7-Hf-bA6" id="28T-yD-wb6"/>
                             <outlet property="title" destination="CXA-m1-tq7" id="jAd-K4-vnm"/>
                             <outlet property="wrapper" destination="L9A-ZG-rsx" id="n7g-pB-gWj"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="xqP-j4-EXg"/>
                     <connections>
+                        <outlet property="contentTableView" destination="cdQ-W4-Zm4" id="MUk-1T-Du1"/>
+                        <outlet property="footerView" destination="nzi-Lr-RCH" id="ofY-Kt-vwK"/>
                         <outlet property="menu_burger" destination="fFq-FI-b7o" id="JD1-gQ-6Tj"/>
+                        <outlet property="moreEvents" destination="8ej-vv-1kV" id="8ic-K2-WvY"/>
+                        <outlet property="moreEventsWrapper" destination="GH7-Hf-bA6" id="7LM-DQ-hPT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sQ-gz-QcZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

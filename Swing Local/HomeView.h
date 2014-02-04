@@ -8,23 +8,42 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsView.h"
+#import "UIColor+SwingLocal.h"
+#import "HomePageManager.h"
+#import "HollowButton.h"
+#import "EventsTableView.h"
+#import "EventsTableViewModel.h"
 
 @interface HomeView : UIView
 
-//array of all city keys from API
-@property (nonatomic) NSArray *cityKeys;
+//wrapper view
+@property (weak, nonatomic) IBOutlet UIView *wrapper;
 
-//news view
-@property (nonatomic) NewsView *newsView;
+//button to select a city for first run
+@property (weak, nonatomic) IBOutlet UIButton *citySelectButton;
+
+//button to change city after selected
+@property (weak, nonatomic) IBOutlet HollowButton *changeCityButton;
+
+//content Header view to display tonight's dances
+@property (weak, nonatomic) IBOutlet UIView *contentHeader;
+
+//title header of current view
+@property (weak, nonatomic) IBOutlet UILabel *title;
+
+//the header image set under title
+@property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
+
+//original origin of changeCity Button
+@property (nonatomic) CGPoint changeCityOrigin;
+
+//footer view for any separate swipe gestures
+@property (weak, nonatomic) UIView *footerView;
+
 
 //setup view
 -(void) setup;
 
-//action to start selecting city
--(IBAction)selectCity:(id)sender;
-
-//action to change from selected city
--(IBAction)changeCity:(id)sender;
-
+-(void) animateShowingContent;
 
 @end

@@ -9,6 +9,7 @@
 #import "SSAppDelegate.h"
 #import <uservoice-iphone-sdk/UserVoice.h>
 #import "RootViewController.h"
+#import "EventManager.h"
 
 @implementation SSAppDelegate
 
@@ -21,6 +22,8 @@
     config.forumId = 239827;
     // [config identifyUserWithEmail:@"email@example.com" name:@"User Name", guid:@"USER_ID");
     [UserVoice initialize:config];
+    
+    [[EventManager sharedManager] downloadCities];
     
     return YES;
 }

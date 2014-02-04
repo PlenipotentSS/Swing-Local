@@ -19,6 +19,7 @@
     _twitterUsername =[aDecoder decodeObjectForKey:@"twitterUsername"];
     _facebookPage = [aDecoder decodeObjectForKey:@"facebookPage"];
     _venueImageURLString = [aDecoder decodeObjectForKey:@"venueImageURLString"];
+    _venueID = [[aDecoder decodeObjectForKey:@"venueID"] integerValue];
     
     return self;
 }
@@ -30,6 +31,7 @@
     [aCoder encodeObject:self.twitterUsername forKey:@"twitterUsername"];
     [aCoder encodeObject:self.facebookPage forKey:@"facebookPage"];
     [aCoder encodeObject:self.venueImageURLString forKey:@"venueImageURLString"];
+    [aCoder encodeObject:@(self.venueID) forKey:@"venueID"];
 }
 
 #pragma mark - download methods

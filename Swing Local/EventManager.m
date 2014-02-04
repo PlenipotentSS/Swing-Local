@@ -8,6 +8,18 @@
 
 #import "EventManager.h"
 
+#define URL_TO_CITIES @"http://localhost:3000/cities.json"
+#define BASE_URL_TO_CITY @"http://localhost:3000/cities"
+#define BASE_URL_TO_VENUE @"http://localhost:3000/venues"
+
+@interface EventManager() <NSURLSessionDelegate>
+
+@property (nonatomic) NSURLSession *urlSession;
+@property (nonatomic) NSOperationQueue *eventDownloadQueue;
+@property (nonatomic) __block NSInteger counter;
+
+@end
+
 @implementation EventManager
 
 +(EventManager*) sharedManager {
@@ -16,28 +28,143 @@
     
     dispatch_once(&pred, ^{
         shared = [[EventManager alloc] init];
+        if (!shared.eventDownloadQueue) {
+            [shared setup];
+        }
     });
     
     return shared;
 }
 
--(void) downloadEventCities {
-    //data from db for all keys
-    NSArray *cities = [[NSArray alloc] init];
-    _allCities = cities;
+-(void) setup {
+    _counter = 0;
+    _eventDownloadQueue = [NSOperationQueue new];
+    
+    _allCities = [NSArray new];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.allowsCellularAccess = NO;
+    //[sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+    sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+    
+    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:_eventDownloadQueue];
 }
 
--(NSArray*) downloadEventsInCity:(City*) city {
-    //download all venue information for given city
-    NSArray *venues = [[NSArray alloc] init];
+#pragma mark - download event methods
+-(void) downloadCities {
+    NSURLSessionDataTask *citiesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:URL_TO_CITIES] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *err;
+            NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            if (!err) {
+                _allCities = [self convertDataToCityModel:cities];
+            } else {
+                NSLog(@"%@",err);
+            }
+        } else {
+            
+            NSLog(@"%@",error);
+        }
+    }];
+    
+    [citiesTask resume];
+}
+
+-(void) downloadVenuesInCity:(City*) city {
+    NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,city.cityID];
+    
+    NSURLSessionDataTask *venuesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToVenues] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *err;
+            NSDictionary *cityDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            if (!err) {
+                NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
+                city.venueOrganizations = [self convertDataToVenueModel:venuesForCity];
+            } else {
+                NSLog(@"%@",err);
+            }
+        } else {
+            
+            NSLog(@"%@",error);
+        }
+    }];
+
+    [venuesTask resume];
+}
+
+-(void) downloadEventsInVenue:(Venue*) venue {
+    NSString *urlStringToEvents = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_VENUE,venue.venueID];
+    NSLog(@"%@",urlStringToEvents);
+    NSURLSessionDataTask *eventsTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToEvents] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *err;
+            NSDictionary *venueDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            if (!err) {
+                NSLog(@"%i",_counter);
+                _counter++;
+                NSArray *venuesForCity = [venueDictionary objectForKey:@"events"];
+                venue.events = [self convertDataToVenueModel:venuesForCity];
+                
+                //need to call a method to refresh event list!!!!
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.delegate reloadEvents];
+                }];
+            } else {
+                NSLog(@"JSON Error: %@",err);
+            }
+        } else {
+            
+            NSLog(@"Task Error: %@",error);
+        }
+    }];
+    
+    [eventsTask resume];
+}
+
+
+#pragma mark - Conversion methods
+-(NSMutableArray*) convertDataToVenueModel:(NSArray*) venueData {
+    NSMutableArray *venues = [NSMutableArray new];
+    for (NSDictionary *venue in venueData) {
+        Venue *thisVenue = [Venue new];
+        thisVenue.venueTitle = [venue objectForKey:@"title"];
+        thisVenue.venueID = [[venue objectForKey:@"id"] integerValue];
+        
+        [self downloadEventsInVenue:thisVenue];
+        [venues addObject:thisVenue];
+    }
     
     return venues;
 }
 
--(NSArray*) downloadEventsForVenue:(Venue*) venue {
-    NSArray *events = [[NSArray alloc] init];
+-(NSMutableArray*) convertDataToEventModel:(NSArray*) eventData {
+    NSMutableArray *events = [NSMutableArray new];
+    for (NSDictionary *event in eventData) {
+        Event *thisEvent = [Event new];
+        thisEvent.eventTitle = [event objectForKey:@"title"];
+        thisEvent.cost = [event objectForKey:@"cost"];
+        thisEvent.ages = [event objectForKey:@"ages"];
+        thisEvent.DJ = [event objectForKey:@"dj"];
+        thisEvent.infoText = [event objectForKey:@"info_text"];
+        
+        
+        [events addObject:thisEvent];
+    }
     
     return events;
+}
+
+-(NSArray*) convertDataToCityModel:(NSArray*)cityData {
+    NSMutableArray *modelArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *city in cityData) {
+        City *thisCity = [City new];
+        thisCity.cityName = [city objectForKey:@"name"];
+        thisCity.cityID = [[city objectForKey:@"id"] integerValue];
+        
+        
+        [modelArray addObject:thisCity];
+    }
+    return [NSArray arrayWithArray:modelArray];
 }
 
 @end

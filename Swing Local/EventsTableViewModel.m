@@ -8,11 +8,13 @@
 
 #import "EventsTableViewModel.h"
 #import "UIColor+SwingLocal.h"
+#import "EventManager.h"
+#import "Venue.h"
+#import "Event.h"
 
-@interface EventsTableViewModel()
+@interface EventsTableViewModel() <EventManagerDelegate>
 
-@property (nonatomic) NSArray *testData;
-@property (nonatomic) NSArray *subTitleData;
+@property (nonatomic) NSMutableArray *events;
 @property (nonatomic) NSOperationQueue *cellOperationQueue;
 
 @end
@@ -23,25 +25,59 @@
 {
     self = [super init];
     if (self) {
+        _events = [NSMutableArray new];
         _cellOperationQueue = [NSOperationQueue new];
         [_cellOperationQueue setMaxConcurrentOperationCount:1];
     }
     return self;
 }
 
+-(void) setCityWithName:(NSString *)cityName {
+    NSArray *allCities = [[EventManager sharedManager] allCities];
+    for (City *thisCity in allCities) {
+        if ([thisCity.cityName isEqualToString:cityName]) {
+            [self setCity:thisCity];
+            break;
+        }
+    }
+}
+
 -(void) setCity:(City *)city {
     _city = city;
     
-    _testData = @[@"Century Ballroom",@"Russian Center",@"Savoy Mondays"];
-    _subTitleData = @[@"9:30pm",@"9:00pm",@"9:00pm"];
-    
-    [_cellOperationQueue addOperationWithBlock:^{
-        usleep(500000);
-    }];
-    [_theTableView reloadData];
-    [_theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self refreshEventTableWithCity:city];
+
 }
 
+-(void) refreshEventTableWithCity: (City*) thisCity {
+    if (_city.venueOrganizations) {
+        [self reloadEvents];
+    } else {
+        [[EventManager sharedManager] setDelegate:self];
+        [[EventManager sharedManager] downloadVenuesInCity:thisCity];
+    }
+}
+
+-(void) reloadEvents {
+    for (Venue *thisVenue in _city.venueOrganizations) {
+        NSArray *eventsToday = [self eventsTodayForVenue:thisVenue];
+        [_events addObjectsFromArray:eventsToday];
+        
+        //give delay for cell animations
+        [_cellOperationQueue addOperationWithBlock:^{
+            usleep(500000);
+        }];
+        
+        [_theTableView reloadData];
+        [_theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    }
+}
+
+-(NSArray*) eventsTodayForVenue:(Venue*) thisVenue {
+    return thisVenue.events;
+}
+
+#pragma mark - UITableViewDataSource and Delegate methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -51,22 +87,26 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_testData count];
+    return [_events count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"eventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = [_testData objectAtIndex:indexPath.row];
+    Venue *thisVenue = [_events objectAtIndex:indexPath.row];
+    
+    
+    cell.textLabel.text = thisVenue.venueTitle;
     cell.textLabel.textColor = [UIColor offWhiteScheme];
     
-    cell.detailTextLabel.text = [_subTitleData objectAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = [_subTitleData objectAtIndex:indexPath.row];
     cell.detailTextLabel.textColor = [UIColor offWhiteScheme];
     [cell.contentView setAlpha:0.f];
     [self animateCell:cell AtIndex:indexPath];
     return cell;
 }
 
+#pragma mark - animation for cells
 -(void) animateCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
         CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
         [_cellOperationQueue addOperationWithBlock:^{

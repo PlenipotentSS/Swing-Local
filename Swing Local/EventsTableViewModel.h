@@ -15,4 +15,6 @@
 @property (nonatomic) City *city;
 @property (nonatomic) EventsTableView *theTableView;
 
+-(void) setCityWithName: (NSString*) cityName;
+
 @end

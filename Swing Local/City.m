@@ -16,6 +16,7 @@
     _cityName = [aDecoder decodeObjectForKey:@"cityName"];
     _country =[aDecoder decodeObjectForKey:@"country"];
     _venueOrganizations = [aDecoder decodeObjectForKey:@"venueOrganizations"];
+    _cityID = [[aDecoder decodeObjectForKey:@"cityID"] integerValue];
     
     return self;
 }
@@ -24,6 +25,7 @@
     [aCoder encodeObject:self.cityName forKey:@"cityName"];
     [aCoder encodeObject:self.country forKey:@"country"];
     [aCoder encodeObject:self.venueOrganizations forKey:@"venueOrganizations"];
+    [aCoder encodeObject:@(self.cityID) forKey:@"cityID"];
 }
 
 -(void)downloadCityImage {

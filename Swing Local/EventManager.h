@@ -11,16 +11,22 @@
 #import "Event.h"
 #import "Venue.h"
 
+@protocol EventManagerDelegate <NSObject>
+
+-(void) reloadEvents;
+
+@end
+
 @interface EventManager : NSObject
 
-@property (nonatomic) NSArray *allCities;
+@property (unsafe_unretained) id<EventManagerDelegate> delegate;
+@property (nonatomic) __block NSArray *allCities;
+@property (nonatomic) City *topCity;
 
 +(EventManager*) sharedManager;
 
--(void) downloadEventCities;
+-(void) downloadCities;
 
--(NSArray*) downloadEventsInCity:(City*) city;
-
--(NSArray*) downloadEventsForVenue:(Venue*) venue;
+-(void) downloadVenuesInCity:(City*) city;
 
 @end

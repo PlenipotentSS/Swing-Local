@@ -25,6 +25,9 @@
 //facebook page
 @property (nonatomic) NSString *facebookPage;
 
+//reference id for this venue
+@property (nonatomic) NSInteger venueID;
+
 //image url string for venue/organization
 @property (nonatomic) NSString *venueImageURLString;
 

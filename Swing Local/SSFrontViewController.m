@@ -12,6 +12,7 @@
 #import "NewsView.h"
 #import "UVStyleSheet.h"
 #import "UIColor+SwingLocal.h"
+#import "HomeViewController.h"
 
 @interface SSFrontViewController ()
 
@@ -31,7 +32,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self loadViewsToFront];
+    [self loadHomeVC];
+}
+
+-(void)loadHomeVC {
+    if ([self isKindOfClass:[SSFrontViewController class]]) {
+        [self performSegueWithIdentifier:@"showHome" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning

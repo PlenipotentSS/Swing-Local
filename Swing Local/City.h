@@ -25,6 +25,9 @@
 //image representing this city
 @property (nonatomic) UIImage *cityImage;
 
+//reference id for this city
+@property (nonatomic) NSInteger cityID;
+
 //whether this city is saved in users
 @property (nonatomic,readwrite) BOOL savedCity;
 
