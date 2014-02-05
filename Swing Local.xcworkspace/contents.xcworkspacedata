@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Secret.h">
+   </FileRef>
+   <FileRef
       location = "group:Swing Local.xcodeproj">
    </FileRef>
    <FileRef

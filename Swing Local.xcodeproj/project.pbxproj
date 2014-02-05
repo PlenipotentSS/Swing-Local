@@ -63,6 +63,7 @@
 		D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */; };
 		D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */; };
 		D2F450DF18A1ECB600ABD1C8 /* AddCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F450DE18A1ECB600ABD1C8 /* AddCityTableViewCell.m */; };
+		D2F450E518A2C20500ABD1C8 /* GoogleCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,10 @@
 		D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCityViewController.m; sourceTree = "<group>"; };
 		D2F450DD18A1ECB600ABD1C8 /* AddCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityTableViewCell.h; sourceTree = "<group>"; };
 		D2F450DE18A1ECB600ABD1C8 /* AddCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCityTableViewCell.m; sourceTree = "<group>"; };
+		D2F450E318A2C20500ABD1C8 /* GoogleCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCalendarManager.h; sourceTree = "<group>"; };
+		D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCalendarManager.m; sourceTree = "<group>"; };
+		D2F450E618A2C4AB00ABD1C8 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D2F450E818A2C61700ABD1C8 /* Secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secret.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +284,8 @@
 				D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */,
 				D244C2F2189CEB6100E6DB16 /* main.m */,
 				D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */,
+				D2F450E618A2C4AB00ABD1C8 /* Constants.h */,
+				D2F450E818A2C61700ABD1C8 /* Secret.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -410,6 +417,8 @@
 				D292FD1B189E1E87000874FB /* HomePageManager.m */,
 				D2E6890F18A03AE200A6BD51 /* EventManager.h */,
 				D2E6891018A03AE200A6BD51 /* EventManager.m */,
+				D2F450E318A2C20500ABD1C8 /* GoogleCalendarManager.h */,
+				D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -702,6 +711,7 @@
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,
+				D2F450E518A2C20500ABD1C8 /* GoogleCalendarManager.m in Sources */,
 				D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

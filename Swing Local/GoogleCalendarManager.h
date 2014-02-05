@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GTLCalendar.h>
 
 @interface GoogleCalendarManager : NSObject
+
+@property (readonly) GTLServiceCalendar *calendarService;
+
++(GoogleCalendarManager*) sharedManager;
 
 @end

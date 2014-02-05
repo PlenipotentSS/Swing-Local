@@ -267,6 +267,7 @@
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     [self.homeView.title setText:thisCity.cityName];
     if (thisCity.cityImage) {
+        
         [self.homeView animateShowingContent];
         [self updateViewWithImage:thisCity.cityImage];
     } else {

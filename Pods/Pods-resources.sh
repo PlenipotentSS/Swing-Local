@@ -41,6 +41,7 @@ install_resource()
       ;;
   esac
 }
+install_resource "gtm-oauth2/Source/Touch/GTMOAuth2ViewTouch.xib"
 install_resource "uservoice-iphone-sdk/Resources/uv_article.png"
 install_resource "uservoice-iphone-sdk/Resources/uv_article@2x.png"
 install_resource "uservoice-iphone-sdk/Resources/uv_default_avatar.png"

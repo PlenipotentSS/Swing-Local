@@ -1,5 +1,5 @@
 //
-//  Header.h
+//  Constants.h
 //  Swing Local
 //
 //  Created by Stevenson on 2/5/14.
