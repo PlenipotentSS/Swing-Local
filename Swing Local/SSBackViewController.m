@@ -19,8 +19,9 @@
 
 @property (nonatomic) NSArray *menuItems;
 @property (nonatomic) NSArray *segueItems;
-@property (nonatomic) NSMutableArray *savedCities;
 @property (nonatomic) BOOL edittingCells;
+
+@property (nonatomic) NSMutableArray *savedCities;
 
 @end
 
@@ -40,10 +41,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
     [self configureData];
-
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSavedCities) name:@"SavedCitiesUpdated" object:nil];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -59,11 +59,6 @@
 
 
 #pragma mark - setup configurations
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-}
-
 -(void)configureData
 {
     _theTableView.dataSource = self;
@@ -72,9 +67,13 @@
     _menuItems = @[@"homeCell",@"newsCell",@"calendarCell",@"settingsCell",@"supportCell"];
     _segueItems = @[@"showHome",@"showNews",@"showCalendar",@"showSettings",@"showSupport"];
     
-    _savedCities = [[NSMutableArray alloc] initWithArray:@[@"Seattle, WA",@"San Francisco, CA",@"Portland, OR"]];
+    [self reloadSavedCities];
 }
 
+-(void) reloadSavedCities {
+    _savedCities = [[EventManager sharedManager] savedCities];
+    [self.theTableView reloadData];
+}
 
 #pragma mark - edit events
 -(IBAction)editSavedEvents:(id)sender
@@ -100,12 +99,14 @@
         [self.frontViewController performSegueWithIdentifier:[_segueItems objectAtIndex:indexPath.row] sender:self];
     }
     if (indexPath.row > [_menuItems count]) {
-        [self.frontViewController performSegueWithIdentifier:@"showCalendar" sender:self];
+        NSInteger savedIndex = indexPath.row-[_menuItems count]-1;
+        [[EventManager sharedManager] setCurrentCity:[_savedCities objectAtIndex:savedIndex]];
+        [self.frontViewController performSegueWithIdentifier:@"showSingleCity" sender:self];
     }
     
     //stay in menu if support is pushed
     //support needs to be last element in menu
-    if (indexPath.row != [_menuItems count]-1) {
+    if (indexPath.row != [_menuItems count] && indexPath.row != [_menuItems count]-1) {
         [(SplitViewController*)self.parentViewController.parentViewController hideMenu];
     }
     
@@ -137,9 +138,9 @@
     } else {
         cell = [_theTableView dequeueReusableCellWithIdentifier:@"savedCityCell" forIndexPath:indexPath];
         NSInteger savedIndex = indexPath.row-[_menuItems count]-1;
-        cell.textLabel.text = [_savedCities objectAtIndex:savedIndex];
+        cell.textLabel.text = [(City*)[_savedCities objectAtIndex:savedIndex] cityName];
     }
-
+    
     return cell;
 }
 

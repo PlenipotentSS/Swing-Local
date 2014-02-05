@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "City.h"
 
 @protocol HomePageManagerDelegate <NSObject>
 
@@ -20,6 +21,7 @@
 
 + (HomePageManager*) sharedManager;
 
--(void) downloadImageFromURL: (NSURL*) imageURL;
+-(void) downloadImageFromURL:(NSURL *)imageURL forCity:(City*)city;
 
+-(void) downloadImageFromURL:(NSURL *)imageURL forCityName:(NSString*)cityName;
 @end

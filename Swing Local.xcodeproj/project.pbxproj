@@ -61,6 +61,7 @@
 		D2E6891B18A0614E00A6BD51 /* GHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891618A0614E00A6BD51 /* GHViewController.m */; };
 		D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891818A0614E00A6BD51 /* GHWalkThroughPageCell.m */; };
 		D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */; };
+		D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,8 @@
 		D2E6891818A0614E00A6BD51 /* GHWalkThroughPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughPageCell.m; path = GHWalkThrough/GHWalkThroughPageCell.m; sourceTree = "<group>"; };
 		D2E6891918A0614E00A6BD51 /* GHWalkThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHWalkThroughView.h; path = GHWalkThrough/GHWalkThroughView.h; sourceTree = "<group>"; };
 		D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughView.m; path = GHWalkThrough/GHWalkThroughView.m; sourceTree = "<group>"; };
+		D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleCityViewController.h; sourceTree = "<group>"; };
+		D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCityViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +205,8 @@
 				D2E6890618A02EB100A6BD51 /* NewsViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
 				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
+				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
+				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */,
 				D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
@@ -683,6 +688,7 @@
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,
+				D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

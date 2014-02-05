@@ -8,7 +8,11 @@
 
 #import "CalendarviewController.h"
 
-@interface CalendarviewController ()
+@interface CalendarviewController () <UITableViewDataSource,UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *theTableView;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelectRange;
 
 @end
 
@@ -28,7 +32,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    [_dateSelectRange addTarget:self action:@selector(createDateRange) forControlEvents:UIControlEventValueChanged];
+    _dateSelectRange.selectedSegmentIndex = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,5 +41,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Sgemented Control receievers
+-(void) createDateRange {
+    
+}
+
+
+#pragma mark - UITableView Datasource methods
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *cellIdentifier = @"eventCell";
+    UITableViewCell *cell = [self.theTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    return cell;
+}
+
 
 @end

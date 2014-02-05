@@ -25,10 +25,24 @@
 
 @interface EventManager : NSObject
 
+//delegate to download and refresh venues/events in a given city
 @property (unsafe_unretained) id<EventManagerCityDelegate> cityDelegate;
+
+//delegate to update controller that all cities is ready
 @property (unsafe_unretained) id<EventManagerAllCitiesDelegate> allCitiesDelegate;
+
+//array of all cities
 @property (nonatomic) __block NSArray *allCities;
+
+//the top ranking city to show on home view
 @property (nonatomic) City *topCity;
+
+//current City to load for single city views
+@property (nonatomic) City *currentCity;
+
+
+//current City to load for single city views
+@property (nonatomic) NSMutableArray *savedCities;
 
 +(EventManager*) sharedManager;
 

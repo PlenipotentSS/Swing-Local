@@ -7,6 +7,9 @@
 //
 
 #import "HomePageManager.h"
+#import "EventManager.h"
+
+
 @interface HomePageManager()
 
 @property (nonatomic) NSOperationQueue *downloadImageQueue;
@@ -27,14 +30,25 @@
     return shared;
 }
 
--(void) downloadImageFromURL:(NSURL *)imageURL {
+-(void) downloadImageFromURL:(NSURL *)imageURL forCity:(City*)city{
     [self.downloadImageQueue addOperationWithBlock:^{
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage *theImage = [UIImage imageWithData:imageData];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            city.cityImage = theImage;
             [self.delegate updateViewWithImage:theImage];
         }];
     }];
+}
+
+-(void) downloadImageFromURL:(NSURL *)imageURL forCityName:(NSString*)cityName{
+    NSArray *allCities = [[EventManager sharedManager] allCities];
+    for (City *thisCity in allCities) {
+        if ([thisCity.cityName isEqualToString:cityName]) {
+            [self downloadImageFromURL:imageURL forCity:thisCity];
+            break;
+        }
+    }
 }
 
 @end

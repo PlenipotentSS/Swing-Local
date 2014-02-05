@@ -169,7 +169,7 @@
 -(void) loadInitialCity {
     if ([EventManager sharedManager].topCity) {
         self.citySelected = YES;
-        
+        [self updateViewWithCity:[EventManager sharedManager].topCity];
     }
 }
 
@@ -185,7 +185,6 @@
         [self hideChangeCitySelectorAndShowActionSheet:YES];
     }
 }
-
 
 #pragma mark - Pan Gesture Selector
 -(void) footerSlide:(id)sender {
@@ -250,7 +249,7 @@
         [self.homeView.title setText:[_cityKeys objectAtIndex:index]];
         [[HomePageManager sharedManager] setDelegate:self];
         NSURL *headerImageURL = [self getImageFromCityName:[_cityKeys objectAtIndex:index]];
-        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL];
+        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCityName:[_cityKeys objectAtIndex:index]];
         [_contentModel setCityWithName:[_cityKeys objectAtIndex:index]];
     }
 }
@@ -258,15 +257,25 @@
 -(void) updateViewWithCity:(City*) thisCity {
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     [self.homeView.title setText:thisCity.cityName];
-    [[HomePageManager sharedManager] setDelegate:self];
-    NSURL *headerImageURL = [self getImageFromCityName:thisCity.cityName];
-    [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL];
+    if (thisCity.cityImage) {
+        [self updateViewWithImage:thisCity.cityImage];
+    } else {
+        [[HomePageManager sharedManager] setDelegate:self];
+        NSURL *headerImageURL = [self getImageFromCity:thisCity];
+        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:thisCity];
+    }
     [_contentModel setCity:thisCity];
 }
 
-#pragma mark - imageviewcreator
+#pragma mark - image url configurations
 -(NSURL*) getImageFromCityName: (NSString*) cityName {
     cityName = [cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
+    return [NSURL URLWithString:strURL];
+}
+
+-(NSURL*) getImageFromCity: (City*) theCity {
+    NSString *cityName = [theCity.cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
     return [NSURL URLWithString:strURL];
 }

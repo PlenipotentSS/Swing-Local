@@ -28,11 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _presentTutorialView = NO;
-    if (_presentTutorialView){
-        [self performSegueWithIdentifier:@"showTutorial" sender:self];
-    } else {
+    if (_skipTutorialView){
         [self performSegueWithIdentifier:@"showSplitController" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"showTutorial" sender:self]; 
     }
 }
 

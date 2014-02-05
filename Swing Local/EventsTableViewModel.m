@@ -65,6 +65,7 @@
         usleep(500000);
     }];
     for (Venue *thisVenue in _city.venueOrganizations) {
+        //change to get get events for this day in venue
         NSArray *eventsToday = [self eventsTodayForVenue:thisVenue];
         [_events addObjectsFromArray:eventsToday];
         
@@ -93,10 +94,10 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"eventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    Event *thisVenue = [_events objectAtIndex:indexPath.row];
+    Event *thisEvent = [_events objectAtIndex:indexPath.row];
     
     
-    cell.textLabel.text = thisVenue.eventTitle;
+    cell.textLabel.text = thisEvent.eventTitle;
     cell.textLabel.textColor = [UIColor offWhiteScheme];
     
     //cell.detailTextLabel.text = [_subTitleData objectAtIndex:indexPath.row];

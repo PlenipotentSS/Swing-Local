@@ -11,6 +11,6 @@
 @interface RootViewController : UINavigationController
 
 //flag to present view controllers 
-@property (nonatomic) BOOL presentTutorialView;
+@property (nonatomic) BOOL skipTutorialView;
 
 @end

@@ -36,6 +36,7 @@
 }
 
 -(void) setup {
+    _savedCities = [NSMutableArray new];
     _counter = 0;
     _eventDownloadQueue = [NSOperationQueue new];
     
@@ -79,6 +80,15 @@
             if (!err) {
                 NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
                 city.venueOrganizations = [self convertDataToVenueModel:venuesForCity];
+                if (!_topCity) {
+                    _topCity = city;
+                }
+                if ([_savedCities count] ==0) {
+                    [_savedCities addObject:city];
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"SavedCitiesUpdated" object:nil];
+                    }];
+                }
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.cityDelegate refreshEventTableWithCity:city];
                 }];

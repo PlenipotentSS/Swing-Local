@@ -100,8 +100,11 @@
 
 #pragma mark - GHWalkThroughDelegate
 -(void) skipButtonPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [(RootViewController*)self.parentViewController performSegueWithIdentifier:@"showSplitController" sender:self];
+    RootViewController *root = [self.storyboard instantiateViewControllerWithIdentifier:@"root"];
+    root.skipTutorialView = YES;
+    
+    root.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:root animated:YES completion:nil];
 }
 
 #pragma mark - GHWalkThroughViewDataSource
