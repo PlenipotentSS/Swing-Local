@@ -10,6 +10,7 @@
 #import <uservoice-iphone-sdk/UserVoice.h>
 #import "RootViewController.h"
 #import "EventManager.h"
+#import "GoogleCalendarManager.h"
 
 @implementation SSAppDelegate
 
@@ -20,8 +21,12 @@
     // Set this up once when your application launches
     UVConfig *config = [UVConfig configWithSite:@"swinglocal.uservoice.com"];
     config.forumId = 239827;
-    // [config identifyUserWithEmail:@"email@example.com" name:@"User Name", guid:@"USER_ID");
     [UserVoice initialize:config];
+    
+    [GoogleCalendarManager sharedManager];
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    [standardDefaults setBool:NO forKey:@"SkipTutorial"];
     
     return YES;
 }
@@ -41,6 +46,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [[EventManager sharedManager] downloadCities];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

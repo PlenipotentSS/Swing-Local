@@ -9,6 +9,7 @@
 #ifndef Swing_Local_Header_h
 #define Swing_Local_Header_h
 
-
+#define HELP_ME @"fail"
+#define SAVED_CITY_ARCHIVE_NAME @"SavedCities"
 
 #endif

@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "CustomSegue.h"
+#import "EventManager.h"
 
 @interface RootViewController ()
 
@@ -27,12 +28,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    if (_skipTutorialView){
+    //load all cities from manager & compare with that in data
+    NSURL *archiveURL = [[self documentDir] URLByAppendingPathComponent:SAVED_CITY_ARCHIVE_NAME];
+    NSArray *allCities =[NSKeyedUnarchiver unarchiveObjectWithFile:[archiveURL path]];
+    if (allCities) {
+        [EventManager sharedManager].allCities = allCities;
+    }
+    [[EventManager sharedManager] downloadCities];
+    
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
+    
+    //skip tutorial
+    if (skipTutorial){
         [self performSegueWithIdentifier:@"showSplitController" sender:self];
     } else {
+        [standardDefaults setBool:YES forKey:@"SkipTutorial"];
         [self performSegueWithIdentifier:@"showTutorial" sender:self]; 
     }
+}
+
+-(NSURL *)documentDir {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (void)didReceiveMemoryWarning

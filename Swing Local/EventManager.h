@@ -17,19 +17,10 @@
 
 @end
 
-@protocol EventManagerAllCitiesDelegate <NSObject>
-
--(void) reloadAllCities;
-
-@end
-
 @interface EventManager : NSObject
 
 //delegate to download and refresh venues/events in a given city
 @property (unsafe_unretained) id<EventManagerCityDelegate> cityDelegate;
-
-//delegate to update controller that all cities is ready
-@property (unsafe_unretained) id<EventManagerAllCitiesDelegate> allCitiesDelegate;
 
 //array of all cities
 @property (nonatomic) __block NSArray *allCities;
@@ -45,6 +36,8 @@
 @property (nonatomic) NSMutableArray *savedCities;
 
 +(EventManager*) sharedManager;
+
+-(void) persistAndNotifySavedCities;
 
 -(void) downloadCities;
 

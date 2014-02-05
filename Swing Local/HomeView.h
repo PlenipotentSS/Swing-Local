@@ -25,6 +25,9 @@
 //button to change city after selected
 @property (weak, nonatomic) IBOutlet HollowButton *changeCityButton;
 
+//button to change city after selected
+@property (weak, nonatomic) IBOutlet HollowButton *addCityToSavedCitiesButton;
+
 //content Header view to display tonight's dances
 @property (weak, nonatomic) IBOutlet UIView *contentHeader;
 

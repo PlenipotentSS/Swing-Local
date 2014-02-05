@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FrontViewController.h"
+#import "City.h"
 
 @interface HomeViewController : FrontViewController
+
+//the current city for home view
+@property (weak, nonatomic) City *currentCity;
 
 @end

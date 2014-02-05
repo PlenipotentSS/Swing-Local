@@ -14,7 +14,7 @@
 #import "EventManager.h"
 #import "SSFrontViewController.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate, EventManagerAllCitiesDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate>
 
 //the header image set under title
 @property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
@@ -46,17 +46,11 @@
 //action sheet to display cities
 @property (nonatomic) SSActionSheet *cityActionSheet;
 
-//news view
-@property (nonatomic) NewsView *newsView;
-
-//flag if news is currently presented
-@property (nonatomic) BOOL newsIsActive;
+//whether there is a city that this user has selected in the past
+@property (nonatomic) BOOL citySelected;
 
 //current index selected in city array
 @property (nonatomic) NSInteger currentCityIndex;
-
-//whether there is a city that this user has selected in the past
-@property (nonatomic) BOOL citySelected;
 
 @end
 
@@ -75,19 +69,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    [[EventManager sharedManager] setAllCitiesDelegate:self];
-    [[EventManager sharedManager] downloadCities];
     [self setupContentTable];
     [self setupGesture];
     [self setupButtons];
-    [self setupNews];
     [self setupActionSheet];
     [self setupGeneral];
     [self loadCities];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadCities) name:@"AllCitiesUpdated" object:nil];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     [self loadInitialCity];
 }
@@ -99,34 +92,70 @@
 }
 
 #pragma mark - setup methods
--(void) setupGeneral {
+-(void) setupGeneral
+{
     _homeView = (HomeView*)self.view;
     [_homeView setup];    
     self.homeView.footerView = self.footerView;
 }
 
--(void) setupNews {
-    if (!self.citySelected && self.newsView) {
-        CGRect newsFrame = _newsView.frame;
-        newsFrame.size.height = CGRectGetHeight(self.homeView.frame)-CGRectGetHeight(self.footerView.frame);
-        self.newsView.frame = newsFrame;
-        [self.homeView insertSubview:_newsView aboveSubview:_footerView];
-        self.newsIsActive =YES;
-    }
-}
-
-
--(void) setupActionSheet {
+-(void) setupActionSheet
+{
     _cityActionSheet = [[SSActionSheet alloc] init];
     _cityActionSheet.nAnimationType = DoTransitionStylePop;
     _cityActionSheet.dButtonRound = 2;
 }
 
--(void) reloadAllCities {
-    [self loadCities];
+
+-(void) setupContentTable
+{
+    _contentTableView.contentSize = CGSizeMake(320.f, 1000.f);
+    _contentTableView.userInteractionEnabled = YES;
+    _contentTableView.scrollEnabled = YES;
+    
+    _contentModel = [[EventsTableViewModel alloc] init];
+    _contentTableView.delegate = _contentModel;
+    _contentTableView.dataSource = _contentModel;
+    [_contentModel setTheTableView:_contentTableView];
 }
 
--(void) loadCities {
+-(void) setupButtons
+{
+    self.cityIsAnimating = NO;
+    _currentCityIndex = -1;
+    
+    self.moreEvents.layer.cornerRadius = CGRectGetWidth(self.moreEvents.frame)/2;
+    self.moreEvents.layer.masksToBounds = YES;
+    //[self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
+    [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void) setupGesture
+{
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(footerSlide:)];
+    
+    pan.minimumNumberOfTouches = 1;
+    pan.maximumNumberOfTouches = 1;
+    
+    pan.delegate = self;
+    [self.footerView addGestureRecognizer:pan];
+}
+
+#pragma mark - City management
+-(void) loadInitialCity
+{
+    if ([[EventManager sharedManager] currentCity]) {
+        self.citySelected = YES;
+        [self hideCitySelectorAndShowActionSheet:NO];
+        [self showChangeCitySelector];
+        [self updateViewWithCity:[[EventManager sharedManager] currentCity]];
+    }
+}
+
+-(void) loadCities
+{
     NSArray *allCities = [[EventManager sharedManager] allCities];
     NSMutableArray *cityNames = [NSMutableArray new];
     for (City *thisCity in allCities) {
@@ -139,64 +168,32 @@
     
 }
 
--(void) setupContentTable {
-    _contentTableView.contentSize = CGSizeMake(320.f, 1000.f);
-    _contentTableView.userInteractionEnabled = YES;
-    _contentTableView.scrollEnabled = YES;
-    
-    _contentModel = [[EventsTableViewModel alloc] init];
-    _contentTableView.delegate = _contentModel;
-    _contentTableView.dataSource = _contentModel;
-    [_contentModel setTheTableView:_contentTableView];
-}
-
--(void) setupButtons {
-    self.cityIsAnimating = NO;
-    _currentCityIndex = -1;
-    
-    self.moreEvents.layer.cornerRadius = CGRectGetWidth(self.moreEvents.frame)/2;
-    self.moreEvents.layer.masksToBounds = YES;
-    //[self.moreEvents setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_right"]];
-    [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
-}
-
--(void) setupGesture {
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(footerSlide:)];
-    
-    pan.minimumNumberOfTouches = 1;
-    pan.maximumNumberOfTouches = 1;
-    
-    pan.delegate = self;
-    [self.footerView addGestureRecognizer:pan];
-}
-
-#pragma mark - Event management
--(void) loadInitialCity {
-    if ([EventManager sharedManager].topCity) {
-        self.citySelected = YES;
-        [self hideCitySelectorAndShowActionSheet:NO];
-        [self showChangeCitySelector];
-        [self updateViewWithCity:[EventManager sharedManager].topCity];
-    }
-}
-
 #pragma mark - IBActions to select city
--(IBAction)selectCity:(id)sender {
+-(IBAction)selectCity:(id)sender
+{
     if (!self.cityIsAnimating) {
         [self hideCitySelectorAndShowActionSheet:YES];
     }
 }
 
--(IBAction)changeCity:(id)sender {
+-(IBAction)changeCity:(id)sender
+{
     if (!self.cityIsAnimating) {
         [self hideChangeCitySelectorAndShowActionSheet:YES];
     }
 }
 
+#pragma mark - IBAction to save City to saved cities
+-(IBAction)saveCityToSavedCities:(id)sender
+{
+    self.homeView.addCityToSavedCitiesButton.hidden = YES;
+    [[EventManager sharedManager].savedCities addObject:self.currentCity];
+    [[EventManager sharedManager] persistAndNotifySavedCities];
+}
+
 #pragma mark - Pan Gesture Selector
--(void) footerSlide:(id)sender {
+-(void) footerSlide:(id)sender
+{
     if (!self.cityIsAnimating){
         UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)sender;
         if (self.citySelected) {
@@ -254,16 +251,19 @@
         if (!self.citySelected) {
             self.citySelected = YES;
         }
-        self.currentCityIndex = index;
-        [self.homeView.title setText:[_cityKeys objectAtIndex:index]];
-        [[HomePageManager sharedManager] setDelegate:self];
-        NSURL *headerImageURL = [self getImageFromCityName:[_cityKeys objectAtIndex:index]];
-        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCityName:[_cityKeys objectAtIndex:index]];
-        [_contentModel setCityWithName:[_cityKeys objectAtIndex:index]];
+        NSArray *allCities = [[EventManager sharedManager] allCities];
+        for (City *thisCity in allCities) {
+            NSString *thisCityName = [_cityKeys objectAtIndex:index];
+            if ([thisCityName isEqualToString:[thisCity cityName]]) {
+                [self updateViewWithCity:thisCity];
+                break;
+            }
+        }
     }
 }
 
 -(void) updateViewWithCity:(City*) thisCity {
+    self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     [self.homeView.title setText:thisCity.cityName];
     if (thisCity.cityImage) {
@@ -332,18 +332,40 @@
 #pragma mark - Animation Methods
 #pragma mark animations for changeCity button
 -(void) showChangeCitySelector {
+    self.cityIsAnimating = YES;
     self.homeView.changeCityButton.hidden = NO;
+    
+    if ( [[EventManager sharedManager].savedCities containsObject:self.currentCity] ) {
+        self.homeView.addCityToSavedCitiesButton.hidden = YES;
+    } else {
+        self.homeView.addCityToSavedCitiesButton.hidden = NO;
+    }
+    
+    
     __block CGRect changeCityNewFrame = self.homeView.changeCityButton.frame;
     changeCityNewFrame.origin.y = CGRectGetHeight(self.homeView.changeCityButton.superview.frame);
     self.homeView.changeCityButton.frame = changeCityNewFrame;
-    self.cityIsAnimating = YES;
+    
+    __block CGRect cityToSavedButtonFrame = self.homeView.addCityToSavedCitiesButton.frame;
+    cityToSavedButtonFrame.origin.y = CGRectGetHeight(self.homeView.addCityToSavedCitiesButton.superview.frame);
+    self.homeView.addCityToSavedCitiesButton.frame = cityToSavedButtonFrame;
+    
     [UIView animateWithDuration:.4f animations:^{
+        
         changeCityNewFrame.origin.y = CGRectGetHeight(self.homeView.changeCityButton.superview.frame)-80;
         self.homeView.changeCityButton.frame = changeCityNewFrame;
+        
+        cityToSavedButtonFrame.origin.y = CGRectGetHeight(self.homeView.changeCityButton.superview.frame)-80;
+        self.homeView.addCityToSavedCitiesButton.frame = cityToSavedButtonFrame;
+        
+        
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:.3f animations:^{
             changeCityNewFrame.origin.y += 10;
             self.homeView.changeCityButton.frame = changeCityNewFrame;
+            
+            cityToSavedButtonFrame.origin.y += 10;
+            self.homeView.addCityToSavedCitiesButton.frame = cityToSavedButtonFrame;
         } completion:^(BOOL finished){
             self.cityIsAnimating = NO;
         }];
@@ -380,14 +402,6 @@
                              }
                          }
                          if (self.citySelected) {
-                             if (self.newsIsActive) {
-                                 [UIView animateWithDuration:.5f animations:^{
-                                     [_newsView setAlpha:0.f];
-                                 } completion:^(BOOL finished) {
-                                     [_newsView removeFromSuperview];
-                                 }];
-                                 _newsIsActive = NO;
-                             }
                              [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
                          } else {
                              [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];

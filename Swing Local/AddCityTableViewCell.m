@@ -7,6 +7,7 @@
 //
 
 #import "AddCityTableViewCell.h"
+#import "UIColor+SwingLocal.h"
 
 @implementation AddCityTableViewCell
 

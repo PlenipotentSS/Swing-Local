@@ -166,6 +166,17 @@
                                                     <action selector="changeCity:" destination="b5l-Hh-7rc" eventType="touchUpInside" id="C1n-AF-56S"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPm-hg-uma" customClass="HollowButton">
+                                                <rect key="frame" x="250" y="32" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <state key="normal" backgroundImage="plus-circle-7">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveCityToSavedCities:" destination="b5l-Hh-7rc" eventType="touchUpInside" id="koV-Ae-mCQ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -227,6 +238,7 @@
                             <constraint firstItem="L9A-ZG-rsx" firstAttribute="leading" secondItem="jlR-Hd-sxy" secondAttribute="leading" id="uw2-Xk-CIy"/>
                         </constraints>
                         <connections>
+                            <outlet property="addCityToSavedCitiesButton" destination="tPm-hg-uma" id="F41-NO-8OX"/>
                             <outlet property="changeCityButton" destination="kip-I6-M78" id="wds-mr-n3V"/>
                             <outlet property="citySelectButton" destination="oxv-uf-xTV" id="9TV-6u-WLn"/>
                             <outlet property="contentHeader" destination="Jho-dp-5AI" id="2mS-3b-Ow2"/>
@@ -1022,11 +1034,11 @@
                                         <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
                                         <color key="tintColor" red="1" green="0.78431379800000001" blue="0.55294120309999995" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addCell" rowHeight="40" id="ER6-aS-hoH" customClass="AddCityTableViewCell">
-                                        <rect key="frame" x="0.0" y="462" width="300" height="40"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addCell" rowHeight="55" id="ER6-aS-hoH" customClass="AddCityTableViewCell">
+                                        <rect key="frame" x="0.0" y="462" width="300" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ER6-aS-hoH" id="MYU-6Z-LlH">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0e-Gc-454">
@@ -1036,12 +1048,17 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h26-gh-ls6">
+                                                    <rect key="frame" x="53" y="-81" width="247" height="216"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                </pickerView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
                                         <color key="tintColor" red="1" green="0.78431379800000001" blue="0.55294120309999995" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <outlet property="addButton" destination="n0e-Gc-454" id="CYG-pg-CBy"/>
+                                            <outlet property="thepickerView" destination="h26-gh-ls6" id="4dz-wT-Jm6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -11,5 +11,5 @@
 @interface AddCityTableViewCell : UITableViewCell
 
 @property (weak,nonatomic) IBOutlet UIButton *addButton;
-
+@property (weak, nonatomic) IBOutlet UIPickerView *thepickerView;
 @end

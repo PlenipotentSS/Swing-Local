@@ -104,8 +104,6 @@
 #pragma mark - GHWalkThroughDelegate
 -(void) skipButtonPressed {
     RootViewController *root = [self.storyboard instantiateViewControllerWithIdentifier:@"root"];
-    root.skipTutorialView = YES;
-    
     root.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:root animated:YES completion:nil];
 }

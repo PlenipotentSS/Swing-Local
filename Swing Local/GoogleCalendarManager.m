@@ -32,18 +32,56 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 {
     self = [super init];
     if (self) {
-    NSString *googleClientID = @"";
-    NSString *googleClientSecret = @"";
-        GTMOAuth2Authentication *auth;
-        //    auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName clientID: clientSecret:<#(NSString *)#> error:<#(NSError *__autoreleasing *)#>
-        
-        
-        //            authForGoogleFromKeychainForName:kKeychainItemName
-        //                                                              clientID:clientID
-        //                                                          clientSecret:clientSecret];
-        _calendarService.authorizer = auth;
+        if (!_calendarService.authorizer) {
+            NSError *error;
+            GTMOAuth2Authentication *auth;
+            auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName clientID:Google_API_Client_ID clientSecret:Google_API_Client_Secret error:&error];
+            if (!error) {
+                NSLog(@"%@",auth);
+                _calendarService.authorizer = auth;
+            } else {
+                //send alert to tell user auth failed and can't load data
+                NSLog(@"Google Auth Error: %@",error);
+            }
+        }
     }
     return self;
 }
+
+#pragma mark Fetch Calendar List
+
+- (void)fetchCalendarList
+{
+    self.calendarList = nil;
+    self.calendarListFetchError = nil;
+    
+    GTLServiceCalendar *service = self.calendarService;
+    
+    //queries the user's calendar list
+    //need to query a specific calendar id
+    GTLQueryCalendar *query = [GTLQueryCalendar queryForCalendarListList];
+    
+    //fetch owned? - if this user owns the calendar?
+    //set to static variable to say I do own this calendar?
+    query.minAccessRole = kGTLCalendarMinAccessRoleOwner;
+    
+    self.calendarListTicket = [service executeQuery:query
+                                  completionHandler:^(GTLServiceTicket *ticket,
+                                                      id calendarList, NSError *error) {
+                                      // Callback
+                                      self.calendarList = calendarList;
+                                      self.calendarListFetchError = error;
+                                      self.calendarListTicket = nil;
+                                      
+                                      [self updateUI];
+                                  }];
+    [self updateUI];
+}
+
+-(void) updateUI
+{
+    
+}
+
 
 @end

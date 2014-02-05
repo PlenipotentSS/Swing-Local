@@ -12,9 +12,10 @@
 #import "SplitControllerSegue.h"
 #import "EventManager.h"
 #import "AddCityTableViewCell.h"
+#import "City.h"
 
 
-@interface SSBackViewController () <UITableViewDataSource,UITableViewDelegate>
+@interface SSBackViewController () <UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (weak,nonatomic) IBOutlet UITableView *theTableView;
 
@@ -22,7 +23,10 @@
 @property (nonatomic) NSArray *segueItems;
 @property (nonatomic) BOOL edittingCells;
 
+@property (weak,nonatomic) NSArray *allCities;
 @property (weak,nonatomic) NSMutableArray *savedCities;
+
+@property (weak,nonatomic) UIPickerView *addPickerView;
 
 @end
 
@@ -43,8 +47,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureData];
-    
+    [self loadAllCities];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadSavedCities) name:@"SavedCitiesUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadAllCities) name:@"AllCitiesUpdated" object:nil];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -71,11 +76,16 @@
     [self reloadSavedCities];
 }
 
--(void) reloadSavedCities {
+-(void) reloadSavedCities
+{
     _savedCities = [[EventManager sharedManager] savedCities];
     [self.theTableView reloadData];
 }
 
+-(void) loadAllCities
+{
+    _allCities = [[EventManager sharedManager] allCities];
+}
 
 #pragma mark - UITableView delegate and datasource
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,6 +111,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == [_menuItems count]) {
+        return 60.f;
+    } else if (self.theTableView.editing && indexPath.row == [_menuItems count]+1){
         return 60.f;
     } else {
         return 35.f;
@@ -129,6 +141,11 @@
         //add extra row
         cell = [_theTableView dequeueReusableCellWithIdentifier:@"addCell" forIndexPath:indexPath];
         [[(AddCityTableViewCell*)cell addButton] addTarget:self action:@selector(addSavedCity) forControlEvents:UIControlEventTouchUpInside];
+        [(AddCityTableViewCell*)cell thepickerView].delegate = self;
+        [(AddCityTableViewCell*)cell thepickerView].dataSource = self;
+        self.addPickerView = [(AddCityTableViewCell*)cell thepickerView];
+        
+        return cell;
     } else {
         cell = [_theTableView dequeueReusableCellWithIdentifier:@"savedCityCell" forIndexPath:indexPath];
         NSInteger savedIndex = indexPath.row-[_menuItems count]-1;
@@ -171,6 +188,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSInteger savedIndex = indexPath.row-[_menuItems count]-2;
         [[[EventManager sharedManager] savedCities] removeObjectAtIndex:savedIndex];
+        [[EventManager sharedManager] persistAndNotifySavedCities];
         [self reloadSavedCities];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -187,12 +205,6 @@
     return proposedDestinationIndexPath;
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-    //set top city in event manager if tondexpath or fromindexpath is _mentuItems count+1
-}
-
-
 #pragma mark - edit events
 -(IBAction)editSavedEvents:(id)sender
 {
@@ -202,21 +214,62 @@
         [self.theTableView reloadData];
         [(SplitViewController*)self.parentViewController.parentViewController showMenuFullScreen];
         [(UIButton*)sender setTitle:@"Done" forState:UIControlStateNormal];
+        _theTableView.scrollEnabled = NO;
     } else {
         _edittingCells = NO;
         [self.theTableView setEditing:NO animated:YES];
         [self.theTableView reloadData];
         [(SplitViewController*)self.parentViewController.parentViewController showMenuSplit];
         [(UIButton*)sender setTitle:@"Edit" forState:UIControlStateNormal];
+        _theTableView.scrollEnabled = YES;
     }
 }
 
 -(void)addSavedCity{
-    City *addCity = [City new];
-    addCity.cityName = @"Dummy";
-    [[EventManager sharedManager].savedCities addObject:addCity];
+    NSInteger pickerSelected = [_addPickerView selectedRowInComponent:0];
+    City *thisCitySelected = [self.allCities objectAtIndex:pickerSelected];
+    [[EventManager sharedManager].savedCities addObject:thisCitySelected];
+    [[EventManager sharedManager] persistAndNotifySavedCities];
     [self reloadSavedCities];
     [self.theTableView reloadData];
 }
+
+#pragma mark - UIPickerView Delegate & Data Source methods
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [_allCities count];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    return 250;
+}
+
+-(UIView*)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel *pickerLabel = nil;
+    if (!view) {
+        CGRect thisFrame = pickerView.frame;
+        thisFrame.origin.x = 0.f;
+        thisFrame.origin.x = 0.f;
+        view = [[UIView alloc] initWithFrame:CGRectMake(0.f,0.f,300.f,50.f)];
+        UILabel  *pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f,0.f,300.f,50.f)];
+        pickerLabel.textAlignment = NSTextAlignmentCenter;
+        pickerLabel.text = [(City*)[_allCities objectAtIndex:row] cityName];
+        pickerLabel.textColor = [UIColor offWhiteScheme];
+        [view addSubview:pickerLabel];
+    }
+    if (!pickerLabel) {
+        
+    }
+    return view;
+}
+
+
 
 @end

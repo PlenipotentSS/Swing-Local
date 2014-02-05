@@ -35,6 +35,7 @@
     return shared;
 }
 
+#pragma mark - Setup methods
 -(void) setup {
     _savedCities = [NSMutableArray new];
     _counter = 0;
@@ -50,6 +51,23 @@
     _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:_eventDownloadQueue];
 }
 
+#pragma mark - data persistence for saved cities
+-(void) persistAndNotifySavedCities{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SavedCitiesUpdated" object:nil];
+    }];
+    [self encodeSavedCities];
+}
+
+-(void) encodeSavedCities {
+    NSURL *archiveURL = [[self documentDir] URLByAppendingPathComponent:SAVED_CITY_ARCHIVE_NAME];
+    [NSKeyedArchiver archiveRootObject:[EventManager sharedManager].savedCities toFile:[archiveURL path]];
+}
+
+-(NSURL *)documentDir {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 #pragma mark - download event methods
 -(void) downloadCities {
     NSURLSessionDataTask *citiesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:URL_TO_CITIES] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -58,7 +76,9 @@
             NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 _allCities = [self convertDataToCityModel:cities];
-                [self.allCitiesDelegate reloadAllCities];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
+                }];
             } else {
                 NSLog(@"error json: %@",err);
             }
@@ -85,9 +105,7 @@
                 }
                 if ([_savedCities count] ==0) {
                     [_savedCities addObject:city];
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"SavedCitiesUpdated" object:nil];
-                    }];
+                    [self persistAndNotifySavedCities];
                 }
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.cityDelegate refreshEventTableWithCity:city];

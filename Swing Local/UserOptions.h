@@ -11,10 +11,6 @@
 
 @interface UserOptions : NSObject
 
-@property (nonatomic) BOOL hasLaunched;
-
-@property (nonatomic) NSArray *favoritedCities;
-
-@property (nonatomic) City *currentCity;
+@property (nonatomic) NSArray *savedCities;
 
 @end

@@ -12,6 +12,9 @@
 @interface GoogleCalendarManager : NSObject
 
 @property (readonly) GTLServiceCalendar *calendarService;
+@property (retain) GTLCalendarCalendarList *calendarList;
+@property (retain) GTLServiceTicket *calendarListTicket;
+@property (retain) NSError *calendarListFetchError;
 
 +(GoogleCalendarManager*) sharedManager;
 
