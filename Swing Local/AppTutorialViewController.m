@@ -29,6 +29,9 @@
 //background colors for each page in tutorial
 @property (nonatomic,strong) NSMutableArray *backgroundColors;
 
+//Image array
+@property (nonatomic) NSArray *imageNames;
+
 @end
 
 @implementation AppTutorialViewController
@@ -46,7 +49,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor aquaScheme];
-    
+    _imageNames = @[@"logo_trans",@"logo_map",@"logo_board"];
     
     [self setupDescriptions];
     
@@ -121,6 +124,8 @@
     cell.titleColor = [UIColor offWhiteScheme];
     cell.desc = [self.descriptions objectAtIndex:index];
     cell.descColor = [UIColor offWhiteScheme];
+    
+    cell.titleImage = [UIImage imageNamed:[_imageNames objectAtIndex:index]];
 }
 
 - (UIImage*) bgImageforPage:(NSInteger)index

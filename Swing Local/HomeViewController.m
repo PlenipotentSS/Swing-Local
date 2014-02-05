@@ -12,8 +12,12 @@
 #import "HollowButton.h"
 #import "SSActionSheet.h"
 #import "EventManager.h"
+#import "SSFrontViewController.h"
 
 @interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate, EventManagerAllCitiesDelegate>
+
+//the header image set under title
+@property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
 
 //content ScrollView
 @property (weak,nonatomic) IBOutlet EventsTableView *contentTableView;
@@ -81,9 +85,12 @@
     [self setupActionSheet];
     [self setupGeneral];
     [self loadCities];
-    [self loadInitialCity];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self loadInitialCity];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -169,6 +176,8 @@
 -(void) loadInitialCity {
     if ([EventManager sharedManager].topCity) {
         self.citySelected = YES;
+        [self hideCitySelectorAndShowActionSheet:NO];
+        [self showChangeCitySelector];
         [self updateViewWithCity:[EventManager sharedManager].topCity];
     }
 }
@@ -232,10 +241,10 @@
 
 #pragma mark - HomePageManagerDelegate methods
 -(void) updateViewWithImage:(UIImage*) theImage {
-    [self.homeView.cityHeaderImage setAlpha:0.f];
-    [self.homeView.cityHeaderImage setImage:theImage];
+    [self.cityHeaderImage setAlpha:0.f];
+    [self.cityHeaderImage setImage:theImage];
     [UIView animateWithDuration:.4f animations:^{
-        [self.homeView.cityHeaderImage setAlpha:1.f];
+        [self.cityHeaderImage setAlpha:1.f];
     }];
 }
 
@@ -258,6 +267,7 @@
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     [self.homeView.title setText:thisCity.cityName];
     if (thisCity.cityImage) {
+        [self.homeView animateShowingContent];
         [self updateViewWithImage:thisCity.cityImage];
     } else {
         [[HomePageManager sharedManager] setDelegate:self];
@@ -282,8 +292,7 @@
 
 #pragma mark - outlets
 -(void) presentMoreEvents {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"More Events" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-    [alert show];
+    [(SSFrontViewController*)self.rootSegueController performSegueWithIdentifier:@"showCalendar" sender:self];
 }
 
 #pragma mark - animations for selectCity button

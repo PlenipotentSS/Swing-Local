@@ -55,6 +55,11 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     SSFrontViewController *destViewController = (SSFrontViewController*)segue.destinationViewController;
+    destViewController.rootSegueController = self;
+}
+
 -(void)support{
     [UVStyleSheet instance].tintColor = [UIColor aquaScheme];
     [UVStyleSheet instance].navigationBarBackgroundColor = [UIColor aquaScheme];

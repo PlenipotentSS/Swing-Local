@@ -31,9 +31,6 @@
 //title header of current view
 @property (weak, nonatomic) IBOutlet UILabel *title;
 
-//the header image set under title
-@property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
-
 //original origin of changeCity Button
 @property (nonatomic) CGPoint changeCityOrigin;
 

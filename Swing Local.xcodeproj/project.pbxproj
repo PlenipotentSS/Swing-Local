@@ -62,6 +62,7 @@
 		D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891818A0614E00A6BD51 /* GHWalkThroughPageCell.m */; };
 		D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */; };
 		D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */; };
+		D2F450DF18A1ECB600ABD1C8 /* AddCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F450DE18A1ECB600ABD1C8 /* AddCityTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,8 @@
 		D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHWalkThroughView.m; path = GHWalkThrough/GHWalkThroughView.m; sourceTree = "<group>"; };
 		D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleCityViewController.h; sourceTree = "<group>"; };
 		D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCityViewController.m; sourceTree = "<group>"; };
+		D2F450DD18A1ECB600ABD1C8 /* AddCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityTableViewCell.h; sourceTree = "<group>"; };
+		D2F450DE18A1ECB600ABD1C8 /* AddCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCityTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +322,7 @@
 				D2A07FB0189F5B3F002F11DA /* Buttons */,
 				D2E688F718A0133B00A6BD51 /* Subclassed */,
 				D2A07FB1189F5B44002F11DA /* Tables */,
+				D2F450E018A1ECF600ABD1C8 /* Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -513,6 +517,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		D2F450E018A1ECF600ABD1C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D2F450DD18A1ECB600ABD1C8 /* AddCityTableViewCell.h */,
+				D2F450DE18A1ECB600ABD1C8 /* AddCityTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -657,6 +670,7 @@
 				D2A07FBD189F8602002F11DA /* NewsView.m in Sources */,
 				D2A07F9C189F534C002F11DA /* Event.m in Sources */,
 				D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */,
+				D2F450DF18A1ECB600ABD1C8 /* AddCityTableViewCell.m in Sources */,
 				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
 				D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */,
 				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,

@@ -87,9 +87,13 @@
 
 -(void) updatePageViews {
     _titleLabel.text = [_theCity cityName];
-    [[HomePageManager sharedManager] setDelegate:self];
-    NSURL *headerImageURL = [self getImageFromCityName:_theCity.cityName];
-    [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:_theCity];
+    if (_theCity.cityImage) {
+        [self updateViewWithImage:_theCity.cityImage];
+    } else {
+        [[HomePageManager sharedManager] setDelegate:self];
+        NSURL *headerImageURL = [self getImageFromCityName:_theCity.cityName];
+        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:_theCity];
+    }
     
 }
 
