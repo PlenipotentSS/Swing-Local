@@ -57,7 +57,6 @@
 		D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890918A02EC000A6BD51 /* CalendarviewController.m */; };
 		D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */; };
 		D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891018A03AE200A6BD51 /* EventManager.m */; };
-		D2E6891418A045DF00A6BD51 /* testData.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891318A045DF00A6BD51 /* testData.m */; };
 		D2E6891B18A0614E00A6BD51 /* GHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891618A0614E00A6BD51 /* GHViewController.m */; };
 		D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891818A0614E00A6BD51 /* GHWalkThroughPageCell.m */; };
 		D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891A18A0614E00A6BD51 /* GHWalkThroughView.m */; };
@@ -161,8 +160,6 @@
 		D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewcontroller.m; sourceTree = "<group>"; };
 		D2E6890F18A03AE200A6BD51 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		D2E6891018A03AE200A6BD51 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
-		D2E6891218A045DF00A6BD51 /* testData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testData.h; sourceTree = "<group>"; };
-		D2E6891318A045DF00A6BD51 /* testData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testData.m; sourceTree = "<group>"; };
 		D2E6891518A0614E00A6BD51 /* GHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHViewController.h; path = GHWalkThrough/GHViewController.h; sourceTree = "<group>"; };
 		D2E6891618A0614E00A6BD51 /* GHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHViewController.m; path = GHWalkThrough/GHViewController.m; sourceTree = "<group>"; };
 		D2E6891718A0614E00A6BD51 /* GHWalkThroughPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHWalkThroughPageCell.h; path = GHWalkThrough/GHWalkThroughPageCell.h; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				D2A07FAC189F542D002F11DA /* Main.storyboard */,
-				D2E6891218A045DF00A6BD51 /* testData.h */,
-				D2E6891318A045DF00A6BD51 /* testData.m */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
 				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
@@ -475,8 +470,8 @@
 		D2A07FBE189F8610002F11DA /* Controller Views */ = {
 			isa = PBXGroup;
 			children = (
-				D244C343189CEC5C00E6DB16 /* MainView.m */,
 				D244C321189CEB9000E6DB16 /* MainView.h */,
+				D244C343189CEC5C00E6DB16 /* MainView.m */,
 				D2A07FBB189F8602002F11DA /* NewsView.h */,
 				D2A07FBC189F8602002F11DA /* NewsView.m */,
 				D244C31F189CEB9000E6DB16 /* HomeView.h */,
@@ -699,7 +694,6 @@
 				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
-				D2E6891418A045DF00A6BD51 /* testData.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
 				D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */,
 				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,

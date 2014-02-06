@@ -13,6 +13,7 @@
 #import "SSActionSheet.h"
 #import "EventManager.h"
 #import "SSFrontViewController.h"
+#import "SplitViewController.h"
 
 @interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate>
 
@@ -29,7 +30,7 @@
 @property (weak, nonatomic) HomeView *homeView;
 
 //array of all cities
-@property (nonatomic) NSArray *cityKeys;
+@property (nonatomic) NSMutableArray *cityKeys;
 
 //table view model
 @property (nonatomic) EventsTableViewModel *contentModel;
@@ -51,6 +52,9 @@
 
 //current index selected in city array
 @property (nonatomic) NSInteger currentCityIndex;
+
+//initial home view
+@property (weak,nonatomic) IBOutlet UIView *initialHomeView;
 
 @end
 
@@ -146,26 +150,26 @@
 #pragma mark - City management
 -(void) loadInitialCity
 {
-    if ([[EventManager sharedManager] currentCity]) {
+    if ([[[EventManager sharedManager] savedCities] count] > 0) {
+        self.initialHomeView.hidden = YES;
         self.citySelected = YES;
         [self hideCitySelectorAndShowActionSheet:NO];
         [self showChangeCitySelector];
-        [self updateViewWithCity:[[EventManager sharedManager] currentCity]];
+        [self.homeView animateShowingContent];
+        [self updateViewWithCity:[[[EventManager sharedManager] savedCities] objectAtIndex:0]];
+        self.homeView.addCityToSavedCitiesButton.hidden = YES;
+    } else {
+        [self showInitialView];
     }
 }
 
 -(void) loadCities
 {
     NSArray *allCities = [[EventManager sharedManager] allCities];
-    NSMutableArray *cityNames = [NSMutableArray new];
+    _cityKeys = [NSMutableArray new];
     for (City *thisCity in allCities) {
-        [cityNames addObject:thisCity.cityName];
+        [_cityKeys addObject:thisCity.cityName];
     }
-    
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"" ascending:YES];
-    NSArray *sortDescriptors = @[nameDescriptor];
-    _cityKeys = [cityNames sortedArrayUsingDescriptors:sortDescriptors];
-    
 }
 
 #pragma mark - IBActions to select city
@@ -189,6 +193,7 @@
     self.homeView.addCityToSavedCitiesButton.hidden = YES;
     [[EventManager sharedManager].savedCities addObject:self.currentCity];
     [[EventManager sharedManager] persistAndNotifySavedCities];
+    [(SplitViewController*)self.parentViewController.parentViewController showMenuSplit];
 }
 
 #pragma mark - Pan Gesture Selector
@@ -263,11 +268,11 @@
 }
 
 -(void) updateViewWithCity:(City*) thisCity {
+    [self hideInitialView];
     self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     [self.homeView.title setText:thisCity.cityName];
     if (thisCity.cityImage) {
-        
         [self.homeView animateShowingContent];
         [self updateViewWithImage:thisCity.cityImage];
     } else {
@@ -292,6 +297,25 @@
 }
 
 #pragma mark - outlets
+- (void)showInitialView
+{
+    self.initialHomeView.alpha = 0.f;
+    self.initialHomeView.hidden = NO;
+    [UIView animateWithDuration:.4f animations:^{
+        self.initialHomeView.alpha = 1.f;
+    }];
+}
+
+- (void)hideInitialView
+{
+    [UIView animateWithDuration:.4f animations:^{
+        self.initialHomeView.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        self.initialHomeView.hidden = YES;
+    }];
+}
+
+
 -(void) presentMoreEvents {
     [(SSFrontViewController*)self.rootSegueController performSegueWithIdentifier:@"showCalendar" sender:self];
 }

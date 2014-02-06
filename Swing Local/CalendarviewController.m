@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *theTableView;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelectRange;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelectRangeControl;
 
 @end
 
@@ -32,8 +32,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [_dateSelectRange addTarget:self action:@selector(createDateRange) forControlEvents:UIControlEventValueChanged];
-    _dateSelectRange.selectedSegmentIndex = 0;
+    [_dateSelectRangeControl addTarget:self action:@selector(createDateRange) forControlEvents:UIControlEventValueChanged];
+    self.dateSelectRangeControl.selectedSegmentIndex = 0;
 }
 
 - (void)didReceiveMemoryWarning

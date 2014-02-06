@@ -17,7 +17,7 @@
     UIViewController *dst = (UIViewController *) self.destinationViewController;
     
     [UIView transitionWithView:dst.navigationController.view duration:0.2
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                       options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         [src.navigationController pushViewController:dst animated:NO];
                     }

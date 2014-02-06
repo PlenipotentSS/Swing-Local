@@ -13,7 +13,7 @@
 #import "HomePageManager.h"
 #import "UIColor+SwingLocal.h"
 
-@interface SingleCityViewController () <UITableViewDataSource,UITableViewDelegate, HomePageManagerDelegate>
+@interface SingleCityViewController () <HomePageManagerDelegate>
 
 
 //content ScrollView
@@ -49,12 +49,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    _theTableView.delegate = self;
-    _theTableView.dataSource = self;
-    _allEvents = [NSMutableArray new];
+    self.contentModel = [[EventsTableViewModel alloc] init];
+    self.theTableView.delegate = self.contentModel;
+    self.theTableView.dataSource = self.contentModel;
+    [self.contentModel setTheTableView:self.theTableView];
+    self.allEvents = [NSMutableArray new];
     
-    if (!_theCity) {
-        _theCity = [[EventManager sharedManager] topCity];
+    if (!self.theCity) {
+        self.theCity = [[EventManager sharedManager] currentCity];
+        [[EventManager sharedManager] downloadVenuesAndEventsInCity:self.theCity];
         [self getAllEventsInCity];
     }
 }
@@ -65,20 +68,13 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) setTheCity:(City *)theCity {
-    _theCity = theCity;
-    
-    [self getAllEventsInCity];
-    [self.theTableView reloadData];
-}
-
 #pragma mark - updating data and UI
 -(void)getAllEventsInCity {
-    if (_theCity) {
-        NSMutableArray *venues = [_theCity venueOrganizations];
+    if (self.theCity) {
+        NSMutableArray *venues = [self.theCity venueOrganizations];
         for (Venue *thisVenue in venues) {
             //change to get events on day
-            [_allEvents addObjectsFromArray:[thisVenue events]];
+            [self.allEvents addObjectsFromArray:[thisVenue events]];
         }
     }
     [self updatePageViews];
@@ -86,15 +82,15 @@
 }
 
 -(void) updatePageViews {
-    _titleLabel.text = [_theCity cityName];
-    if (_theCity.cityImage) {
-        [self updateViewWithImage:_theCity.cityImage];
+    self.titleLabel.text = [self.theCity cityName];
+    if (self.theCity.cityImage) {
+        [self updateViewWithImage:self.theCity.cityImage];
     } else {
         [[HomePageManager sharedManager] setDelegate:self];
-        NSURL *headerImageURL = [self getImageFromCityName:_theCity.cityName];
-        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:_theCity];
+        NSURL *headerImageURL = [self getImageFromCityName:self.theCity.cityName];
+        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:self.theCity];
     }
-    
+    [self.contentModel setCity:self.theCity];
 }
 
 #pragma mark - imageviewcreator
@@ -111,20 +107,6 @@
     [UIView animateWithDuration:.4f animations:^{
         [self.cityHeaderImage setAlpha:1.f];
     }];
-}
-
-#pragma mark - UITableView data source methods
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_allEvents count];
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"eventCell";
-    UITableViewCell *cell = [_theTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    Event *thisEvent = [_allEvents objectAtIndex:indexPath.row];
-    cell.textLabel.text = thisEvent.eventTitle;
-    cell.textLabel.textColor = [UIColor offWhiteScheme];
-    return cell;
 }
 
 @end

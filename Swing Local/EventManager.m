@@ -44,8 +44,7 @@
     _allCities = [NSArray new];
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    sessionConfig.allowsCellularAccess = NO;
-    //[sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+    [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
     sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
     
     _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:_eventDownloadQueue];
@@ -68,6 +67,22 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+-(void) updateDataWithNewCityArray:(NSArray*) downloadedCities {
+    NSMutableArray *newSavedCities = [[NSMutableArray alloc] init];
+    for (City *oldSavedCity in self.savedCities) {
+        for (City *newCity in downloadedCities) {
+            if ([oldSavedCity.cityName isEqualToString:newCity.cityName]) {
+                [newSavedCities addObject:newCity];
+                break;
+            }
+        }
+    }
+    self.savedCities = newSavedCities;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self persistAndNotifySavedCities];
+    }];
+}
+
 #pragma mark - download event methods
 -(void) downloadCities {
     NSURLSessionDataTask *citiesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:URL_TO_CITIES] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -75,7 +90,16 @@
             NSError *err;
             NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
-                _allCities = [self convertDataToCityModel:cities];
+                
+                NSArray *citiesUnsorted = [self convertDataToCityModel:cities];
+                NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cityName" ascending:YES];
+                NSArray *sortDescriptors = @[nameDescriptor];
+                NSArray *sortedCities = [citiesUnsorted sortedArrayUsingDescriptors:sortDescriptors];
+                if ([self.savedCities count] > 0) {
+                    [self updateDataWithNewCityArray:sortedCities];
+                }
+                self.allCities = sortedCities;
+                
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
                 }];
@@ -100,9 +124,6 @@
             if (!err) {
                 NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
                 city.venueOrganizations = [self convertDataToVenueModel:venuesForCity];
-                if (!_topCity) {
-                    _topCity = city;
-                }
                 if ([_savedCities count] ==0) {
                     [_savedCities addObject:city];
                     [self persistAndNotifySavedCities];

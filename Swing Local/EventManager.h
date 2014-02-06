@@ -25,9 +25,6 @@
 //array of all cities
 @property (nonatomic) __block NSArray *allCities;
 
-//the top ranking city to show on home view
-@property (nonatomic) City *topCity;
-
 //current City to load for single city views
 @property (nonatomic) City *currentCity;
 

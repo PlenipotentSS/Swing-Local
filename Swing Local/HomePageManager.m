@@ -36,7 +36,9 @@
         UIImage *theImage = [UIImage imageWithData:imageData];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             city.cityImage = theImage;
-            [self.delegate updateViewWithImage:theImage];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.delegate updateViewWithImage:theImage];
+            }];
         }];
     }];
 }

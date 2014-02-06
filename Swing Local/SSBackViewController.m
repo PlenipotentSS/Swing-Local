@@ -176,10 +176,10 @@
 
 - (BOOL)tableView:(UITableView *)tableview canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_edittingCells && indexPath.row > [_menuItems count] + 1 ) {
+    if (_edittingCells && indexPath.row > [_menuItems count]+1 ) {
         return YES;
     }
-    return NO;
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -196,10 +196,22 @@
     [tableView reloadData];
 }
 
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    NSInteger savedStartIndex = [_menuItems count]+2;
+    NSInteger fromIndex = sourceIndexPath.row-savedStartIndex;
+    NSInteger toIndex = destinationIndexPath.row-savedStartIndex;
+    
+    City *fromCity = [_savedCities objectAtIndex:fromIndex];
+    [_savedCities removeObjectAtIndex:fromIndex];
+    [_savedCities insertObject:fromCity atIndex:toIndex];
+    [EventManager sharedManager].savedCities = _savedCities;
+    [[EventManager sharedManager] persistAndNotifySavedCities];
+}
+
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath*)sourceIndexPath
        toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
-    if (proposedDestinationIndexPath.row < [_menuItems count]+1) {
+    if (proposedDestinationIndexPath.row < [_menuItems count]+2) {
         return [NSIndexPath indexPathForRow:[_menuItems count]+2 inSection:0];
     }
     return proposedDestinationIndexPath;
@@ -214,14 +226,12 @@
         [self.theTableView reloadData];
         [(SplitViewController*)self.parentViewController.parentViewController showMenuFullScreen];
         [(UIButton*)sender setTitle:@"Done" forState:UIControlStateNormal];
-        _theTableView.scrollEnabled = NO;
     } else {
         _edittingCells = NO;
         [self.theTableView setEditing:NO animated:YES];
         [self.theTableView reloadData];
         [(SplitViewController*)self.parentViewController.parentViewController showMenuSplit];
         [(UIButton*)sender setTitle:@"Edit" forState:UIControlStateNormal];
-        _theTableView.scrollEnabled = YES;
     }
 }
 
