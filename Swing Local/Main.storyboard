@@ -231,12 +231,12 @@
                                 <rect key="frame" x="0.0" y="78" width="320" height="392"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_trans" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-I7-XQK">
-                                        <rect key="frame" x="60" y="103" width="200" height="186"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_trans" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-I7-XQK">
+                                        <rect key="frame" x="60" y="79" width="200" height="186"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swing Local" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2x-x2-dIA">
-                                        <rect key="frame" x="54" y="276" width="213" height="71"/>
+                                        <rect key="frame" x="54" y="262" width="213" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
                                         <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
@@ -1376,7 +1376,7 @@
         <image name="gear-multiple-7" width="30" height="30"/>
         <image name="home-7" width="30" height="30"/>
         <image name="lifebuoy-7" width="30" height="30"/>
-        <image name="logo_trans" width="125" height="113"/>
+        <image name="logo_trans" width="250" height="253"/>
         <image name="man-handshaking" width="29" height="30"/>
         <image name="map-pin-7" width="30" height="30"/>
         <image name="menu" width="28" height="20"/>
