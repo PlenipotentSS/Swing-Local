@@ -58,7 +58,6 @@
     _eventsInCity = [NSMutableArray new];
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesOfEvents = [NSMutableArray new];
-    [self.theTableView reloadData];
     [self refreshEventTableWithCity:city];
 
 }
@@ -144,16 +143,22 @@
 
 #pragma mark - UITableViewDataSource and Delegate methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
-    
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDetailViewController" object:nil userInfo:@{@"occurrence" : [self.OccurrencesWithDateKeys objectForKey:@""]}];
+    
+    if ( indexPath.section < [self.sortedDateKeys count]) {
+        NSString *keyName = [self.sortedDateKeys objectAtIndex:indexPath.section];
+        NSArray *eventsOnDay = [self.OccurrencesWithDateKeys objectForKey:keyName];
+        Occurrence *thisOcc = [eventsOnDay objectAtIndex:indexPath.row];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDetailViewController" object:nil userInfo:@{@"occurrence" : thisOcc}];
+    }
     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.sortedDateKeys && [self.sortedDateKeys count] > 0) {
         return [self.sortedDateKeys count];
-    } else if ([self.occurrencesOfEvents count] > 0) {
+    } else if (self.city) {
         return 1;
     } else {
         return 0;
