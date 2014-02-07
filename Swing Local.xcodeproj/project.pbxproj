@@ -179,7 +179,6 @@
 		D2F450E318A2C20500ABD1C8 /* GoogleCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCalendarManager.h; sourceTree = "<group>"; };
 		D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCalendarManager.m; sourceTree = "<group>"; };
 		D2F450E618A2C4AB00ABD1C8 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		D2F450E818A2C61700ABD1C8 /* Secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secret.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,7 +285,6 @@
 				D244C2F2189CEB6100E6DB16 /* main.m */,
 				D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */,
 				D2F450E618A2C4AB00ABD1C8 /* Constants.h */,
-				D2F450E818A2C61700ABD1C8 /* Secret.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -590,6 +588,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Steven Stevenson";
 				TargetAttributes = {
+					D244C2E2189CEB6100E6DB16 = {
+						DevelopmentTeam = 2S283D3328;
+					};
 					D244C303189CEB6100E6DB16 = {
 						TestTargetID = D244C2E2189CEB6100E6DB16;
 					};
@@ -838,10 +839,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
 				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -852,10 +856,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
 				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
