@@ -11,10 +11,13 @@
 #import "EventManager.h"
 #import "Venue.h"
 #import "Event.h"
+#import "GoogleCalendarManager.h"
+#import "Occurrence.h"
 
-@interface EventsTableViewModel() <EventManagerCityDelegate>
+@interface EventsTableViewModel() <EventManagerCityDelegate, GoogleCalendarManagerDelegate>
 
-@property (nonatomic) NSMutableArray *events;
+@property (nonatomic) NSMutableArray *eventsInCity;
+@property (nonatomic) NSMutableArray *occurrencesOfEvents;
 @property (nonatomic) NSOperationQueue *cellOperationQueue;
 
 @end
@@ -25,7 +28,6 @@
 {
     self = [super init];
     if (self) {
-        _events = [NSMutableArray new];
         _cellOperationQueue = [NSOperationQueue new];
         [_cellOperationQueue setMaxConcurrentOperationCount:1];
     }
@@ -49,33 +51,53 @@
 
 }
 
+//called initially to load, and again when download venues completes
 -(void) refreshEventTableWithCity: (City*) thisCity {
-    if (_city.venueOrganizations) {
-        [self reloadEvents];
+    if (self.city.venueOrganizations) {
+        _eventsInCity = [NSMutableArray new];
+        _occurrencesOfEvents = [NSMutableArray new];
+        [self.cellOperationQueue addOperationWithBlock:^{
+            usleep(500000);
+        }];
+        [self loadEventsForVenues];
     } else {
         [[EventManager sharedManager] setCityDelegate:self];
         [[EventManager sharedManager] downloadVenuesAndEventsInCity:thisCity];
     }
 }
 
--(void) reloadEvents {
-    _events = [NSMutableArray new];
-    //give delay for cell animations
-    [_cellOperationQueue addOperationWithBlock:^{
-        usleep(500000);
-    }];
-    for (Venue *thisVenue in _city.venueOrganizations) {
+//send events for each venue to see if there is an event today
+-(void) loadEventsForVenues {
+    for (Venue *thisVenue in self.city.venueOrganizations) {
         //change to get get events for this day in venue
-        NSArray *eventsToday = [self eventsTodayForVenue:thisVenue];
-        [_events addObjectsFromArray:eventsToday];
-        
-        [_theTableView reloadData];
-        [_theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self eventsTodayForVenue:thisVenue];
     }
 }
 
--(NSArray*) eventsTodayForVenue:(Venue*) thisVenue {
-    return thisVenue.events;
+#warning CHANGE NAME TO GOOGLE URL
+//send to google manager for json data
+-(void) eventsTodayForVenue:(Venue*) thisVenue {
+    for (Event *thisEvent in thisVenue.events) {
+        
+        
+        NSString *calendarURLString = thisEvent.imageURLString;             //change imageURLSTring
+        
+        
+        if (calendarURLString && ![calendarURLString isEqualToString:@""]) {
+            [[GoogleCalendarManager sharedManager] getTodaysOccurrencesWithGoogleCalendarID:calendarURLString forEvent:thisEvent];
+            [self.eventsInCity addObject:thisEvent];
+        }
+    }
+}
+
+//receive from google manager: an array of events today
+-(void) updateVenueForEvent:(Event*) thisEvent {
+    //give delay for cell animations
+    for (Occurrence *occ in thisEvent.occurrences) {
+        [self.occurrencesOfEvents addObject:occ];
+    }
+    [self.theTableView reloadData];
+    [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 }
 
 #pragma mark - UITableViewDataSource and Delegate methods
@@ -88,21 +110,39 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_events count];
+    return [self.occurrencesOfEvents count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"eventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    Event *thisEvent = [_events objectAtIndex:indexPath.row];
+    Occurrence *thisOcc = [self.occurrencesOfEvents objectAtIndex:indexPath.row];
     
-    
-    cell.textLabel.text = thisEvent.eventTitle;
+    cell.textLabel.text = thisOcc.updatedTitle;
     cell.textLabel.textColor = [UIColor offWhiteScheme];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:GENERAL_TIME_FORMAT];
+    NSString *startTime = [dateFormatter stringFromDate:thisOcc.startTime];
+    NSString *endTime = [dateFormatter stringFromDate:thisOcc.endTime];
     
-    //cell.detailTextLabel.text = [_subTitleData objectAtIndex:indexPath.row];
+    
+    NSString *cost = thisOcc.eventForOccurrence.cost;
+    if (cost && ![cost isEqualToString:@""]) {
+        cost = thisOcc.updatedCost;
+    }
+    
+    NSString *dj;
+    if (dj && ![dj isEqualToString:@""]) {
+        dj = [NSString stringWithFormat:@" - %@",thisOcc.DJ];
+    }
+    
+    NSString *subtitle = [NSString stringWithFormat:@"%@-%@ : $%@ %@",startTime,endTime, cost, dj];
+    cell.detailTextLabel.text = subtitle;
     cell.detailTextLabel.textColor = [UIColor offWhiteScheme];
     [cell.contentView setAlpha:0.f];
+    
+    
     [self animateCell:cell AtIndex:indexPath];
     return cell;
 }

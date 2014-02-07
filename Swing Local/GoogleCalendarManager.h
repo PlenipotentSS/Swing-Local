@@ -7,15 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GTLCalendar.h>
+#import "Event.h"
+
+@protocol GoogleCalendarManagerDelegate <NSObject>
+
+@optional
+-(void) updateVenueForTodaysEvents:(NSArray*) todaysEvents;
+
+-(void) updateEventsInVenuesWithDateRange:(NSArray*) todaysEvents;
+
+@end
 
 @interface GoogleCalendarManager : NSObject
 
-@property (readonly) GTLServiceCalendar *calendarService;
-@property (retain) GTLCalendarCalendarList *calendarList;
-@property (retain) GTLServiceTicket *calendarListTicket;
-@property (retain) NSError *calendarListFetchError;
-
 +(GoogleCalendarManager*) sharedManager;
+
+@property (unsafe_unretained) id<GoogleCalendarManagerDelegate> delegate;
+
+-(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event*) theEvent;
 
 @end

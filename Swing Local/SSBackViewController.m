@@ -57,6 +57,14 @@
     [super viewWillAppear:animated];
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if ([self.addPickerView selectedRowInComponent:0] == 0){
+        [self.addPickerView selectRow:1 inComponent:0 animated:YES];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -80,6 +88,10 @@
 {
     _savedCities = [[EventManager sharedManager] savedCities];
     [self.theTableView reloadData];
+    
+    if ([self.addPickerView selectedRowInComponent:0] == 0){
+        [self.addPickerView selectRow:1 inComponent:0 animated:YES];
+    }
 }
 
 -(void) loadAllCities
@@ -113,9 +125,11 @@
     if (indexPath.row == [_menuItems count]) {
         return 60.f;
     } else if (self.theTableView.editing && indexPath.row == [_menuItems count]+1){
-        return 60.f;
-    } else {
+        return 80.f;
+    } else if (indexPath.row < [_menuItems count]){
         return 35.f;
+    } else {
+        return 50.f;
     }
 }
 

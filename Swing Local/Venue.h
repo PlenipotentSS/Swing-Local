@@ -37,4 +37,8 @@
 //download the venue's image
 -(void)downloadVenueImage;
 
+//venue data to venue model
+// NOTE: venuedata contains data to instantiate event models
++(NSMutableArray*) convertDataToVenueModel:(NSArray*) venueData;
+
 @end

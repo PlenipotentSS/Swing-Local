@@ -12,9 +12,13 @@
 
 @interface EventsTableViewModel : NSObject <UITableViewDataSource,UITableViewDelegate>
 
+//the current city being displayed
 @property (nonatomic) City *city;
+
+//link to the table view to redraw
 @property (nonatomic) EventsTableView *theTableView;
 
+//set city in case only have name
 -(void) setCityWithName: (NSString*) cityName;
 
 @end

@@ -7,9 +7,14 @@
 //
 
 #import "GoogleCalendarManager.h"
-#import <GTLUtilities.h>
-#import <GTMHTTPFetcherLogging.h>
-#import <GTMOAuth2ViewControllerTouch.h>
+#import "Occurrence.h"
+
+@interface GoogleCalendarManager() <NSURLSessionDelegate>
+
+@property (nonatomic) NSURLSession *urlSession;
+@property (nonatomic) NSOperationQueue *googleDownloadQueue;
+
+@end
 
 // Keychain item name for saving the user's authentication information
 NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
@@ -23,65 +28,157 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
     
     dispatch_once(&pred, ^{
         shared = [[GoogleCalendarManager alloc] init];
+        if (!shared.googleDownloadQueue) {
+            [shared setup];
+        }
     });
     
     return shared;
 }
 
--(id) init
-{
-    self = [super init];
-    if (self) {
-        if (!_calendarService.authorizer) {
-            NSError *error;
-            GTMOAuth2Authentication *auth;
-            auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName clientID:Google_API_Client_ID clientSecret:Google_API_Client_Secret error:&error];
-            if (!error) {
-                NSLog(@"%@",auth);
-                _calendarService.authorizer = auth;
-            } else {
-                //send alert to tell user auth failed and can't load data
-                NSLog(@"Google Auth Error: %@",error);
+#pragma mark - Setup methods
+-(void) setup {
+    _googleDownloadQueue = [NSOperationQueue new];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+    sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+    
+    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+}
+
+-(NSURL*) getGoogleCalURLFromID: (NSString*) googleCalID {
+    NSString *googleStringURL = [NSString stringWithFormat:@"%@%@%@",GOOGLE_BASE,googleCalID,GOOGLE_VARS];
+    NSLog(@"%@",googleStringURL);
+    return [NSURL URLWithString:googleStringURL];
+}
+
+#pragma mark - compararing dates
+-(NSArray*) getTodaysDate {
+    NSDate *now = [NSDate date];
+    return @[now];
+}
+
+- (BOOL)dateA:(NSDate*)dateA isSameDayAsDateB:(NSDate*)dateB {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:dateA];
+    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:dateB];
+    
+    return [comp1 day]   == [comp2 day] &&
+    [comp1 month] == [comp2 month] &&
+    [comp1 year]  == [comp2 year];
+}
+
+-(BOOL)dateA: (NSDate*)dateA isBeforeDateB:(NSDate*)dateB {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:dateA];
+    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:dateB];
+    
+    if ([comp1 year] <= [comp2 year]) {
+        if ([comp1 month] <= [comp2 month]) {
+            if ([comp1 day] <= [comp2 day]) {
+                return YES;
             }
         }
     }
-    return self;
+    return NO;
 }
 
-#pragma mark Fetch Calendar List
 
-- (void)fetchCalendarList
-{
-    self.calendarList = nil;
-    self.calendarListFetchError = nil;
-    
-    GTLServiceCalendar *service = self.calendarService;
-    
-    //queries the user's calendar list
-    //need to query a specific calendar id
-    GTLQueryCalendar *query = [GTLQueryCalendar queryForCalendarListList];
-    
-    //fetch owned? - if this user owns the calendar?
-    //set to static variable to say I do own this calendar?
-    query.minAccessRole = kGTLCalendarMinAccessRoleOwner;
-    
-    self.calendarListTicket = [service executeQuery:query
-                                  completionHandler:^(GTLServiceTicket *ticket,
-                                                      id calendarList, NSError *error) {
-                                      // Callback
-                                      self.calendarList = calendarList;
-                                      self.calendarListFetchError = error;
-                                      self.calendarListTicket = nil;
-                                      
-                                      [self updateUI];
-                                  }];
-    [self updateUI];
+#pragma mark - Google API Downloads
+-(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent {
+    NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
+    NSURLSessionDataTask *eventsTasks = [_urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *err;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            if (!err && ![jsonObject isKindOfClass:[NSString class]]) {
+                NSDictionary *googleCalData = (NSDictionary*)jsonObject;
+                
+                NSArray *allOccurrences = [(NSDictionary*)[googleCalData objectForKey:@"feed"] objectForKey:@"entry"];
+                
+                //return all Events in the given date range for venue
+                NSMutableArray *filteredMutableArray = [self filterTodaysOccurrencesFromAllOccurrences:allOccurrences forDates:[self getTodaysDate]];
+                
+                for (Occurrence *occ in filteredMutableArray) {
+                    occ.eventForOccurrence = theEvent;
+                }
+                
+                NSLog(@"%@",filteredMutableArray);
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                }];
+                
+            } else {
+                NSLog(@"error json: %@ : %@",err,jsonObject);
+            }
+        } else {
+            
+            NSLog(@"error domain: %@",error);
+        }
+    }];
+    [eventsTasks resume];
 }
 
--(void) updateUI
-{
+-(void) getTodaysEventsWithGoogleCalendarID: (NSString*) googleCalID forDateRange: (NSDateComponents*) dateRange {
     
 }
 
+#pragma mark - get events in time range
+-(NSMutableArray*) filterTodaysOccurrencesFromAllOccurrences: (NSArray*) allOccurrences forDates:(NSArray*) datesArray {
+    NSMutableArray *filteredEventsByDates = [NSMutableArray new];
+    
+    //yyyy-MM-dd'T'HH:mm:ssZ
+    NSDateFormatter *googleFormat = [[NSDateFormatter alloc] init];
+    [googleFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    
+    NSDateFormatter *standardFormat = [[NSDateFormatter alloc] init];
+    [standardFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    
+    //loop through all events in this calendar
+    for (NSDictionary *thisOccData in allOccurrences) {
+        NSArray *whenData = [thisOccData objectForKey:@"gd$when"];
+        BOOL continueFlag = YES;
+        //loop through all times in this calendar
+        for (NSDictionary *thisTime in whenData) {
+            
+            if (continueFlag) {
+            
+                //go through all dates given for comparison
+                for (NSDate *compareDate in datesArray) {
+                    
+                    NSLog(@"%@",[thisTime objectForKey:@"startTime"]);
+                    //check if the we are checking for dates that have yet to occur
+                    NSDate* eventDate = [googleFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                    NSLog(@"%@",eventDate);
+                    //NSLog(@"%@ <-> %@",eventDate,compareDate);
+                    if ([self dateA:eventDate isBeforeDateB:compareDate]) {
+                        
+                        
+                        //check if the two dates are the same
+                        if ( [self dateA:eventDate isSameDayAsDateB:compareDate] ) {
+                            NSDate* endTime = [googleFormat dateFromString:[thisTime objectForKey:@"endTime"]];
+                            
+                            Occurrence *thisOcc = [Occurrence convertDataToOccurrenceModel:thisOccData withStartTime:eventDate andEndTime:endTime];
+                            [filteredEventsByDates addObject:thisOcc];
+                            continueFlag = NO;
+                            break;
+                        }
+                    } else {
+                        continueFlag = NO;
+                        break;
+                    }
+                }
+            } else {
+                break;
+            }
+        }
+    }
+    return filteredEventsByDates;
+}
 
 @end

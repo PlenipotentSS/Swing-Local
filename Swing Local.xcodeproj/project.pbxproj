@@ -12,6 +12,7 @@
 		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
 		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
 		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
+		D22BF0C818A471D60036783D /* Occurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0C718A471D60036783D /* Occurrence.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */; };
 		D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
@@ -86,6 +87,8 @@
 		D224C524189D017000923370 /* SSFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFrontViewController.m; sourceTree = "<group>"; };
 		D224C527189D021400923370 /* SSBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBackViewController.h; sourceTree = "<group>"; };
 		D224C528189D021400923370 /* SSBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBackViewController.m; sourceTree = "<group>"; };
+		D22BF0C618A471D60036783D /* Occurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Occurrence.h; sourceTree = "<group>"; };
+		D22BF0C718A471D60036783D /* Occurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Occurrence.m; sourceTree = "<group>"; };
 		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C2E6189CEB6100E6DB16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -427,6 +430,8 @@
 				D2A07F9E189F535D002F11DA /* Venue.m */,
 				D2A07F99189F534C002F11DA /* Event.h */,
 				D2A07F9A189F534C002F11DA /* Event.m */,
+				D22BF0C618A471D60036783D /* Occurrence.h */,
+				D22BF0C718A471D60036783D /* Occurrence.m */,
 			);
 			name = "Event Models";
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
 				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
+				D22BF0C818A471D60036783D /* Occurrence.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,
 				D2F450E518A2C20500ABD1C8 /* GoogleCalendarManager.m in Sources */,
 				D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */,

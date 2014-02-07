@@ -7,6 +7,7 @@
 //
 
 #import "Venue.h"
+#import "Event.h"
 
 @implementation Venue
 
@@ -43,6 +44,23 @@
             _venueImage = venueImage;
         }
     }
+}
+
+#pragma mark - Conversion methods
++(NSMutableArray*) convertDataToVenueModel:(NSArray*) venueData {
+    NSMutableArray *venues = [NSMutableArray new];
+    for (NSDictionary *venue in venueData) {
+        Venue *thisVenue = [Venue new];
+        thisVenue.venueTitle = [venue objectForKey:@"title"];
+        thisVenue.venueID = [[venue objectForKey:@"id"] integerValue];
+        
+        if ([venue objectForKey:@"events"]) {
+            thisVenue.events = [Event convertDataToEventModel:[venue objectForKey:@"events"]];
+        }
+        [venues addObject:thisVenue];
+    }
+    
+    return venues;
 }
 
 @end

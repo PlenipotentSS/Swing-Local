@@ -38,4 +38,18 @@
     }
 }
 
+#pragma mark - Conversion methods
++(NSArray*) convertDataToCityModel:(NSArray*)cityData {
+    NSMutableArray *modelArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *city in cityData) {
+        City *thisCity = [City new];
+        thisCity.cityName = [city objectForKey:@"name"];
+        thisCity.cityID = [[city objectForKey:@"id"] integerValue];
+        
+        
+        [modelArray addObject:thisCity];
+    }
+    return [NSArray arrayWithArray:modelArray];
+}
+
 @end

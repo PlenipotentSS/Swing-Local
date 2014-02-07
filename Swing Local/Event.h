@@ -13,12 +13,6 @@
 //updated by google calendar and api
 @property (nonatomic) NSString *eventTitle;
 
-//start time of this event
-@property (nonatomic) NSDate *startTime;
-
-//end time of this event
-@property (nonatomic) NSDate *endTime;
-
 //cost cover for this event
 @property (nonatomic) NSString *cost;
 
@@ -28,20 +22,19 @@
 //updated by google calendar and api
 @property (nonatomic) NSString *infoText;
 
-//updated only by google calendar
-@property (nonatomic) NSString *DJ;
-
-//updated by api or google calendar
-@property (nonatomic) NSString *address;
-
 //the image corresponding to this event
 @property (nonatomic) UIImage *eventImage;
 
 //the string to lazy load images for this event
 @property (nonatomic) NSString *imageURLString;
 
+//the occurrences of a given event
+@property (nonatomic) NSArray *occurrences;
+
 //download image from imageurlstring
 -(void) downloadEventImage;
 
+//conversion from venue data to event models
++(NSMutableArray*) convertDataToEventModel:(NSArray*) eventData ;
 
 @end

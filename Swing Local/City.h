@@ -31,4 +31,6 @@
 //whether this city is saved in users
 @property (nonatomic,readwrite) BOOL savedCity;
 
++(NSArray*) convertDataToCityModel:(NSArray*)cityData;
+
 @end

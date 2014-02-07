@@ -7,12 +7,19 @@
 //
 
 #import "CalendarviewController.h"
+#import "EventsTableViewModel.h"
+#import "EventManager.h"
 
-@interface CalendarviewController () <UITableViewDataSource,UITableViewDelegate>
+@interface CalendarviewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *theTableView;
+//table view of events
+@property (weak, nonatomic) IBOutlet EventsTableView *theTableView;
 
+//date range control
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateSelectRangeControl;
+
+//table view model
+@property (nonatomic) EventsTableViewModel *contentModel;
 
 @end
 
@@ -32,8 +39,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEvents) name:@"SavedCitiesUpdated" object:nil];
+    
     [_dateSelectRangeControl addTarget:self action:@selector(createDateRange) forControlEvents:UIControlEventValueChanged];
     self.dateSelectRangeControl.selectedSegmentIndex = 0;
+    
+    self.contentModel = [[EventsTableViewModel alloc] init];
+    self.theTableView.delegate = self.contentModel;
+    self.theTableView.dataSource = self.contentModel;
+    [self.contentModel setTheTableView:self.theTableView];
+    
+    if (!self.cities) {
+        for (City *thisCity in [[EventManager sharedManager] savedCities]) {
+            [[EventManager sharedManager] downloadVenuesAndEventsInCity:thisCity];
+        }
+        //[self getAllEventsInCity];
+    }
+    
+}
+
+-(void) updateEvents {
+    
 }
 
 - (void)didReceiveMemoryWarning

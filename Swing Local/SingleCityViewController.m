@@ -57,7 +57,6 @@
     
     if (!self.theCity) {
         self.theCity = [[EventManager sharedManager] currentCity];
-        [[EventManager sharedManager] downloadVenuesAndEventsInCity:self.theCity];
         [self getAllEventsInCity];
     }
 }

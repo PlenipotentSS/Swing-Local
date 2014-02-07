@@ -10,6 +10,6 @@
 
 @interface CalendarviewController : FrontViewController
 
-@property (nonatomic) NSMutableArray *cities;
+@property (weak,nonatomic) NSMutableArray *cities;
 
 @end

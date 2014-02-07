@@ -986,23 +986,24 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.12736869449999999" green="0.1837709478" blue="0.2119363584" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addCell" rowHeight="55" id="ER6-aS-hoH" customClass="AddCityTableViewCell">
-                                        <rect key="frame" x="0.0" y="342" width="286" height="55"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addCell" rowHeight="80" id="ER6-aS-hoH" customClass="AddCityTableViewCell">
+                                        <rect key="frame" x="0.0" y="342" width="286" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ER6-aS-hoH" id="MYU-6Z-LlH">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0e-Gc-454">
-                                                    <rect key="frame" x="16" y="5" width="29" height="30"/>
+                                                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0e-Gc-454">
+                                                    <rect key="frame" x="6" y="15" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="plus-circle-7">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h26-gh-ls6">
-                                                    <rect key="frame" x="53" y="-79" width="233" height="216"/>
+                                                    <rect key="frame" x="53" y="-68" width="233" height="216"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
                                                 </pickerView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1013,22 +1014,22 @@
                                             <outlet property="thepickerView" destination="h26-gh-ls6" id="4dz-wT-Jm6"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="9I2-B4-Hz2" imageView="BLP-PS-xFg" rowHeight="40" style="IBUITableViewCellStyleDefault" id="cqo-5m-mP3">
-                                        <rect key="frame" x="0.0" y="397" width="286" height="40"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="9I2-B4-Hz2" imageView="BLP-PS-xFg" rowHeight="50" style="IBUITableViewCellStyleDefault" id="cqo-5m-mP3">
+                                        <rect key="frame" x="0.0" y="422" width="286" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cqo-5m-mP3" id="zf8-J4-Gy3">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Seattle, WA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9I2-B4-Hz2">
-                                                    <rect key="frame" x="60" y="0.0" width="211" height="39"/>
+                                                    <rect key="frame" x="60" y="0.0" width="211" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="map-pin-7" id="BLP-PS-xFg">
-                                                    <rect key="frame" x="15" y="4" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="9" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -1036,22 +1037,22 @@
                                         <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
                                         <color key="tintColor" red="1" green="0.78431379800000001" blue="0.55294120309999995" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="oNS-da-yfh" imageView="wEr-V6-EMy" rowHeight="40" style="IBUITableViewCellStyleDefault" id="1s7-gm-Zdk">
-                                        <rect key="frame" x="0.0" y="437" width="286" height="40"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="oNS-da-yfh" imageView="wEr-V6-EMy" rowHeight="50" style="IBUITableViewCellStyleDefault" id="1s7-gm-Zdk">
+                                        <rect key="frame" x="0.0" y="472" width="286" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1s7-gm-Zdk" id="1wP-HF-J2w">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sacramento, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oNS-da-yfh">
-                                                    <rect key="frame" x="60" y="0.0" width="211" height="39"/>
+                                                    <rect key="frame" x="60" y="0.0" width="211" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="map-pin-7" id="wEr-V6-EMy">
-                                                    <rect key="frame" x="15" y="4" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="9" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -1059,22 +1060,22 @@
                                         <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
                                         <color key="tintColor" red="1" green="0.78431379800000001" blue="0.55294120309999995" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="kZT-pd-i6V" imageView="SC6-be-gIs" rowHeight="40" style="IBUITableViewCellStyleDefault" id="CsB-Uw-3A4">
-                                        <rect key="frame" x="0.0" y="477" width="286" height="40"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedCityCell" textLabel="kZT-pd-i6V" imageView="SC6-be-gIs" rowHeight="50" style="IBUITableViewCellStyleDefault" id="CsB-Uw-3A4">
+                                        <rect key="frame" x="0.0" y="522" width="286" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CsB-Uw-3A4" id="Lhe-vR-rgp">
-                                            <rect key="frame" x="0.0" y="0.0" width="286" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="New York, NY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kZT-pd-i6V">
-                                                    <rect key="frame" x="60" y="0.0" width="211" height="39"/>
+                                                    <rect key="frame" x="60" y="0.0" width="211" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                                                     <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="map-pin-7" id="SC6-be-gIs">
-                                                    <rect key="frame" x="15" y="4" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="9" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>

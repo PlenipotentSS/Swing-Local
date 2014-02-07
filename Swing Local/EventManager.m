@@ -91,7 +91,7 @@
             NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 
-                NSArray *citiesUnsorted = [self convertDataToCityModel:cities];
+                NSArray *citiesUnsorted = [City convertDataToCityModel:cities];
                 NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cityName" ascending:YES];
                 NSArray *sortDescriptors = @[nameDescriptor];
                 NSArray *sortedCities = [citiesUnsorted sortedArrayUsingDescriptors:sortDescriptors];
@@ -123,7 +123,7 @@
             NSDictionary *cityDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
-                city.venueOrganizations = [self convertDataToVenueModel:venuesForCity];
+                city.venueOrganizations = [Venue convertDataToVenueModel:venuesForCity];
                 if ([_savedCities count] ==0) {
                     [_savedCities addObject:city];
                     [self persistAndNotifySavedCities];
@@ -141,51 +141,6 @@
     }];
 
     [venuesTask resume];
-}
-
-#pragma mark - Conversion methods
--(NSMutableArray*) convertDataToVenueModel:(NSArray*) venueData {
-    NSMutableArray *venues = [NSMutableArray new];
-    for (NSDictionary *venue in venueData) {
-        Venue *thisVenue = [Venue new];
-        thisVenue.venueTitle = [venue objectForKey:@"title"];
-        thisVenue.venueID = [[venue objectForKey:@"id"] integerValue];
-        
-        thisVenue.events = [self convertDataToEventModel:[venue objectForKey:@"events"]];
-        [venues addObject:thisVenue];
-    }
-    
-    return venues;
-}
-
--(NSMutableArray*) convertDataToEventModel:(NSArray*) eventData {
-    NSMutableArray *events = [NSMutableArray new];
-    for (NSDictionary *event in eventData) {
-        Event *thisEvent = [Event new];
-        thisEvent.eventTitle = [event objectForKey:@"title"];
-        thisEvent.cost = [event objectForKey:@"cost"];
-        thisEvent.ages = [event objectForKey:@"ages"];
-        thisEvent.DJ = [event objectForKey:@"dj"];
-        thisEvent.infoText = [event objectForKey:@"info_text"];
-        
-        
-        [events addObject:thisEvent];
-    }
-    
-    return events;
-}
-
--(NSArray*) convertDataToCityModel:(NSArray*)cityData {
-    NSMutableArray *modelArray = [[NSMutableArray alloc] init];
-    for (NSDictionary *city in cityData) {
-        City *thisCity = [City new];
-        thisCity.cityName = [city objectForKey:@"name"];
-        thisCity.cityID = [[city objectForKey:@"id"] integerValue];
-        
-        
-        [modelArray addObject:thisCity];
-    }
-    return [NSArray arrayWithArray:modelArray];
 }
 
 @end
