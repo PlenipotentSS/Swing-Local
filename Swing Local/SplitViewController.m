@@ -30,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //setup navigation controller pointers
     [self setupSubNavControllers];
     
@@ -47,7 +46,8 @@
     [self.view addSubview:self.backViewController.view];
     [self addChildViewController:self.backViewController];
     [self.backViewController didMoveToParentViewController:self];
-    BackViewController *backVC = (BackViewController*)[[self.backViewController viewControllers] firstObject];
+    
+    self.view.backgroundColor = [(UIViewController*)[[self.backViewController viewControllers] firstObject] view].backgroundColor;
     
     self.frontViewController = (UINavigationController *)[self.storyboard instantiateViewControllerWithIdentifier:@"front"];
     [self.view addSubview:self.frontViewController.view];
@@ -55,8 +55,8 @@
     [self.frontViewController didMoveToParentViewController:self];
     
     FrontViewController *frontVC = (FrontViewController*)[[self.frontViewController viewControllers] firstObject];
-    
-    //[backVC setFrontViewController:frontVCVC];
+    BackViewController *backVC = (BackViewController*)[[self.backViewController viewControllers] firstObject];
+    [backVC setFrontViewController:frontVC];
     
     self.frontViewController.navigationController.navigationBar.hidden = NO;
     
@@ -135,7 +135,6 @@
 
 #pragma mark - pan Gesture Actions
 -(void)slidePanel:(id) sender {
-    NSLog(@"slidePanel");
     UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)sender;
     
     //CGPoint velocity = [pan velocityInView:pan.view];
@@ -155,7 +154,7 @@
             if (menuTranslation > self.view.center.x) {
                 menuTranslation = self.view.center.x;
             }
-            //self.backViewController.view.center = CGPointMake(menuTranslation, self.frontViewController.view.center.y);
+            self.backViewController.view.center = CGPointMake(menuTranslation, self.frontViewController.view.center.y);
         }
     }
     if (pan.state == UIGestureRecognizerStateEnded) {

@@ -49,7 +49,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor aquaScheme];
-    _imageNames = @[@"logo_trans",@"logo_map",@"logo_board"];
+    _imageNames = @[@"SwingLocalLogo-Pin",@"logo_map",@"SwingLocalLogo-Shoes_circle_trans"];
     
     [self setupDescriptions];
     

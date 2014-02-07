@@ -13,6 +13,10 @@
 		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
 		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
 		D22BF0C818A471D60036783D /* Occurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0C718A471D60036783D /* Occurrence.m */; };
+		D22BF0D218A4B4010036783D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D118A4B4010036783D /* DetailView.m */; };
+		D22BF0DB18A4BC3A0036783D /* BackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D618A4BC3A0036783D /* BackViewController.m */; };
+		D22BF0DC18A4BC3A0036783D /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D818A4BC3A0036783D /* FrontViewController.m */; };
+		D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D918A4BC3A0036783D /* SplitViewController.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */; };
 		D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
@@ -36,9 +40,6 @@
 		D244C340189CEBF100E6DB16 /* bg_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33D189CEBF100E6DB16 /* bg_03.png */; };
 		D244C344189CEC5C00E6DB16 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C343189CEC5C00E6DB16 /* MainView.m */; };
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
-		D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C34A189CECA700E6DB16 /* BackViewController.m */; };
-		D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C34D189CECAE00E6DB16 /* FrontViewController.m */; };
-		D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C350189CECB800E6DB16 /* SplitViewController.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F98189F534C002F11DA /* UserOptions.m */; };
@@ -89,6 +90,14 @@
 		D224C528189D021400923370 /* SSBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBackViewController.m; sourceTree = "<group>"; };
 		D22BF0C618A471D60036783D /* Occurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Occurrence.h; sourceTree = "<group>"; };
 		D22BF0C718A471D60036783D /* Occurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Occurrence.m; sourceTree = "<group>"; };
+		D22BF0D018A4B4010036783D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
+		D22BF0D118A4B4010036783D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
+		D22BF0D518A4BC3A0036783D /* FrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontViewController.h; sourceTree = "<group>"; };
+		D22BF0D618A4BC3A0036783D /* BackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackViewController.m; sourceTree = "<group>"; };
+		D22BF0D718A4BC3A0036783D /* BackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackViewController.h; sourceTree = "<group>"; };
+		D22BF0D818A4BC3A0036783D /* FrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontViewController.m; sourceTree = "<group>"; };
+		D22BF0D918A4BC3A0036783D /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
+		D22BF0DA18A4BC3A0036783D /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C2E6189CEB6100E6DB16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,12 +129,6 @@
 		D244C33D189CEBF100E6DB16 /* bg_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_03.png; sourceTree = "<group>"; };
 		D244C343189CEC5C00E6DB16 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SwingLocal.m"; sourceTree = "<group>"; };
-		D244C349189CECA700E6DB16 /* BackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/BackViewController.h; sourceTree = "<group>"; };
-		D244C34A189CECA700E6DB16 /* BackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/BackViewController.m; sourceTree = "<group>"; };
-		D244C34C189CECAE00E6DB16 /* FrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrontViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/FrontViewController.h; sourceTree = "<group>"; };
-		D244C34D189CECAE00E6DB16 /* FrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrontViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/FrontViewController.m; sourceTree = "<group>"; };
-		D244C34F189CECB800E6DB16 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewController.h; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/SplitViewController.h; sourceTree = "<group>"; };
-		D244C350189CECB800E6DB16 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplitViewController.m; path = ../../../CocoaPods/SplitPeekViewController/SplitPeekViewController/SplitViewController.m; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -209,12 +212,12 @@
 			children = (
 				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
 				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
+				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
+				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890518A02EB100A6BD51 /* NewsViewController.h */,
 				D2E6890618A02EB100A6BD51 /* NewsViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
 				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
-				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
-				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */,
 				D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
@@ -344,12 +347,12 @@
 		D244C352189CECBB00E6DB16 /* SplitPeekViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D244C349189CECA700E6DB16 /* BackViewController.h */,
-				D244C34A189CECA700E6DB16 /* BackViewController.m */,
-				D244C34C189CECAE00E6DB16 /* FrontViewController.h */,
-				D244C34D189CECAE00E6DB16 /* FrontViewController.m */,
-				D244C34F189CECB800E6DB16 /* SplitViewController.h */,
-				D244C350189CECB800E6DB16 /* SplitViewController.m */,
+				D22BF0D518A4BC3A0036783D /* FrontViewController.h */,
+				D22BF0D818A4BC3A0036783D /* FrontViewController.m */,
+				D22BF0D618A4BC3A0036783D /* BackViewController.m */,
+				D22BF0D718A4BC3A0036783D /* BackViewController.h */,
+				D22BF0DA18A4BC3A0036783D /* SplitViewController.h */,
+				D22BF0D918A4BC3A0036783D /* SplitViewController.m */,
 			);
 			name = SplitPeekViewController;
 			sourceTree = "<group>";
@@ -481,6 +484,8 @@
 				D2A07FBC189F8602002F11DA /* NewsView.m */,
 				D244C31F189CEB9000E6DB16 /* HomeView.h */,
 				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
+				D22BF0D018A4B4010036783D /* DetailView.h */,
+				D22BF0D118A4B4010036783D /* DetailView.m */,
 			);
 			name = "Controller Views";
 			sourceTree = "<group>";
@@ -675,17 +680,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D244C34E189CECAE00E6DB16 /* FrontViewController.m in Sources */,
 				D2A07FBD189F8602002F11DA /* NewsView.m in Sources */,
 				D2A07F9C189F534C002F11DA /* Event.m in Sources */,
 				D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */,
+				D22BF0DC18A4BC3A0036783D /* FrontViewController.m in Sources */,
 				D2F450DF18A1ECB600ABD1C8 /* AddCityTableViewCell.m in Sources */,
 				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
 				D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */,
 				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,
 				D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */,
 				D244C331189CEBCC00E6DB16 /* AppTutorialViewController.m in Sources */,
-				D244C34B189CECA700E6DB16 /* BackViewController.m in Sources */,
+				D22BF0DB18A4BC3A0036783D /* BackViewController.m in Sources */,
+				D22BF0D218A4B4010036783D /* DetailView.m in Sources */,
 				D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */,
 				D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
@@ -700,6 +706,7 @@
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
+				D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */,
 				D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */,
 				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,
 				D2A07FAB189F539A002F11DA /* City.m in Sources */,
@@ -707,7 +714,6 @@
 				D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
 				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
-				D244C351189CECB800E6DB16 /* SplitViewController.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D22BF0C818A471D60036783D /* Occurrence.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,

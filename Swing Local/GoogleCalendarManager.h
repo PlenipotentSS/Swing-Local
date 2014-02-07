@@ -12,7 +12,7 @@
 @protocol GoogleCalendarManagerDelegate <NSObject>
 
 @optional
--(void) updateVenueForTodaysEvents:(NSArray*) todaysEvents;
+-(void) updateVenueForEvent:(Event*) theEvent;
 
 -(void) updateEventsInVenuesWithDateRange:(NSArray*) todaysEvents;
 
@@ -24,6 +24,9 @@
 
 @property (unsafe_unretained) id<GoogleCalendarManagerDelegate> delegate;
 
--(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event*) theEvent;
+-(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent;
+
+//array of date range must have an array of every date that wants to be shown (i.e. today is 1 date and 7 days is 7 dates)
+-(void) getOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent andForDateRange: (NSArray*) dates;
 
 @end

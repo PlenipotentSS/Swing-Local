@@ -14,6 +14,7 @@
 #import "EventManager.h"
 #import "SSFrontViewController.h"
 #import "SplitViewController.h"
+#import "DetailView.h"
 
 @interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate>
 
@@ -81,6 +82,7 @@
     [self loadCities];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadCities) name:@"AllCitiesUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -433,6 +435,23 @@
                      }];
 }
 
+
+#pragma mark - present detail view controller for occurrence!
+-(void) showControllerWithOccurrence: (NSNotification*) notification
+{
+    UIViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detail_vc"];
+    DetailView *detailView = (DetailView*)detailVC.view;
+    detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
+    [detailView setDynamic:YES];
+    [detailView setAlpha:0.f];
+    [detailView setTintColor:[UIColor offWhiteScheme]];
+    [detailView setBlurRadius:85.f];
+    
+    [self.view addSubview:detailView];
+    [UIView animateWithDuration:.4f animations:^{
+        [detailView setAlpha:1.f];
+    }];
+}
 
 
 

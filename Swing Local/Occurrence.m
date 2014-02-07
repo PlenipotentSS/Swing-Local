@@ -20,12 +20,14 @@
     thisOccurrence.endTime = endTime;
     
     NSString *unfilteredContent = [[occurrenceData objectForKey:@"content"] objectForKey:@"$t"];
-    NSMutableDictionary *filteredContent = [Occurrence convertEmbeddedDataToDictionaryWithText:unfilteredContent];
-    thisOccurrence.updatedInfoText = [filteredContent objectForKey:@"text"];
-    thisOccurrence.updatedTitle = [[filteredContent objectForKey:@"title"] objectForKey:@"$t"];
+    NSMutableDictionary *attributeData = [Occurrence convertEmbeddedDataToDictionaryWithText:unfilteredContent];
     
-    thisOccurrence.DJ = [filteredContent objectForKey:@"dj"];
-    thisOccurrence.updatedCost = [filteredContent objectForKey:@"updatedCost"];
+    
+    thisOccurrence.updatedInfoText = [occurrenceData objectForKey:@"text"];
+    thisOccurrence.updatedTitle = [[occurrenceData objectForKey:@"title"] objectForKey:@"$t"];
+    
+    thisOccurrence.DJ = [attributeData objectForKey:@"dj"];
+    thisOccurrence.updatedCost = [attributeData objectForKey:@"updatedCost"];
     
     return thisOccurrence;
 }

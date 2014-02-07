@@ -60,4 +60,9 @@
     return events;
 }
 
+#pragma mark - sort occurrences by date
+-(void) sortOccurrences {
+    
+}
+
 @end

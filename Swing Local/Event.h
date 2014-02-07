@@ -37,4 +37,6 @@
 //conversion from venue data to event models
 +(NSMutableArray*) convertDataToEventModel:(NSArray*) eventData ;
 
+-(void) sortOccurrences;
+
 @end

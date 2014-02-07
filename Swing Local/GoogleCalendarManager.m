@@ -49,7 +49,6 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 
 -(NSURL*) getGoogleCalURLFromID: (NSString*) googleCalID {
     NSString *googleStringURL = [NSString stringWithFormat:@"%@%@%@",GOOGLE_BASE,googleCalID,GOOGLE_VARS];
-    NSLog(@"%@",googleStringURL);
     return [NSURL URLWithString:googleStringURL];
 }
 
@@ -91,6 +90,10 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 
 #pragma mark - Google API Downloads
 -(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent {
+    [self getOccurrencesWithGoogleCalendarID:googleCalID forEvent:theEvent andForDateRange:[self getTodaysDate]];
+}
+
+-(void) getOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent andForDateRange: (NSArray*) dates {
     NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
     NSURLSessionDataTask *eventsTasks = [_urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
@@ -102,15 +105,15 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                 NSArray *allOccurrences = [(NSDictionary*)[googleCalData objectForKey:@"feed"] objectForKey:@"entry"];
                 
                 //return all Events in the given date range for venue
-                NSMutableArray *filteredMutableArray = [self filterTodaysOccurrencesFromAllOccurrences:allOccurrences forDates:[self getTodaysDate]];
+                NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
                 
                 for (Occurrence *occ in filteredMutableArray) {
                     occ.eventForOccurrence = theEvent;
                 }
+                theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
                 
-                NSLog(@"%@",filteredMutableArray);
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
+                    [self.delegate updateVenueForEvent:theEvent];
                 }];
                 
             } else {
@@ -124,44 +127,57 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
     [eventsTasks resume];
 }
 
--(void) getTodaysEventsWithGoogleCalendarID: (NSString*) googleCalID forDateRange: (NSDateComponents*) dateRange {
-    
-}
-
 #pragma mark - get events in time range
--(NSMutableArray*) filterTodaysOccurrencesFromAllOccurrences: (NSArray*) allOccurrences forDates:(NSArray*) datesArray {
+-(NSMutableArray*) filterOccurrencesFromAllOccurrences: (NSArray*) allOccurrences forDates:(NSArray*) datesArray {
     NSMutableArray *filteredEventsByDates = [NSMutableArray new];
     
     //yyyy-MM-dd'T'HH:mm:ssZ
     NSDateFormatter *googleFormat = [[NSDateFormatter alloc] init];
-    [googleFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    
-    NSDateFormatter *standardFormat = [[NSDateFormatter alloc] init];
-    [standardFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    [googleFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSzzz"];
     
     //loop through all events in this calendar
     for (NSDictionary *thisOccData in allOccurrences) {
         NSArray *whenData = [thisOccData objectForKey:@"gd$when"];
-        BOOL continueFlag = YES;
-        //loop through all times in this calendar
-        for (NSDictionary *thisTime in whenData) {
+        
+
+        //go through all dates given for comparison
+        for (NSDate *compareDate in datesArray) {
             
+            BOOL continueFlag = YES;
+            BOOL isALLDay = NO;
             if (continueFlag) {
             
-                //go through all dates given for comparison
-                for (NSDate *compareDate in datesArray) {
-                    
-                    NSLog(@"%@",[thisTime objectForKey:@"startTime"]);
+                //loop through all times in this calendar
+                for (NSDictionary *thisTime in whenData) {
+
+                        
                     //check if the we are checking for dates that have yet to occur
                     NSDate* eventDate = [googleFormat dateFromString:[thisTime objectForKey:@"startTime"]];
-                    NSLog(@"%@",eventDate);
-                    //NSLog(@"%@ <-> %@",eventDate,compareDate);
+                    if (!eventDate) {
+                        NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
+                        [allDayFormat setDateFormat:@"yyyy-MM-dd"];
+                        eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                        if (!eventDate) {
+                            continue;
+                        } else {
+                            isALLDay = YES;
+                        }
+                    }
+                    
+                    //NSLog(@"%@  :  %@",eventDate,compareDate);
                     if ([self dateA:eventDate isBeforeDateB:compareDate]) {
                         
                         
                         //check if the two dates are the same
                         if ( [self dateA:eventDate isSameDayAsDateB:compareDate] ) {
-                            NSDate* endTime = [googleFormat dateFromString:[thisTime objectForKey:@"endTime"]];
+                            NSDate* endTime;
+                            if (isALLDay) {
+                                NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
+                                [allDayFormat setDateFormat:@"yyyy-MM-dd"];
+                                eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                            } else {
+                                endTime = [googleFormat dateFromString:[thisTime objectForKey:@"endTime"]];
+                            }
                             
                             Occurrence *thisOcc = [Occurrence convertDataToOccurrenceModel:thisOccData withStartTime:eventDate andEndTime:endTime];
                             [filteredEventsByDates addObject:thisOcc];
@@ -173,9 +189,11 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                         break;
                     }
                 }
+                
             } else {
                 break;
             }
+
         }
     }
     return filteredEventsByDates;
