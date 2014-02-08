@@ -2,7 +2,7 @@ PODS:
   - uservoice-iphone-sdk (3.0.2)
 
 DEPENDENCIES:
-  - uservoice-iphone-sdk (~> 3.0.2)
+  - uservoice-iphone-sdk (~> 3.0)
 
 SPEC CHECKSUMS:
   uservoice-iphone-sdk: 79b21e4bc6ab3d3e13e0e8597789e6f2c800602e

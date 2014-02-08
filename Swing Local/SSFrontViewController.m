@@ -8,8 +8,8 @@
 
 #import "SSFrontViewController.h"
 #import "HomeView.h"
-#import <uservoice-iphone-sdk/UserVoice.h>
 #import "NewsView.h"
+#import <UserVoice.h>
 #import "UVStyleSheet.h"
 #import "UIColor+SwingLocal.h"
 #import "HomeViewController.h"

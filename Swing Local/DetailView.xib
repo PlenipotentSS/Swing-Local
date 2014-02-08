@@ -9,82 +9,9 @@
         <view contentMode="scaleToFill" restorationIdentifier="DetailView" id="1" customClass="DetailView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SwingLocalLogo-Pin_Only" translatesAutoresizingMaskIntoConstraints="NO" id="MgK-Sc-dLR">
-                    <rect key="frame" x="147" y="19" width="27" height="56"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dW-Tl-44E">
-                    <rect key="frame" x="245" y="26" width="65" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
-                    <state key="normal" title="Close">
-                        <color key="titleColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="hideDetail:" destination="1" eventType="touchUpInside" id="RoR-P4-uYh"/>
-                    </connections>
-                </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFK-XX-oEV">
-                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="m6v-uT-w59">
-                            <rect key="frame" x="20" y="12" width="280" height="45"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="23"/>
-                            <color key="textColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DJ Success" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xvy-Kx-6fd">
-                            <rect key="frame" x="20" y="102" width="280" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="19"/>
-                            <color key="textColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="YAs-j6-6tv">
-                            <rect key="frame" x="20" y="42" width="280" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="inh-cH-lu2">
-                            <rect key="frame" x="20" y="126" width="280" height="96"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <string key="text">Savoy Swing Club presents Mondays at Great Hall in Greenlake! We have DJ's music from 9:00pm until 11:30pm and the dance is open to people of all ages. 
-
-</string>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Links:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUa-xj-Xb4">
-                            <rect key="frame" x="20" y="243" width="280" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="19"/>
-                            <color key="textColor" red="0.1935506773" green="0.27926007689999999" blue="0.3220605023" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </scrollView>
-            </subviews>
             <color key="backgroundColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <connections>
-                <outlet property="DJLabel" destination="xvy-Kx-6fd" id="jby-5W-Mvg"/>
-                <outlet property="contentLabel" destination="inh-cH-lu2" id="UVZ-u8-EL5"/>
-                <outlet property="linkTitleLabel" destination="uUa-xj-Xb4" id="fOG-dC-94U"/>
-                <outlet property="subtitleLabel" destination="YAs-j6-6tv" id="eDa-L7-zIr"/>
-                <outlet property="theScrollView" destination="IFK-XX-oEV" id="fr0-7P-FBw"/>
-                <outlet property="titleLabel" destination="m6v-uT-w59" id="Yhh-tf-d1k"/>
-            </connections>
         </view>
     </objects>
-    <resources>
-        <image name="SwingLocalLogo-Pin_Only" width="223" height="465"/>
-    </resources>
 </document>
