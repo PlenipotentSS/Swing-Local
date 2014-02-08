@@ -57,6 +57,9 @@
 //initial home view
 @property (weak,nonatomic) IBOutlet UIView *initialHomeView;
 
+//detail view
+@property (nonatomic) DetailView *detailView;
+
 @end
 
 @implementation HomeViewController
@@ -80,6 +83,11 @@
     [self setupActionSheet];
     [self setupGeneral];
     [self loadCities];
+    
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
+                                                      owner:self
+                                                    options:nil];
+    _detailView = [ nibViews objectAtIndex: 0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadCities) name:@"AllCitiesUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
@@ -441,17 +449,13 @@
 #pragma mark - present detail view controller for occurrence!
 -(void) showControllerWithOccurrence: (NSNotification*) notification
 {
-    UIViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detail_vc"];
-    DetailView *detailView = (DetailView*)detailVC.view;
-    detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
-    [detailView setDynamic:YES];
-    [detailView setAlpha:0.f];
-    [detailView setTintColor:[UIColor offWhiteScheme]];
-    [detailView setBlurRadius:85.f];
+    self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
+    [self.detailView setAlpha:0.f];
+    [self.detailView setTintColor:[UIColor offWhiteScheme]];
     
-    [self.view addSubview:detailView];
+    [self.view addSubview:self.detailView];
     [UIView animateWithDuration:.4f animations:^{
-        [detailView setAlpha:1.f];
+        [self.detailView setAlpha:1.f];
     }];
 }
 

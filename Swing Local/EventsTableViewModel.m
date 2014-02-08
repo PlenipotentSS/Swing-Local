@@ -60,8 +60,9 @@
     _city = city;
     
     _OccurrencesWithDateKeys = [NSMutableDictionary new];
-    
+    _datesWithEvents = [NSMutableArray new];
     _sortedDateKeys = [NSMutableArray new];
+    _OccurrencesWithDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
     [self refreshEventTableWithCity:city];
 
@@ -98,7 +99,7 @@
     for (Event *thisEvent in thisVenue.events) {
         
         
-        NSString *calendarURLString = thisEvent.calendar_id;             //change imageURLSTring
+        NSString *calendarURLString = thisEvent.calendar_id;
         
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {

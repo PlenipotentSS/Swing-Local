@@ -105,7 +105,8 @@
     CGRect contentFrame = self.contentLabel.frame;
     contentFrame.origin.y = CGRectGetMinY(self.DJLabel.frame) + CGRectGetHeight(self.DJLabel.frame) + 24;
     
-    self.contentLabel.text = @"MONDAYS are a great night to come and work out your swing —  loads of great dancers and fun music with a beautiful floating hardwood floor and mirrors all over the place! This is an ALL ages event!";
+    self.contentLabel.text = self.thisOccurrence.updatedInfoText;
+    [self.contentLabel sizeToFit];
     self.contentLabel.frame = contentFrame;
     
     [self setNeedsDisplay];

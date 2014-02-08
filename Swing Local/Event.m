@@ -51,6 +51,7 @@
         thisEvent.cost = [event objectForKey:@"cost"];
         thisEvent.ages = [event objectForKey:@"ages"];
         thisEvent.infoText = [event objectForKey:@"info_text"];
+        thisEvent.calendar_id = [event objectForKey:@"calendar_id"];
         
         if ([event objectForKey:@"event_image_url"]) {
             thisEvent.imageURLString = [event objectForKey:@"event_image_url"];

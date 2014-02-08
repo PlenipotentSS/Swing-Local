@@ -40,7 +40,11 @@
 //date range view selector
 @property (nonatomic) DateRangeSelectorView *dateSelectorView;
 
+//shadow box for date selector
 @property (nonatomic) UIView *shadowBoxBackground;
+
+//detail view
+@property (nonatomic) DetailView *detailView;
 
 @end
 
@@ -78,7 +82,13 @@
     _shadowBoxBackground = [nibViews objectAtIndex: 1];
     [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
     [self.dateSelectorView setup];
-
+    
+    NSArray* detailNib = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
+                                                      owner:self
+                                                    options:nil];
+    _detailView = [ detailNib objectAtIndex: 0];
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
 }
@@ -137,17 +147,13 @@
 #pragma mark - present detail view controller for occurrence!
 -(void) showControllerWithOccurrence: (NSNotification*) notification
 {
-    UIViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detail_vc"];
-    DetailView *detailView = (DetailView*)detailVC.view;
-    detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
-    [detailView setDynamic:YES];
-    [detailView setAlpha:0.f];
-    [detailView setTintColor:[UIColor offWhiteScheme]];
-    [detailView setBlurRadius:85.f];
+    self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
+    [self.detailView setAlpha:0.f];
+    [self.detailView setTintColor:[UIColor offWhiteScheme]];
     
-    [self.view addSubview:detailView];
+    [self.view addSubview:self.detailView];
     [UIView animateWithDuration:.4f animations:^{
-        [detailView setAlpha:1.f];
+        [self.detailView setAlpha:1.f];
     }];
 }
 

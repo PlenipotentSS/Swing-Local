@@ -22,12 +22,12 @@
     NSString *unfilteredContent = [[occurrenceData objectForKey:@"content"] objectForKey:@"$t"];
     NSMutableDictionary *attributeData = [Occurrence convertEmbeddedDataToDictionaryWithText:unfilteredContent];
     
-    
     thisOccurrence.updatedInfoText = [occurrenceData objectForKey:@"text"];
     thisOccurrence.updatedTitle = [[occurrenceData objectForKey:@"title"] objectForKey:@"$t"];
     
     thisOccurrence.DJ = [attributeData objectForKey:@"dj"];
-    thisOccurrence.updatedCost = [attributeData objectForKey:@"updatedCost"];
+    thisOccurrence.updatedInfoText = [attributeData objectForKey:@"text"];
+    
     
     return thisOccurrence;
 }
@@ -36,7 +36,6 @@
     NSMutableDictionary *attributes = [NSMutableDictionary new];
     
     //parse through content
-    
     
     //change to remove tags
     [attributes setObject:content forKey:@"text"];

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Occurrence.h"
-#import <FXBlurView.h>
 
-@interface DetailView : FXBlurView
+@interface DetailView : UIView
 
 @property (nonatomic, weak) Occurrence *thisOccurrence;
 

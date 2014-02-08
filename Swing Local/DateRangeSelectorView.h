@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FXBlurView.h>
 
 @protocol DateRangeSelectorDelegate <NSObject>
 

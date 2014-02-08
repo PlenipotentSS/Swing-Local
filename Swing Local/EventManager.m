@@ -8,9 +8,6 @@
 
 #import "EventManager.h"
 
-#define URL_TO_CITIES @"http://swinglocal.herokuapp.com/cities.json"
-#define BASE_URL_TO_CITY @"http://swinglocal.herokuapp.com/cities"
-
 @interface EventManager() <NSURLSessionDelegate>
 
 @property (nonatomic) NSURLSession *urlSession;

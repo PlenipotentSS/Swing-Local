@@ -1,13 +1,10 @@
 PODS:
-  - FXBlurView (1.3.3)
   - uservoice-iphone-sdk (3.0.2)
 
 DEPENDENCIES:
-  - FXBlurView (~> 1.3.1)
   - uservoice-iphone-sdk (~> 3.0.2)
 
 SPEC CHECKSUMS:
-  FXBlurView: b6f1592db8a42b5f64cec96ce15c0221c48f211b
   uservoice-iphone-sdk: 79b21e4bc6ab3d3e13e0e8597789e6f2c800602e
 
 COCOAPODS: 0.29.0
