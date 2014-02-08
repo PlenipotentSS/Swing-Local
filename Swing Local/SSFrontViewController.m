@@ -13,6 +13,7 @@
 #import "UVStyleSheet.h"
 #import "UIColor+SwingLocal.h"
 #import "HomeViewController.h"
+#import "SplitControllerSegue.h"
 
 @interface SSFrontViewController ()
 

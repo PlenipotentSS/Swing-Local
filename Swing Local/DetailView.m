@@ -91,7 +91,7 @@
     //title
     CGFloat ongoingHeight = 12.0f;
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 45.0f)];
-    self.titleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:23.0];
+    self.titleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:25.0];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.textColor = [UIColor aquaScheme];
     self.titleLabel.numberOfLines = 0;
@@ -99,7 +99,7 @@
     self.titleLabel.shadowOffset = CGSizeMake(0.0f, 0.0f);
     self.titleLabel.text = self.thisOccurrence.updatedTitle;
     [self.titleLabel sizeToFit];
-    ongoingHeight += CGRectGetHeight(self.titleLabel.frame)+2;
+    ongoingHeight += CGRectGetHeight(self.titleLabel.frame);
     
     if (![self.titleLabel superview]) {
         [self.theScrollView addSubview:self.titleLabel];
@@ -140,7 +140,7 @@
     }
     
     self.DJLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.DJLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:20.0];
+    self.DJLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
     self.DJLabel.textAlignment = NSTextAlignmentLeft;
     self.DJLabel.textColor = [UIColor aquaScheme];
     self.DJLabel.text = dj;
@@ -154,7 +154,7 @@
     
     //load text
     self.contentLabel= [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.contentLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
+    self.contentLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:15.0];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
     self.contentLabel.textColor = [UIColor aquaScheme];
     self.contentLabel.numberOfLines = 0;
@@ -168,7 +168,7 @@
     
     //links header
     self.linkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.linkTitleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:20.0];
+    self.linkTitleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
     self.linkTitleLabel.textAlignment = NSTextAlignmentLeft;
     self.linkTitleLabel.textColor = [UIColor aquaScheme];
     self.linkTitleLabel.text = @"Links";

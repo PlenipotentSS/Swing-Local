@@ -46,6 +46,8 @@
 //detail view
 @property (nonatomic) DetailView *detailView;
 
+@property (nonatomic) NSOperationQueue *miscQueue;
+
 @end
 
 @implementation SingleCityViewController
@@ -63,6 +65,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _miscQueue = [NSOperationQueue new];
     
     self.contentModel = [[EventsTableViewModel alloc] init];
     self.theTableView.delegate = self.contentModel;
@@ -75,6 +78,12 @@
         [self getAllEventsInCity];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
                                                       owner:self
                                                     options:nil];
@@ -84,13 +93,9 @@
     [self.dateSelectorView setup];
     
     NSArray* detailNib = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
-                                                      owner:self
-                                                    options:nil];
+                                                       owner:self
+                                                     options:nil];
     _detailView = [ detailNib objectAtIndex: 0];
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,12 +165,13 @@
 #pragma mark - action to change date
 - (IBAction)dateControlChanged:(id)sender
 {
+    
     UISegmentedControl *control =(UISegmentedControl*)sender;
     if (control.selectedSegmentIndex == 0) {
         [self.contentModel setDatesToSearch:[NSArray new]];
     } else if (control.selectedSegmentIndex == 1){
         NSMutableArray *mutableDates = [NSMutableArray new];
-        
+            
         NSDate *now = [NSDate date];
         for (int i=0; i <= 7 ;i++ ) {
             NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -176,7 +182,6 @@
             NSDate *newDate2 = [gregorian dateByAddingComponents:components toDate:now options:0];
             [mutableDates addObject:newDate2];
         }
-        
         [self.contentModel setDatesToSearch:[NSArray arrayWithArray:mutableDates]];
     } else if (control.selectedSegmentIndex == 2 ) {
         //load hub to select beginning date and end date!
@@ -191,7 +196,6 @@
 {
     [self.dateSelectorView setAlpha:0.f];
     [self.shadowBoxBackground setAlpha:0.f];
-    [self.dateSelectorView setTintColor:[UIColor offWhiteScheme]];
     [self.dateSelectorView setDelegate:self];
     self.dateSelectorView.center = self.view.center;
     
@@ -205,31 +209,34 @@
 
 #pragma mark - DateRangeSelector Delegate methods
 -(void) updateTableViewWithBeginDateDate:(NSDate*) startDate toEndDate: (NSDate*) endDate {
-    
-    
-    NSMutableArray *mutableDates = [NSMutableArray new];
+    [self.miscQueue addOperationWithBlock:^{
+        NSMutableArray *mutableDates = [NSMutableArray new];
+        
+        int counter = 0;
+        
+        NSDate *nextDate;
+        do {
+            NSDateComponents *components = [[NSDateComponents alloc] init];
+            [components setDay:counter];
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
+            
+            counter++;
+            
+            [mutableDates addObject:nextDate];
+            if ( [NSDate dateA:nextDate isSameDayAsDateB:endDate]) {
+                break;
+            }
+        } while ( [NSDate dateA:nextDate isBeforeDateB:endDate] );
+        
+        NSArray *searchDates = [NSArray arrayWithArray:mutableDates];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.contentModel setDatesToSearch:searchDates];
+            [self.contentModel setCity:self.theCity];
+            self.dateSelector.selectedSegmentIndex = -1;
+        }];
+    }];
 
-    int counter = 0;
-    
-    NSDate *nextDate;
-    do {
-        NSDateComponents *components = [[NSDateComponents alloc] init];
-        [components setDay:counter];
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
-        
-        counter++;
-        
-        [mutableDates addObject:nextDate];
-        if ( [NSDate dateA:nextDate isSameDayAsDateB:endDate]) {
-            break;
-        }
-    } while ( [NSDate dateA:nextDate isBeforeDateB:endDate] );
-    
-    NSArray *searchDates = [NSArray arrayWithArray:mutableDates];
-    [self.contentModel setDatesToSearch:searchDates];
-    [self.contentModel setCity:self.theCity];
-    self.dateSelector.selectedSegmentIndex = -1;
 }
 
 

@@ -69,7 +69,11 @@
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
     [self.theTableView reloadData];
-    [self refreshEventTableWithCity:city];
+    NSOperationQueue *downloadQueue = [NSOperationQueue new];
+    
+    [downloadQueue addOperationWithBlock:^{
+        [self refreshEventTableWithCity:city];
+    }];
 
 }
 

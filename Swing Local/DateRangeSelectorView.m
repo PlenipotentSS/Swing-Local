@@ -7,6 +7,7 @@
 //
 
 #import "DateRangeSelectorView.h"
+#import "NSDate+SwingLocal.h"
 @interface DateRangeSelectorView()
 
 @property (nonatomic,weak) IBOutlet UIDatePicker *startPicker;
@@ -45,7 +46,8 @@
 {
     NSDate *start = self.startPicker.date;
     NSDate *end = self.endPicker.date;
-    if (start > end) {
+    
+    if ([start timeIntervalSinceDate:end] > 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incorrect Date Range" message:@"Start date must be before end Date" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
         [alert show];
 
