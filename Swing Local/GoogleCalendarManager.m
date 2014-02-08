@@ -152,7 +152,6 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                             
                             Occurrence *thisOcc = [Occurrence convertDataToOccurrenceModel:thisOccData withStartTime:eventDate andEndTime:endTime];
                             [filteredEventsByDates addObject:thisOcc];
-                            continueFlag = NO;
                             break;
                         }
                     } else {
@@ -162,6 +161,7 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                 }
                 
             } else {
+                continueFlag = NO;
                 break;
             }
 

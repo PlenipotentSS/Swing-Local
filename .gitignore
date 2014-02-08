@@ -21,3 +21,5 @@ DerivedData
 
 # CocoaPods
 #Pods
+libPods.a
+libPods-uservoice-iphone-sdk.a

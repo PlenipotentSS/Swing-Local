@@ -107,7 +107,7 @@ typedef void(^DoActionSheetHandler)(int nResult);
 
     DoActionSheetHandler    _result;
     
-    CGRect                  _rectActionSheet;
+    //CGRect                  _rectActionSheet;
 }
 
 @property (readwrite)   int         nAnimationType;
