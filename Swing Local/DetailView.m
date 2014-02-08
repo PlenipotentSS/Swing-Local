@@ -10,13 +10,16 @@
 #import "UIColor+SwingLocal.h"
 @interface DetailView()
 
-@property ( nonatomic) UILabel *titleLabel;
+@property (nonatomic) UIImageView *headerImg;
+@property (nonatomic) UIButton *closeButton;
+
+@property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *subtitleLabel;
 @property (nonatomic) UILabel *DJLabel;
-@property ( nonatomic) UILabel *contentLabel;
-@property ( nonatomic) UILabel *linkTitleLabel;
+@property (nonatomic) UILabel *contentLabel;
+@property (nonatomic) UILabel *linkTitleLabel;
 
-@property ( nonatomic) UIScrollView *theScrollView;
+@property (nonatomic) UIScrollView *theScrollView;
 
 @end
 
@@ -41,7 +44,14 @@
     [UIView animateWithDuration:.4f animations:^{
         [self setAlpha:0.f];
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+         
+        [self.titleLabel removeFromSuperview];
+        [self.subtitleLabel removeFromSuperview];
+        [self.DJLabel removeFromSuperview];
+        [self.contentLabel removeFromSuperview];
+        [self.linkTitleLabel removeFromSuperview];
+        [self.theScrollView removeFromSuperview];
+        
     }];
 }
 
@@ -49,30 +59,38 @@
 -(void) createLabels {
     CGRect windowRect = [UIScreen mainScreen].bounds;
     
+    
     //pin img
-    UIImageView *headerImg = [[UIImageView alloc] initWithFrame:CGRectMake(147.0f, 19.f, 27.f, 56.f)];
-    UIImage *pinImage = [UIImage imageNamed:@"SwingLocalLogo-Pin_Only"];
-    headerImg.image = pinImage;
-    [self addSubview:headerImg];
+    if (![self.headerImg superview]) {
+        self.headerImg = [[UIImageView alloc] initWithFrame:CGRectMake(147.0f, 19.f, 27.f, 56.f)];
+        UIImage *pinImage = [UIImage imageNamed:@"SwingLocalLogo-Pin_Only"];
+        
+        self.headerImg.image = pinImage;
+        [self addSubview:self.headerImg];
+    }
     
     
     //close button
-    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(278.f, 26.f, 65.f, 42.f)];
-    [closeButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:20.0]];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    [closeButton setTitleColor:[UIColor aquaScheme] forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(hideDetail:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:closeButton];
+    if (![self.closeButton superview]) {
+        self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(245.f, 26.f, 65.f, 42.f)];
+        [self.closeButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Roman" size:20.0]];
+        [self.closeButton setTitle:@"Close" forState:UIControlStateNormal];
+        [self.closeButton setTitleColor:[UIColor aquaScheme] forState:UIControlStateNormal];
+        [self.closeButton addTarget:self action:@selector(hideDetail:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.closeButton];
+    }
     
-    self.theScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.f, 70.f, 320.f, (CGRectGetHeight(windowRect)-70.f))];
-    self.theScrollView.backgroundColor = [UIColor clearColor];
-    self.theScrollView.scrollEnabled = YES;
-    [self addSubview:self.theScrollView];
+    if (![self.theScrollView superview]) {
+        self.theScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.f, 70.f, 320.f, (CGRectGetHeight(windowRect)-70.f))];
+        self.theScrollView.backgroundColor = [UIColor clearColor];
+        self.theScrollView.scrollEnabled = YES;
+        [self addSubview:self.theScrollView];
+    }
     
     
     //title
     CGFloat ongoingHeight = 12.0f;
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-20, 45.0f)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 45.0f)];
     self.titleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:23.0];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.textColor = [UIColor aquaScheme];
@@ -82,7 +100,10 @@
     self.titleLabel.text = self.thisOccurrence.updatedTitle;
     [self.titleLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.titleLabel.frame)+2;
-    [self.theScrollView addSubview:self.titleLabel];
+    
+    if (![self.titleLabel superview]) {
+        [self.theScrollView addSubview:self.titleLabel];
+    }
     
     //subtitle
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -98,7 +119,7 @@
         cost = @"";
     }
     
-    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-20, 30.0f)];
+    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
     self.subtitleLabel.font = [UIFont fontWithName:@"Avenir-Oblique" size:14.0];
     self.subtitleLabel.textAlignment = NSTextAlignmentLeft;
     self.subtitleLabel.textColor = [UIColor aquaScheme];
@@ -106,7 +127,10 @@
     self.subtitleLabel.numberOfLines = 0;
     [self.subtitleLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.subtitleLabel.frame)+30;
-    [self.theScrollView addSubview:self.subtitleLabel];
+    
+    if (![self.subtitleLabel superview]) {
+        [self.theScrollView addSubview:self.subtitleLabel];
+    }
     
     
     //dj or music
@@ -115,37 +139,46 @@
         dj = [NSString stringWithFormat:@" - %@",self.thisOccurrence.DJ];
     }
     
-    self.DJLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-20, 30.0f)];
-    self.DJLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:12.0];
+    self.DJLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
+    self.DJLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:20.0];
     self.DJLabel.textAlignment = NSTextAlignmentLeft;
     self.DJLabel.textColor = [UIColor aquaScheme];
     self.DJLabel.text = dj;
     self.DJLabel.numberOfLines = 0;
     [self.DJLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.DJLabel.frame)+5;
-    [self.theScrollView addSubview:self.DJLabel];
+    
+    if (![self.DJLabel superview]) {
+        [self.theScrollView addSubview:self.DJLabel];
+    }
     
     //load text
-    self.contentLabel= [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-20, 30.0f)];
-    self.contentLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+    self.contentLabel= [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
+    self.contentLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
     self.contentLabel.textColor = [UIColor aquaScheme];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.text = self.thisOccurrence.updatedInfoText;
     [self.contentLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.contentLabel.frame)+30;
-    [self.theScrollView addSubview:self.contentLabel];
+    
+    if (![self.contentLabel superview]) {
+        [self.theScrollView addSubview:self.contentLabel];
+    }
     
     //links header
-    self.linkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-20, 30.0f)];
-    self.linkTitleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:12.0];
+    self.linkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
+    self.linkTitleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:20.0];
     self.linkTitleLabel.textAlignment = NSTextAlignmentLeft;
     self.linkTitleLabel.textColor = [UIColor aquaScheme];
     self.linkTitleLabel.text = @"Links";
     self.linkTitleLabel.numberOfLines = 0;
     [self.linkTitleLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.linkTitleLabel.frame)+5;
-    [self.theScrollView addSubview:self.linkTitleLabel];
+    
+    if (![self.linkTitleLabel superview]) {
+        [self.theScrollView addSubview:self.linkTitleLabel];
+    }
     
     
     self.theScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.theScrollView.frame), ongoingHeight+100);

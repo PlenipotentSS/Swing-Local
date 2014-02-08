@@ -101,11 +101,11 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
                 }];
             } else {
-                NSLog(@"error json: %@",err);
+                NSLog(@"error json events: %@",err);
             }
         } else {
             
-            NSLog(@"error domain: %@",error);
+            NSLog(@"error domain events: %@",error);
         }
     }];
     

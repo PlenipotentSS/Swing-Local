@@ -26,10 +26,13 @@
 @property (nonatomic) NSMutableArray *datesWithEvents;
 
 //dictionary with keys being the dates of occurrences
-@property (nonatomic) NSMutableDictionary *OccurrencesWithDateKeys;
+@property (nonatomic) NSMutableDictionary *occurrencesForDateKeys;
 
 //sorted dates that contain occurrences
 @property (nonatomic) NSMutableArray *sortedDateKeys;
+
+//sorted dates that contain occurrences
+@property (nonatomic) NSMutableArray *animatedOccs;
 
 @end
 
@@ -59,11 +62,13 @@
 -(void) setCity:(City *)city {
     _city = city;
     
-    _OccurrencesWithDateKeys = [NSMutableDictionary new];
+    _animatedOccs = [NSMutableArray new];
+    _occurrencesForDateKeys = [NSMutableDictionary new];
     _datesWithEvents = [NSMutableArray new];
     _sortedDateKeys = [NSMutableArray new];
-    _OccurrencesWithDateKeys = [NSMutableDictionary new];
+    _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
+    [self.theTableView reloadData];
     [self refreshEventTableWithCity:city];
 
 }
@@ -130,19 +135,20 @@
         NSString *startDate = [dateFormatter stringFromDate:thisOcc.startTime];
         
         NSMutableArray *thisDateArray;
-        if ([self.OccurrencesWithDateKeys objectForKey:startDate]) {
-            thisDateArray = [self.OccurrencesWithDateKeys objectForKey:startDate];
-            [thisDateArray addObject:thisOcc];
+        if ([self.occurrencesForDateKeys objectForKey:startDate]) {
+            thisDateArray = [self.occurrencesForDateKeys objectForKey:startDate];
+            if (![thisDateArray containsObject:thisOcc]) {
+                [thisDateArray addObject:thisOcc];
+            }
         } else {
             thisDateArray = [NSMutableArray new];
             [thisDateArray addObject:thisOcc];
         }
         
-        [self.OccurrencesWithDateKeys setValue:thisDateArray forKey:[NSString stringWithFormat:@"%@",startDate]];
+        [self.occurrencesForDateKeys setValue:thisDateArray forKey:[NSString stringWithFormat:@"%@",startDate]];
         if (![self.sortedDateKeys containsObject:startDate]) {
             [self.sortedDateKeys addObject:startDate];
         }
-
     }
     
     [self.theTableView reloadData];
@@ -166,7 +172,7 @@
     
     if ( indexPath.section < [self.sortedDateKeys count]) {
         NSString *keyName = [self.sortedDateKeys objectAtIndex:indexPath.section];
-        NSArray *eventsOnDay = [self.OccurrencesWithDateKeys objectForKey:keyName];
+        NSArray *eventsOnDay = [self.occurrencesForDateKeys objectForKey:keyName];
         if (indexPath.row < [eventsOnDay count]) {
             Occurrence *thisOcc = [eventsOnDay objectAtIndex:indexPath.row];
         
@@ -202,7 +208,7 @@
         return 1;
     } else if (section < [self.sortedDateKeys count]) {
         NSString *keyName = [self.sortedDateKeys objectAtIndex:section];
-        return [[self.OccurrencesWithDateKeys objectForKey:keyName] count];
+        return [[self.occurrencesForDateKeys objectForKey:keyName] count];
     } else {
         return 0;
     }
@@ -215,13 +221,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
         [cell.contentView setAlpha:0.f];
-        [self animateCell:cell AtIndex:indexPath];
+        [self animateNoEventCell:cell AtIndex:indexPath];
         return cell;        
     }
     NSString *cellIdentifier = @"eventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSString *keyName = [self.sortedDateKeys objectAtIndex:indexPath.section];
-    NSArray *eventsOnDay = [self.OccurrencesWithDateKeys objectForKey:keyName];
+    NSArray *eventsOnDay = [self.occurrencesForDateKeys objectForKey:keyName];
     
     Occurrence *thisOcc = [eventsOnDay objectAtIndex:indexPath.row];
     
@@ -250,10 +256,12 @@
     NSString *subtitle = [NSString stringWithFormat:@"%@-%@ : %@ %@",startTime,endTime, cost, dj];
     cell.detailTextLabel.text = subtitle;
     cell.detailTextLabel.textColor = [UIColor offWhiteScheme];
-    [cell.contentView setAlpha:0.f];
     
-    
-    [self animateCell:cell AtIndex:indexPath];
+    if (![self.animatedOccs containsObject:thisOcc]) {
+        [cell.contentView setAlpha:0.f];
+        [self.animatedOccs addObject:thisOcc];
+        [self animateCell:cell AtIndex:indexPath];
+    }
     return cell;
 }
 
@@ -270,6 +278,21 @@
             }];
         }];
 
+}
+
+#pragma mark - animation for cells
+-(void) animateNoEventCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
+    [_cellOperationQueue addOperationWithBlock:^{
+        usleep(50000);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [UIView animateWithDuration:.4f animations:^{
+                [cell.contentView setAlpha:1.f];
+                cell.contentView.transform = CGAffineTransformScale(transform,.8f,.8f);
+            }];
+        }];
+    }];
+    
 }
 
 @end

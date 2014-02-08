@@ -88,11 +88,11 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                 }];
                 
             } else {
-                NSLog(@"error json: %@ : %@",err,jsonObject);
+                NSLog(@"error json google: %@ : %@",err,jsonObject);
             }
         } else {
             
-            NSLog(@"error domain: %@",error);
+            NSLog(@"error domain google: %@",error);
         }
     }];
     [eventsTasks resume];
