@@ -17,6 +17,9 @@
 		D22BF0DB18A4BC3A0036783D /* BackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D618A4BC3A0036783D /* BackViewController.m */; };
 		D22BF0DC18A4BC3A0036783D /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D818A4BC3A0036783D /* FrontViewController.m */; };
 		D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D918A4BC3A0036783D /* SplitViewController.m */; };
+		D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */; };
+		D23181FA18A5A96E00A251B6 /* DateRangeSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */; };
+		D23181FD18A5B7CA00A251B6 /* NSDate+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */; };
 		D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
@@ -98,6 +101,11 @@
 		D22BF0D818A4BC3A0036783D /* FrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontViewController.m; sourceTree = "<group>"; };
 		D22BF0D918A4BC3A0036783D /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		D22BF0DA18A4BC3A0036783D /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		D23181F418A5A79700A251B6 /* DateRangeSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateRangeSelectorView.h; sourceTree = "<group>"; };
+		D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateRangeSelectorView.m; sourceTree = "<group>"; };
+		D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateRangeSelector.xib; sourceTree = "<group>"; };
+		D23181FB18A5B7CA00A251B6 /* NSDate+SwingLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SwingLocal.h"; sourceTree = "<group>"; };
+		D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SwingLocal.m"; sourceTree = "<group>"; };
 		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C2E6189CEB6100E6DB16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -262,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A07FAC189F542D002F11DA /* Main.storyboard */,
+				D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
 				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
@@ -338,6 +347,8 @@
 			children = (
 				D244C323189CEBA100E6DB16 /* UIColor+SwingLocal.h */,
 				D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */,
+				D23181FB18A5B7CA00A251B6 /* NSDate+SwingLocal.h */,
+				D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -484,6 +495,8 @@
 				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
 				D22BF0D018A4B4010036783D /* DetailView.h */,
 				D22BF0D118A4B4010036783D /* DetailView.m */,
+				D23181F418A5A79700A251B6 /* DateRangeSelectorView.h */,
+				D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */,
 			);
 			name = "Controller Views";
 			sourceTree = "<group>";
@@ -623,6 +636,7 @@
 				D244C33F189CEBF100E6DB16 /* bg_02.png in Resources */,
 				D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */,
 				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
+				D23181FA18A5A96E00A251B6 /* DateRangeSelector.xib in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
 				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
@@ -706,11 +720,13 @@
 				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
+				D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
 				D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */,
 				D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */,
 				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,
 				D2A07FAB189F539A002F11DA /* City.m in Sources */,
+				D23181FD18A5B7CA00A251B6 /* NSDate+SwingLocal.m in Sources */,
 				D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */,
 				D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,

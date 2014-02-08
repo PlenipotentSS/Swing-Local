@@ -319,7 +319,9 @@
 
 
 -(void) presentMoreEvents {
-    [(SSFrontViewController*)self.rootSegueController performSegueWithIdentifier:@"showCalendar" sender:self];
+    
+    [[EventManager sharedManager] setCurrentCity:self.currentCity];
+    [self.rootSegueController performSegueWithIdentifier:@"showSingleCity" sender:self];
 }
 
 #pragma mark - animations for selectCity button
@@ -452,7 +454,6 @@
         [detailView setAlpha:1.f];
     }];
 }
-
 
 
 @end

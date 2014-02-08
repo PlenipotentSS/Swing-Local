@@ -16,14 +16,19 @@
 
 @interface EventsTableViewModel() <EventManagerCityDelegate, GoogleCalendarManagerDelegate>
 
-@property (nonatomic) NSMutableArray *eventsInCity;
+//all occurrences found
 @property (nonatomic) NSMutableArray *occurrencesOfEvents;
 
+//operation queue for cell row animations
 @property (nonatomic) NSOperationQueue *cellOperationQueue;
+
+//list of all occurrence dates for each event in venues
 @property (nonatomic) NSMutableArray *datesWithEvents;
 
-//
+//dictionary with keys being the dates of occurrences
 @property (nonatomic) NSMutableDictionary *OccurrencesWithDateKeys;
+
+//sorted dates that contain occurrences
 @property (nonatomic) NSMutableArray *sortedDateKeys;
 
 @end
@@ -50,18 +55,19 @@
     }
 }
 
+#pragma mark - add City and updata Data methods
 -(void) setCity:(City *)city {
     _city = city;
     
     _OccurrencesWithDateKeys = [NSMutableDictionary new];
     
-    _eventsInCity = [NSMutableArray new];
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesOfEvents = [NSMutableArray new];
     [self refreshEventTableWithCity:city];
 
 }
 
+#pragma mark rebuild table view given the current city
 //called initially to load, and again when download venues completes
 -(void) refreshEventTableWithCity: (City*) thisCity {
     if (self.city.venueOrganizations) {
@@ -76,6 +82,8 @@
     }
 }
 
+
+#pragma mark get events for all events in venue
 //send events for each venue to see if there is an event today
 -(void) loadEventsForVenues {
     for (Venue *thisVenue in self.city.venueOrganizations) {
@@ -85,6 +93,7 @@
 }
 
 #warning CHANGE NAME TO GOOGLE URL
+#pragma mark download occurrences for events
 //send to google manager for json data
 -(void) eventsTodayForVenue:(Venue*) thisVenue {
     for (Event *thisEvent in thisVenue.events) {
@@ -96,15 +105,14 @@
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
             if (self.datesToSearch && [self.datesToSearch count] > 0) {
                 [[GoogleCalendarManager sharedManager] getOccurrencesWithGoogleCalendarID:calendarURLString forEvent:thisEvent andForDateRange:self.datesToSearch];
-                [self.eventsInCity addObject:thisEvent];
             } else {
                 [[GoogleCalendarManager sharedManager] getTodaysOccurrencesWithGoogleCalendarID:calendarURLString forEvent:thisEvent];
-                [self.eventsInCity addObject:thisEvent];
             }
         }
     }
 }
 
+#pragma mark build table view with downloaded google occurrences
 //receive from google manager: an array of events today
 -(void) updateVenueForEvent:(Event*) thisEvent {
     
@@ -141,16 +149,29 @@
     [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 }
 
+
 #pragma mark - UITableViewDataSource and Delegate methods
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        
+        UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
+        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor offWhiteScheme];
+        tableViewHeaderFooterView.textLabel.textColor = [UIColor burntScheme];
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ( indexPath.section < [self.sortedDateKeys count]) {
         NSString *keyName = [self.sortedDateKeys objectAtIndex:indexPath.section];
         NSArray *eventsOnDay = [self.OccurrencesWithDateKeys objectForKey:keyName];
-        Occurrence *thisOcc = [eventsOnDay objectAtIndex:indexPath.row];
+        if (indexPath.row < [eventsOnDay count]) {
+            Occurrence *thisOcc = [eventsOnDay objectAtIndex:indexPath.row];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDetailViewController" object:nil userInfo:@{@"occurrence" : thisOcc}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDetailViewController" object:nil userInfo:@{@"occurrence" : thisOcc}];
+        }
     }
     
 }
@@ -167,8 +188,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (self.datesToSearch && [self.datesToSearch count] >0) {
+    if (self.datesToSearch && [self.datesToSearch count] >0 && section < [self.sortedDateKeys count]) {
         return [self.sortedDateKeys objectAtIndex:section];
+    } else if (self.datesToSearch && [self.datesToSearch count] >0) {
+        return @"";
     } else {
         return @"Today";
     }
@@ -177,9 +200,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self.sortedDateKeys count] == 0 && self.city) {
         return 1;
+    } else if (section < [self.sortedDateKeys count]) {
+        NSString *keyName = [self.sortedDateKeys objectAtIndex:section];
+        return [[self.OccurrencesWithDateKeys objectForKey:keyName] count];
+    } else {
+        return 0;
     }
-    NSString *keyName = [self.sortedDateKeys objectAtIndex:section];
-    return [[self.OccurrencesWithDateKeys objectForKey:keyName] count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,8 +13,10 @@
 #import "HomePageManager.h"
 #import "UIColor+SwingLocal.h"
 #import "Occurrence.h"
+#import "DateRangeSelectorView.h"
+#import "NSDate+SwingLocal.h"
 
-@interface SingleCityViewController () <HomePageManagerDelegate>
+@interface SingleCityViewController () <HomePageManagerDelegate,DateRangeSelectorDelegate>
 
 
 //content ScrollView
@@ -34,6 +36,9 @@
 
 //segmented control to select date ranges
 @property (nonatomic) IBOutlet UISegmentedControl *dateSelector;
+
+//date range view selector
+@property (nonatomic) DateRangeSelectorView *dateSelectorView;
 
 @end
 
@@ -63,6 +68,13 @@
         self.theCity = [[EventManager sharedManager] currentCity];
         [self getAllEventsInCity];
     }
+    
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
+                                                      owner:self
+                                                    options:nil];
+    _dateSelectorView = [ nibViews objectAtIndex: 0];
+    [self.dateSelectorView setup];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
 }
@@ -158,11 +170,57 @@
         [self.contentModel setDatesToSearch:[NSArray arrayWithArray:mutableDates]];
     } else if (control.selectedSegmentIndex == 2 ) {
         //load hub to select beginning date and end date!
-        [self.contentModel setDatesToSearch:[NSArray new]];
+        [self showDateRangeSelector];
     }
     
     [self.contentModel setCity:self.theCity];
 }
+
+#pragma mark - present date range view
+-(void) showDateRangeSelector
+{
+    [self.dateSelectorView setAlpha:0.f];
+    [self.dateSelectorView setTintColor:[UIColor offWhiteScheme]];
+    [self.dateSelectorView setDelegate:self];
+    self.dateSelectorView.center = self.view.center;
+    
+    [self.view addSubview:self.dateSelectorView];
+    [UIView animateWithDuration:.4f animations:^{
+        [self.dateSelectorView setAlpha:1.f];
+    }];
+}
+
+#pragma mark - DateRangeSelector Delegate methods
+-(void) updateTableViewWithBeginDateDate:(NSDate*) startDate toEndDate: (NSDate*) endDate {
+    
+    
+    NSMutableArray *mutableDates = [NSMutableArray new];
+
+    int counter = 0;
+    
+    NSDate *nextDate;
+    do {
+        NSDateComponents *components = [[NSDateComponents alloc] init];
+        [components setDay:counter];
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
+        
+        
+        counter++;
+        
+        [mutableDates addObject:nextDate];
+        if ( [NSDate dateA:nextDate isSameDayAsDateB:endDate]) {
+            break;
+        }
+    } while ( [NSDate dateA:nextDate isBeforeDateB:endDate] );
+    
+    NSArray *searchDates = [NSArray arrayWithArray:mutableDates];
+    [self.contentModel setDatesToSearch:searchDates];
+    [self.contentModel setCity:self.theCity];
+    self.dateSelector.selectedSegmentIndex = -1;
+}
+
+
 
 
 @end
