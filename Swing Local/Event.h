@@ -28,6 +28,9 @@
 //the string to lazy load images for this event
 @property (nonatomic) NSString *imageURLString;
 
+//the string to lazy load images for this event
+@property (nonatomic) NSString *calendar_id;
+
 //the occurrences of a given event
 @property (nonatomic) NSArray *occurrences;
 

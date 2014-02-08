@@ -19,6 +19,8 @@
 
 @property (unsafe_unretained) id<DateRangeSelectorDelegate> delegate;
 
+@property (nonatomic,weak) UIView *shadowBoxBackground;
+
 -(void) setup;
 
 @end

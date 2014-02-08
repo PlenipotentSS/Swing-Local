@@ -17,6 +17,7 @@
     _ages = [aDecoder decodeObjectForKey:@"ages"];
     _infoText = [aDecoder decodeObjectForKey:@"infoText"];
     _imageURLString = [aDecoder decodeObjectForKey:@"imageURLString"];
+    _calendar_id = [aDecoder decodeObjectForKey:@"calendar_id"];
     
     return self;
 }
@@ -27,6 +28,7 @@
     [aCoder encodeObject:self.ages forKey:@"ages"];
     [aCoder encodeObject:self.infoText forKey:@"infoText"];
     [aCoder encodeObject:self.imageURLString forKey:@"imageURLString"];
+    [aCoder encodeObject:self.calendar_id forKey:@"calendar_id"];
 }
 
 #pragma mark - download methods

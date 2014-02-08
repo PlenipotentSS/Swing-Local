@@ -40,6 +40,8 @@
 //date range view selector
 @property (nonatomic) DateRangeSelectorView *dateSelectorView;
 
+@property (nonatomic) UIView *shadowBoxBackground;
+
 @end
 
 @implementation SingleCityViewController
@@ -73,6 +75,8 @@
                                                       owner:self
                                                     options:nil];
     _dateSelectorView = [ nibViews objectAtIndex: 0];
+    _shadowBoxBackground = [nibViews objectAtIndex: 1];
+    [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
     [self.dateSelectorView setup];
 
     
@@ -180,13 +184,16 @@
 -(void) showDateRangeSelector
 {
     [self.dateSelectorView setAlpha:0.f];
+    [self.shadowBoxBackground setAlpha:0.f];
     [self.dateSelectorView setTintColor:[UIColor offWhiteScheme]];
     [self.dateSelectorView setDelegate:self];
     self.dateSelectorView.center = self.view.center;
     
+    [self.view addSubview:self.shadowBoxBackground];
     [self.view addSubview:self.dateSelectorView];
     [UIView animateWithDuration:.4f animations:^{
         [self.dateSelectorView setAlpha:1.f];
+        [self.shadowBoxBackground setAlpha:1.f];
     }];
 }
 
@@ -204,7 +211,6 @@
         [components setDay:counter];
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
-        
         
         counter++;
         

@@ -92,14 +92,13 @@
     }
 }
 
-#warning CHANGE NAME TO GOOGLE URL
 #pragma mark download occurrences for events
 //send to google manager for json data
 -(void) eventsTodayForVenue:(Venue*) thisVenue {
     for (Event *thisEvent in thisVenue.events) {
         
         
-        NSString *calendarURLString = thisEvent.imageURLString;             //change imageURLSTring
+        NSString *calendarURLString = thisEvent.calendar_id;             //change imageURLSTring
         
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
