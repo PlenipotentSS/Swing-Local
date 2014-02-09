@@ -13,7 +13,6 @@
 - (void) perform {
     UIViewController *src = (UIViewController *) self.sourceViewController;
     UIViewController *dst = (UIViewController *) self.destinationViewController;
-    //NSLog(@"%@ : %@",src,dst);
     [src addChildViewController:dst];
     
     [UIView transitionWithView:src.navigationController.view duration:0.2

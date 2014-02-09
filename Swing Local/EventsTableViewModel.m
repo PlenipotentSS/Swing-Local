@@ -68,12 +68,10 @@
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
-    [self.theTableView reloadData];
-    NSOperationQueue *downloadQueue = [NSOperationQueue new];
     
-    [downloadQueue addOperationWithBlock:^{
-        [self refreshEventTableWithCity:city];
-    }];
+    [self.theTableView reloadData];
+    [self refreshEventTableWithCity:city];
+
 
 }
 
@@ -96,6 +94,7 @@
 #pragma mark get events for all events in venue
 //send events for each venue to see if there is an event today
 -(void) loadEventsForVenues {
+    [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
     for (Venue *thisVenue in self.city.venueOrganizations) {
         //change to get get events for this day in venue
         [self eventsTodayForVenue:thisVenue];
@@ -107,9 +106,7 @@
 -(void) eventsTodayForVenue:(Venue*) thisVenue {
     for (Event *thisEvent in thisVenue.events) {
         
-        
         NSString *calendarURLString = thisEvent.calendar_id;
-        
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
             if (self.datesToSearch && [self.datesToSearch count] > 0) {

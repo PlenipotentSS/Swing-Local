@@ -14,6 +14,8 @@
 
 @property (nonatomic) NSURLSession *urlSession;
 @property (nonatomic) NSOperationQueue *googleDownloadQueue;
+@property (nonatomic) NSURLSessionDataTask *eventsTasks;
+@property (nonatomic) NSMutableArray *eventsDownloading;
 
 @end
 
@@ -60,13 +62,24 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 }
 
 #pragma mark - Google API Downloads
+
+-(void) cancelAllDownloadJobs {
+    [self.urlSession invalidateAndCancel];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+    sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+    
+    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+}
+
 -(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent {
     [self getOccurrencesWithGoogleCalendarID:googleCalID forEvent:theEvent andForDateRange:[self getTodaysDate]];
 }
 
 -(void) getOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent andForDateRange: (NSArray*) dates {
     NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
-    NSURLSessionDataTask *eventsTasks = [_urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    self.eventsTasks = [self.urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSError *err;
             id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
@@ -95,7 +108,7 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
             NSLog(@"error domain google: %@",error);
         }
     }];
-    [eventsTasks resume];
+    [self.eventsTasks resume];
 }
 
 #pragma mark - get events in time range
@@ -135,7 +148,6 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                         }
                     }
                     
-                    //NSLog(@"%@  :  %@",eventDate,compareDate);
                     if ([NSDate dateA:eventDate isBeforeDateB:compareDate]) {
                         
                         

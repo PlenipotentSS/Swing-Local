@@ -715,7 +715,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="200" constant="490" id="MmY-UJ-54e"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="Zn4-qr-fsu"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="0.20000000000000001" colorSpace="deviceRGB"/>
@@ -837,6 +836,7 @@
                             <constraint firstAttribute="trailing" secondItem="0PP-HQ-bCP" secondAttribute="trailing" constant="10" id="Yb8-34-Pht"/>
                             <constraint firstItem="HwW-Cu-lFP" firstAttribute="top" secondItem="R8w-Uf-Tx7" secondAttribute="bottom" id="cip-jg-8QD"/>
                             <constraint firstItem="tAa-EQ-YbL" firstAttribute="top" secondItem="0PP-HQ-bCP" secondAttribute="bottom" constant="8" id="eau-R6-vhQ"/>
+                            <constraint firstItem="qFg-Fu-bqo" firstAttribute="top" secondItem="tAa-EQ-YbL" secondAttribute="bottom" id="iq6-73-gc6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -964,7 +964,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BXb-1o-24b">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BXb-1o-24b">
                                 <rect key="frame" x="0.0" y="0.0" width="286" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1248,6 +1248,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.2117647231" green="0.29803922770000002" blue="0.33725491169999999" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="BXb-1o-24b" firstAttribute="leading" secondItem="uWV-gx-J17" secondAttribute="leading" id="31Q-dI-Fuh"/>
+                            <constraint firstItem="jok-34-0cs" firstAttribute="top" secondItem="BXb-1o-24b" secondAttribute="bottom" id="FZj-p8-6Bq"/>
+                            <constraint firstAttribute="trailing" secondItem="BXb-1o-24b" secondAttribute="trailing" constant="34" id="i19-bZ-kBw"/>
+                            <constraint firstItem="BXb-1o-24b" firstAttribute="top" secondItem="uWV-gx-J17" secondAttribute="top" id="lIB-eh-erU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YTG-0V-08o"/>
                     <connections>
