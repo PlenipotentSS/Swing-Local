@@ -379,9 +379,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                         <connections>
-                            <outlet property="DJLabel" destination="VRd-8I-oxm" id="vFi-Ys-VuA"/>
                             <outlet property="contentLabel" destination="Jb1-vi-Bec" id="bzw-lU-yLL"/>
                             <outlet property="linkTitleLabel" destination="JfH-hF-3Rt" id="pZW-uz-7mV"/>
+                            <outlet property="musicLabel" destination="VRd-8I-oxm" id="zee-aT-QfZ"/>
                             <outlet property="subtitleLabel" destination="rYf-g1-yAp" id="hhT-an-7dS"/>
                             <outlet property="theScrollView" destination="XZV-e8-QWb" id="7Ov-mu-dDr"/>
                             <outlet property="titleLabel" destination="4xa-0b-913" id="dkg-x6-a11"/>

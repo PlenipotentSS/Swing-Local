@@ -8,14 +8,18 @@
 
 #import "DetailView.h"
 #import "UIColor+SwingLocal.h"
-@interface DetailView()
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
+@interface DetailView() <UIActionSheetDelegate>
 
 @property (nonatomic) UIImageView *headerImg;
 @property (nonatomic) UIButton *closeButton;
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *subtitleLabel;
-@property (nonatomic) UILabel *DJLabel;
+@property (nonatomic) UIButton *addressbutton;
+@property (nonatomic) UILabel *musicLabel;
 @property (nonatomic) UILabel *contentLabel;
 @property (nonatomic) UILabel *linkTitleLabel;
 
@@ -47,7 +51,8 @@
          
         [self.titleLabel removeFromSuperview];
         [self.subtitleLabel removeFromSuperview];
-        [self.DJLabel removeFromSuperview];
+        [self.addressbutton removeFromSuperview];
+        [self.musicLabel removeFromSuperview];
         [self.contentLabel removeFromSuperview];
         [self.linkTitleLabel removeFromSuperview];
         [self.theScrollView removeFromSuperview];
@@ -119,37 +124,51 @@
         cost = @"";
     }
     
-    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.subtitleLabel.font = [UIFont fontWithName:@"Avenir-Oblique" size:14.0];
+    self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 20.0f)];
+    self.subtitleLabel.font = [UIFont fontWithName:@"Avenir-Oblique" size:12.0];
     self.subtitleLabel.textAlignment = NSTextAlignmentLeft;
     self.subtitleLabel.textColor = [UIColor aquaScheme];
     self.subtitleLabel.text = [NSString stringWithFormat:@"%@-%@ : %@",startTime,endTime, cost];
     self.subtitleLabel.numberOfLines = 0;
     [self.subtitleLabel sizeToFit];
-    ongoingHeight += CGRectGetHeight(self.subtitleLabel.frame)+30;
+    ongoingHeight += CGRectGetHeight(self.subtitleLabel.frame)+15;
     
     if (![self.subtitleLabel superview]) {
         [self.theScrollView addSubview:self.subtitleLabel];
     }
     
+    //address
+    self.addressbutton = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 40.0f)];
+    [self.addressbutton addTarget:self action:@selector(openActionSheet:) forControlEvents:UIControlEventTouchUpInside];
+    self.addressbutton.titleLabel.font =[UIFont fontWithName:@"Avenir" size:14.0];
+    self.addressbutton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self.addressbutton setTitle:self.thisOccurrence.address forState:UIControlStateNormal];
+    [self.addressbutton setTitleColor:[UIColor burntScheme] forState:UIControlStateNormal];
+    self.addressbutton.titleLabel.numberOfLines = 0;
+    [self.addressbutton.titleLabel sizeToFit];
+    ongoingHeight += CGRectGetHeight(self.addressbutton.frame)+20;
+    
+    if (![self.addressbutton superview]) {
+        [self.theScrollView addSubview:self.addressbutton];
+    }
     
     //dj or music
     NSString *dj = @"DJ Music";
-    if (self.thisOccurrence.DJ && ![self.thisOccurrence.DJ isEqualToString:@""]) {
-        dj = [NSString stringWithFormat:@" - %@",self.thisOccurrence.DJ];
+    if (self.thisOccurrence.music && ![self.thisOccurrence.music isEqualToString:@""]) {
+        dj = self.thisOccurrence.music;
     }
     
-    self.DJLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.DJLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
-    self.DJLabel.textAlignment = NSTextAlignmentLeft;
-    self.DJLabel.textColor = [UIColor aquaScheme];
-    self.DJLabel.text = dj;
-    self.DJLabel.numberOfLines = 0;
-    [self.DJLabel sizeToFit];
-    ongoingHeight += CGRectGetHeight(self.DJLabel.frame)+5;
+    self.musicLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 20.0f)];
+    self.musicLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
+    self.musicLabel.textAlignment = NSTextAlignmentLeft;
+    self.musicLabel.textColor = [UIColor aquaScheme];
+    self.musicLabel.text = dj;
+    self.musicLabel.numberOfLines = 0;
+    [self.musicLabel sizeToFit];
+    ongoingHeight += CGRectGetHeight(self.musicLabel.frame);
     
-    if (![self.DJLabel superview]) {
-        [self.theScrollView addSubview:self.DJLabel];
+    if (![self.musicLabel superview]) {
+        [self.theScrollView addSubview:self.musicLabel];
     }
     
     //load text
@@ -166,44 +185,59 @@
         [self.theScrollView addSubview:self.contentLabel];
     }
     
-    //links header
-    self.linkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
-    self.linkTitleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
-    self.linkTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.linkTitleLabel.textColor = [UIColor aquaScheme];
-    self.linkTitleLabel.text = @"Links";
-    self.linkTitleLabel.numberOfLines = 0;
-    [self.linkTitleLabel sizeToFit];
-    ongoingHeight += CGRectGetHeight(self.linkTitleLabel.frame)+5;
-    
-    if (![self.linkTitleLabel superview]) {
-        [self.theScrollView addSubview:self.linkTitleLabel];
-    }
+//    //links header
+//    self.linkTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
+//    self.linkTitleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
+//    self.linkTitleLabel.textAlignment = NSTextAlignmentLeft;
+//    self.linkTitleLabel.textColor = [UIColor aquaScheme];
+//    self.linkTitleLabel.text = @"Links";
+//    self.linkTitleLabel.numberOfLines = 0;
+//    [self.linkTitleLabel sizeToFit];
+//    ongoingHeight += CGRectGetHeight(self.linkTitleLabel.frame)+5;
+//    
+//    if (![self.linkTitleLabel superview]) {
+//        [self.theScrollView addSubview:self.linkTitleLabel];
+//    }
     
     
     self.theScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.theScrollView.frame), ongoingHeight+100);
 }
 
+#pragma mark - Action Sheet methods
+-(void)openActionSheet:(id)sender {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Maps",@"Google Maps", nil];
+    [sheet showInView:self];
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:self.thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        CLPlacemark *locationPlacemark = [placemarks lastObject];
+        CLLocationCoordinate2D venueLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+        if (buttonIndex==0) {
+            //Apple Maps, using the MKMapItem class
+            MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:venueLocation addressDictionary:nil];
+            MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
+            item.name = self.thisOccurrence.eventForOccurrence.eventTitle;
+            [item openInMapsWithLaunchOptions:nil];
+        } else if (buttonIndex==1) {
+            //Google Maps
+            //construct a URL using the comgooglemaps schema
+            NSString *addressNoWhitespaces = [self.thisOccurrence.address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://search?q=%@",addressNoWhitespaces]];
+            if (![[UIApplication sharedApplication] canOpenURL:url]) {
+                NSString *addressNoWhitespaces = [self.thisOccurrence.address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@",addressNoWhitespaces]]];
+                //left as an exercise for the reader: open the Google Maps mobile website instead!
+            } else {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }
+    }];
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 @end

@@ -20,6 +20,9 @@
 //end time of this event occurrence
 @property (nonatomic) NSDate *endTime;
 
+//cost cover for this event
+@property (nonatomic) NSString *cost;
+
 //start time of this event occurrence
 @property (nonatomic) NSString *updatedCost;
 
@@ -27,7 +30,7 @@
 @property (nonatomic) NSString *updatedTitle;
 
 //updated only by google calendar
-@property (nonatomic) NSString *DJ;
+@property (nonatomic) NSString *music;
 
 //updated by api or google calendar
 @property (nonatomic) NSString *address;

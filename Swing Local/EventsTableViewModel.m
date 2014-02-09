@@ -240,21 +240,12 @@
     NSString *startTime = [dateFormatter stringFromDate:thisOcc.startTime];
     NSString *endTime = [dateFormatter stringFromDate:thisOcc.endTime];
     
-    NSString *cost = @"$";
-    if (thisOcc.updatedCost) {
-        cost = [NSString stringWithFormat:@"%@%@",cost,thisOcc.updatedCost];
-    } else if (thisOcc.eventForOccurrence.cost && ![thisOcc.eventForOccurrence.cost isEqualToString:@""]) {
-        cost = [NSString stringWithFormat:@"%@%@",cost,thisOcc.eventForOccurrence.cost];
-    } else {
-        cost = @"";
-    }
-    
     NSString *dj = @"";
-    if (thisOcc.DJ && ![thisOcc.DJ isEqualToString:@""]) {
-        dj = [NSString stringWithFormat:@" - %@",thisOcc.DJ];
+    if (thisOcc.music && ![thisOcc.music isEqualToString:@""]) {
+        dj = [NSString stringWithFormat:@": %@",thisOcc.music];
     }
     
-    NSString *subtitle = [NSString stringWithFormat:@"%@-%@ : %@ %@",startTime,endTime, cost, dj];
+    NSString *subtitle = [NSString stringWithFormat:@"%@-%@ %@",startTime,endTime, dj];
     cell.detailTextLabel.text = subtitle;
     cell.detailTextLabel.textColor = [UIColor offWhiteScheme];
     

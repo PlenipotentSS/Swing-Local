@@ -58,14 +58,14 @@ static NSString * const sampleDesc5 = @"Sed rhoncus arcu nisl, in ultrices mi eg
 
 - (void) configurePage:(GHWalkThroughPageCell *)cell atIndex:(NSInteger)index
 {
-    cell.title = [NSString stringWithFormat:@"This is page %li", (index+1)];
-    cell.titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"title%li", (index+1)]];
+    cell.title = [NSString stringWithFormat:@"This is page %i", (int)(index+1)];
+    cell.titleImage = [UIImage imageNamed:[NSString stringWithFormat:@"title%i", (int)(index+1)]];
     cell.desc = [self.descStrings objectAtIndex:index];
 }
 
 - (UIImage*) bgImageforPage:(NSInteger)index
 {
-    NSString* imageName =[NSString stringWithFormat:@"bg_0%li.jpg", (index+1)];
+    NSString* imageName =[NSString stringWithFormat:@"bg_0%i.jpg", (int)(index+1)];
     UIImage* image = [UIImage imageNamed:imageName];
     return image;
 }
