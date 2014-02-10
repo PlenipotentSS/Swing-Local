@@ -131,6 +131,7 @@
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
             
             [self.mapView setRegion:viewRegion animated:YES];
+            self.mapView.scrollEnabled = NO;
         }
     }];
     [self.contentModel setCity:self.theCity];
