@@ -15,8 +15,10 @@
 #import "Occurrence.h"
 #import "DateRangeSelectorView.h"
 #import "NSDate+SwingLocal.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface SingleCityViewController () <HomePageManagerDelegate,DateRangeSelectorDelegate>
+@interface SingleCityViewController () <DateRangeSelectorDelegate>
 
 
 //content ScrollView
@@ -31,8 +33,8 @@
 //title for this controller's view
 @property (nonatomic) IBOutlet UILabel *titleLabel;
 
-//image for this city
-@property (nonatomic) IBOutlet UIImageView *cityHeaderImage;
+//city map view
+@property (nonatomic) IBOutlet MKMapView *mapView;
 
 //segmented control to select date ranges
 @property (nonatomic) IBOutlet UISegmentedControl *dateSelector;
@@ -121,13 +123,16 @@
 -(void) updatePageViews
 {
     self.titleLabel.text = [self.theCity cityName];
-    if (self.theCity.cityImage) {
-        [self updateViewWithImage:self.theCity.cityImage];
-    } else {
-        [[HomePageManager sharedManager] setDelegate:self];
-        NSURL *headerImageURL = [self getImageFromCityName:self.theCity.cityName];
-        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:self.theCity];
-    }
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:self.theCity.cityName completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error) {
+            CLPlacemark *locationPlacemark = [placemarks lastObject];
+            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+            
+            [self.mapView setRegion:viewRegion animated:YES];
+        }
+    }];
     [self.contentModel setCity:self.theCity];
 }
 
@@ -139,15 +144,17 @@
     return [NSURL URLWithString:strURL];
 }
 
-#pragma mark - HomePageManagerDelegate methods
--(void) updateViewWithImage:(UIImage*) theImage
-{
-    [self.cityHeaderImage setAlpha:0.f];
-    [self.cityHeaderImage setImage:theImage];
-    [UIView animateWithDuration:.4f animations:^{
-        [self.cityHeaderImage setAlpha:1.f];
-    }];
-}
+//#pragma mark - HomePageManagerDelegate methods
+//-(void) updateViewWithImage:(UIImage*) theImage
+//{
+//    if (theImage ) {
+//        [self.cityHeaderImage setAlpha:0.f];
+//        [self.cityHeaderImage setImage:theImage];
+//        [UIView animateWithDuration:.4f animations:^{
+//            [self.cityHeaderImage setAlpha:1.f];
+//        }];
+//    }
+//}
 
 #pragma mark - present detail view controller for occurrence!
 -(void) showControllerWithOccurrence: (NSNotification*) notification

@@ -16,10 +16,10 @@
 #import "SplitViewController.h"
 #import "DetailView.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate, UIActionSheetDelegate>
 
-//the header image set under title
-@property (weak, nonatomic) IBOutlet UIImageView *cityHeaderImage;
+//city map view
+@property (nonatomic) IBOutlet MKMapView *mapView;
 
 //content ScrollView
 @property (weak,nonatomic) IBOutlet EventsTableView *contentTableView;
@@ -47,6 +47,8 @@
 
 //action sheet to display cities
 @property (nonatomic) SSActionSheet *cityActionSheet;
+
+@property (nonatomic) UIActionSheet *oldActionSheet;
 
 //whether there is a city that this user has selected in the past
 @property (nonatomic) BOOL citySelected;
@@ -115,9 +117,12 @@
 
 -(void) setupActionSheet
 {
-    _cityActionSheet = [[SSActionSheet alloc] init];
-    _cityActionSheet.nAnimationType = DoTransitionStylePop;
-    _cityActionSheet.dButtonRound = 2;
+    
+    if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        _cityActionSheet = [[SSActionSheet alloc] init];
+        _cityActionSheet.nAnimationType = DoTransitionStylePop;
+        _cityActionSheet.dButtonRound = 2;
+    }
 }
 
 
@@ -251,14 +256,25 @@
 }
 
 
-#pragma mark - HomePageManagerDelegate methods
--(void) updateViewWithImage:(UIImage*) theImage {
-    [self.cityHeaderImage setAlpha:0.f];
-    [self.cityHeaderImage setImage:theImage];
-    [UIView animateWithDuration:.4f animations:^{
-        [self.cityHeaderImage setAlpha:1.f];
-    }];
-}
+//#pragma mark - HomePageManagerDelegate methods
+//-(void) updateViewWithImage:(UIImage*) theImage {
+//    if (theImage ) {
+//        [self.cityHeaderImage setAlpha:0.f];
+//        [self.cityHeaderImage setImage:theImage];
+//        [UIView animateWithDuration:.4f animations:^{
+//            [self.cityHeaderImage setAlpha:1.f];
+//        }];
+//    } else {
+//        CGRect tableHeaderFrame = self.contentTableView.tableHeaderView.frame;
+//        tableHeaderFrame.size.height = CGRectGetHeight(tableHeaderFrame)-160;
+//        [self.contentTableView tableHeaderView].frame = tableHeaderFrame;
+//        
+//        CGRect tableViewFrame = self.contentTableView.frame;
+//        tableViewFrame.origin.y = CGRectGetMinY(tableViewFrame)-160;
+//        tableViewFrame.size.height = CGRectGetHeight(tableViewFrame)+160;
+//        self.contentTableView.frame = tableViewFrame;
+//    }
+//}
 
 #pragma mark - update home with event
 -(void) updateViewWithCityIndex:(NSInteger) index {
@@ -281,15 +297,16 @@
     [self hideInitialView];
     self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
-    [self.homeView.title setText:thisCity.cityName];
-    if (thisCity.cityImage) {
-        [self.homeView animateShowingContent];
-        [self updateViewWithImage:thisCity.cityImage];
-    } else {
-        [[HomePageManager sharedManager] setDelegate:self];
-        NSURL *headerImageURL = [self getImageFromCity:thisCity];
-        [[HomePageManager sharedManager] downloadImageFromURL:headerImageURL forCity:thisCity];
-    }
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:thisCity.cityName completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error) {
+            CLPlacemark *locationPlacemark = [placemarks lastObject];
+            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+            
+            [self.mapView setRegion:viewRegion animated:YES];
+        }
+    }];
     [_contentModel setCity:thisCity];
 }
 
@@ -427,22 +444,45 @@
 }
 
 -(void) showActionSheet {
-    [_cityActionSheet showC:@"Select Your City:"
-                     cancel:@"Cancel"
-                    buttons:_cityKeys
-                     result:^(int nResult) {
-                         if (nResult != self.currentCityIndex && nResult != -100) {
-                             [self updateViewWithCityIndex:nResult];
-                             if (self.citySelected) {
-                                 [self.homeView animateShowingContent];
+    if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        [_cityActionSheet showC:@"Select Your City:"
+                         cancel:@"Cancel"
+                        buttons:_cityKeys
+                         result:^(int nResult) {
+                             if (nResult != self.currentCityIndex && nResult != -100) {
+                                 [self updateViewWithCityIndex:nResult];
+                                 if (self.citySelected) {
+                                     [self.homeView animateShowingContent];
+                                 }
                              }
-                         }
-                         if (self.citySelected) {
-                             [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
-                         } else {
-                             [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
-                         }
-                     }];
+                             if (self.citySelected) {
+                                 [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
+                             } else {
+                                 [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
+                             }
+                         }];
+    } else {
+        _oldActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select City" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:Nil otherButtonTitles:nil];
+        for (NSString *title in _cityKeys) {
+            [_oldActionSheet addButtonWithTitle: title];
+        }
+        [_oldActionSheet showInView:self.homeView];
+    }
+}
+
+#pragma mark - UIAction sheet deleaget for older iPhones
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != self.currentCityIndex && buttonIndex != 0) {
+        [self updateViewWithCityIndex:(buttonIndex-1)];
+        if (self.citySelected) {
+            [self.homeView animateShowingContent];
+        }
+    }
+    if (self.citySelected) {
+        [self performSelector:@selector(showChangeCitySelector) withObject:nil afterDelay:.4f];
+    } else {
+        [self performSelector:@selector(showCitySelector) withObject:nil afterDelay:.4f];
+    }
 }
 
 

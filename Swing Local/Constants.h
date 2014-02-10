@@ -19,5 +19,6 @@
 #define GOOGLE_VARS @"/public/full?alt=json&max-results=25&singleevents=false&futureevents=true&sortorder=ascending&orderby=starttime"
 #define GENERAL_TIME_FORMAT @"hh:mm"
 #define SIMPLE_DATE_FORMAT @"EEEE, MMMM dd"
+#define METERS_PER_MILE 50000.00
 
 #endif

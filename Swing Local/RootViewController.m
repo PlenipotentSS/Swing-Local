@@ -41,11 +41,12 @@
     BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
     
     //skip tutorial
-    if (skipTutorial){
+    if (skipTutorial || ![UIPageControl instancesRespondToSelector:@selector(setTintColor:)]){
         [self performSegueWithIdentifier:@"showSplitController" sender:self];
     } else {
         [standardDefaults setBool:YES forKey:@"SkipTutorial"];
-        [self performSegueWithIdentifier:@"showTutorial" sender:self]; 
+        [self performSegueWithIdentifier:@"showSplitController" sender:self];
+        [self performSegueWithIdentifier:@"showTutorial" sender:self];
     }
 }
 

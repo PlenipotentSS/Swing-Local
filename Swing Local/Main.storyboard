@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="z1Y-zd-P5t">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -109,15 +110,6 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oaf-bC-edS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="320" id="VO7-9o-qQt"/>
-                                                        <constraint firstAttribute="height" constant="160" id="raA-sM-5cg"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="man-handshaking" translatesAutoresizingMaskIntoConstraints="NO" id="621-q6-HZR">
                                                     <rect key="frame" x="12" y="181" width="31" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -129,11 +121,19 @@
                                                     <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SJe-1J-gdQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="69T-W7-Mb4"/>
+                                                        <constraint firstAttribute="height" constant="160" id="eJX-71-Pc4"/>
+                                                    </constraints>
+                                                </mapView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="oaf-bC-edS" firstAttribute="leading" secondItem="Jho-dp-5AI" secondAttribute="leading" id="Mq6-XD-0N8"/>
-                                                <constraint firstItem="oaf-bC-edS" firstAttribute="top" secondItem="Jho-dp-5AI" secondAttribute="top" id="tVM-IQ-4cC"/>
+                                                <constraint firstItem="SJe-1J-gdQ" firstAttribute="top" secondItem="Jho-dp-5AI" secondAttribute="top" id="2eQ-QO-IZ7"/>
+                                                <constraint firstItem="SJe-1J-gdQ" firstAttribute="leading" secondItem="Jho-dp-5AI" secondAttribute="leading" id="ttD-RM-Ola"/>
                                             </constraints>
                                         </view>
                                         <prototypes>
@@ -291,10 +291,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="xqP-j4-EXg"/>
                     <connections>
-                        <outlet property="cityHeaderImage" destination="oaf-bC-edS" id="6SB-zi-SMF"/>
                         <outlet property="contentTableView" destination="cdQ-W4-Zm4" id="MUk-1T-Du1"/>
                         <outlet property="footerView" destination="nzi-Lr-RCH" id="ofY-Kt-vwK"/>
                         <outlet property="initialHomeView" destination="8vI-bO-KlQ" id="Yv7-FT-Lw8"/>
+                        <outlet property="mapView" destination="SJe-1J-gdQ" id="ASM-RL-eqH"/>
                         <outlet property="menu_burger" destination="fFq-FI-b7o" id="JD1-gQ-6Tj"/>
                         <outlet property="moreEvents" destination="8ej-vv-1kV" id="8ic-K2-WvY"/>
                         <outlet property="moreEventsWrapper" destination="GH7-Hf-bA6" id="7LM-DQ-hPT"/>
@@ -508,15 +508,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-d9-cBG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="160" id="XEr-vO-EyX"/>
-                                                <constraint firstAttribute="width" constant="320" id="b9O-RP-TQ4"/>
-                                            </constraints>
-                                        </imageView>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yFM-kF-Q6X">
                                             <rect key="frame" x="32" y="179" width="257" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -527,11 +518,19 @@
                                             </segments>
                                             <color key="tintColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                         </segmentedControl>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-nl-ilK">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="Lzk-yV-Ftq"/>
+                                                <constraint firstAttribute="width" constant="320" id="ObW-Rh-Jcv"/>
+                                            </constraints>
+                                        </mapView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="hpB-d9-cBG" firstAttribute="top" secondItem="Aah-18-lWR" secondAttribute="top" id="9y7-hH-NsI"/>
-                                        <constraint firstItem="hpB-d9-cBG" firstAttribute="leading" secondItem="Aah-18-lWR" secondAttribute="leading" id="GO1-kv-aZJ"/>
+                                        <constraint firstItem="tMv-nl-ilK" firstAttribute="top" secondItem="Aah-18-lWR" secondAttribute="top" id="Haa-ZY-GIC"/>
+                                        <constraint firstItem="tMv-nl-ilK" firstAttribute="leading" secondItem="Aah-18-lWR" secondAttribute="leading" id="s2V-WX-VW3"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -722,15 +721,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bRo-SV-eyZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="320" id="EQ7-aC-KOl"/>
-                                                <constraint firstAttribute="height" constant="160" id="LOx-2A-zJW"/>
-                                            </constraints>
-                                        </imageView>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="05e-P6-JNP">
                                             <rect key="frame" x="32" y="179" width="257" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -744,11 +734,19 @@
                                                 <action selector="dateControlChanged:" destination="sao-2i-Zz5" eventType="valueChanged" id="MeH-Cx-mIb"/>
                                             </connections>
                                         </segmentedControl>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ikx-Zo-OZS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="320" id="MeW-2l-0bs"/>
+                                                <constraint firstAttribute="height" constant="160" id="uCa-cq-rR8"/>
+                                            </constraints>
+                                        </mapView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="bRo-SV-eyZ" firstAttribute="leading" secondItem="Pd6-dF-grh" secondAttribute="leading" id="6py-Md-G1Y"/>
-                                        <constraint firstItem="bRo-SV-eyZ" firstAttribute="top" secondItem="Pd6-dF-grh" secondAttribute="top" id="odM-9U-Xxi"/>
+                                        <constraint firstItem="Ikx-Zo-OZS" firstAttribute="leading" secondItem="Pd6-dF-grh" secondAttribute="leading" id="QSp-iZ-ZQa"/>
+                                        <constraint firstItem="Ikx-Zo-OZS" firstAttribute="top" secondItem="Pd6-dF-grh" secondAttribute="top" id="iCg-k8-1df"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -840,8 +838,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cityHeaderImage" destination="bRo-SV-eyZ" id="xWL-mf-FUI"/>
                         <outlet property="dateSelector" destination="05e-P6-JNP" id="zig-Sa-B6H"/>
+                        <outlet property="mapView" destination="Ikx-Zo-OZS" id="Gmt-KW-J2S"/>
                         <outlet property="menu_burger" destination="lyh-c5-27F" id="03d-qG-WLd"/>
                         <outlet property="theTableView" destination="tAa-EQ-YbL" id="4P1-OR-OhE"/>
                         <outlet property="titleLabel" destination="0PP-HQ-bCP" id="r6Y-kZ-BhT"/>

@@ -58,6 +58,10 @@
     }
 }
 
+-(void) changeHeaderHeightWithNoImage {
+    
+}
+
 #pragma mark - add City and updata Data methods
 -(void) setCity:(City *)city {
     _city = city;
@@ -192,6 +196,7 @@
         return 0;
     }
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

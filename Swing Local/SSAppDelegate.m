@@ -23,7 +23,6 @@
     config.forumId = 239827;
     [UserVoice initialize:config];
     
-    [GoogleCalendarManager sharedManager];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults setBool:NO forKey:@"SkipTutorial"];
