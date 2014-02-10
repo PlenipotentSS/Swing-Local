@@ -81,6 +81,10 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+        [[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"STHeitiSC-Medium" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -162,7 +166,9 @@
 {
     self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
     [self.detailView setAlpha:0.f];
-    [self.detailView setTintColor:[UIColor offWhiteScheme]];
+    if ([UIView instancesRespondToSelector:@selector(setTintColor:)]) {
+        [self.detailView setTintColor:[UIColor offWhiteScheme]];
+    }
     
     [self.view addSubview:self.detailView];
     [UIView animateWithDuration:.4f animations:^{

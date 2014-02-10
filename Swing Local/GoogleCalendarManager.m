@@ -43,11 +43,15 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 -(void) setup {
     _googleDownloadQueue = [NSOperationQueue new];
     
+    if( NSClassFromString(@"NSURLSession") != nil) {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
     sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
     
     _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+    } else {
+        //NSLog(@"setuping up google calendars for iOS 6");
+    }
 }
 
 -(NSURL*) getGoogleCalURLFromID: (NSString*) googleCalID {
@@ -64,13 +68,18 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 #pragma mark - Google API Downloads
 
 -(void) cancelAllDownloadJobs {
-    [self.urlSession invalidateAndCancel];
     
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
-    sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
-    
-    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+    if( NSClassFromString(@"NSURLSession") != nil) {
+        [self.urlSession invalidateAndCancel];
+
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+        sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+
+        _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+    } else {
+        //NSLog(@"attempting to cancel all downloads with iOS6");
+    }
 }
 
 -(void) getTodaysOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent {
@@ -78,11 +87,46 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 }
 
 -(void) getOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent andForDateRange: (NSArray*) dates {
-    NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
-    self.eventsTasks = [self.urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
+    
+    if( NSClassFromString(@"NSURLSession") != nil) {
+        NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
+        self.eventsTasks = [self.urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                NSError *err;
+                id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+                if (!err && ![jsonObject isKindOfClass:[NSString class]]) {
+                    NSDictionary *googleCalData = (NSDictionary*)jsonObject;
+                    
+                    NSArray *allOccurrences = [(NSDictionary*)[googleCalData objectForKey:@"feed"] objectForKey:@"entry"];
+                    
+                    //return all Events in the given date range for venue
+                    NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
+                    
+                    for (Occurrence *occ in filteredMutableArray) {
+                        occ.eventForOccurrence = theEvent;
+                    }
+                    theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
+                    
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.delegate updateVenueForEvent:theEvent];
+                    }];
+                    
+                } else {
+                    NSLog(@"error json google: %@ : %@",err,jsonObject);
+                }
+            } else {
+                
+                NSLog(@"error domain google: %@",error);
+            }
+        }];
+        [self.eventsTasks resume];
+    } else {
+        //NSLog(@"Attempting to load google calendars on iOS6");
+        NSString *strResult = [[NSString alloc] initWithData:[NSData dataWithContentsOfURL:[self getGoogleCalURLFromID:googleCalID]] encoding:NSUTF8StringEncoding];
+        if ( ![strResult length] == 0 ) {
+            NSData *theData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
             NSError *err;
-            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:theData options:NSJSONReadingMutableContainers error:&err];
             if (!err && ![jsonObject isKindOfClass:[NSString class]]) {
                 NSDictionary *googleCalData = (NSDictionary*)jsonObject;
                 
@@ -103,12 +147,8 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
             } else {
                 NSLog(@"error json google: %@ : %@",err,jsonObject);
             }
-        } else {
-            
-            NSLog(@"error domain google: %@",error);
         }
-    }];
-    [self.eventsTasks resume];
+    }
 }
 
 #pragma mark - get events in time range

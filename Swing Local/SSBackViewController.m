@@ -125,7 +125,11 @@
     if (indexPath.row == [_menuItems count]) {
         return 60.f;
     } else if (self.theTableView.editing && indexPath.row == [_menuItems count]+1){
-        return 80.f;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+            return 80.f;
+        } else {
+            return 150.f;
+        }
     } else if (indexPath.row < [_menuItems count]){
         return 35.f;
     } else {
@@ -158,7 +162,6 @@
         [(AddCityTableViewCell*)cell thepickerView].delegate = self;
         [(AddCityTableViewCell*)cell thepickerView].dataSource = self;
         self.addPickerView = [(AddCityTableViewCell*)cell thepickerView];
-        
         return cell;
     } else {
         cell = [_theTableView dequeueReusableCellWithIdentifier:@"savedCityCell" forIndexPath:indexPath];
@@ -168,6 +171,7 @@
         }
         cell.textLabel.text = [(City*)[_savedCities objectAtIndex:savedIndex] cityName];
     }
+    cell.contentView.backgroundColor = self.view.backgroundColor;
     return cell;
 }
 
@@ -285,7 +289,13 @@
         UILabel  *pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f,0.f,300.f,50.f)];
         pickerLabel.textAlignment = NSTextAlignmentCenter;
         pickerLabel.text = [(City*)[_allCities objectAtIndex:row] cityName];
-        pickerLabel.textColor = [UIColor offWhiteScheme];
+        //NSLog(@"%f",[[[UIDevice currentDevice] systemVersion] floatValue]);
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+            pickerLabel.textColor = [UIColor offWhiteScheme];
+        } else {
+            //NSLog(@"picker color is black for iOS 6");
+            pickerLabel.textColor = [UIColor blackColor];
+        }
         [view addSubview:pickerLabel];
     }
     if (!pickerLabel) {

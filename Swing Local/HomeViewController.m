@@ -149,6 +149,7 @@
     [self.moreEvents addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
     
     [self.moreEventsWrapper addTarget:self action:@selector(presentMoreEvents) forControlEvents:UIControlEventTouchUpInside];
+    [self.moreEventsWrapper setAlpha:0.f];
 }
 
 -(void) setupGesture
@@ -330,6 +331,7 @@
 {
     self.initialHomeView.alpha = 0.f;
     self.initialHomeView.hidden = NO;
+    self.initialHomeView.center = self.view.center;
     [UIView animateWithDuration:.4f animations:^{
         self.initialHomeView.alpha = 1.f;
     }];
@@ -465,6 +467,7 @@
                          }];
     } else {
         _oldActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select City" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:Nil otherButtonTitles:nil];
+        [_oldActionSheet addButtonWithTitle:@"-Select City-"];
         for (NSString *title in _cityKeys) {
             [_oldActionSheet addButtonWithTitle: title];
         }
@@ -474,8 +477,13 @@
 
 #pragma mark - UIAction sheet deleaget for older iPhones
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != self.currentCityIndex && buttonIndex != 0) {
-        [self updateViewWithCityIndex:(buttonIndex-1)];
+    //NSLog(@"%@",[actionSheet buttonTitleAtIndex:buttonIndex]);
+    if (buttonIndex != self.currentCityIndex && ![[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]) {
+        if ([self.cityKeys count] > 7) {
+            [self updateViewWithCityIndex:(buttonIndex-1)];
+        } else {
+            [self updateViewWithCityIndex:(buttonIndex-2)];
+        }
         if (self.citySelected) {
             [self.homeView animateShowingContent];
         }
@@ -493,7 +501,9 @@
 {
     self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
     [self.detailView setAlpha:0.f];
-    [self.detailView setTintColor:[UIColor offWhiteScheme]];
+    if ([UIView instancesRespondToSelector:@selector(setTintColor:)]) {
+        [self.detailView setTintColor:[UIColor offWhiteScheme]];
+    }
     
     [self.view addSubview:self.detailView];
     [UIView animateWithDuration:.4f animations:^{

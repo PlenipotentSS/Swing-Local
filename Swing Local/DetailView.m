@@ -99,6 +99,7 @@
     self.titleLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:25.0];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.textColor = [UIColor aquaScheme];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.shadowColor = [UIColor lightGrayColor];
     self.titleLabel.shadowOffset = CGSizeMake(0.0f, 0.0f);
@@ -127,6 +128,7 @@
     self.subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 20.0f)];
     self.subtitleLabel.font = [UIFont fontWithName:@"Avenir-Oblique" size:12.0];
     self.subtitleLabel.textAlignment = NSTextAlignmentLeft;
+    self.subtitleLabel.backgroundColor = [UIColor clearColor];
     self.subtitleLabel.textColor = [UIColor aquaScheme];
     self.subtitleLabel.text = [NSString stringWithFormat:@"%@-%@ : %@",startTime,endTime, cost];
     self.subtitleLabel.numberOfLines = 0;
@@ -161,6 +163,7 @@
     self.musicLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 20.0f)];
     self.musicLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:21.0];
     self.musicLabel.textAlignment = NSTextAlignmentLeft;
+    self.musicLabel.backgroundColor = [UIColor clearColor];
     self.musicLabel.textColor = [UIColor aquaScheme];
     self.musicLabel.text = dj;
     self.musicLabel.numberOfLines = 0;
@@ -175,6 +178,7 @@
     self.contentLabel= [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
     self.contentLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:15.0];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
+    self.contentLabel.backgroundColor = [UIColor clearColor];
     self.contentLabel.textColor = [UIColor aquaScheme];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.text = self.thisOccurrence.updatedInfoText;

@@ -32,7 +32,6 @@
 
 -(void) downloadImageFromURL:(NSURL *)imageURL forCity:(City*)city{
     [self.downloadImageQueue addOperationWithBlock:^{
-        NSLog(@"%@",imageURL);
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage *theImage = [UIImage imageWithData:imageData];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

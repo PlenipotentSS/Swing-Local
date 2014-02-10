@@ -40,7 +40,10 @@
     
     self.changeCityButton.layer.cornerRadius = CGRectGetWidth(self.changeCityButton.frame)/2;
     self.changeCityButton.layer.masksToBounds = YES;
-    //[self.changeCityButton setColorOverlay:[UIColor burntScheme] withImage:[UIImage imageNamed:@"arrow_down"]];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+        [self.citySelectButton setTitleColor:[UIColor burntScheme] forState:UIControlStateNormal];
+        [self.citySelectButton setBackgroundColor:[UIColor offWhiteScheme]];
+    }
 }
 
 #pragma mark animation for sub view methods
@@ -57,10 +60,14 @@
 }
 
 -(void) bounceContentHeader {
-    _contentHeader.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
-    [UIView animateKeyframesWithDuration:.4f delay:0.f options:UIViewKeyframeAnimationOptionAllowUserInteraction animations:^{
-        _contentHeader.transform = CGAffineTransformIdentity;
-    } completion:nil];
+    if ([UIView instancesRespondToSelector:@selector(animateKeyframesWithDuration:delay:options:animations:completion:)]){
+        _contentHeader.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+        [UIView animateKeyframesWithDuration:.4f delay:0.f options:UIViewKeyframeAnimationOptionAllowUserInteraction animations:^{
+            _contentHeader.transform = CGAffineTransformIdentity;
+        } completion:nil];
+    } else {
+        //NSLog(@"not animating content header for iOS6");
+    }
 }
 
 @end

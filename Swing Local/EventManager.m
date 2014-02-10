@@ -43,8 +43,11 @@
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
     sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
-    
-    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:_eventDownloadQueue];
+    if( NSClassFromString(@"NSURLSession") != nil) {
+        _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:_eventDownloadQueue];
+    } else {
+        //NSLog(@"running iOS 6");
+    }
 }
 
 #pragma mark - data persistence for saved cities
@@ -82,10 +85,43 @@
 
 #pragma mark - download event methods
 -(void) downloadCities {
-    NSURLSessionDataTask *citiesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:URL_TO_CITIES] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
+    if( NSClassFromString(@"NSURLSession") != nil) {
+        NSURLSessionDataTask *citiesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:URL_TO_CITIES] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                NSError *err;
+                NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+                if (!err) {
+                    
+                    NSArray *citiesUnsorted = [City convertDataToCityModel:cities];
+                    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cityName" ascending:YES];
+                    NSArray *sortDescriptors = @[nameDescriptor];
+                    NSArray *sortedCities = [citiesUnsorted sortedArrayUsingDescriptors:sortDescriptors];
+                    if ([self.savedCities count] > 0) {
+                        [self updateDataWithNewCityArray:sortedCities];
+                    }
+                    self.allCities = sortedCities;
+                    
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
+                    }];
+                } else {
+                    NSLog(@"error json events: %@",err);
+                }
+            } else {
+                
+                NSLog(@"error domain events: %@",error);
+            }
+        }];
+        
+        [citiesTask resume];
+    } else {
+        //NSLog(@"downloading cities for iOS6");
+        NSData *dataURL = [NSData dataWithContentsOfURL:[NSURL URLWithString:URL_TO_CITIES]];
+        NSString *strResult = [[NSString alloc] initWithData:dataURL encoding:NSUTF8StringEncoding];
+        if ( ![strResult length] == 0 ) {
+            NSData *theData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
             NSError *err;
-            NSArray *cities = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            NSArray *cities = [NSJSONSerialization JSONObjectWithData:theData options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 
                 NSArray *citiesUnsorted = [City convertDataToCityModel:cities];
@@ -103,21 +139,46 @@
             } else {
                 NSLog(@"error json events: %@",err);
             }
-        } else {
-            
-            NSLog(@"error domain events: %@",error);
         }
-    }];
-    
-    [citiesTask resume];
+    }
 }
 
 -(void) downloadVenuesAndEventsInCity:(City*) city {
-    NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,(int)city.cityID];
-    NSURLSessionDataTask *venuesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToVenues] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
+    
+    if( NSClassFromString(@"NSURLSession") != nil) {
+        NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,(int)city.cityID];
+        NSURLSessionDataTask *venuesTask = [_urlSession  dataTaskWithURL:[NSURL URLWithString:urlStringToVenues] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                NSError *err;
+                NSDictionary *cityDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+                if (!err) {
+                    NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
+                    city.venueOrganizations = [Venue convertDataToVenueModel:venuesForCity];
+                    if ([_savedCities count] ==0) {
+                        [_savedCities addObject:city];
+                        [self persistAndNotifySavedCities];
+                    }
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.cityDelegate refreshEventTableWithCity:city];
+                    }];
+                } else {
+                    NSLog(@"error json: %@",err);
+                }
+            } else {
+                
+                NSLog(@"error domain: %@",error);
+            }
+        }];
+
+        [venuesTask resume];
+    } else {
+        //NSLog(@"downloading venues and events for city");
+        NSString *urlStringToVenues = [NSString stringWithFormat:@"%@/%i.json",BASE_URL_TO_CITY,(int)city.cityID];
+        NSString *strResult = [[NSString alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringToVenues]] encoding:NSUTF8StringEncoding];
+        if ( ![strResult length] == 0 ) {
+            NSData *theData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
             NSError *err;
-            NSDictionary *cityDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&err];
+            NSDictionary *cityDictionary = [NSJSONSerialization JSONObjectWithData:theData options:NSJSONReadingMutableContainers error:&err];
             if (!err) {
                 NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
                 city.venueOrganizations = [Venue convertDataToVenueModel:venuesForCity];
@@ -131,13 +192,8 @@
             } else {
                 NSLog(@"error json: %@",err);
             }
-        } else {
-            
-            NSLog(@"error domain: %@",error);
         }
-    }];
-
-    [venuesTask resume];
+    }
 }
 
 @end

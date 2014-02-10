@@ -154,10 +154,22 @@
         if (![self.sortedDateKeys containsObject:startDate]) {
             [self.sortedDateKeys addObject:startDate];
         }
-    }
+    }[self sortDateKeys];
     
     [self.theTableView reloadData];
     [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+}
+
+-(void) sortDateKeys {
+    NSArray *sortedKeys = [self.sortedDateKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:SIMPLE_DATE_FORMAT];
+        NSDate *date1 = [dateFormatter dateFromString:obj1];
+        NSDate *date2 = [dateFormatter dateFromString:obj2];
+        return [date1 compare:date2];
+    }];
+    
+    self.sortedDateKeys = [NSMutableArray arrayWithArray:sortedKeys];
 }
 
 

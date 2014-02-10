@@ -8,6 +8,7 @@
 
 #import "DateRangeSelectorView.h"
 #import "NSDate+SwingLocal.h"
+#import "UIColor+SwingLocal.h"
 @interface DateRangeSelectorView()
 
 @property (nonatomic,weak) IBOutlet UIDatePicker *startPicker;
@@ -37,9 +38,12 @@
     endDateFrame.size.height = 100.f;
     self.startPicker.frame = endDateFrame;
     
-    
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
+        [self.doneButton setTitleColor:[UIColor burntScheme] forState:UIControlStateNormal];
+    }
 }
 
 -(IBAction)setCurrentDate:(id)sender
