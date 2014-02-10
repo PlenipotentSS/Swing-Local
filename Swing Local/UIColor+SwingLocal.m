@@ -13,23 +13,23 @@
 +(UIColor *) aquaScheme {
     //return [UIColor colorWithRed:16.f/255.f green:91.f/255.f blue:99.f/255.f alpha:1.f];
     //return [UIColor colorWithRed:64.f/255.f green:114.f/255.f blue:125.f/255.f alpha:1.f];
-    return [UIColor colorWithRed:56.f/255.f green:76.f/255.f blue:87.f/255.f alpha:1.f];
+    return [UIColor colorWithRed:0.162 green:0.232 blue:0.267 alpha:1.000];
 }
 
 +(UIColor *) offWhiteScheme {
-    return [UIColor colorWithRed:229.f/255.f green:228.f/255.f blue:202.f/255.f alpha:1.f];
+    return [UIColor colorWithRed:0.873 green:0.872 blue:0.761 alpha:1.000];
 }
 
 +(UIColor *) peachScheme {
-    return [UIColor colorWithRed:255.f/255.f green:201.f/255.f blue:132.f/255.f alpha:1.f];
+    return [UIColor colorWithRed:0.994 green:0.739 blue:0.481 alpha:1.000];
 }
 
 +(UIColor *) orangeScheme {
-    return [UIColor colorWithRed:208.f/255.f green:109.f/255.f blue:40.f/255.f alpha:1.f];
+    return [UIColor colorWithRed:0.813 green:0.425 blue:0.158 alpha:1.000];
 }
 
 +(UIColor *) burntScheme {
-    return [UIColor colorWithRed:189.f/255.f green:73.f/255.f blue:50.f/255.f alpha:1.f];
+    return [UIColor colorWithRed:0.705 green:0.194 blue:0.165 alpha:1.000];
     //return [UIColor colorWithRed:189.f/255.f green:54.f/255.f blue:34.f/255.f alpha:1.f];
 }
 
