@@ -20,7 +20,7 @@
 @property (nonatomic) UILabel *subtitleLabel;
 @property (nonatomic) UIButton *addressbutton;
 @property (nonatomic) UILabel *musicLabel;
-@property (nonatomic) UILabel *contentLabel;
+@property (nonatomic) UITextView *contentLabel;
 @property (nonatomic) UILabel *linkTitleLabel;
 
 @property (nonatomic) UIScrollView *theScrollView;
@@ -174,13 +174,19 @@
         [self.theScrollView addSubview:self.musicLabel];
     }
     
-    //load text
-    self.contentLabel= [[UILabel alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 30.0f)];
+    //load text;
+    self.contentLabel= [[UITextView alloc] initWithFrame:CGRectMake(20.0f, ongoingHeight, CGRectGetWidth(self.theScrollView.frame)-40, 350.0f)];
     self.contentLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:15.0];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
     self.contentLabel.backgroundColor = [UIColor clearColor];
     self.contentLabel.textColor = [UIColor aquaScheme];
-    self.contentLabel.numberOfLines = 0;
+    self.contentLabel.scrollEnabled = YES;
+    if ([UITextView instancesRespondToSelector:@selector(setTintColor:)]) {
+        self.contentLabel.tintColor = [UIColor burntScheme];
+    }
+    self.contentLabel.editable = NO;
+    self.contentLabel.dataDetectorTypes = UIDataDetectorTypeLink;
+    //self.contentLabel.numberOfLines = 0;
     self.contentLabel.text = self.thisOccurrence.updatedInfoText;
     [self.contentLabel sizeToFit];
     ongoingHeight += CGRectGetHeight(self.contentLabel.frame)+30;

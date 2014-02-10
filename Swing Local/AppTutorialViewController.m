@@ -71,7 +71,7 @@
     
     [self.descriptions addObject:@"With our universal calendar system, we ensure the easiest way for organizers to communicate to the community."];
     
-    [self.descriptions addObject:@"We strive to grow a global network of swing dance venues. This global initiative grows with your help. Join the global community at http://www.swinglocal.org"];
+    [self.descriptions addObject:@"We strive to grow a global network of swing dance venues. This global initiative grows with your help. Join the global community at \n http://www.swinglocal.org"];
     
     
     self.backgroundColors = [[NSMutableArray alloc] init];
