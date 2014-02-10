@@ -16,7 +16,7 @@
 #import "SplitViewController.h"
 #import "DetailView.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, HomePageManagerDelegate, UIActionSheetDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 //city map view
 @property (nonatomic) IBOutlet MKMapView *mapView;
@@ -297,6 +297,7 @@
     [self hideInitialView];
     self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
+    self.homeView.title.text = thisCity.cityName;
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder geocodeAddressString:thisCity.cityName completionHandler:^(NSArray *placemarks, NSError *error) {
         if (!error) {
