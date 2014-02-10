@@ -24,8 +24,8 @@
     [UserVoice initialize:config];
     
     
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults setBool:NO forKey:@"SkipTutorial"];
+//    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+//    [standardDefaults setBool:NO forKey:@"SkipTutorial"];
     
     return YES;
 }

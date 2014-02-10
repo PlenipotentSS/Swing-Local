@@ -62,14 +62,17 @@
 -(void) setupDescriptions {
     self.titles = [[NSMutableArray alloc] init];
     [self.titles addObject:@"Find Swing Dances in your City"];
-    [self.titles addObject:@"Venue Updates Straight To You"];
     [self.titles addObject:@"Easy For Venues, Easier For The You"];
+    [self.titles addObject:@"Building a Community"];
     
     
     self.descriptions = [[NSMutableArray alloc] init];
-    [self.descriptions addObject:@"Swing dance venues can now provide you up to date information about where to dance in your city. We are here to make it easier for you to find where to dance in your city!"];
-    [self.descriptions addObject:@"With our simple Google update platform, we collect all the date for you! It is up to the venue managers to keep up to date records, and that information is then presented here in real time. You will no longer have to hunt to find where to dance in your city!"];
-    [self.descriptions addObject:@"Venue managers keep up to date information on a google calendar of their choice, and we compile all their data to you and provide the information you need to go straight to dancing. No more PHDs in research to find where you want to go out!"];
+    [self.descriptions addObject:@"We do all the research for your city so you can do more dancing and less venue hunting."];
+    
+    [self.descriptions addObject:@"With our universal calendar system, we ensure the easiest way for organizers to communicate to the community."];
+    
+    [self.descriptions addObject:@"We strive to grow a global network of swing dance venues. This global initiative grows with your help. Join the global community at http://www.swinglocal.org"];
+    
     
     self.backgroundColors = [[NSMutableArray alloc] init];
     [self.backgroundColors addObject:[UIColor aquaScheme]];
