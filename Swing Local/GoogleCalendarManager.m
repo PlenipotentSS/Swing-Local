@@ -79,6 +79,7 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
         _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
     } else {
         //NSLog(@"attempting to cancel all downloads with iOS6");
+        [self.googleDownloadQueue cancelAllOperations];
     }
 }
 
@@ -121,33 +122,35 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
         }];
         [self.eventsTasks resume];
     } else {
-        //NSLog(@"Attempting to load google calendars on iOS6");
-        NSString *strResult = [[NSString alloc] initWithData:[NSData dataWithContentsOfURL:[self getGoogleCalURLFromID:googleCalID]] encoding:NSUTF8StringEncoding];
-        if ( ![strResult length] == 0 ) {
-            NSData *theData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
-            NSError *err;
-            id jsonObject = [NSJSONSerialization JSONObjectWithData:theData options:NSJSONReadingMutableContainers error:&err];
-            if (!err && ![jsonObject isKindOfClass:[NSString class]]) {
-                NSDictionary *googleCalData = (NSDictionary*)jsonObject;
-                
-                NSArray *allOccurrences = [(NSDictionary*)[googleCalData objectForKey:@"feed"] objectForKey:@"entry"];
-                
-                //return all Events in the given date range for venue
-                NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
-                
-                for (Occurrence *occ in filteredMutableArray) {
-                    occ.eventForOccurrence = theEvent;
+        [self.googleDownloadQueue addOperationWithBlock:^{
+            //NSLog(@"Attempting to load google calendars on iOS6");
+            NSString *strResult = [[NSString alloc] initWithData:[NSData dataWithContentsOfURL:[self getGoogleCalURLFromID:googleCalID]] encoding:NSUTF8StringEncoding];
+            if ( ![strResult length] == 0 ) {
+                NSData *theData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
+                NSError *err;
+                id jsonObject = [NSJSONSerialization JSONObjectWithData:theData options:NSJSONReadingMutableContainers error:&err];
+                if (!err && ![jsonObject isKindOfClass:[NSString class]]) {
+                    NSDictionary *googleCalData = (NSDictionary*)jsonObject;
+                    
+                    NSArray *allOccurrences = [(NSDictionary*)[googleCalData objectForKey:@"feed"] objectForKey:@"entry"];
+                    
+                    //return all Events in the given date range for venue
+                    NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
+                    
+                    for (Occurrence *occ in filteredMutableArray) {
+                        occ.eventForOccurrence = theEvent;
+                    }
+                    theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
+                    
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [self.delegate updateVenueForEvent:theEvent];
+                    }];
+                    
+                } else {
+                    NSLog(@"error json google: %@ : %@",err,jsonObject);
                 }
-                theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self.delegate updateVenueForEvent:theEvent];
-                }];
-                
-            } else {
-                NSLog(@"error json google: %@ : %@",err,jsonObject);
             }
-        }
+        }];
     }
 }
 

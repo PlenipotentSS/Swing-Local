@@ -55,6 +55,7 @@
 		D2A07FAB189F539A002F11DA /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FAA189F539A002F11DA /* City.m */; };
 		D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A07FAC189F542D002F11DA /* Main.storyboard */; };
 		D2A07FBD189F8602002F11DA /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FBC189F8602002F11DA /* NewsView.m */; };
+		D2C8ED7518A94D8800164C68 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */; };
 		D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688F918A013BC00A6BD51 /* RootViewController.m */; };
 		D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688FC18A014F000A6BD51 /* CustomSegue.m */; };
 		D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890018A020C900A6BD51 /* SplitControllerSegue.m */; };
@@ -161,6 +162,8 @@
 		D2A07FAC189F542D002F11DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D2A07FBB189F8602002F11DA /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
 		D2A07FBC189F8602002F11DA /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
+		D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
+		D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
 		D2E688F818A013BC00A6BD51 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D2E688F918A013BC00A6BD51 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D2E688FB18A014F000A6BD51 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 				D2E6891018A03AE200A6BD51 /* EventManager.m */,
 				D2F450E318A2C20500ABD1C8 /* GoogleCalendarManager.h */,
 				D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */,
+				D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */,
+				D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -725,6 +730,7 @@
 				D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */,
 				D2A07F9F189F535D002F11DA /* Venue.m in Sources */,
 				D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */,
+				D2C8ED7518A94D8800164C68 /* LocalNotificationManager.m in Sources */,
 				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,

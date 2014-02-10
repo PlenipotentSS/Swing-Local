@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocalNotificationManager.h"
 
 @interface SSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic) LocalNotificationManager *localNotificationManager;
 
 @end

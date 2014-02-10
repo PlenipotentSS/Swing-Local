@@ -30,7 +30,7 @@
 
 
 //current City to load for single city views
-@property (nonatomic) NSMutableArray *savedCities;
+@property (nonatomic) __block NSMutableArray *savedCities;
 
 +(EventManager*) sharedManager;
 

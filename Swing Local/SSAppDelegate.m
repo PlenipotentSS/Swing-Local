@@ -23,13 +23,29 @@
     config.forumId = 239827;
     [UserVoice initialize:config];
     
+    application.applicationIconBadgeNumber = 0;
+//    
+//    // Handle launching from a notification
+//    UILocalNotification *localNotif =
+//    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (!self.localNotificationManager) {
+        self.localNotificationManager = [[LocalNotificationManager alloc] init];
+    }
+    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager scheduleNotification];
     
-//    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-//    [standardDefaults setBool:NO forKey:@"SkipTutorial"];
     
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif {
+    // Handle the notificaton when the app is running
+    NSLog(@"Recieved Notification %@",notif);
+    
+    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager scheduleNotification];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -47,6 +63,8 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     [[EventManager sharedManager] downloadCities];
+    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager scheduleNotification];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
