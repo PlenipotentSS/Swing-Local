@@ -24,9 +24,6 @@
 //content ScrollView
 @property (weak,nonatomic) IBOutlet EventsTableView *theTableView;
 
-//array of all cities
-@property (nonatomic) NSMutableArray *allEvents;
-
 //table view model
 @property (nonatomic) EventsTableViewModel *contentModel;
 
@@ -73,11 +70,10 @@
     self.theTableView.delegate = self.contentModel;
     self.theTableView.dataSource = self.contentModel;
     [self.contentModel setTheTableView:self.theTableView];
-    self.allEvents = [NSMutableArray new];
     
     if (!self.theCity) {
         self.theCity = [[EventManager sharedManager] currentCity];
-        [self getAllEventsInCity];
+        [self updatePageViews];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
@@ -115,19 +111,6 @@
 }
 
 #pragma mark - updating data and UI
--(void)getAllEventsInCity
-{
-    if (self.theCity) {
-        NSMutableArray *venues = [self.theCity venueOrganizations];
-        for (Venue *thisVenue in venues) {
-            //change to get events on day
-            [self.allEvents addObjectsFromArray:[thisVenue events]];
-        }
-    }
-    [self updatePageViews];
-    [self.theTableView reloadData];
-}
-
 -(void) updatePageViews
 {
     self.titleLabel.text = [self.theCity cityName];

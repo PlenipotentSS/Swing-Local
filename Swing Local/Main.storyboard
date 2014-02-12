@@ -73,12 +73,13 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="cdQ-W4-Zm4" customClass="EventsTableView">
                                         <rect key="frame" x="0.0" y="78" width="320" height="392"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="pbE-4c-DFf"/>
                                             <constraint firstAttribute="height" priority="200" constant="392" id="xjd-cW-VvZ"/>
                                         </constraints>
                                         <color key="separatorColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="0.20000000000000001" colorSpace="deviceRGB"/>
+                                        <color key="sectionIndexTrackingBackgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                         <view key="tableHeaderView" alpha="0.0" contentMode="scaleToFill" id="Jho-dp-5AI" userLabel="Content Header">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -271,7 +272,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="X0i-f3-Qdp" firstAttribute="leading" secondItem="jlR-Hd-sxy" secondAttribute="leading" id="EPS-nw-S8S"/>
                             <constraint firstAttribute="trailing" secondItem="L9A-ZG-rsx" secondAttribute="trailing" id="ZQz-LW-d5N"/>
@@ -498,12 +499,13 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="ivQ-DS-iCe" customClass="EventsTableView">
                                 <rect key="frame" x="0.0" y="78" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="CFP-cM-oDL"/>
                                     <constraint firstAttribute="height" priority="200" constant="490" id="pR9-NP-Xjx"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="0.20000000000000001" colorSpace="deviceRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Aah-18-lWR" userLabel="Content Header">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -517,6 +519,9 @@
                                                 <segment title="Date Range"/>
                                             </segments>
                                             <color key="tintColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
+                                            <connections>
+                                                <action selector="dateControlChanged:" destination="ISb-kW-CLt" eventType="valueChanged" id="FOk-bm-Bft"/>
+                                            </connections>
                                         </segmentedControl>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-nl-ilK">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
@@ -623,8 +628,10 @@
                     <navigationItem key="navigationItem" id="esO-Pj-HwL"/>
                     <connections>
                         <outlet property="dateSelectRangeControl" destination="yFM-kF-Q6X" id="R6i-xP-JDz"/>
+                        <outlet property="mapView" destination="tMv-nl-ilK" id="VDS-eq-hHo"/>
                         <outlet property="menu_burger" destination="zRc-cj-Fcg" id="peh-5u-l3z"/>
                         <outlet property="theTableView" destination="ivQ-DS-iCe" id="i6y-g3-gzp"/>
+                        <outlet property="titleLabel" destination="aTS-WX-Zc4" id="28F-cS-gYI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VLf-ck-cuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -712,11 +719,12 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-EQ-YbL" customClass="EventsTableView">
                                 <rect key="frame" x="0.0" y="78" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="Zn4-qr-fsu"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="0.20000000000000001" colorSpace="deviceRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Pd6-dF-grh" userLabel="Content Header">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1042,7 +1050,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="286" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Calendar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7x3-h1-WIs">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Saved Cities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7x3-h1-WIs">
                                                     <rect key="frame" x="60" y="0.0" width="211" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>

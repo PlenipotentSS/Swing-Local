@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Steven Stevenson. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "FrontViewController.h"
 
 @interface CalendarviewController : FrontViewController
 
-@property (weak,nonatomic) NSMutableArray *cities;
+@property (strong,nonatomic) NSArray *cities;
 
 @end

@@ -15,6 +15,8 @@
 //the current city being displayed NOTE set dates before city!
 @property (nonatomic) City *city;
 
+@property (nonatomic) NSArray *cities;
+
 //link to the table view to redraw
 @property (nonatomic) EventsTableView *theTableView;
 

@@ -22,6 +22,9 @@
 //operation queue for cell row animations
 @property (nonatomic) NSOperationQueue *cellOperationQueue;
 
+//operation queue for cell row animations
+@property (nonatomic) NSOperationQueue *headerOperationQueue;
+
 //list of all occurrence dates for each event in venues
 @property (nonatomic) NSMutableArray *datesWithEvents;
 
@@ -30,9 +33,6 @@
 
 //sorted dates that contain occurrences
 @property (nonatomic) NSMutableArray *sortedDateKeys;
-
-//sorted dates that contain occurrences
-@property (nonatomic) NSMutableArray *animatedOccs;
 
 @end
 
@@ -43,7 +43,9 @@
     self = [super init];
     if (self) {
         _cellOperationQueue = [NSOperationQueue new];
-        [_cellOperationQueue setMaxConcurrentOperationCount:1];
+        [self.cellOperationQueue setMaxConcurrentOperationCount:1];
+        _headerOperationQueue = [NSOperationQueue new];
+        [self.headerOperationQueue setMaxConcurrentOperationCount:1];
     }
     return self;
 }
@@ -66,28 +68,40 @@
 -(void) setCity:(City *)city {
     _city = city;
     
-    _animatedOccs = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _datesWithEvents = [NSMutableArray new];
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
     
-    [self.theTableView reloadData];
+    
+    [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
     [self refreshEventTableWithCity:city];
 
 
 }
 
+-(void) setCities:(NSArray *)cities {
+    _cities = cities;
+    
+    _occurrencesForDateKeys = [NSMutableDictionary new];
+    _datesWithEvents = [NSMutableArray new];
+    _sortedDateKeys = [NSMutableArray new];
+    _occurrencesForDateKeys = [NSMutableDictionary new];
+    _occurrencesOfEvents = [NSMutableArray new];
+    
+    [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
+    for (City *thisCity in cities) {
+        [self refreshEventTableWithCity:thisCity];
+    }
+}
+
 #pragma mark rebuild table view given the current city
 //called initially to load, and again when download venues completes
--(void) refreshEventTableWithCity: (City*) thisCity {
-    if (self.city.venueOrganizations) {
+-(void) refreshEventTableWithCity: (City*) thisCity {\
+    if (thisCity.venueOrganizations) {
         [[GoogleCalendarManager sharedManager] setDelegate:self];
-        [self.cellOperationQueue addOperationWithBlock:^{
-            usleep(500000);
-        }];
-        [self loadEventsForVenues];
+        [self loadEventsForVenuesInCity:thisCity];
     } else {
         [[EventManager sharedManager] setCityDelegate:self];
         [[EventManager sharedManager] downloadVenuesAndEventsInCity:thisCity];
@@ -97,9 +111,8 @@
 
 #pragma mark get events for all events in venue
 //send events for each venue to see if there is an event today
--(void) loadEventsForVenues {
-    [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
-    for (Venue *thisVenue in self.city.venueOrganizations) {
+-(void) loadEventsForVenuesInCity:(City*)thisCity {
+    for (Venue *thisVenue in thisCity.venueOrganizations) {
         //change to get get events for this day in venue
         [self eventsTodayForVenue:thisVenue];
     }
@@ -109,7 +122,6 @@
 //send to google manager for json data
 -(void) eventsTodayForVenue:(Venue*) thisVenue {
     for (Event *thisEvent in thisVenue.events) {
-        
         NSString *calendarURLString = thisEvent.calendar_id;
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
@@ -125,7 +137,7 @@
 #pragma mark build table view with downloaded google occurrences
 //receive from google manager: an array of events today
 -(void) updateVenueForEvent:(Event*) thisEvent {
-    
+    NSInteger numOfOccBefore = [self.occurrencesForDateKeys count];
     //give delay for cell animations
     for (Occurrence *occ in thisEvent.occurrences) {
         [self.occurrencesOfEvents addObject:occ];
@@ -154,10 +166,15 @@
         if (![self.sortedDateKeys containsObject:startDate]) {
             [self.sortedDateKeys addObject:startDate];
         }
-    }[self sortDateKeys];
+    }
+    [self sortDateKeys];
     
-    [self.theTableView reloadData];
-    [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    
+    NSInteger numOfOccAfter = [self.occurrencesForDateKeys count];
+    if (numOfOccAfter > numOfOccBefore) {
+        [self.theTableView reloadData];
+        [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    }
 }
 
 -(void) sortDateKeys {
@@ -179,8 +196,15 @@
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
         
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
-        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor offWhiteScheme];
+        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
         tableViewHeaderFooterView.textLabel.textColor = [UIColor burntScheme];
+        
+        //if device can handle animations!
+        [self animateHeaderView:tableViewHeaderFooterView];
+        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
+        //else
+        //tableViewHeaderFooterView.contentView.backgroundColor = [UIColor offwhiteScheme];
+        //end
     }
 }
 
@@ -239,7 +263,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
         [cell.contentView setAlpha:0.f];
-        [self animateNoEventCell:cell AtIndex:indexPath];
+        [self animateNoEventCell:cell];
         return cell;        
     }
     NSString *cellIdentifier = @"eventCell";
@@ -266,18 +290,19 @@
     cell.detailTextLabel.text = subtitle;
     cell.detailTextLabel.textColor = [UIColor offWhiteScheme];
     
-    if (![self.animatedOccs containsObject:thisOcc]) {
-        [cell.contentView setAlpha:0.f];
-        [self.animatedOccs addObject:thisOcc];
-        [self animateCell:cell AtIndex:indexPath];
-    }
+    //if device can handle animations!
+    [cell.contentView setAlpha:0.f];
+    [self animateCell:cell];
+    //end
+    
     return cell;
 }
 
 #pragma mark - animation for cells
--(void) animateCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
+-(void) animateCell: (UITableViewCell*) cell
+{
         CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-        [_cellOperationQueue addOperationWithBlock:^{
+        [self.cellOperationQueue addOperationWithBlock:^{
             usleep(25000);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [UIView animateWithDuration:.4f animations:^{
@@ -289,10 +314,10 @@
 
 }
 
-#pragma mark - animation for cells
--(void) animateNoEventCell: (UITableViewCell*) cell AtIndex: (NSIndexPath*) indexPath {
+-(void) animateNoEventCell: (UITableViewCell*) cell
+{
     CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-    [_cellOperationQueue addOperationWithBlock:^{
+    [self.cellOperationQueue addOperationWithBlock:^{
         usleep(50000);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:.4f animations:^{
@@ -302,6 +327,18 @@
         }];
     }];
     
+}
+
+-(void) animateHeaderView: (UITableViewHeaderFooterView*) view
+{
+    [self.cellOperationQueue addOperationWithBlock:^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            usleep(25000);
+            [UIView animateWithDuration:.4f animations:^{
+                [[view contentView] setBackgroundColor:[UIColor offWhiteScheme]];
+            }];
+        }];
+    }];
 }
 
 @end

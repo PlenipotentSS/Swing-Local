@@ -12,6 +12,7 @@
 
 @interface GoogleCalendarManager() <NSURLSessionDelegate>
 
+@property (nonatomic) NSInteger APIcallCount;
 @property (nonatomic) NSURLSession *urlSession;
 @property (nonatomic) NSOperationQueue *googleDownloadQueue;
 @property (nonatomic) NSURLSessionDataTask *eventsTasks;
@@ -42,7 +43,7 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 #pragma mark - Setup methods
 -(void) setup {
     _googleDownloadQueue = [NSOperationQueue new];
-    
+    self.APIcallCount = 0;
     if( NSClassFromString(@"NSURLSession") != nil) {
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
@@ -88,7 +89,8 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 }
 
 -(void) getOccurrencesWithGoogleCalendarID: (NSString*) googleCalID forEvent:(Event *)theEvent andForDateRange: (NSArray*) dates {
-    
+    self.APIcallCount++;
+    NSLog(@"%i",(int)self.APIcallCount);
     if( NSClassFromString(@"NSURLSession") != nil) {
         NSURL *googleCalURL = [self getGoogleCalURLFromID:googleCalID];
         self.eventsTasks = [self.urlSession  dataTaskWithURL:googleCalURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
