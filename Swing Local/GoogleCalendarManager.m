@@ -102,13 +102,12 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                     
                     //return all Events in the given date range for venue
                     NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
-                    
-                    for (Occurrence *occ in filteredMutableArray) {
-                        occ.eventForOccurrence = theEvent;
-                    }
-                    theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
-                    
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        
+                        for (Occurrence *occ in filteredMutableArray) {
+                            occ.eventForOccurrence = theEvent;
+                        }
+                        theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
                         [self.delegate updateVenueForEvent:theEvent];
                     }];
                     
@@ -136,13 +135,13 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                     
                     //return all Events in the given date range for venue
                     NSMutableArray *filteredMutableArray = [self filterOccurrencesFromAllOccurrences:allOccurrences forDates:dates];
-                    
-                    for (Occurrence *occ in filteredMutableArray) {
-                        occ.eventForOccurrence = theEvent;
-                    }
-                    theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
-                    
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        
+                        for (Occurrence *occ in filteredMutableArray) {
+                            occ.eventForOccurrence = theEvent;
+                        }
+                        theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
+                        
                         [self.delegate updateVenueForEvent:theEvent];
                     }];
                     

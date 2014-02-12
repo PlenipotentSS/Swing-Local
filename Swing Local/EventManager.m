@@ -96,12 +96,12 @@
                     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cityName" ascending:YES];
                     NSArray *sortDescriptors = @[nameDescriptor];
                     NSArray *sortedCities = [citiesUnsorted sortedArrayUsingDescriptors:sortDescriptors];
-                    if ([self.savedCities count] > 0) {
-                        [self updateDataWithNewCityArray:sortedCities];
-                    }
-                    self.allCities = sortedCities;
                     
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        if ([self.savedCities count] > 0) {
+                            [self updateDataWithNewCityArray:sortedCities];
+                        }
+                        self.allCities = sortedCities;
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
                     }];
                 } else {
@@ -129,12 +129,12 @@
                     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cityName" ascending:YES];
                     NSArray *sortDescriptors = @[nameDescriptor];
                     NSArray *sortedCities = [citiesUnsorted sortedArrayUsingDescriptors:sortDescriptors];
-                    if ([self.savedCities count] > 0) {
-                        [self updateDataWithNewCityArray:sortedCities];
-                    }
-                    self.allCities = sortedCities;
                     
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        if ([self.savedCities count] > 0) {
+                            [self updateDataWithNewCityArray:sortedCities];
+                        }
+                        self.allCities = sortedCities;
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"AllCitiesUpdated" object:nil];
                     }];
                 } else {
@@ -185,11 +185,11 @@
                 if (!err) {
                     NSArray *venuesForCity = [cityDictionary objectForKey:@"venues"];
                     city.venueOrganizations = [Venue convertDataToVenueModel:venuesForCity];
-                    if ([_savedCities count] ==0) {
-                        [_savedCities addObject:city];
-                        [self persistAndNotifySavedCities];
-                    }
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        if ([_savedCities count] ==0) {
+                            [_savedCities addObject:city];
+                            [self persistAndNotifySavedCities];
+                        }
                         [self.cityDelegate refreshEventTableWithCity:city];
                     }];
                 } else {

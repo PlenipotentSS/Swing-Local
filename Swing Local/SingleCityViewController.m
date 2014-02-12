@@ -104,6 +104,10 @@
     _detailView = [ detailNib objectAtIndex: 0];
 }
 
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
