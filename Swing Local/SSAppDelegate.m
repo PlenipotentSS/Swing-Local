@@ -11,6 +11,7 @@
 #import "RootViewController.h"
 #import "EventManager.h"
 #import "GoogleCalendarManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation SSAppDelegate
 
@@ -22,6 +23,7 @@
     UVConfig *config = [UVConfig configWithSite:@"swinglocal.uservoice.com"];
     config.forumId = 239827;
     [UserVoice initialize:config];
+    [Crashlytics startWithAPIKey:@"7bb362af92e487f1f93c82a87e0beacc5172ff1f"];
     
     application.applicationIconBadgeNumber = 0;
 //    
@@ -61,7 +63,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
     [[EventManager sharedManager] downloadCities];
     [self.localNotificationManager resetNotification];
     [self.localNotificationManager scheduleNotification];

@@ -9,8 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "City.h"
 #import "EventsTableView.h"
+#import "Occurrence.h"
+
+@protocol EventsTableViewModelDelegate <NSObject>
+
+-(void) updateMapPinForOccurrence:(Occurrence*) thisOccurrence;
+-(void) doneSearching;
+@end
 
 @interface EventsTableViewModel : NSObject <UITableViewDataSource,UITableViewDelegate>
+
+//delegate for updating occurrence to view
+@property (unsafe_unretained) id<EventsTableViewModelDelegate> delegate;
 
 //the current city being displayed NOTE set dates before city!
 @property (nonatomic) City *city;

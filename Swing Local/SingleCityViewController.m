@@ -17,8 +17,9 @@
 #import "NSDate+SwingLocal.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "OccAnnotation.h"
 
-@interface SingleCityViewController () <DateRangeSelectorDelegate>
+@interface SingleCityViewController () <DateRangeSelectorDelegate, EventsTableViewModelDelegate>
 
 
 //content ScrollView
@@ -45,7 +46,11 @@
 //detail view
 @property (nonatomic) DetailView *detailView;
 
-@property (nonatomic) NSOperationQueue *miscQueue;
+//addresses pinned on map
+@property (nonatomic) NSMutableArray *pinnedAddresses;
+
+//refresh control
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
 
 @end
 
@@ -64,12 +69,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _miscQueue = [NSOperationQueue new];
     
     self.contentModel = [[EventsTableViewModel alloc] init];
     self.theTableView.delegate = self.contentModel;
     self.theTableView.dataSource = self.contentModel;
     [self.contentModel setTheTableView:self.theTableView];
+    [self.contentModel setDelegate:self];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor offWhiteScheme];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self.theTableView addSubview:self.refreshControl];
     
     if (!self.theCity) {
         self.theCity = [[EventManager sharedManager] currentCity];
@@ -91,6 +101,7 @@
                                                     options:nil];
     _dateSelectorView = [ nibViews objectAtIndex: 0];
     _shadowBoxBackground = [nibViews objectAtIndex: 1];
+    _pinnedAddresses = [NSMutableArray new];
     [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
     [self.dateSelectorView setup];
     
@@ -110,6 +121,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Refresh Control methods
+-(void) refreshTable {
+    [self updatePageViews];
+}
+
+-(void)doneSearching {
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+}
+
 #pragma mark - updating data and UI
 -(void) updatePageViews
 {
@@ -122,11 +144,31 @@
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
             
             [self.mapView setRegion:viewRegion animated:YES];
-            self.mapView.scrollEnabled = NO;
         }
     }];
     [self.contentModel setCity:self.theCity];
 }
+
+-(void) updateMapPinForOccurrence:(Occurrence *)thisOccurrence
+{
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error) {
+            CLPlacemark *locationPlacemark = [placemarks lastObject];
+            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+            OccAnnotation *occAnnotation = [[OccAnnotation alloc] init];
+            occAnnotation.title = thisOccurrence.updatedTitle;
+            occAnnotation.coordinate = cityLocation;
+            if (![self.pinnedAddresses containsObject:thisOccurrence.address]) {
+                [self.mapView addAnnotation:occAnnotation];
+                [self.pinnedAddresses addObject:thisOccurrence.address];
+            }
+        } else {
+            NSLog(@"error: %@ at: %@",error,thisOccurrence.address);
+        }
+    }];
+}
+
 
 #pragma mark - imageviewcreator
 -(NSURL*) getImageFromCityName: (NSString*) cityName
@@ -167,6 +209,8 @@
 - (IBAction)dateControlChanged:(id)sender
 {
     
+    [self.pinnedAddresses removeAllObjects];
+    [self.mapView removeAnnotations:self.mapView.annotations];
     UISegmentedControl *control =(UISegmentedControl*)sender;
     if (control.selectedSegmentIndex == 0) {
         [self.contentModel setDatesToSearch:[NSArray new]];
@@ -210,7 +254,8 @@
 
 #pragma mark - DateRangeSelector Delegate methods
 -(void) updateTableViewWithBeginDateDate:(NSDate*) startDate toEndDate: (NSDate*) endDate {
-    [self.miscQueue addOperationWithBlock:^{
+    NSOperationQueue *dateSearchQueue = [NSOperationQueue new];
+    [dateSearchQueue addOperationWithBlock:^{
         NSMutableArray *mutableDates = [NSMutableArray new];
         
         int counter = 0;

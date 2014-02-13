@@ -46,6 +46,9 @@
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
+		D2941B2018AC245200AFFC92 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2941B1F18AC245200AFFC92 /* Crashlytics.framework */; };
+		D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */; };
+		D2941B2718AC844700AFFC92 /* OccAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2618AC844700AFFC92 /* OccAnnotation.m */; };
 		D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F98189F534C002F11DA /* UserOptions.m */; };
 		D2A07F9C189F534C002F11DA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9A189F534C002F11DA /* Event.m */; };
 		D2A07F9F189F535D002F11DA /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9E189F535D002F11DA /* Venue.m */; };
@@ -145,6 +148,11 @@
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
 		D292FD1B189E1E87000874FB /* HomePageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageManager.m; sourceTree = "<group>"; };
+		D2941B1F18AC245200AFFC92 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D2941B2118AC5C7400AFFC92 /* CityAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityAnnotation.h; sourceTree = "<group>"; };
+		D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityAnnotation.m; sourceTree = "<group>"; };
+		D2941B2518AC844700AFFC92 /* OccAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OccAnnotation.h; sourceTree = "<group>"; };
+		D2941B2618AC844700AFFC92 /* OccAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OccAnnotation.m; sourceTree = "<group>"; };
 		D2A07F97189F534C002F11DA /* UserOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOptions.h; sourceTree = "<group>"; };
 		D2A07F98189F534C002F11DA /* UserOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOptions.m; sourceTree = "<group>"; };
 		D2A07F99189F534C002F11DA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
@@ -205,6 +213,7 @@
 				D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */,
 				D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */,
 				D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */,
+				D2941B2018AC245200AFFC92 /* Crashlytics.framework in Frameworks */,
 				850EA0662F1A4443888886AC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,17 +236,20 @@
 			children = (
 				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
 				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
-				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
-				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890518A02EB100A6BD51 /* NewsViewController.h */,
 				D2E6890618A02EB100A6BD51 /* NewsViewController.m */,
+				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
+				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
 				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
 				D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */,
 				D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
-				D292FD15189DCA65000874FB /* Subclassed */,
+				D224C523189D017000923370 /* SSFrontViewController.h */,
+				D224C524189D017000923370 /* SSFrontViewController.m */,
+				D224C527189D021400923370 /* SSBackViewController.h */,
+				D224C528189D021400923370 /* SSBackViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -265,6 +277,7 @@
 		D244C2E5189CEB6100E6DB16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2941B1F18AC245200AFFC92 /* Crashlytics.framework */,
 				D2FAA5E118A819AF00D2C82D /* CoreLocation.framework */,
 				D244C2E6189CEB6100E6DB16 /* Foundation.framework */,
 				D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */,
@@ -406,17 +419,6 @@
 			path = "../../DoActionSheet/TestActionSheet/3rdSource/UIImage-ResizeMagick";
 			sourceTree = "<group>";
 		};
-		D292FD15189DCA65000874FB /* Subclassed */ = {
-			isa = PBXGroup;
-			children = (
-				D224C523189D017000923370 /* SSFrontViewController.h */,
-				D224C524189D017000923370 /* SSFrontViewController.m */,
-				D224C527189D021400923370 /* SSBackViewController.h */,
-				D224C528189D021400923370 /* SSBackViewController.m */,
-			);
-			name = Subclassed;
-			sourceTree = "<group>";
-		};
 		D292FD1D189E1E8B000874FB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +428,7 @@
 				D2A07FB5189F77C5002F11DA /* TableView Models */,
 				D292FD1E189E32DA000874FB /* Managers */,
 				D2E688FE18A0152800A6BD51 /* Segues */,
+				D2941B2418AC5D0500AFFC92 /* MapKit */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -443,6 +446,17 @@
 				D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		D2941B2418AC5D0500AFFC92 /* MapKit */ = {
+			isa = PBXGroup;
+			children = (
+				D2941B2118AC5C7400AFFC92 /* CityAnnotation.h */,
+				D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */,
+				D2941B2518AC844700AFFC92 /* OccAnnotation.h */,
+				D2941B2618AC844700AFFC92 /* OccAnnotation.m */,
+			);
+			name = MapKit;
 			sourceTree = "<group>";
 		};
 		D2A07FAE189F54EF002F11DA /* Event Models */ = {
@@ -575,6 +589,7 @@
 				D244C2E0189CEB6100E6DB16 /* Frameworks */,
 				D244C2E1189CEB6100E6DB16 /* Resources */,
 				908D07B908FE413FB1410531 /* Copy Pods Resources */,
+				D2941B1E18AC209400AFFC92 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -701,6 +716,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D2941B1E18AC209400AFFC92 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 7bb362af92e487f1f93c82a87e0beacc5172ff1f 43f9061a6d5fdd7c0d40a4c3ff64ba932797acacf63fdf8de04bb3fb3cd87a0b";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -732,11 +760,13 @@
 				D2A07FA8189F5387002F11DA /* EventsTableViewModel.m in Sources */,
 				D2C8ED7518A94D8800164C68 /* LocalNotificationManager.m in Sources */,
 				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
+				D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
 				D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
 				D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */,
+				D2941B2718AC844700AFFC92 /* OccAnnotation.m in Sources */,
 				D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */,
 				D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */,
 				D2A07FAB189F539A002F11DA /* City.m in Sources */,
@@ -872,6 +902,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
 				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";
@@ -892,6 +926,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
 				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";

@@ -15,14 +15,15 @@
 #import "SSFrontViewController.h"
 #import "SplitViewController.h"
 #import "DetailView.h"
+#import "OccAnnotation.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate>
 
 //city map view
 @property (nonatomic) IBOutlet MKMapView *mapView;
 
 //content ScrollView
-@property (weak,nonatomic) IBOutlet EventsTableView *contentTableView;
+@property (weak,nonatomic) IBOutlet EventsTableView *theTableView;
 
 //flag for ongoing animation
 @property (nonatomic) BOOL __block cityIsAnimating;
@@ -62,6 +63,9 @@
 //detail view
 @property (nonatomic) DetailView *detailView;
 
+//refresh control
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation HomeViewController
@@ -93,6 +97,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadCities) name:@"AllCitiesUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor offWhiteScheme];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self.theTableView addSubview:self.refreshControl];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -132,14 +141,15 @@
 
 -(void) setupContentTable
 {
-    _contentTableView.contentSize = CGSizeMake(320.f, 1000.f);
-    _contentTableView.userInteractionEnabled = YES;
-    _contentTableView.scrollEnabled = YES;
+    _theTableView.contentSize = CGSizeMake(320.f, 1000.f);
+    _theTableView.userInteractionEnabled = YES;
+    _theTableView.scrollEnabled = YES;
     
     _contentModel = [[EventsTableViewModel alloc] init];
-    _contentTableView.delegate = _contentModel;
-    _contentTableView.dataSource = _contentModel;
-    [_contentModel setTheTableView:_contentTableView];
+    _theTableView.delegate = _contentModel;
+    _theTableView.dataSource = _contentModel;
+    [_contentModel setTheTableView:_theTableView];
+    [_contentModel setDelegate:self];
 }
 
 -(void) setupButtons
@@ -165,6 +175,18 @@
     
     pan.delegate = self;
     [self.footerView addGestureRecognizer:pan];
+}
+
+
+#pragma mark Refresh Control methods
+-(void) refreshTable {
+    [self loadInitialCity];
+}
+
+-(void)doneSearching {
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
 }
 
 #pragma mark - City management
@@ -282,7 +304,8 @@
 //}
 
 #pragma mark - update home with event
--(void) updateViewWithCityIndex:(NSInteger) index {
+-(void) updateViewWithCityIndex:(NSInteger) index
+{
     if (index >= 0 && index < [_cityKeys count]) {
         if (!self.citySelected) {
             self.citySelected = YES;
@@ -298,7 +321,8 @@
     }
 }
 
--(void) updateViewWithCity:(City*) thisCity {
+-(void) updateViewWithCity:(City*) thisCity
+{
     [self hideInitialView];
     self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
@@ -311,24 +335,39 @@
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
             
             [self.mapView setRegion:viewRegion animated:YES];
-            self.mapView.scrollEnabled = NO;
         }
     }];
     [_contentModel setCity:thisCity];
 }
 
-#pragma mark - image url configurations
--(NSURL*) getImageFromCityName: (NSString*) cityName {
-    cityName = [cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
-    return [NSURL URLWithString:strURL];
+-(void) updateMapPinForOccurrence:(Occurrence *)thisOccurrence
+{
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error) {
+            CLPlacemark *locationPlacemark = [placemarks lastObject];
+            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+            OccAnnotation *occAnnotation = [[OccAnnotation alloc] init];
+            occAnnotation.title = thisOccurrence.updatedTitle;
+            occAnnotation.coordinate = cityLocation;
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
--(NSURL*) getImageFromCity: (City*) theCity {
-    NSString *cityName = [theCity.cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
-    return [NSURL URLWithString:strURL];
-}
+//#pragma mark - image url configurations
+//-(NSURL*) getImageFromCityName: (NSString*) cityName {
+//    cityName = [cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
+//    return [NSURL URLWithString:strURL];
+//}
+//
+//-(NSURL*) getImageFromCity: (City*) theCity {
+//    NSString *cityName = [theCity.cityName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//    NSString *strURL = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@&zoom=10&size=460x230&maptype=roadmap&sensor=false",cityName];
+//    return [NSURL URLWithString:strURL];
+//}
 
 #pragma mark - outlets
 - (void)showInitialView
@@ -351,14 +390,16 @@
 }
 
 
--(void) presentMoreEvents {
+-(void) presentMoreEvents
+{
     
     [[EventManager sharedManager] setCurrentCity:self.currentCity];
     [self.rootSegueController performSegueWithIdentifier:@"showSingleCity" sender:self];
 }
 
 #pragma mark - animations for selectCity button
--(void) showCitySelector {
+-(void) showCitySelector
+{
     self.homeView.citySelectButton.hidden = NO;
     __block CGRect changeCityNewFrame = self.homeView.citySelectButton.frame;
     changeCityNewFrame.origin.y = CGRectGetHeight(self.homeView.citySelectButton.superview.frame);

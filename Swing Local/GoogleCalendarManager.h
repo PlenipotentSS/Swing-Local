@@ -16,6 +16,8 @@
 
 -(void) updateEventsInVenuesWithDateRange:(NSArray*) todaysEvents;
 
+-(void) doneDownloadingOccurrences;
+
 @end
 
 @interface GoogleCalendarManager : NSObject

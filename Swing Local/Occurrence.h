@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 
-@interface Occurrence : NSObject
+@interface Occurrence : NSObject <NSCoding>
 
 //start time of this event occurrence
 @property (nonatomic) NSDate *startTime;

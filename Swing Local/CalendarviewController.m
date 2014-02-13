@@ -17,8 +17,10 @@
 #import "NSDate+SwingLocal.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "OccAnnotation.h"
 
-@interface CalendarviewController () <DateRangeSelectorDelegate>
+
+@interface CalendarviewController () <DateRangeSelectorDelegate, EventsTableViewModelDelegate>
 
 //table view of events
 @property (weak, nonatomic) IBOutlet EventsTableView *theTableView;
@@ -46,6 +48,12 @@
 
 @property (nonatomic) NSOperationQueue *miscQueue;
 
+//pinned address on map
+@property (nonatomic) NSMutableArray *pinnedAddresses;
+
+//refresh control
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation CalendarviewController
@@ -69,6 +77,12 @@
     self.theTableView.delegate = self.contentModel;
     self.theTableView.dataSource = self.contentModel;
     [self.contentModel setTheTableView:self.theTableView];
+    [self.contentModel setDelegate:self];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor offWhiteScheme];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self.theTableView addSubview:self.refreshControl];
     
     if (!self.cities) {
         self.cities = [NSArray arrayWithArray:[[EventManager sharedManager] savedCities]];
@@ -91,6 +105,7 @@
                                                     options:nil];
     _dateSelectorView = [ nibViews objectAtIndex: 0];
     _shadowBoxBackground = [nibViews objectAtIndex: 1];
+    self.pinnedAddresses = [NSMutableArray new];
     [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
     [self.dateSelectorView setup];
     
@@ -111,24 +126,69 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark Refresh Control methods
+-(void) refreshTable {
+    [self updatePageViews];
+}
+
+-(void)doneSearching {
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+}
+
 #pragma mark - updating data and UI
 
 -(void) updatePageViews
 {
     self.titleLabel.text = @"Your Saved Cities";
-//    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-//    [geoCoder geocodeAddressString:self.theCity.cityName completionHandler:^(NSArray *placemarks, NSError *error) {
-//        if (!error) {
-//            CLPlacemark *locationPlacemark = [placemarks lastObject];
-//            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
-//            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(cityLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-//            
-//            [self.mapView setRegion:viewRegion animated:YES];
-//            self.mapView.scrollEnabled = NO;
-//        }
-//    }];
     
+//    NSMutableArray *mapPins = [NSMutableArray new];
+//    
+//    __block NSInteger counter = 1;
+//    for (City *thisCity in self.cities) {
+//        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+//        [geoCoder geocodeAddressString:thisCity.cityName completionHandler:^(NSArray *placemarks, NSError *error) {
+//            if (!error) {
+//                CLPlacemark *locationPlacemark = [placemarks lastObject];
+//                CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+//                CityAnnotation *cityAnnotation = [[CityAnnotation alloc] init] ;
+//                cityAnnotation.title = thisCity.cityName;
+//                cityAnnotation.coordinate = cityLocation;
+//                [mapPins addObject:cityAnnotation];
+//                
+//                if (counter == [self.cities count] ) {
+//                    [self.mapView addAnnotations:mapPins];
+//                    [self.mapView showAnnotations:mapPins animated:YES];
+//                }
+//                counter++;
+//            }
+//        }];
+//    }
+//    
     [self.contentModel setCities:self.cities];
+}
+
+-(void) updateMapPinForOccurrence:(Occurrence *)thisOccurrence
+{
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (!error) {
+            CLPlacemark *locationPlacemark = [placemarks lastObject];
+            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+            OccAnnotation *occAnnotation = [[OccAnnotation alloc] init];
+            occAnnotation.title = thisOccurrence.updatedTitle;
+            occAnnotation.coordinate = cityLocation;
+            if (![self.pinnedAddresses containsObject:thisOccurrence.address]) {
+                [self.mapView addAnnotation:occAnnotation];
+                [self.pinnedAddresses addObject:thisOccurrence.address];
+                [self.mapView showAnnotations:self.mapView.annotations animated:NO];
+            }
+        } else {
+            NSLog(@"error: %@ at: %@",error,thisOccurrence.address);
+        }
+    }];
 }
 
 #pragma mark - present detail view controller for occurrence!
@@ -149,7 +209,8 @@
 #pragma mark - action to change date
 - (IBAction)dateControlChanged:(id)sender
 {
-    
+    [self.pinnedAddresses removeAllObjects];
+    [self.mapView removeAnnotations:self.mapView.annotations];
     UISegmentedControl *control =(UISegmentedControl*)sender;
     if (control.selectedSegmentIndex == 0) {
         [self.contentModel setDatesToSearch:[NSArray new]];

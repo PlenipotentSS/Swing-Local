@@ -10,6 +10,33 @@
 
 @implementation Occurrence
 
+#pragma mark NSCoding
+-(id)initWithCoder:(NSCoder *)aDecoder  {
+    _startTime = [aDecoder decodeObjectForKey:@"startTime"];
+    _endTime = [aDecoder decodeObjectForKey:@"endTime"];
+    _cost = [aDecoder decodeObjectForKey:@"cost"];
+    _updatedCost = [aDecoder decodeObjectForKey:@"updatedCost"];
+    _updatedTitle = [aDecoder decodeObjectForKey:@"updatedTitle"];
+    _music = [aDecoder decodeObjectForKey:@"music"];
+    _address = [aDecoder decodeObjectForKey:@"address"];
+    _updatedInfoText = [aDecoder decodeObjectForKey:@"updatedTitle"];
+    _eventForOccurrence = [aDecoder decodeObjectForKey:@"event"];
+    
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.startTime forKey:@"startTime"];
+    [aCoder encodeObject:self.endTime forKey:@"endTime"];
+    [aCoder encodeObject:self.cost forKey:@"cost"];
+    [aCoder encodeObject:self.updatedCost forKey:@"updatedCost"];
+    [aCoder encodeObject:self.updatedTitle forKey:@"updatedTitle"];
+    [aCoder encodeObject:self.music forKey:@"music"];
+    [aCoder encodeObject:self.address forKey:@"address"];
+    [aCoder encodeObject:self.updatedInfoText forKey:@"updatedInfoText"];
+    [aCoder encodeObject:self.eventForOccurrence forKey:@"eventForOccurrence"];
+}
+
 
 #pragma mark - Conversion methods
 //occurrence data is at the json level: entry

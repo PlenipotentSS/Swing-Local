@@ -12,7 +12,6 @@
 #import "Venue.h"
 #import "Event.h"
 #import "GoogleCalendarManager.h"
-#import "Occurrence.h"
 
 @interface EventsTableViewModel() <EventManagerCityDelegate, GoogleCalendarManagerDelegate>
 
@@ -33,6 +32,11 @@
 
 //sorted dates that contain occurrences
 @property (nonatomic) NSMutableArray *sortedDateKeys;
+
+//current download count
+@property (nonatomic) NSInteger eventDownloadCount;
+
+@property (nonatomic) BOOL occurrencesFound;
 
 @end
 
@@ -60,10 +64,6 @@
     }
 }
 
--(void) changeHeaderHeightWithNoImage {
-    
-}
-
 #pragma mark - add City and updata Data methods
 -(void) setCity:(City *)city {
     _city = city;
@@ -73,7 +73,7 @@
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
-    
+    self.occurrencesFound = YES;
     
     [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
     [self refreshEventTableWithCity:city];
@@ -89,6 +89,7 @@
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
+    self.occurrencesFound = YES;
     
     [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
     for (City *thisCity in cities) {
@@ -125,6 +126,7 @@
         NSString *calendarURLString = thisEvent.calendar_id;
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
+            self.eventDownloadCount++;
             if (self.datesToSearch && [self.datesToSearch count] > 0) {
                 [[GoogleCalendarManager sharedManager] getOccurrencesWithGoogleCalendarID:calendarURLString forEvent:thisEvent andForDateRange:self.datesToSearch];
             } else {
@@ -137,7 +139,6 @@
 #pragma mark build table view with downloaded google occurrences
 //receive from google manager: an array of events today
 -(void) updateVenueForEvent:(Event*) thisEvent {
-    NSInteger numOfOccBefore = [self.occurrencesForDateKeys count];
     //give delay for cell animations
     for (Occurrence *occ in thisEvent.occurrences) {
         [self.occurrencesOfEvents addObject:occ];
@@ -165,15 +166,22 @@
         [self.occurrencesForDateKeys setValue:thisDateArray forKey:[NSString stringWithFormat:@"%@",startDate]];
         if (![self.sortedDateKeys containsObject:startDate]) {
             [self.sortedDateKeys addObject:startDate];
+            [self.delegate updateMapPinForOccurrence:thisOcc];
         }
     }
     [self sortDateKeys];
-    
-    
-    NSInteger numOfOccAfter = [self.occurrencesForDateKeys count];
-    if (numOfOccAfter > numOfOccBefore) {
+}
+
+-(void) doneDownloadingOccurrences
+{
+    self.eventDownloadCount--;
+    if (self.eventDownloadCount == 0) {
+        if ([self.sortedDateKeys count] == 0) {
+            self.occurrencesFound = NO;
+        }
         [self.theTableView reloadData];
         [self.theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self.delegate doneSearching];
     }
 }
 
@@ -191,23 +199,6 @@
 
 
 #pragma mark - UITableViewDataSource and Delegate methods
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
-        
-        UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
-        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
-        tableViewHeaderFooterView.textLabel.textColor = [UIColor burntScheme];
-        
-        //if device can handle animations!
-        [self animateHeaderView:tableViewHeaderFooterView];
-        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
-        //else
-        //tableViewHeaderFooterView.contentView.backgroundColor = [UIColor offwhiteScheme];
-        //end
-    }
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
     [_theTableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -226,7 +217,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.sortedDateKeys && [self.sortedDateKeys count] > 0) {
         return [self.sortedDateKeys count];
-    } else if (self.city) {
+    } else if (!self.occurrencesFound) {
         return 1;
     } else {
         return 0;
@@ -263,7 +254,6 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         
         [cell.contentView setAlpha:0.f];
-        [self animateNoEventCell:cell];
         return cell;        
     }
     NSString *cellIdentifier = @"eventCell";
@@ -292,41 +282,55 @@
     
     //if device can handle animations!
     [cell.contentView setAlpha:0.f];
-    [self animateCell:cell];
     //end
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self animateCell:cell];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        
+        UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
+        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
+        tableViewHeaderFooterView.textLabel.textColor = [UIColor burntScheme];
+        
+        //if device can handle animations!
+        [self animateHeaderView:tableViewHeaderFooterView];
+        tableViewHeaderFooterView.contentView.backgroundColor = [UIColor burntScheme];
+        //else
+        //tableViewHeaderFooterView.contentView.backgroundColor = [UIColor offwhiteScheme];
+        //end
+    }
+}
+
 #pragma mark - animation for cells
 -(void) animateCell: (UITableViewCell*) cell
 {
-        CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
-        [self.cellOperationQueue addOperationWithBlock:^{
-            usleep(25000);
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [UIView animateWithDuration:.4f animations:^{
-                    [cell.contentView setAlpha:1.f];
-                    cell.contentView.transform = CGAffineTransformScale(transform,.8f,.8f);
-                }];
-            }];
-        }];
-
-}
-
--(void) animateNoEventCell: (UITableViewCell*) cell
-{
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.25f, 1.25f);
     [self.cellOperationQueue addOperationWithBlock:^{
-        usleep(50000);
+        usleep(25000);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [UIView animateWithDuration:.4f animations:^{
                 [cell.contentView setAlpha:1.f];
-                cell.contentView.transform = CGAffineTransformScale(transform,.8f,.8f);
             }];
         }];
     }];
-    
+    CATransform3D transform3d = CATransform3DMakeScale(1.15, 1.15, 1.15);
+    cell.layer.transform = transform3d;
+    [self.cellOperationQueue addOperationWithBlock:^{
+        usleep(40000);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [UIView animateWithDuration:.4f animations:^{
+                cell.layer.transform = CATransform3DIdentity;
+            }];
+        }];
+    }];
+
 }
 
 -(void) animateHeaderView: (UITableViewHeaderFooterView*) view

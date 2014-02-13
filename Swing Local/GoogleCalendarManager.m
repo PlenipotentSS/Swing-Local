@@ -111,6 +111,7 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                         }
                         theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
                         [self.delegate updateVenueForEvent:theEvent];
+                        [self.delegate doneDownloadingOccurrences];
                     }];
                     
                 } else {

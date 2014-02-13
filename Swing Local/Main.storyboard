@@ -292,13 +292,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="xqP-j4-EXg"/>
                     <connections>
-                        <outlet property="contentTableView" destination="cdQ-W4-Zm4" id="MUk-1T-Du1"/>
                         <outlet property="footerView" destination="nzi-Lr-RCH" id="ofY-Kt-vwK"/>
                         <outlet property="initialHomeView" destination="8vI-bO-KlQ" id="Yv7-FT-Lw8"/>
                         <outlet property="mapView" destination="SJe-1J-gdQ" id="ASM-RL-eqH"/>
                         <outlet property="menu_burger" destination="fFq-FI-b7o" id="JD1-gQ-6Tj"/>
                         <outlet property="moreEvents" destination="8ej-vv-1kV" id="8ic-K2-WvY"/>
                         <outlet property="moreEventsWrapper" destination="GH7-Hf-bA6" id="7LM-DQ-hPT"/>
+                        <outlet property="theTableView" destination="cdQ-W4-Zm4" id="mi8-wE-R5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sQ-gz-QcZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
