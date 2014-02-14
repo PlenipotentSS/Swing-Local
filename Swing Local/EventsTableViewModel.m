@@ -36,6 +36,9 @@
 //current download count
 @property (nonatomic) NSInteger eventDownloadCount;
 
+//current download count
+@property (nonatomic) NSInteger totalEventCount;
+
 @property (nonatomic) BOOL occurrencesFound;
 
 @end
@@ -73,6 +76,8 @@
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
+    self.totalEventCount = 0;
+    self.eventDownloadCount = 0;
     self.occurrencesFound = YES;
     
     [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
@@ -89,6 +94,8 @@
     _sortedDateKeys = [NSMutableArray new];
     _occurrencesForDateKeys = [NSMutableDictionary new];
     _occurrencesOfEvents = [NSMutableArray new];
+    self.totalEventCount = 0;
+    self.eventDownloadCount = 0;
     self.occurrencesFound = YES;
     
     [[GoogleCalendarManager sharedManager] cancelAllDownloadJobs];
@@ -127,6 +134,7 @@
         
         if (![calendarURLString isKindOfClass:[NSNull class]] && calendarURLString && ![calendarURLString isEqualToString:@""]) {
             self.eventDownloadCount++;
+            self.totalEventCount++;
             if (self.datesToSearch && [self.datesToSearch count] > 0) {
                 [[GoogleCalendarManager sharedManager] getOccurrencesWithGoogleCalendarID:calendarURLString forEvent:thisEvent andForDateRange:self.datesToSearch];
             } else {
@@ -166,8 +174,8 @@
         [self.occurrencesForDateKeys setValue:thisDateArray forKey:[NSString stringWithFormat:@"%@",startDate]];
         if (![self.sortedDateKeys containsObject:startDate]) {
             [self.sortedDateKeys addObject:startDate];
-            [self.delegate updateMapPinForOccurrence:thisOcc];
         }
+        [self.delegate updateMapPinForOccurrence:thisOcc];
     }
     [self sortDateKeys];
 }
@@ -175,6 +183,8 @@
 -(void) doneDownloadingOccurrences
 {
     self.eventDownloadCount--;
+    CGFloat progress = ((float)self.totalEventCount-(float)self.eventDownloadCount)/(float)self.totalEventCount;
+    [self.delegate updateProgress:progress];
     if (self.eventDownloadCount == 0) {
         if ([self.sortedDateKeys count] == 0) {
             self.occurrencesFound = NO;

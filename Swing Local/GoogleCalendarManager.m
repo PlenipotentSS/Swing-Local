@@ -10,7 +10,7 @@
 #import "Occurrence.h"
 #import "NSDate+SwingLocal.h"
 
-@interface GoogleCalendarManager() <NSURLSessionDelegate>
+@interface GoogleCalendarManager() <NSURLSessionDelegate, NSURLSessionDataDelegate>
 
 @property (nonatomic) NSInteger APIcallCount;
 @property (nonatomic) NSURLSession *urlSession;
@@ -45,11 +45,13 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
     _googleDownloadQueue = [NSOperationQueue new];
     self.APIcallCount = 0;
     if( NSClassFromString(@"NSURLSession") != nil) {
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
-    sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
-    
-    _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+            
+        [sessionConfig setRequestCachePolicy:NSURLCacheStorageAllowed];
+        [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
+        sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+        
+        _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
     } else {
         //NSLog(@"setuping up google calendars for iOS 6");
     }
@@ -144,8 +146,8 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
                             occ.eventForOccurrence = theEvent;
                         }
                         theEvent.occurrences = [NSArray arrayWithArray:filteredMutableArray];
-                        
                         [self.delegate updateVenueForEvent:theEvent];
+                        [self.delegate doneDownloadingOccurrences];
                     }];
                     
                 } else {
@@ -154,6 +156,15 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
             }
         }];
     }
+}
+
+-(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask willCacheResponse:(NSCachedURLResponse *)proposedResponse completionHandler:(void (^)(NSCachedURLResponse *))completionHandler
+{
+    NSLog(@"session: %@",session);
+    NSLog(@"datatask: %@",dataTask);
+    NSLog(@"willcacheresponse: %@",proposedResponse);
+    
+    completionHandler(proposedResponse);
 }
 
 #pragma mark - get events in time range

@@ -18,6 +18,7 @@
     [UIView transitionWithView:src.navigationController.view duration:0.2
                        options:UIViewAnimationOptionTransitionFlipFromLeft
                     animations:^{
+                        [src.navigationController popToRootViewControllerAnimated:NO];
                         [src.navigationController pushViewController:dst animated:NO];
                     }
                     completion:NULL];

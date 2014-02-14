@@ -74,7 +74,7 @@
     _searchResults = theSuggestions;
     NSMutableArray *ids = [NSMutableArray arrayWithCapacity:[theSuggestions count]];
     for (UVSuggestion *suggestion in theSuggestions) {
-        [ids addObject:[NSNumber numberWithInt:suggestion.suggestionId]];
+        [ids addObject:[NSNumber numberWithInt:(int)suggestion.suggestionId]];
     }
     [UVBabayaga track:SEARCH_IDEAS searchText:_searchController.searchBar.text ids:ids];
     [_searchController.searchResultsTableView reloadData];
@@ -160,7 +160,7 @@
     UIView *statusColor = [cell.contentView viewWithTag:STATUS_COLOR];
     title.text = suggestion.title;
     subs.text = [NSString stringWithFormat:@"%d", (int)suggestion.subscriberCount];
-    [statusColor.layer.sublayers.lastObject setBackgroundColor:suggestion.statusColor.CGColor];
+    [statusColor.layer.sublayers.lastObject setBackgroundColor:[UIColor colorWithCGColor:suggestion.statusColor.CGColor]];
     status.textColor = suggestion.statusColor;
     status.text = [suggestion.status uppercaseString];
 }

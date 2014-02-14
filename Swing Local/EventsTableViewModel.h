@@ -14,6 +14,7 @@
 @protocol EventsTableViewModelDelegate <NSObject>
 
 -(void) updateMapPinForOccurrence:(Occurrence*) thisOccurrence;
+-(void) updateProgress:(CGFloat) progress;
 -(void) doneSearching;
 @end
 

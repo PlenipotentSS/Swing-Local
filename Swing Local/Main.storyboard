@@ -40,24 +40,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8vI-bO-KlQ">
-                                        <rect key="frame" x="0.0" y="153" width="320" height="262"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_trans" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-I7-XQK">
-                                                <rect key="frame" x="60" y="21" width="200" height="186"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swing Local" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2x-x2-dIA">
-                                                <rect key="frame" x="54" y="204" width="213" height="71"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
-                                                <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-m1-tq7">
                                         <rect key="frame" x="10" y="28" width="300" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,6 +52,11 @@
                                         <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDt-Q6-mKH" customClass="M13ProgressViewStripedBar">
+                                        <rect key="frame" x="-2" y="71" width="324" height="8"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="cdQ-W4-Zm4" customClass="EventsTableView">
                                         <rect key="frame" x="0.0" y="78" width="320" height="392"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +258,24 @@
                                     <constraint firstAttribute="trailing" secondItem="fFq-FI-b7o" secondAttribute="trailing" id="ueC-lw-Yd3"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8vI-bO-KlQ">
+                                <rect key="frame" x="0.0" y="153" width="320" height="262"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_trans" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-I7-XQK">
+                                        <rect key="frame" x="60" y="21" width="200" height="186"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swing Local" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2x-x2-dIA">
+                                        <rect key="frame" x="54" y="204" width="213" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
+                                        <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.76470595600000002" green="0.27450981740000002" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -298,6 +303,7 @@
                         <outlet property="menu_burger" destination="fFq-FI-b7o" id="JD1-gQ-6Tj"/>
                         <outlet property="moreEvents" destination="8ej-vv-1kV" id="8ic-K2-WvY"/>
                         <outlet property="moreEventsWrapper" destination="GH7-Hf-bA6" id="7LM-DQ-hPT"/>
+                        <outlet property="progressView" destination="nDt-Q6-mKH" id="rfJ-M9-Uwf"/>
                         <outlet property="theTableView" destination="cdQ-W4-Zm4" id="mi8-wE-R5w"/>
                     </connections>
                 </viewController>
@@ -496,6 +502,11 @@
                                 <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KrC-bW-eIP" customClass="M13ProgressViewStripedBar">
+                                <rect key="frame" x="-2" y="71" width="324" height="8"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="ivQ-DS-iCe" customClass="EventsTableView">
                                 <rect key="frame" x="0.0" y="78" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -630,6 +641,7 @@
                         <outlet property="dateSelectRangeControl" destination="yFM-kF-Q6X" id="R6i-xP-JDz"/>
                         <outlet property="mapView" destination="tMv-nl-ilK" id="VDS-eq-hHo"/>
                         <outlet property="menu_burger" destination="zRc-cj-Fcg" id="peh-5u-l3z"/>
+                        <outlet property="progressView" destination="KrC-bW-eIP" id="Hgt-mg-2L0"/>
                         <outlet property="theTableView" destination="ivQ-DS-iCe" id="i6y-g3-gzp"/>
                         <outlet property="titleLabel" destination="aTS-WX-Zc4" id="28F-cS-gYI"/>
                     </connections>
@@ -716,6 +728,11 @@
                                 <color key="textColor" red="0.8980392814" green="0.89411771299999998" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSM-m5-Zsl" customClass="M13ProgressViewStripedBar">
+                                <rect key="frame" x="-2" y="72" width="324" height="8"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="61" sectionHeaderHeight="25" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-EQ-YbL" customClass="EventsTableView">
                                 <rect key="frame" x="0.0" y="78" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -849,6 +866,7 @@
                         <outlet property="dateSelector" destination="05e-P6-JNP" id="zig-Sa-B6H"/>
                         <outlet property="mapView" destination="Ikx-Zo-OZS" id="Gmt-KW-J2S"/>
                         <outlet property="menu_burger" destination="lyh-c5-27F" id="03d-qG-WLd"/>
+                        <outlet property="progressView" destination="aSM-m5-Zsl" id="ItW-nP-mY4"/>
                         <outlet property="theTableView" destination="tAa-EQ-YbL" id="4P1-OR-OhE"/>
                         <outlet property="titleLabel" destination="0PP-HQ-bCP" id="r6Y-kZ-BhT"/>
                     </connections>

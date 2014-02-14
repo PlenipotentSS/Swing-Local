@@ -18,9 +18,13 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "OccAnnotation.h"
-
+#import "M13ProgressViewStripedBar.h"
+#import "UIColor+SwingLocal.h"
 
 @interface CalendarviewController () <DateRangeSelectorDelegate, EventsTableViewModelDelegate>
+
+//progress view
+@property (nonatomic, retain) IBOutlet M13ProgressViewStripedBar *progressView;
 
 //table view of events
 @property (weak, nonatomic) IBOutlet EventsTableView *theTableView;
@@ -73,6 +77,10 @@
 	// Do any additional setup after loading the view.
     _miscQueue = [NSOperationQueue new];
     
+    [self resetProgress];
+    self.progressView.hidden = YES;
+    [self.progressView setSecondaryColor:[UIColor clearColor]];
+    
     self.contentModel = [[EventsTableViewModel alloc] init];
     self.theTableView.delegate = self.contentModel;
     self.theTableView.dataSource = self.contentModel;
@@ -88,16 +96,21 @@
         self.cities = [NSArray arrayWithArray:[[EventManager sharedManager] savedCities]];
         [self updatePageViews];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
-    
+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
         [[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"STHeitiSC-Medium" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     }
     
 }
 
--(void) viewDidAppear:(BOOL)animated {
+-(void) viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showControllerWithOccurrence:) name:@"ShowDetailViewController" object:nil];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
@@ -115,7 +128,8 @@
     _detailView = [ detailNib objectAtIndex: 0];
 }
 
--(void) dealloc {
+-(void) viewDidDisappear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.cities = nil;
 }
@@ -127,7 +141,7 @@
 }
 
 
-#pragma mark Refresh Control methods
+#pragma mark Refresh Control and progress methods
 -(void) refreshTable {
     [self updatePageViews];
 }
@@ -138,10 +152,37 @@
     }
 }
 
+-(void) updateProgress:(CGFloat)progress
+{
+    if (self.progressView.hidden) {
+        self.progressView.hidden = NO;
+    }
+    if (progress >= 1.f) {
+        [self.progressView setProgress:1.f animated:YES];
+        [UIView animateWithDuration:.4f delay:1.f options:kNilOptions animations:^{
+            [self.progressView setAlpha:0.f];
+        } completion:^(BOOL finished) {
+            if (self.progressView.progress == 1.f) {
+                self.progressView.hidden = YES;
+                [self.progressView setAlpha:1.f];
+            }
+        }];
+    } else if (progress > self.progressView.progress) {
+        [self.progressView setProgress:progress animated:YES];
+    }
+}
+
+-(void) resetProgress
+{
+    [self.progressView setProgress:0.05f animated:NO];
+    self.progressView.hidden = NO;
+}
+
 #pragma mark - updating data and UI
 
 -(void) updatePageViews
 {
+    [self resetProgress];
     self.titleLabel.text = @"Your Saved Cities";
     
 //    NSMutableArray *mapPins = [NSMutableArray new];
@@ -183,7 +224,9 @@
             if (![self.pinnedAddresses containsObject:thisOccurrence.address]) {
                 [self.mapView addAnnotation:occAnnotation];
                 [self.pinnedAddresses addObject:thisOccurrence.address];
-                [self.mapView showAnnotations:self.mapView.annotations animated:NO];
+                if ([MKMapView instancesRespondToSelector:@selector(showAnnotations:animated:)]) {
+                    [self.mapView showAnnotations:self.mapView.annotations animated:NO];
+                }
             }
         } else {
             NSLog(@"error: %@ at: %@",error,thisOccurrence.address);
@@ -209,6 +252,8 @@
 #pragma mark - action to change date
 - (IBAction)dateControlChanged:(id)sender
 {
+    
+    [self resetProgress];
     [self.pinnedAddresses removeAllObjects];
     [self.mapView removeAnnotations:self.mapView.annotations];
     UISegmentedControl *control =(UISegmentedControl*)sender;

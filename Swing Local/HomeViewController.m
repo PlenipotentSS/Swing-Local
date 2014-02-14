@@ -16,8 +16,13 @@
 #import "SplitViewController.h"
 #import "DetailView.h"
 #import "OccAnnotation.h"
+#import "M13ProgressViewStripedBar.h"
+#import "UIColor+SwingLocal.h"
 
 @interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate>
+
+//progress view
+@property (nonatomic, retain) IBOutlet M13ProgressViewStripedBar *progressView;
 
 //city map view
 @property (nonatomic) IBOutlet MKMapView *mapView;
@@ -89,6 +94,10 @@
     [self setupActionSheet];
     [self setupGeneral];
     [self loadCities];
+    
+    [self resetProgress];
+    self.progressView.hidden = YES;
+    [self.progressView setSecondaryColor:[UIColor clearColor]];
     
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
                                                       owner:self
@@ -178,7 +187,7 @@
 }
 
 
-#pragma mark Refresh Control methods
+#pragma mark Refresh Control and progress methods
 -(void) refreshTable {
     [self loadInitialCity];
 }
@@ -189,10 +198,33 @@
     }
 }
 
+-(void) updateProgress:(CGFloat)progress
+{
+    if (progress == 1.f) {
+        [self.progressView setProgress:1.f animated:YES];
+        [UIView animateWithDuration:.4f delay:1.f options:kNilOptions animations:^{
+            [self.progressView setAlpha:0.f];
+        } completion:^(BOOL finished) {
+            self.progressView.hidden = YES;
+            [self.progressView setAlpha:1.f];
+        }];
+    } else if (progress > self.progressView.progress) {
+        [self.progressView setProgress:progress animated:YES];
+    }
+}
+
+-(void) resetProgress
+{
+    [self.progressView setProgress:0.05f animated:NO];
+    self.progressView.hidden = NO;
+}
+
+
 #pragma mark - City management
 -(void) loadInitialCity
 {
     if ([[[EventManager sharedManager] savedCities] count] > 0) {
+        [self resetProgress];
         self.initialHomeView.hidden = YES;
         self.citySelected = YES;
         [self hideCitySelectorAndShowActionSheet:NO];
@@ -324,6 +356,8 @@
 -(void) updateViewWithCity:(City*) thisCity
 {
     [self hideInitialView];
+    self.progressView.hidden = NO;
+    [self.progressView setProgress:.1f animated:YES];
     self.currentCity = thisCity;
     self.currentCityIndex = [_cityKeys indexOfObject:thisCity];
     self.homeView.title.text = thisCity.cityName;
@@ -376,6 +410,7 @@
     self.initialHomeView.hidden = NO;
     self.initialHomeView.center = self.view.center;
     [UIView animateWithDuration:.4f animations:^{
+        [self.theTableView setAlpha:0.f];
         self.initialHomeView.alpha = 1.f;
     }];
 }
@@ -384,11 +419,11 @@
 {
     [UIView animateWithDuration:.4f animations:^{
         self.initialHomeView.alpha = 0.f;
+        [self.theTableView setAlpha:1.f];
     } completion:^(BOOL finished) {
         self.initialHomeView.hidden = YES;
     }];
 }
-
 
 -(void) presentMoreEvents
 {

@@ -293,7 +293,7 @@
 
 + (id)handleResponse:(NSHTTPURLResponse *)response error:(NSError **)error {
     NSInteger code = [response statusCode];
-    NSUInteger ucode = [[NSNumber numberWithInt:code] unsignedIntValue];
+    NSUInteger ucode = [[NSNumber numberWithInt:(int)code] unsignedIntValue];
     NSRange okRange = NSMakeRange(200, 201);
     
     if(NSLocationInRange(ucode, okRange)) {

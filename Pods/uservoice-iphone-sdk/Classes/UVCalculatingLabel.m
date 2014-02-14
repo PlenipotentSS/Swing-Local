@@ -32,13 +32,13 @@
             targetLineNumber++;
         } else {
             targetLine = line;
-            targetColumnNumber = index - elapsedChars;
+            targetColumnNumber = (int)index - (int)elapsedChars;
             break;
         }
     }
 
     int linesThatFit = floor(self.frame.size.height / self.font.lineHeight);
-    int totalLines = self.numberOfLines == 0 ? [lines count] : MIN([lines count], self.numberOfLines);
+    int totalLines = self.numberOfLines == 0 ? (int)[lines count] : (int)MIN([lines count], self.numberOfLines);
     int linesDisplayed = MIN(linesThatFit, totalLines);
     CGFloat targetLineWidth = [targetLine sizeWithFont:self.font].width;
     
@@ -56,7 +56,7 @@
 - (NSArray *)breakString {
     NSMutableArray *lines = [NSMutableArray array];
     CGFloat frameWidth = [self effectiveWidth];
-    int len = [self.text length];
+    int len = (int)[self.text length];
     int lineStartOffset = 0;
     int lastBreakChar = -1;
 

@@ -39,7 +39,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
         
         _nDestructiveIndex = -1;
     }
@@ -461,25 +461,25 @@
     }];
 }
 
--(void)receivedRotate: (NSNotification *)notification
-{
-	dispatch_async(dispatch_get_main_queue(), ^(void) {
-        
-        [UIView animateWithDuration:0.2 animations:^(void) {
-            _vActionSheet.frame = CGRectMake(0, self.bounds.size.height - _vActionSheet.frame.size.height + 15,
-                                             self.bounds.size.width, _vActionSheet.frame.size.height);
-        }];
-    });
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    CGPoint pt = [[touches anyObject] locationInView:self];
-    if (CGRectContainsPoint(_vActionSheet.frame, pt))
-        return;
-
-    _result(DO_CANCEL_TAG);
-    [self hideAnimation];
-}
+//-(void)receivedRotate: (NSNotification *)notification
+//{
+//	dispatch_async(dispatch_get_main_queue(), ^(void) {
+//        
+//        [UIView animateWithDuration:0.2 animations:^(void) {
+//            _vActionSheet.frame = CGRectMake(0, self.bounds.size.height - _vActionSheet.frame.size.height + 15,
+//                                             self.bounds.size.width, _vActionSheet.frame.size.height);
+//        }];
+//    });
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    CGPoint pt = [[touches anyObject] locationInView:self];
+//    if (CGRectContainsPoint(_vActionSheet.frame, pt))
+//        return;
+//
+//    _result(DO_CANCEL_TAG);
+//    [self hideAnimation];
+//}
 
 @end

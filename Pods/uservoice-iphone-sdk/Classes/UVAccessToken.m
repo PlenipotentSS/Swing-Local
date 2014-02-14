@@ -29,11 +29,16 @@
 - (id)revoke:(id) delegate {
     NSString *path = [[self class] apiPath:[NSString stringWithFormat:@"/oauth/revoke.json"]];
 
-    id returnValue = [[self class] getPath:path
+    SEL didRevokeToken = sel_registerName("didRovokeToken:");
+    id returnValue;
+    if ([delegate respondsToSelector:didRevokeToken]){
+        returnValue = [[self class] getPath:path
                                 withParams:nil
                                     target:delegate
-                                  selector:@selector(didRevokeToken:)
+                                  selector:didRevokeToken
                                    rootKey:@"token"];
+    }
+    
     [self remove];
     [UVSession currentSession].user = nil;
     return returnValue;
@@ -55,11 +60,15 @@
                             email, @"email",
                             [UVSession currentSession].requestToken.oauthToken.key, @"request_token", nil];
 
-    return [self getPath:path
-              withParams:params
-                  target:delegate
-                selector:@selector(didRetrieveAccessToken:)
-                 rootKey:@"token"];
+    SEL didRetrieveAccessToken = sel_registerName("didRetrieveAccessToken:");
+    if ([delegate respondsToSelector:didRetrieveAccessToken]) {
+        return [self getPath:path
+                  withParams:params
+                      target:delegate
+                    selector:didRetrieveAccessToken
+                     rootKey:@"token"];
+    }
+    return nil;
 }
 
 - (void)persist {

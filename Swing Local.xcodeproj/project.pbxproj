@@ -44,6 +44,8 @@
 		D244C340189CEBF100E6DB16 /* bg_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33D189CEBF100E6DB16 /* bg_03.png */; };
 		D244C344189CEC5C00E6DB16 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C343189CEC5C00E6DB16 /* MainView.m */; };
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
+		D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDC18ADF47600B388EA /* M13ProgressView.m */; };
+		D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2941B2018AC245200AFFC92 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2941B1F18AC245200AFFC92 /* Crashlytics.framework */; };
@@ -144,6 +146,10 @@
 		D244C33D189CEBF100E6DB16 /* bg_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_03.png; sourceTree = "<group>"; };
 		D244C343189CEC5C00E6DB16 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SwingLocal.m"; sourceTree = "<group>"; };
+		D26ECBDB18ADF47600B388EA /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
+		D26ECBDC18ADF47600B388EA /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
+		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
+		D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -399,6 +405,17 @@
 			name = GHViewController.h;
 			sourceTree = "<group>";
 		};
+		D26ECBDA18ADF46400B388EA /* M13ProgressSuite */ = {
+			isa = PBXGroup;
+			children = (
+				D26ECBDB18ADF47600B388EA /* M13ProgressView.h */,
+				D26ECBDC18ADF47600B388EA /* M13ProgressView.m */,
+				D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */,
+				D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */,
+			);
+			name = M13ProgressSuite;
+			sourceTree = "<group>";
+		};
 		D292FD08189DC9ED000874FB /* DoAction */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +567,7 @@
 		D2E6890B18A02ECA00A6BD51 /* Other Projs */ = {
 			isa = PBXGroup;
 			children = (
+				D26ECBDA18ADF46400B388EA /* M13ProgressSuite */,
 				D244C352189CECBB00E6DB16 /* SplitPeekViewController */,
 				D244C356189CECE600E6DB16 /* GHViewController.h */,
 				D292FD08189DC9ED000874FB /* DoAction */,
@@ -749,6 +767,7 @@
 				D22BF0DB18A4BC3A0036783D /* BackViewController.m in Sources */,
 				D22BF0D218A4B4010036783D /* DetailView.m in Sources */,
 				D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */,
+				D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */,
 				D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
 				D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */,
@@ -765,6 +784,7 @@
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
 				D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
+				D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */,
 				D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */,
 				D2941B2718AC844700AFFC92 /* OccAnnotation.m in Sources */,
 				D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */,
