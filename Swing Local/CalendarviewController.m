@@ -143,6 +143,8 @@
 
 #pragma mark Refresh Control and progress methods
 -(void) refreshTable {
+    self.contentModel.cities = nil;
+    [self.theTableView reloadData];
     [self updatePageViews];
 }
 

@@ -182,57 +182,44 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
 
         //go through all dates given for comparison
         for (NSDate *compareDate in datesArray) {
-            
-            BOOL continueFlag = YES;
             BOOL isALLDay = NO;
-            if (continueFlag) {
-            
-                //loop through all times in this calendar
-                for (NSDictionary *thisTime in whenData) {
+            //loop through all times in this calendar
+            for (NSDictionary *thisTime in whenData) {
 
-                        
-                    //check if the we are checking for dates that have yet to occur
-                    NSDate* eventDate = [googleFormat dateFromString:[thisTime objectForKey:@"startTime"]];
-                    if (!eventDate) {
-                        NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
-                        [allDayFormat setDateFormat:@"yyyy-MM-dd"];
-                        eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
-                        if (!eventDate) {
-                            continue;
-                        } else {
-                            isALLDay = YES;
-                        }
-                    }
                     
-                    if ([NSDate dateA:eventDate isBeforeDateB:compareDate]) {
-                        
-                        
-                        //check if the two dates are the same
-                        if ( [NSDate dateA:eventDate isSameDayAsDateB:compareDate] ) {
-                            NSDate* endTime;
-                            if (isALLDay) {
-                                NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
-                                [allDayFormat setDateFormat:@"yyyy-MM-dd"];
-                                eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
-                            } else {
-                                endTime = [googleFormat dateFromString:[thisTime objectForKey:@"endTime"]];
-                            }
-                            
-                            Occurrence *thisOcc = [Occurrence convertDataToOccurrenceModel:thisOccData withStartTime:eventDate andEndTime:endTime];
-                            [filteredEventsByDates addObject:thisOcc];
-                            break;
-                        }
+                //check if the we are checking for dates that have yet to occur
+                NSDate* eventDate = [googleFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                if (!eventDate) {
+                    NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
+                    [allDayFormat setDateFormat:@"yyyy-MM-dd"];
+                    eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                    if (!eventDate) {
+                        continue;
                     } else {
-                        continueFlag = NO;
-                        break;
+                        isALLDay = YES;
                     }
                 }
                 
-            } else {
-                continueFlag = NO;
-                break;
+                if ([NSDate dateA:eventDate isBeforeDateB:compareDate]) {
+                    
+                    
+                    //check if the two dates are the same
+                    if ( [NSDate dateA:eventDate isSameDayAsDateB:compareDate] ) {
+                        NSDate* endTime;
+                        if (isALLDay) {
+                            NSDateFormatter *allDayFormat = [[NSDateFormatter alloc] init];
+                            [allDayFormat setDateFormat:@"yyyy-MM-dd"];
+                            eventDate = [allDayFormat dateFromString:[thisTime objectForKey:@"startTime"]];
+                        } else {
+                            endTime = [googleFormat dateFromString:[thisTime objectForKey:@"endTime"]];
+                        }
+                        
+                        Occurrence *thisOcc = [Occurrence convertDataToOccurrenceModel:thisOccData withStartTime:eventDate andEndTime:endTime];
+                        [filteredEventsByDates addObject:thisOcc];
+                        break;
+                    }
+                }
             }
-
         }
     }
     return filteredEventsByDates;
