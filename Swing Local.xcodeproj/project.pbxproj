@@ -61,6 +61,7 @@
 		D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A07FAC189F542D002F11DA /* Main.storyboard */; };
 		D2A07FBD189F8602002F11DA /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FBC189F8602002F11DA /* NewsView.m */; };
 		D2C8ED7518A94D8800164C68 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */; };
+		D2DD655218AFC89200326DEB /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DD655118AFC89200326DEB /* EventTableViewCell.m */; };
 		D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688F918A013BC00A6BD51 /* RootViewController.m */; };
 		D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688FC18A014F000A6BD51 /* CustomSegue.m */; };
 		D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890018A020C900A6BD51 /* SplitControllerSegue.m */; };
@@ -178,6 +179,8 @@
 		D2A07FBC189F8602002F11DA /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 		D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
 		D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
+		D2DD655018AFC89200326DEB /* EventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewCell.h; sourceTree = "<group>"; };
+		D2DD655118AFC89200326DEB /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
 		D2E688F818A013BC00A6BD51 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D2E688F918A013BC00A6BD51 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D2E688FB18A014F000A6BD51 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 			children = (
 				D2A07FA6189F5387002F11DA /* EventsTableViewModel.h */,
 				D2A07FA7189F5387002F11DA /* EventsTableViewModel.m */,
+				D2DD655018AFC89200326DEB /* EventTableViewCell.h */,
+				D2DD655118AFC89200326DEB /* EventTableViewCell.m */,
 			);
 			name = "TableView Models";
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
 				D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */,
+				D2DD655218AFC89200326DEB /* EventTableViewCell.m in Sources */,
 				D2E6891B18A0614E00A6BD51 /* GHViewController.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
 				D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */,
@@ -944,8 +950,8 @@
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",

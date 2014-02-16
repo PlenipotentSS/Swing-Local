@@ -204,7 +204,7 @@
 {
     if (progress == 1.f) {
         [self.progressView setProgress:1.f animated:YES];
-        [UIView animateWithDuration:.4f delay:1.f options:kNilOptions animations:^{
+        [UIView animateWithDuration:.4f delay:0.f options:kNilOptions animations:^{
             [self.progressView setAlpha:0.f];
         } completion:^(BOOL finished) {
             self.progressView.hidden = YES;

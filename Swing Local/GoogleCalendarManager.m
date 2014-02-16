@@ -49,7 +49,8 @@ NSString *const kKeychainItemName = @"CalendarSwingLocal: Swing Local Calendar";
             
         [sessionConfig setRequestCachePolicy:NSURLCacheStorageAllowed];
         [sessionConfig setHTTPAdditionalHeaders: @{@"Accept": @"application/json"}];
-        sessionConfig.timeoutIntervalForRequest = 30.0; sessionConfig.timeoutIntervalForResource = 60.0; sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+        sessionConfig.timeoutIntervalForRequest = 10.0; sessionConfig.timeoutIntervalForResource = 30.0;
+        //sessionConfig.HTTPMaximumConnectionsPerHost = 1;
         
         _urlSession = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.googleDownloadQueue];
     } else {
