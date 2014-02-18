@@ -10,4 +10,6 @@
 
 @interface EventTableViewCell : UITableViewCell
 
+@property (nonatomic) UIButton *pinButton;
+
 @end

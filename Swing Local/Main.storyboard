@@ -125,7 +125,7 @@
                                             </constraints>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="KFe-5r-145" detailTextLabel="kJs-ro-N9V" style="IBUITableViewCellStyleSubtitle" id="kNW-cH-SYf">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="KFe-5r-145" detailTextLabel="kJs-ro-N9V" style="IBUITableViewCellStyleSubtitle" id="kNW-cH-SYf" customClass="EventTableViewCell">
                                                 <rect key="frame" x="0.0" y="225" width="320" height="61"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kNW-cH-SYf" id="sbf-mi-x11">
@@ -550,7 +550,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="O1F-bE-4TZ" detailTextLabel="BYC-3G-lRu" style="IBUITableViewCellStyleSubtitle" id="AsM-9L-FQi">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="O1F-bE-4TZ" detailTextLabel="BYC-3G-lRu" style="IBUITableViewCellStyleSubtitle" id="AsM-9L-FQi" customClass="EventTableViewCell">
                                         <rect key="frame" x="0.0" y="225" width="320" height="61"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AsM-9L-FQi" id="2CR-iy-w8K">
@@ -775,7 +775,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="UP8-We-O8g" detailTextLabel="COC-PG-FMe" style="IBUITableViewCellStyleSubtitle" id="iCE-sX-dsS">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="UP8-We-O8g" detailTextLabel="COC-PG-FMe" style="IBUITableViewCellStyleSubtitle" id="iCE-sX-dsS" customClass="EventTableViewCell">
                                         <rect key="frame" x="0.0" y="225" width="320" height="61"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iCE-sX-dsS" id="26t-jb-UFn">
