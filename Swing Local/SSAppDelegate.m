@@ -11,7 +11,7 @@
 #import "RootViewController.h"
 #import "EventManager.h"
 #import "GoogleCalendarManager.h"
-#import <Crashlytics/Crashlytics.h>
+#import "Crashlytics.h"
 
 @implementation SSAppDelegate
 
