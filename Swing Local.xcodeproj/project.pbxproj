@@ -151,6 +151,7 @@
 		D26ECBDC18ADF47600B388EA /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
 		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
+		D2779B4718B5327F0062D34C /* Crashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crashlytics.h; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -321,6 +322,7 @@
 		D244C2ED189CEB6100E6DB16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2779B4718B5327F0062D34C /* Crashlytics.h */,
 				D244C2EE189CEB6100E6DB16 /* Swing Local-Info.plist */,
 				D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */,
 				D244C2F2189CEB6100E6DB16 /* main.m */,
