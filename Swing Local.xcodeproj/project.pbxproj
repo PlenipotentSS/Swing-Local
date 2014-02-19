@@ -46,6 +46,7 @@
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
 		D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDC18ADF47600B388EA /* M13ProgressView.m */; };
 		D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */; };
+		D2779B4918B538710062D34C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2779B4818B538710062D34C /* Crashlytics.framework */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */; };
@@ -151,6 +152,7 @@
 		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
 		D2779B4718B5327F0062D34C /* Crashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crashlytics.h; sourceTree = "<group>"; };
+		D2779B4818B538710062D34C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2779B4918B538710062D34C /* Crashlytics.framework in Frameworks */,
 				D2FAA5E218A819AF00D2C82D /* CoreLocation.framework in Frameworks */,
 				D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */,
 				D244C2EB189CEB6100E6DB16 /* UIKit.framework in Frameworks */,
@@ -284,6 +287,7 @@
 		D244C2E5189CEB6100E6DB16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2779B4818B538710062D34C /* Crashlytics.framework */,
 				D2FAA5E118A819AF00D2C82D /* CoreLocation.framework */,
 				D244C2E6189CEB6100E6DB16 /* Foundation.framework */,
 				D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */,
