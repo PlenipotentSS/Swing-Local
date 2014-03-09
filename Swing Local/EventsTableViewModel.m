@@ -67,6 +67,7 @@
     }
 }
 
+
 #pragma mark - add City and updata Data methods
 -(void) setCity:(City *)city {
     _city = city;
@@ -105,7 +106,15 @@
 }
 
 #pragma mark rebuild table view given the current city
-//called initially to load, and again when download venues completes
+/**
+ *
+ * called initially to load, and again when download venues completes
+ * @see setCity
+ * @see setCities
+ * @param City object for this city
+ * @return void
+ *
+ **/
 -(void) refreshEventTableWithCity: (City*) thisCity {\
     if (thisCity.venueOrganizations) {
         [[GoogleCalendarManager sharedManager] setDelegate:self];

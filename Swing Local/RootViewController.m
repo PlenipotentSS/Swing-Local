@@ -39,6 +39,7 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
+    [standardDefaults setBool:YES forKey:@"newLaunch"];
     
     //skip tutorial
     if (skipTutorial || ![UIPageControl instancesRespondToSelector:@selector(setTintColor:)]){

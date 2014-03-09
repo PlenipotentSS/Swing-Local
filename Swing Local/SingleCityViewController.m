@@ -89,10 +89,10 @@
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     [self.theTableView addSubview:self.refreshControl];
     
-    if (!self.theCity) {
-        self.theCity = [[EventManager sharedManager] currentCity];
-        [self updatePageViews];
-    }
+//    if (!self.theCity) {
+//        self.theCity = [[EventManager sharedManager] currentCity];
+//        [self updatePageViews];
+//    }
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
         [[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"STHeitiSC-Medium" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];

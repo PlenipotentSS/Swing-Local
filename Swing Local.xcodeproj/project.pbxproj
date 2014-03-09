@@ -44,9 +44,21 @@
 		D244C340189CEBF100E6DB16 /* bg_03.png in Resources */ = {isa = PBXBuildFile; fileRef = D244C33D189CEBF100E6DB16 /* bg_03.png */; };
 		D244C344189CEC5C00E6DB16 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C343189CEC5C00E6DB16 /* MainView.m */; };
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
+		D2471F3418C59C1B00F1A15C /* SSEventSubWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2471F3318C59C1B00F1A15C /* SSEventSubWrapperView.m */; };
+		D2471F3618C5A41F00F1A15C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2471F3518C5A41F00F1A15C /* MapKit.framework */; };
 		D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDC18ADF47600B388EA /* M13ProgressView.m */; };
 		D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */; };
 		D2779B4918B538710062D34C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2779B4818B538710062D34C /* Crashlytics.framework */; };
+		D28E0FA718C595200038EB48 /* SSCityEventController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E0FA618C595200038EB48 /* SSCityEventController.m */; };
+		D28E0FAA18C595B30038EB48 /* SSEventTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E0FA918C595B30038EB48 /* SSEventTableView.m */; };
+		D28E0FAD18C596420038EB48 /* SSEventTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E0FAC18C596420038EB48 /* SSEventTableHeaderView.m */; };
+		D28E0FAF18C596E00038EB48 /* SSMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28E0FAE18C596E00038EB48 /* SSMapView.xib */; };
+		D28E0FB118C596EF0038EB48 /* PhotographerCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28E0FB018C596EF0038EB48 /* PhotographerCoverView.xib */; };
+		D28E0FB418C5970C0038EB48 /* SSPhotoBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E0FB318C5970C0038EB48 /* SSPhotoBackgroundView.m */; };
+		D28E0FB718C597700038EB48 /* SSMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E0FB618C597700038EB48 /* SSMapView.m */; };
+		D28E0FBB18C599CF0038EB48 /* 51a837d5a18a756793.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */; };
+		D28E0FBC18C599CF0038EB48 /* SwingLocalLogo-Map.png in Resources */ = {isa = PBXBuildFile; fileRef = D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */; };
+		D28E0FBD18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png in Resources */ = {isa = PBXBuildFile; fileRef = D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */; };
 		D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD17189DCA85000874FB /* SSActionSheet.m */; };
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */; };
@@ -61,6 +73,7 @@
 		D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A07FAC189F542D002F11DA /* Main.storyboard */; };
 		D2A07FBD189F8602002F11DA /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FBC189F8602002F11DA /* NewsView.m */; };
 		D2C8ED7518A94D8800164C68 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */; };
+		D2CEBE6718CCDA5400ABA6D0 /* SSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */; };
 		D2DD655218AFC89200326DEB /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DD655118AFC89200326DEB /* EventTableViewCell.m */; };
 		D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688F918A013BC00A6BD51 /* RootViewController.m */; };
 		D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688FC18A014F000A6BD51 /* CustomSegue.m */; };
@@ -147,12 +160,30 @@
 		D244C33D189CEBF100E6DB16 /* bg_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_03.png; sourceTree = "<group>"; };
 		D244C343189CEC5C00E6DB16 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SwingLocal.m"; sourceTree = "<group>"; };
+		D2471F3218C59C1B00F1A15C /* SSEventSubWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEventSubWrapperView.h; sourceTree = "<group>"; };
+		D2471F3318C59C1B00F1A15C /* SSEventSubWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEventSubWrapperView.m; sourceTree = "<group>"; };
+		D2471F3518C5A41F00F1A15C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D26ECBDB18ADF47600B388EA /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
 		D26ECBDC18ADF47600B388EA /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
 		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
 		D2779B4718B5327F0062D34C /* Crashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crashlytics.h; sourceTree = "<group>"; };
 		D2779B4818B538710062D34C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D28E0FA518C595200038EB48 /* SSCityEventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCityEventController.h; sourceTree = "<group>"; };
+		D28E0FA618C595200038EB48 /* SSCityEventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCityEventController.m; sourceTree = "<group>"; };
+		D28E0FA818C595B30038EB48 /* SSEventTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEventTableView.h; sourceTree = "<group>"; };
+		D28E0FA918C595B30038EB48 /* SSEventTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEventTableView.m; sourceTree = "<group>"; };
+		D28E0FAB18C596420038EB48 /* SSEventTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEventTableHeaderView.h; sourceTree = "<group>"; };
+		D28E0FAC18C596420038EB48 /* SSEventTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEventTableHeaderView.m; sourceTree = "<group>"; };
+		D28E0FAE18C596E00038EB48 /* SSMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSMapView.xib; sourceTree = "<group>"; };
+		D28E0FB018C596EF0038EB48 /* PhotographerCoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotographerCoverView.xib; sourceTree = "<group>"; };
+		D28E0FB218C5970C0038EB48 /* SSPhotoBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPhotoBackgroundView.h; sourceTree = "<group>"; };
+		D28E0FB318C5970C0038EB48 /* SSPhotoBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPhotoBackgroundView.m; sourceTree = "<group>"; };
+		D28E0FB518C597700038EB48 /* SSMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMapView.h; sourceTree = "<group>"; };
+		D28E0FB618C597700038EB48 /* SSMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMapView.m; sourceTree = "<group>"; };
+		D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 51a837d5a18a756793.jpg; sourceTree = "<group>"; };
+		D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwingLocalLogo-Map.png"; sourceTree = "<group>"; };
+		D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SwingLocalLogo-Pin_circlebg.png"; sourceTree = "<group>"; };
 		D292FD16189DCA85000874FB /* SSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSActionSheet.h; sourceTree = "<group>"; };
 		D292FD17189DCA85000874FB /* SSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSActionSheet.m; sourceTree = "<group>"; };
 		D292FD1A189E1E87000874FB /* HomePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageManager.h; sourceTree = "<group>"; };
@@ -180,6 +211,8 @@
 		D2A07FBC189F8602002F11DA /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 		D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
 		D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
+		D2CEBE6518CCDA5400ABA6D0 /* SSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHomeViewController.h; sourceTree = "<group>"; };
+		D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHomeViewController.m; sourceTree = "<group>"; };
 		D2DD655018AFC89200326DEB /* EventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewCell.h; sourceTree = "<group>"; };
 		D2DD655118AFC89200326DEB /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
 		D2E688F818A013BC00A6BD51 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -219,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2471F3618C5A41F00F1A15C /* MapKit.framework in Frameworks */,
 				D2779B4918B538710062D34C /* Crashlytics.framework in Frameworks */,
 				D2FAA5E218A819AF00D2C82D /* CoreLocation.framework in Frameworks */,
 				D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */,
@@ -244,6 +278,10 @@
 		D224C526189D017A00923370 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D2CEBE6518CCDA5400ABA6D0 /* SSHomeViewController.h */,
+				D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */,
+				D28E0FA518C595200038EB48 /* SSCityEventController.h */,
+				D28E0FA618C595200038EB48 /* SSCityEventController.m */,
 				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
 				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
 				D2E6890518A02EB100A6BD51 /* NewsViewController.h */,
@@ -287,6 +325,7 @@
 		D244C2E5189CEB6100E6DB16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2471F3518C5A41F00F1A15C /* MapKit.framework */,
 				D2779B4818B538710062D34C /* Crashlytics.framework */,
 				D2FAA5E118A819AF00D2C82D /* CoreLocation.framework */,
 				D244C2E6189CEB6100E6DB16 /* Foundation.framework */,
@@ -313,6 +352,9 @@
 				D224C526189D017A00923370 /* Controllers */,
 				D2E6890B18A02ECA00A6BD51 /* Other Projs */,
 				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
+				D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */,
+				D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */,
+				D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */,
 				D244C33A189CEBEA00E6DB16 /* Images */,
 				D244C2ED189CEB6100E6DB16 /* Supporting Files */,
 			);
@@ -367,6 +409,18 @@
 		D244C345189CEC6500E6DB16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D28E0FA818C595B30038EB48 /* SSEventTableView.h */,
+				D28E0FA918C595B30038EB48 /* SSEventTableView.m */,
+				D28E0FAB18C596420038EB48 /* SSEventTableHeaderView.h */,
+				D28E0FAC18C596420038EB48 /* SSEventTableHeaderView.m */,
+				D28E0FAE18C596E00038EB48 /* SSMapView.xib */,
+				D28E0FB518C597700038EB48 /* SSMapView.h */,
+				D28E0FB618C597700038EB48 /* SSMapView.m */,
+				D2471F3218C59C1B00F1A15C /* SSEventSubWrapperView.h */,
+				D2471F3318C59C1B00F1A15C /* SSEventSubWrapperView.m */,
+				D28E0FB018C596EF0038EB48 /* PhotographerCoverView.xib */,
+				D28E0FB218C5970C0038EB48 /* SSPhotoBackgroundView.h */,
+				D28E0FB318C5970C0038EB48 /* SSPhotoBackgroundView.m */,
 				D2A07FBE189F8610002F11DA /* Controller Views */,
 				D2A07FB0189F5B3F002F11DA /* Buttons */,
 				D2E688F718A0133B00A6BD51 /* Subclassed */,
@@ -693,8 +747,13 @@
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
 				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
 				D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */,
+				D28E0FBC18C599CF0038EB48 /* SwingLocalLogo-Map.png in Resources */,
 				D244C33E189CEBF100E6DB16 /* bg_01.png in Resources */,
+				D28E0FB118C596EF0038EB48 /* PhotographerCoverView.xib in Resources */,
+				D28E0FBD18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png in Resources */,
+				D28E0FAF18C596E00038EB48 /* SSMapView.xib in Resources */,
 				D21C1ADA18A617A700D238CE /* DetailView.xib in Resources */,
+				D28E0FBB18C599CF0038EB48 /* 51a837d5a18a756793.jpg in Resources */,
 				D244C340189CEBF100E6DB16 /* bg_03.png in Resources */,
 				D244C337189CEBE600E6DB16 /* menu-gear@2x.png in Resources */,
 			);
@@ -764,11 +823,14 @@
 				D2A07FBD189F8602002F11DA /* NewsView.m in Sources */,
 				D2A07F9C189F534C002F11DA /* Event.m in Sources */,
 				D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */,
+				D28E0FAD18C596420038EB48 /* SSEventTableHeaderView.m in Sources */,
 				D22BF0DC18A4BC3A0036783D /* FrontViewController.m in Sources */,
 				D2F450DF18A1ECB600ABD1C8 /* AddCityTableViewCell.m in Sources */,
 				D224C525189D017000923370 /* SSFrontViewController.m in Sources */,
 				D2E688FA18A013BC00A6BD51 /* RootViewController.m in Sources */,
 				D244C344189CEC5C00E6DB16 /* MainView.m in Sources */,
+				D2CEBE6718CCDA5400ABA6D0 /* SSHomeViewController.m in Sources */,
+				D2471F3418C59C1B00F1A15C /* SSEventSubWrapperView.m in Sources */,
 				D292FD18189DCA85000874FB /* SSActionSheet.m in Sources */,
 				D244C331189CEBCC00E6DB16 /* AppTutorialViewController.m in Sources */,
 				D22BF0DB18A4BC3A0036783D /* BackViewController.m in Sources */,
@@ -789,6 +851,7 @@
 				D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */,
 				D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
+				D28E0FAA18C595B30038EB48 /* SSEventTableView.m in Sources */,
 				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
 				D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
@@ -800,13 +863,16 @@
 				D2A07FAB189F539A002F11DA /* City.m in Sources */,
 				D23181FD18A5B7CA00A251B6 /* NSDate+SwingLocal.m in Sources */,
 				D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */,
+				D28E0FA718C595200038EB48 /* SSCityEventController.m in Sources */,
 				D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
 				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
+				D28E0FB718C597700038EB48 /* SSMapView.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D22BF0C818A471D60036783D /* Occurrence.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,
 				D2F450E518A2C20500ABD1C8 /* GoogleCalendarManager.m in Sources */,
+				D28E0FB418C5970C0038EB48 /* SSPhotoBackgroundView.m in Sources */,
 				D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

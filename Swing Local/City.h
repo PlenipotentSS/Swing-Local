@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *
+ * City class containing 
+ * @see <# message #>
+ * @param <# param #>
+ * @return <# return #>
+ *
+ **/
 @interface City : NSObject <NSCoding>
 
 //array of all venueOrganizations within this city

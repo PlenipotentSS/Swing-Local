@@ -33,8 +33,10 @@
     if (!self.localNotificationManager) {
         self.localNotificationManager = [[LocalNotificationManager alloc] init];
     }
-    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager cancelNotification];
     [self.localNotificationManager scheduleNotification];
+    
+    
     
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
                                                          diskCapacity:20 * 1024 * 1024
@@ -48,7 +50,7 @@
     // Handle the notificaton when the app is running
     NSLog(@"Recieved Notification %@",notif);
     
-    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager cancelNotification];
     [self.localNotificationManager scheduleNotification];
 }
 
@@ -68,7 +70,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[EventManager sharedManager] downloadCities];
-    [self.localNotificationManager resetNotification];
+    [self.localNotificationManager cancelNotification];
     [self.localNotificationManager scheduleNotification];
 }
 

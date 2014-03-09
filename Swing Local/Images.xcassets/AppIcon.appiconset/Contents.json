@@ -3,37 +3,37 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo114-2.png",
+      "filename" : "Icon@29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo58.png",
+      "filename" : "Icon@58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo80.png",
+      "filename" : "Icon@80.png",
       "scale" : "2x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo114-1.png",
+      "filename" : "Icon@57.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo114.png",
+      "filename" : "Icon@114.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "SwingLocalLogo120.png",
+      "filename" : "Icon@120-1.png",
       "scale" : "2x"
     }
   ],

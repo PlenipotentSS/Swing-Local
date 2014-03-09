@@ -11,6 +11,6 @@
 @interface LocalNotificationManager : NSObject
 
 -(void) scheduleNotification;
--(void) resetNotification;
+-(void) cancelNotification;
 
 @end

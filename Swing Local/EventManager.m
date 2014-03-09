@@ -10,13 +10,17 @@
 
 @interface EventManager() <NSURLSessionDelegate>
 
+///current session for this manager
 @property (nonatomic) NSURLSession *urlSession;
+
+
 @property (nonatomic) NSOperationQueue *eventDownloadQueue;
 @property (nonatomic) __block NSInteger counter;
 
 @end
 
 @implementation EventManager
+
 
 +(EventManager*) sharedManager {
     static dispatch_once_t pred;
@@ -51,6 +55,7 @@
 }
 
 #pragma mark - data persistence for saved cities
+/// updates saved cities to other controllers and saves it to disk
 -(void) persistAndNotifySavedCities{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SavedCitiesUpdated" object:nil];

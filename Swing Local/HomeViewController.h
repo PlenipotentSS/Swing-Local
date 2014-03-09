@@ -10,9 +10,16 @@
 #import "FrontViewController.h"
 #import "City.h"
 
+/**
+ *
+ * Home View Controller to be displayed as the first feature 
+ * displayed to the user.
+ * @see FrontViewController
+ *
+ **/
 @interface HomeViewController : FrontViewController
 
-//the current city for home view
+///the current city for home view
 @property (weak, nonatomic) City *currentCity;
 
 @end

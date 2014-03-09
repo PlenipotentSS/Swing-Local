@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-@interface Swing_LocalTests : XCTestCase
+@interface Swing_LocalTests : XCTetstCase
 
 @end
 
