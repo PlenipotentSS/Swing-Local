@@ -10,6 +10,8 @@
 		850EA0662F1A4443888886AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C876B9746D5484BBC958FD8 /* libPods.a */; };
 		D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CD189F942300F461CE /* DoActionSheet.m */; };
 		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
+		D210AA2F18CD683600575B52 /* SSPagedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D210AA2E18CD683600575B52 /* SSPagedView.m */; };
+		D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */; };
 		D21C1ADA18A617A700D238CE /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21C1AD918A617A700D238CE /* DetailView.xib */; };
 		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
 		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
@@ -46,6 +48,7 @@
 		D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C346189CEC7A00E6DB16 /* UIColor+SwingLocal.m */; };
 		D2471F3418C59C1B00F1A15C /* SSEventSubWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2471F3318C59C1B00F1A15C /* SSEventSubWrapperView.m */; };
 		D2471F3618C5A41F00F1A15C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2471F3518C5A41F00F1A15C /* MapKit.framework */; };
+		D252264018CDCFBA001A8862 /* SSStackedPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D252263F18CDCFBA001A8862 /* SSStackedPageView.m */; };
 		D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDC18ADF47600B388EA /* M13ProgressView.m */; };
 		D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */; };
 		D2779B4918B538710062D34C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2779B4818B538710062D34C /* Crashlytics.framework */; };
@@ -109,6 +112,9 @@
 		D20B26CD189F942300F461CE /* DoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoActionSheet.m; path = "Swing Local/DoActionSheet/DoActionSheet.m"; sourceTree = SOURCE_ROOT; };
 		D20B26CE189F942300F461CE /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ResizeMagick.h"; path = "Swing Local/DoActionSheet/UIImage+ResizeMagick.h"; sourceTree = SOURCE_ROOT; };
 		D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ResizeMagick.m"; path = "Swing Local/DoActionSheet/UIImage+ResizeMagick.m"; sourceTree = SOURCE_ROOT; };
+		D210AA2D18CD683600575B52 /* SSPagedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPagedView.h; sourceTree = "<group>"; };
+		D210AA2E18CD683600575B52 /* SSPagedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPagedView.m; sourceTree = "<group>"; };
+		D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg"; sourceTree = "<group>"; };
 		D21C1AD918A617A700D238CE /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		D224C523189D017000923370 /* SSFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFrontViewController.h; sourceTree = "<group>"; };
 		D224C524189D017000923370 /* SSFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFrontViewController.m; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 		D2471F3218C59C1B00F1A15C /* SSEventSubWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEventSubWrapperView.h; sourceTree = "<group>"; };
 		D2471F3318C59C1B00F1A15C /* SSEventSubWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSEventSubWrapperView.m; sourceTree = "<group>"; };
 		D2471F3518C5A41F00F1A15C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D252263E18CDCFBA001A8862 /* SSStackedPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSStackedPageView.h; sourceTree = "<group>"; };
+		D252263F18CDCFBA001A8862 /* SSStackedPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSStackedPageView.m; sourceTree = "<group>"; };
 		D26ECBDB18ADF47600B388EA /* M13ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressView.h; sourceTree = "<group>"; };
 		D26ECBDC18ADF47600B388EA /* M13ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressView.m; sourceTree = "<group>"; };
 		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
@@ -275,6 +283,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D210AA2C18CD681800575B52 /* SSPagedView */ = {
+			isa = PBXGroup;
+			children = (
+				D210AA2D18CD683600575B52 /* SSPagedView.h */,
+				D210AA2E18CD683600575B52 /* SSPagedView.m */,
+			);
+			name = SSPagedView;
+			sourceTree = "<group>";
+		};
 		D224C526189D017A00923370 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +370,7 @@
 				D2E6890B18A02ECA00A6BD51 /* Other Projs */,
 				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
 				D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */,
+				D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */,
 				D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */,
 				D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */,
 				D244C33A189CEBEA00E6DB16 /* Images */,
@@ -462,6 +480,15 @@
 				D2E6891E18A0616E00A6BD51 /* Views */,
 			);
 			name = GHViewController.h;
+			sourceTree = "<group>";
+		};
+		D252264118CDCFBE001A8862 /* SSStackedPageView */ = {
+			isa = PBXGroup;
+			children = (
+				D252263E18CDCFBA001A8862 /* SSStackedPageView.h */,
+				D252263F18CDCFBA001A8862 /* SSStackedPageView.m */,
+			);
+			name = SSStackedPageView;
 			sourceTree = "<group>";
 		};
 		D26ECBDA18ADF46400B388EA /* M13ProgressSuite */ = {
@@ -628,6 +655,8 @@
 		D2E6890B18A02ECA00A6BD51 /* Other Projs */ = {
 			isa = PBXGroup;
 			children = (
+				D252264118CDCFBE001A8862 /* SSStackedPageView */,
+				D210AA2C18CD681800575B52 /* SSPagedView */,
 				D26ECBDA18ADF46400B388EA /* M13ProgressSuite */,
 				D244C352189CECBB00E6DB16 /* SplitPeekViewController */,
 				D244C356189CECE600E6DB16 /* GHViewController.h */,
@@ -742,6 +771,7 @@
 				D244C33F189CEBF100E6DB16 /* bg_02.png in Resources */,
 				D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */,
 				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
+				D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */,
 				D23181FA18A5A96E00A251B6 /* DateRangeSelector.xib in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
@@ -871,6 +901,8 @@
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D22BF0C818A471D60036783D /* Occurrence.m in Sources */,
 				D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */,
+				D252264018CDCFBA001A8862 /* SSStackedPageView.m in Sources */,
+				D210AA2F18CD683600575B52 /* SSPagedView.m in Sources */,
 				D2F450E518A2C20500ABD1C8 /* GoogleCalendarManager.m in Sources */,
 				D28E0FB418C5970C0038EB48 /* SSPhotoBackgroundView.m in Sources */,
 				D2E6892E18A1B35200A6BD51 /* SingleCityViewController.m in Sources */,
