@@ -8,6 +8,8 @@
 
 #import "UVCallback.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVCallback
 
 - (id)initWithTarget:(id)target selector:(SEL)selector {
@@ -21,7 +23,6 @@
     return self;
 }
 
-#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (void)invokeCallback:(id)argument {
     if (self.target && self.selector) {
@@ -30,7 +31,6 @@
         }
     }
 }
-#pragma clang diagnostic pop
 
 
 - (void)invalidate {

@@ -19,7 +19,7 @@
 #import "M13ProgressViewStripedBar.h"
 #import "UIColor+SwingLocal.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate, HomeViewDelegate>
 
 ///progress view
 @property (nonatomic, retain) IBOutlet M13ProgressViewStripedBar *progressView;
@@ -133,6 +133,7 @@
 -(void) setupGeneral
 {
     _homeView = (HomeView*)self.view;
+    _homeView.delegate = self;
     [_homeView setup];    
     self.homeView.footerView = self.footerView;
 }
@@ -150,6 +151,7 @@
 
 -(void) setupContentTable
 {
+    _theTableView.alpha = 0;
     _theTableView.contentSize = CGSizeMake(320.f, 1000.f);
     _theTableView.userInteractionEnabled = YES;
     _theTableView.scrollEnabled = YES;
@@ -184,6 +186,12 @@
     
     pan.delegate = self;
     [self.footerView addGestureRecognizer:pan];
+}
+
+#pragma mark - HomeViewdelegate
+- (void)setupLayout
+{
+    
 }
 
 

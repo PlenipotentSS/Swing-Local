@@ -14,7 +14,7 @@
 
 #define LOAD_LOGO_TRANSFORM CATransform3DMakeScale(.50, .50, .50)
 
-@interface SSHomeViewController() <UITableViewDataSource,UITableViewDelegate,SSPagedViewDelegate,SSStackViewDelegate>
+@interface SSHomeViewController() <UITableViewDataSource,UITableViewDelegate,SSPagedViewDelegate,SSStackedViewDelegate>
 
 @property (nonatomic) UIImageView *loadLogo;
 @property (weak, nonatomic) IBOutlet UITableView *theTableView;
@@ -47,6 +47,7 @@
     BOOL newLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"newLaunch"];
     if (newLaunch) {
         [self.loadLogo setCenter:self.view.center];
+        [self.theTableView setAlpha:0];
     } else {
         CGRect newFrame = self.loadLogo.frame;
         newFrame.origin.y = 0.f;
@@ -68,6 +69,10 @@
         [UIView animateWithDuration:1.f animations:^{
             self.loadLogo.frame = newFrame;
             self.loadLogo.layer.transform = LOAD_LOGO_TRANSFORM;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.4f animations:^{
+                [self.theTableView setAlpha:1.f];
+            }];
         }];
     }
     [self.theTableView reloadData];
@@ -109,6 +114,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         if (!self.stackView) {
             self.stackView = (SSStackedPageView*)[cell viewWithTag:1];
+            [self.stackView setPagesHaveShadows:YES];
             self.stackView.delegate = self;
             self.savedCities = [[NSMutableArray alloc] init];
             for (int i=0;i<10;i++) {

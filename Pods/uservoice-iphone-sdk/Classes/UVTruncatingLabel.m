@@ -81,6 +81,7 @@
     [super layoutSubviews];
 }
 
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (void)expandAndNotify {
     [self expand];
     SEL labelExpanded = sel_registerName("labelExpanded:");

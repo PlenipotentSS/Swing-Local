@@ -20,6 +20,7 @@
 #import "UVKeyboardUtils.h"
 #import "UVUtils.h"
 
+
 @implementation UVBaseViewController
 
 - (id)init {
@@ -243,7 +244,6 @@
 
 #pragma mark ===== helper methods for table views =====
 
-#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (UITableViewCell *)createCellForIdentifier:(NSString *)identifier
                                    tableView:(UITableView *)theTableView
@@ -281,7 +281,6 @@
     }
     return cell;
 }
-#pragma clang diagnostic pop
 
 #pragma mark ===== Keyboard Notifications =====
 
@@ -414,8 +413,6 @@
     return _userEmail;
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (CGFloat)heightForDynamicRowWithReuseIdentifier:(NSString *)reuseIdentifier indexPath:(NSIndexPath *)indexPath {
     NSString *cacheKey = [NSString stringWithFormat:@"%@-%d", reuseIdentifier, (int)self.view.frame.size.width];
     UITableViewCell *cell = [_templateCells objectForKey:cacheKey];
@@ -449,7 +446,6 @@
 
     return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1;
 }
-#pragma clang diagnostic pop
 
 - (CGFloat)cellWidthForStyle:(UITableViewStyle)style accessoryType:(UITableViewCellAccessoryType)accessoryType {
     CGFloat width = self.view.frame.size.width;

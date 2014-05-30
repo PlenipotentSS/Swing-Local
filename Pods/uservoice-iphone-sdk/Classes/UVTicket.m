@@ -23,6 +23,8 @@
 #import "UVBabayaga.h"
 #import "UVDeflection.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVTicket
 
 + (id)createWithMessage:(NSString *)message

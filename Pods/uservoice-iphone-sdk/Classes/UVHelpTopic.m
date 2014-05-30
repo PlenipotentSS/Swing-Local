@@ -9,6 +9,8 @@
 #import "UVHelpTopic.h"
 #import "UVUtils.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVHelpTopic
 
 + (id)getAllWithDelegate:(id)delegate {

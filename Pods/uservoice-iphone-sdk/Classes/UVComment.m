@@ -13,9 +13,9 @@
 #import "UVForum.h"
 #import "UVUtils.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 
 @implementation UVComment
-
 + (id)getWithSuggestion:(UVSuggestion *)suggestion page:(NSInteger)page delegate:(id)delegate {
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/forums/%d/suggestions/%d/comments.json",
                                     (int)suggestion.forumId,
@@ -24,12 +24,14 @@
                             [[NSNumber numberWithInt:(int)page] stringValue],
                             @"page",
                             nil];
+
     return [self getPath:path
               withParams:params
                   target:delegate
                 selector:@selector(didRetrieveComments:)
                  rootKey:@"comments"];
 }
+
 
 + (id)createWithSuggestion:(UVSuggestion *)suggestion text:(NSString *)text delegate:(id)delegate {
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/forums/%d/suggestions/%d/comments.json",

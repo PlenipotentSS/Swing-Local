@@ -183,8 +183,8 @@
     if (section == 0 && [UVSession currentSession].config.showPostIdea && theTableView == _tableView) {
         return 1;
     } else if (theTableView == _tableView) {
-        int loadedCount = _suggestions.count;
-        int suggestionsCount = _forum.suggestionsCount;
+        int loadedCount = (int)_suggestions.count;
+        int suggestionsCount = (int)_forum.suggestionsCount;
         return loadedCount + (loadedCount >= suggestionsCount || suggestionsCount < SUGGESTIONS_PAGE_SIZE ? 0 : 1);
     } else {
         return _searchResults.count;

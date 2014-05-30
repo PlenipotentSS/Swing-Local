@@ -11,6 +11,8 @@
 #import "UVSession.h"
 #import "UVConfig.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVRequestToken
 
 - (id)initWithDictionary:(NSDictionary *)dict {

@@ -19,7 +19,7 @@
     [UIView transitionWithView:dst.navigationController.view duration:0.2
                        options:UIViewAnimationOptionTransitionFlipFromLeft
                     animations:^{
-                        NSArray *poppedControllers = [src.navigationController popToRootViewControllerAnimated:NO];
+                        [src.navigationController popToRootViewControllerAnimated:NO];
                         [src.navigationController pushViewController:dst animated:NO];
                     }
                     completion:NULL];

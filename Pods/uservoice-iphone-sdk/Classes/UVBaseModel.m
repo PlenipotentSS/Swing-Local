@@ -16,6 +16,7 @@
 #import "UVResponseDelegate.h"
 #import "UVRequestContext.h"
 #import "UVUtils.h"
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 
 @implementation UVBaseModel
 
@@ -196,6 +197,7 @@
         [context.callback.target performSelector:@selector(didReceiveError:context:) withObject:error withObject:context];
     else if ([context.callback.target respondsToSelector:@selector(didReceiveError:)])
         [context.callback.target performSelector:@selector(didReceiveError:) withObject:error];
+
 }
 
 - (id)initWithDictionary:(NSDictionary *)dict {

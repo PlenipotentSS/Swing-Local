@@ -9,6 +9,8 @@
 #import "UVForum.h"
 #import "UVCategory.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVForum
 
 + (id)getWithId:(int)forumId delegate:(id)delegate {

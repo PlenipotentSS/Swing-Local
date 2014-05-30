@@ -13,8 +13,16 @@
 #import "HollowButton.h"
 #import "EventsTableView.h"
 #import "EventsTableViewModel.h"
+@protocol HomeViewDelegate
+
+- (void)setupLayout;
+
+@end
 
 @interface HomeView : UIView
+
+///HomViewDelegate
+@property (unsafe_unretained) id<HomeViewDelegate> delegate;
 
 //wrapper view
 @property (weak, nonatomic) IBOutlet UIView *wrapper;
