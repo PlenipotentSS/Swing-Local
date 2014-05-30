@@ -16,12 +16,15 @@
 #import "UVUtils.h"
 #import "UVDeflection.h"
 
+
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVSuggestion
 
 + (id)getWithForum:(UVForum *)forum page:(NSInteger)page delegate:(id)delegate {
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/forums/%d/suggestions.json", (int)forum.forumId]];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [[NSNumber numberWithInt:page] stringValue], @"page",
+                            [[NSNumber numberWithInteger:page] stringValue], @"page",
                             @"public", @"filter",
                             [[UVSession currentSession].clientConfig.subdomain suggestionSort], @"sort",
                             //@"5", @"per_page",

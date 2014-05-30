@@ -19,56 +19,56 @@
 #import "M13ProgressViewStripedBar.h"
 #import "UIColor+SwingLocal.h"
 
-@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate>
+@interface HomeViewController () <UIGestureRecognizerDelegate, UIActionSheetDelegate, EventsTableViewModelDelegate, HomeViewDelegate>
 
-//progress view
+///progress view
 @property (nonatomic, retain) IBOutlet M13ProgressViewStripedBar *progressView;
 
-//city map view
+///city map view
 @property (nonatomic) IBOutlet MKMapView *mapView;
 
-//content ScrollView
+///content ScrollView
 @property (weak,nonatomic) IBOutlet EventsTableView *theTableView;
 
-//flag for ongoing animation
+///flag for ongoing animation
 @property (nonatomic) BOOL __block cityIsAnimating;
 
-//main view for this controller
+///main view for this controller
 @property (weak, nonatomic) HomeView *homeView;
 
-//array of all cities
+///array of all cities
 @property (nonatomic) NSMutableArray *cityKeys;
 
-//table view model
+///table view model
 @property (nonatomic) EventsTableViewModel *contentModel;
 
-//button for more dances
+///button for more dances
 @property (weak, nonatomic) IBOutlet HollowButton *moreEvents;
 
-//button for more dances
+///button for more dances
 @property (weak, nonatomic) IBOutlet UIButton *moreEventsWrapper;
 
-//footer view for any separate swipe gestures
+///footer view for any separate swipe gestures
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
-//action sheet to display cities
+///action sheet to display cities
 @property (nonatomic) SSActionSheet *cityActionSheet;
 
 @property (nonatomic) UIActionSheet *oldActionSheet;
 
-//whether there is a city that this user has selected in the past
+///whether there is a city that this user has selected in the past
 @property (nonatomic) BOOL citySelected;
 
-//current index selected in city array
+///current index selected in city array
 @property (nonatomic) NSInteger currentCityIndex;
 
-//initial home view
+///initial home view
 @property (weak,nonatomic) IBOutlet UIView *initialHomeView;
 
-//detail view
+///detail view
 @property (nonatomic) DetailView *detailView;
 
-//refresh control
+///refresh control
 @property (nonatomic, retain) UIRefreshControl *refreshControl;
 
 @end
@@ -93,7 +93,7 @@
     [self setupButtons];
     [self setupActionSheet];
     [self setupGeneral];
-    [self loadCities];
+//    [self loadCities];
     
     [self resetProgress];
     self.progressView.hidden = YES;
@@ -133,6 +133,7 @@
 -(void) setupGeneral
 {
     _homeView = (HomeView*)self.view;
+    _homeView.delegate = self;
     [_homeView setup];    
     self.homeView.footerView = self.footerView;
 }
@@ -150,6 +151,7 @@
 
 -(void) setupContentTable
 {
+    _theTableView.alpha = 0;
     _theTableView.contentSize = CGSizeMake(320.f, 1000.f);
     _theTableView.userInteractionEnabled = YES;
     _theTableView.scrollEnabled = YES;
@@ -184,6 +186,12 @@
     
     pan.delegate = self;
     [self.footerView addGestureRecognizer:pan];
+}
+
+#pragma mark - HomeViewdelegate
+- (void)setupLayout
+{
+    
 }
 
 

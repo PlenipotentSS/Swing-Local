@@ -25,7 +25,7 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
--(void) resetNotification
+-(void) cancelNotification
 {
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }

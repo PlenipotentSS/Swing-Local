@@ -16,15 +16,20 @@
 #import "UVArticle.h"
 #import "UVConfig.h"
 
+
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVClientConfig
 
 + (id)getWithDelegate:(id)delegate {
+
     NSString *path = ([UVSession currentSession].config.key == nil) ? @"/clients/default.json" : @"/client.json";
     return [self getPath:[self apiPath:path]
               withParams:nil
                   target:delegate
                 selector:@selector(didRetrieveClientConfig:)
                  rootKey:@"client"];
+
 }
 
 + (CGFloat)getScreenWidth {

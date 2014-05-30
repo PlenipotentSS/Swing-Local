@@ -20,6 +20,8 @@
 #import "UVForum.h"
 #import "UVBabayaga.h"
 
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+
 @implementation UVInitialLoadManager {
     UIAlertView *_errorAlertView;
 }
@@ -57,7 +59,6 @@
     }
 }
 
-#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (void)checkComplete {
     if (_configDone && _userDone && _topicsDone && _articlesDone && _forumDone) {
@@ -65,7 +66,6 @@
         [_delegate performSelector:_action];
     }
 }
-#pragma clang diagnostic pop
  
 - (void)didRetrieveRequestToken:(UVRequestToken *)token {
     if (_dismissed) return;

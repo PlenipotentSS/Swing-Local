@@ -55,6 +55,8 @@
         [self bounceContentHeader];
         [UIView animateWithDuration:.8f animations:^{
             _contentHeader.alpha = 1.f;
+        } completion:^(BOOL finished) {
+            [self.delegate setupLayout];
         }];
     }];
 }

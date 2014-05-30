@@ -14,10 +14,11 @@
 #import "UVHelpTopic.h"
 #import "UVConfig.h"
 #import "UVUtils.h"
-
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 @implementation UVArticle
 
 + (id)getArticlesWithTopicId:(NSInteger)topicId page:(NSInteger)page delegate:(id)delegate {
+
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/topics/%d/articles.json", (int)topicId]];
     NSDictionary *params = @{ @"sort" : @"ordered", @"page" : [NSString stringWithFormat:@"%d", (int)page] };
     return [self getPath:path
@@ -28,6 +29,7 @@
 }
 
 + (id)getArticlesWithPage:(NSInteger)page delegate:(id)delegate {
+
     NSString *path = [self apiPath:@"/articles.json"];
     NSDictionary *params = @{ @"sort" : @"ordered", @"page" : [NSString stringWithFormat:@"%d", (int)page] };
     return [self getPath:path
@@ -35,6 +37,7 @@
                   target:delegate
                 selector:@selector(didRetrieveArticles:)
                  rootKey:@"articles"];
+
 }
 
 + (NSArray *)getInstantAnswers:(NSString *)query delegate:(id)delegate {
@@ -47,11 +50,13 @@
     if ([UVSession currentSession].config.topicId)
         [params setObject:[NSString stringWithFormat:@"%d", (int)[UVSession currentSession].config.topicId] forKey:@"topic_id"];
 
+
     return [self getPath:[self apiPath:@"/instant_answers/search.json"]
               withParams:params
                   target:delegate
                 selector:@selector(didRetrieveInstantAnswers:)
                  rootKey:@"instant_answers"];
+
 }
 
 + (UVBaseModel *)modelForDictionary:(NSDictionary *)dict {
