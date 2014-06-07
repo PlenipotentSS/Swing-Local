@@ -174,7 +174,7 @@
 		D26ECBDE18ADF48100B388EA /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		D26ECBDF18ADF48100B388EA /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
 		D2779B4718B5327F0062D34C /* Crashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crashlytics.h; sourceTree = "<group>"; };
-		D2779B4818B538710062D34C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D2779B4818B538710062D34C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Framworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D28E0FA518C595200038EB48 /* SSCityEventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCityEventController.h; sourceTree = "<group>"; };
 		D28E0FA618C595200038EB48 /* SSCityEventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCityEventController.m; sourceTree = "<group>"; };
 		D28E0FA818C595B30038EB48 /* SSEventTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSEventTableView.h; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 		D2A07FAC189F542D002F11DA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D2A07FBB189F8602002F11DA /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
 		D2A07FBC189F8602002F11DA /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
-		D2C0FC5318CF924300CCA7DD /* SSStackedPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSStackedPageView.h; path = ../../../XcodeProjects/Pods/SSStackedPageView/Classes/SSStackedPageView.h; sourceTree = "<group>"; };
-		D2C0FC5418CF924300CCA7DD /* SSStackedPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSStackedPageView.m; path = ../../../XcodeProjects/Pods/SSStackedPageView/Classes/SSStackedPageView.m; sourceTree = "<group>"; };
+		D2C0FC5318CF924300CCA7DD /* SSStackedPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSStackedPageView.h; path = ../../SSStackedPageView/Classes/SSStackedPageView.h; sourceTree = "<group>"; };
+		D2C0FC5418CF924300CCA7DD /* SSStackedPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSStackedPageView.m; path = ../../SSStackedPageView/Classes/SSStackedPageView.m; sourceTree = "<group>"; };
 		D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
 		D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
 		D2CEBE6518CCDA5400ABA6D0 /* SSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHomeViewController.h; sourceTree = "<group>"; };
@@ -841,7 +841,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 7bb362af92e487f1f93c82a87e0beacc5172ff1f 43f9061a6d5fdd7c0d40a4c3ff64ba932797acacf63fdf8de04bb3fb3cd87a0b";
+			shellScript = "#./Crashlytics.framework/run 7bb362af92e487f1f93c82a87e0beacc5172ff1f 43f9061a6d5fdd7c0d40a4c3ff64ba932797acacf63fdf8de04bb3fb3cd87a0b";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1032,6 +1032,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
+					"/Users/stevenhstevenson/Documents/Objc/Swing-Local/Framworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
@@ -1055,6 +1056,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
+					"/Users/stevenhstevenson/Documents/Objc/Swing-Local/Framworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
