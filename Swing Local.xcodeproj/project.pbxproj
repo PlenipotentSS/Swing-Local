@@ -12,7 +12,6 @@
 		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
 		D210AA2F18CD683600575B52 /* SSPagedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D210AA2E18CD683600575B52 /* SSPagedView.m */; };
 		D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */; };
-		D21C1ADA18A617A700D238CE /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D21C1AD918A617A700D238CE /* DetailView.xib */; };
 		D224C525189D017000923370 /* SSFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C524189D017000923370 /* SSFrontViewController.m */; };
 		D224C529189D021400923370 /* SSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D224C528189D021400923370 /* SSBackViewController.m */; };
 		D22BF0C818A471D60036783D /* Occurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0C718A471D60036783D /* Occurrence.m */; };
@@ -21,7 +20,6 @@
 		D22BF0DC18A4BC3A0036783D /* FrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D818A4BC3A0036783D /* FrontViewController.m */; };
 		D22BF0DD18A4BC3A0036783D /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22BF0D918A4BC3A0036783D /* SplitViewController.m */; };
 		D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */; };
-		D23181FA18A5A96E00A251B6 /* DateRangeSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */; };
 		D23181FD18A5B7CA00A251B6 /* NSDate+SwingLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */; };
 		D244C2E7189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C2E9189CEB6100E6DB16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */; };
@@ -65,7 +63,6 @@
 		D292FD1C189E1E87000874FB /* HomePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D292FD1B189E1E87000874FB /* HomePageManager.m */; };
 		D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */; };
 		D2941B2718AC844700AFFC92 /* OccAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2941B2618AC844700AFFC92 /* OccAnnotation.m */; };
-		D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F98189F534C002F11DA /* UserOptions.m */; };
 		D2A07F9C189F534C002F11DA /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9A189F534C002F11DA /* Event.m */; };
 		D2A07F9F189F535D002F11DA /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07F9E189F535D002F11DA /* Venue.m */; };
 		D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A07FA1189F537A002F11DA /* HollowButton.m */; };
@@ -82,9 +79,7 @@
 		D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E688FC18A014F000A6BD51 /* CustomSegue.m */; };
 		D2E6890118A020C900A6BD51 /* SplitControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890018A020C900A6BD51 /* SplitControllerSegue.m */; };
 		D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890318A0292100A6BD51 /* HomeViewController.m */; };
-		D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890618A02EB100A6BD51 /* NewsViewController.m */; };
 		D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890918A02EC000A6BD51 /* CalendarviewController.m */; };
-		D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */; };
 		D2E6891118A03AE200A6BD51 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891018A03AE200A6BD51 /* EventManager.m */; };
 		D2E6891B18A0614E00A6BD51 /* GHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891618A0614E00A6BD51 /* GHViewController.m */; };
 		D2E6891C18A0614E00A6BD51 /* GHWalkThroughPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E6891818A0614E00A6BD51 /* GHWalkThroughPageCell.m */; };
@@ -115,7 +110,6 @@
 		D210AA2D18CD683600575B52 /* SSPagedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPagedView.h; sourceTree = "<group>"; };
 		D210AA2E18CD683600575B52 /* SSPagedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPagedView.m; sourceTree = "<group>"; };
 		D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg"; sourceTree = "<group>"; };
-		D21C1AD918A617A700D238CE /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		D224C523189D017000923370 /* SSFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFrontViewController.h; sourceTree = "<group>"; };
 		D224C524189D017000923370 /* SSFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFrontViewController.m; sourceTree = "<group>"; };
 		D224C527189D021400923370 /* SSBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBackViewController.h; sourceTree = "<group>"; };
@@ -132,7 +126,6 @@
 		D22BF0DA18A4BC3A0036783D /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		D23181F418A5A79700A251B6 /* DateRangeSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateRangeSelectorView.h; sourceTree = "<group>"; };
 		D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateRangeSelectorView.m; sourceTree = "<group>"; };
-		D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateRangeSelector.xib; sourceTree = "<group>"; };
 		D23181FB18A5B7CA00A251B6 /* NSDate+SwingLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SwingLocal.h"; sourceTree = "<group>"; };
 		D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SwingLocal.m"; sourceTree = "<group>"; };
 		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,8 +191,6 @@
 		D2941B2218AC5C7400AFFC92 /* CityAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityAnnotation.m; sourceTree = "<group>"; };
 		D2941B2518AC844700AFFC92 /* OccAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OccAnnotation.h; sourceTree = "<group>"; };
 		D2941B2618AC844700AFFC92 /* OccAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OccAnnotation.m; sourceTree = "<group>"; };
-		D2A07F97189F534C002F11DA /* UserOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOptions.h; sourceTree = "<group>"; };
-		D2A07F98189F534C002F11DA /* UserOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOptions.m; sourceTree = "<group>"; };
 		D2A07F99189F534C002F11DA /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		D2A07F9A189F534C002F11DA /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		D2A07F9D189F535D002F11DA /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
@@ -231,12 +222,8 @@
 		D2E6890018A020C900A6BD51 /* SplitControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitControllerSegue.m; sourceTree = "<group>"; };
 		D2E6890218A0292100A6BD51 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D2E6890318A0292100A6BD51 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		D2E6890518A02EB100A6BD51 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
-		D2E6890618A02EB100A6BD51 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		D2E6890818A02EC000A6BD51 /* CalendarviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarviewController.h; sourceTree = "<group>"; };
 		D2E6890918A02EC000A6BD51 /* CalendarviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarviewController.m; sourceTree = "<group>"; };
-		D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewcontroller.h; sourceTree = "<group>"; };
-		D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewcontroller.m; sourceTree = "<group>"; };
 		D2E6890F18A03AE200A6BD51 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
 		D2E6891018A03AE200A6BD51 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		D2E6891518A0614E00A6BD51 /* GHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHViewController.h; path = GHWalkThrough/GHViewController.h; sourceTree = "<group>"; };
@@ -283,6 +270,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BD514E51943CA8D006D059D /* OLD */ = {
+			isa = PBXGroup;
+			children = (
+				D2A07FA0189F537A002F11DA /* HollowButton.h */,
+				D2A07FA1189F537A002F11DA /* HollowButton.m */,
+				D2A07FBB189F8602002F11DA /* NewsView.h */,
+				D2A07FBC189F8602002F11DA /* NewsView.m */,
+				D244C31F189CEB9000E6DB16 /* HomeView.h */,
+				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
+				D22BF0D018A4B4010036783D /* DetailView.h */,
+				D22BF0D118A4B4010036783D /* DetailView.m */,
+				D23181F418A5A79700A251B6 /* DateRangeSelectorView.h */,
+				D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */,
+				D2A07FB1189F5B44002F11DA /* Tables */,
+				D2E688F718A0133B00A6BD51 /* Subclassed */,
+				D2A07FB5189F77C5002F11DA /* TableView Models */,
+				D2A07FAE189F54EF002F11DA /* Event Models */,
+			);
+			name = OLD;
+			sourceTree = "<group>";
+		};
 		D210AA2C18CD681800575B52 /* SSPagedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,14 +309,10 @@
 				D28E0FA618C595200038EB48 /* SSCityEventController.m */,
 				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
 				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
-				D2E6890518A02EB100A6BD51 /* NewsViewController.h */,
-				D2E6890618A02EB100A6BD51 /* NewsViewController.m */,
 				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
 				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
 				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
-				D2E6890C18A0372700A6BD51 /* SettingsViewcontroller.h */,
-				D2E6890D18A0372700A6BD51 /* SettingsViewcontroller.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
 				D224C523189D017000923370 /* SSFrontViewController.h */,
@@ -357,9 +361,8 @@
 		D244C2EC189CEB6100E6DB16 /* Swing Local */ = {
 			isa = PBXGroup;
 			children = (
+				3BD514E51943CA8D006D059D /* OLD */,
 				D2A07FAC189F542D002F11DA /* Main.storyboard */,
-				D21C1AD918A617A700D238CE /* DetailView.xib */,
-				D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
 				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
@@ -440,9 +443,6 @@
 				D28E0FB218C5970C0038EB48 /* SSPhotoBackgroundView.h */,
 				D28E0FB318C5970C0038EB48 /* SSPhotoBackgroundView.m */,
 				D2A07FBE189F8610002F11DA /* Controller Views */,
-				D2A07FB0189F5B3F002F11DA /* Buttons */,
-				D2E688F718A0133B00A6BD51 /* Subclassed */,
-				D2A07FB1189F5B44002F11DA /* Tables */,
 				D2F450E018A1ECF600ABD1C8 /* Cells */,
 			);
 			name = Views;
@@ -526,9 +526,6 @@
 			isa = PBXGroup;
 			children = (
 				D244C348189CEC8100E6DB16 /* Categories */,
-				D2A07FAF189F54FE002F11DA /* User Settings */,
-				D2A07FAE189F54EF002F11DA /* Event Models */,
-				D2A07FB5189F77C5002F11DA /* TableView Models */,
 				D292FD1E189E32DA000874FB /* Managers */,
 				D2E688FE18A0152800A6BD51 /* Segues */,
 				D2941B2418AC5D0500AFFC92 /* MapKit */,
@@ -577,24 +574,6 @@
 			name = "Event Models";
 			sourceTree = "<group>";
 		};
-		D2A07FAF189F54FE002F11DA /* User Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D2A07F97189F534C002F11DA /* UserOptions.h */,
-				D2A07F98189F534C002F11DA /* UserOptions.m */,
-			);
-			name = "User Settings";
-			sourceTree = "<group>";
-		};
-		D2A07FB0189F5B3F002F11DA /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				D2A07FA0189F537A002F11DA /* HollowButton.h */,
-				D2A07FA1189F537A002F11DA /* HollowButton.m */,
-			);
-			name = Buttons;
-			sourceTree = "<group>";
-		};
 		D2A07FB1189F5B44002F11DA /* Tables */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,14 +599,6 @@
 			children = (
 				D244C321189CEB9000E6DB16 /* MainView.h */,
 				D244C343189CEC5C00E6DB16 /* MainView.m */,
-				D2A07FBB189F8602002F11DA /* NewsView.h */,
-				D2A07FBC189F8602002F11DA /* NewsView.m */,
-				D244C31F189CEB9000E6DB16 /* HomeView.h */,
-				D244C32A189CEBCC00E6DB16 /* HomeView.m */,
-				D22BF0D018A4B4010036783D /* DetailView.h */,
-				D22BF0D118A4B4010036783D /* DetailView.m */,
-				D23181F418A5A79700A251B6 /* DateRangeSelectorView.h */,
-				D23181F518A5A79700A251B6 /* DateRangeSelectorView.m */,
 			);
 			name = "Controller Views";
 			sourceTree = "<group>";
@@ -772,7 +743,6 @@
 				D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */,
 				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
 				D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */,
-				D23181FA18A5A96E00A251B6 /* DateRangeSelector.xib in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
 				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
@@ -782,7 +752,6 @@
 				D28E0FB118C596EF0038EB48 /* PhotographerCoverView.xib in Resources */,
 				D28E0FBD18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png in Resources */,
 				D28E0FAF18C596E00038EB48 /* SSMapView.xib in Resources */,
-				D21C1ADA18A617A700D238CE /* DetailView.xib in Resources */,
 				D28E0FBB18C599CF0038EB48 /* 51a837d5a18a756793.jpg in Resources */,
 				D244C340189CEBF100E6DB16 /* bg_03.png in Resources */,
 				D244C337189CEBE600E6DB16 /* menu-gear@2x.png in Resources */,
@@ -867,7 +836,6 @@
 				D22BF0D218A4B4010036783D /* DetailView.m in Sources */,
 				D2E6890A18A02EC000A6BD51 /* CalendarviewController.m in Sources */,
 				D26ECBE018ADF48100B388EA /* M13ProgressViewStripedBar.m in Sources */,
-				D2E6890718A02EB100A6BD51 /* NewsViewController.m in Sources */,
 				D224C529189D021400923370 /* SSBackViewController.m in Sources */,
 				D2E6891D18A0614E00A6BD51 /* GHWalkThroughView.m in Sources */,
 				D2DD655218AFC89200326DEB /* EventTableViewCell.m in Sources */,
@@ -882,7 +850,6 @@
 				D2941B2318AC5C7400AFFC92 /* CityAnnotation.m in Sources */,
 				D244C330189CEBCC00E6DB16 /* HomeView.m in Sources */,
 				D28E0FAA18C595B30038EB48 /* SSEventTableView.m in Sources */,
-				D2E6890E18A0372700A6BD51 /* SettingsViewcontroller.m in Sources */,
 				D23181F618A5A79700A251B6 /* DateRangeSelectorView.m in Sources */,
 				D2A07FA2189F537A002F11DA /* HollowButton.m in Sources */,
 				D26ECBDD18ADF47600B388EA /* M13ProgressView.m in Sources */,
@@ -896,7 +863,6 @@
 				D28E0FA718C595200038EB48 /* SSCityEventController.m in Sources */,
 				D2E6890418A0292100A6BD51 /* HomeViewController.m in Sources */,
 				D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */,
-				D2A07F9B189F534C002F11DA /* UserOptions.m in Sources */,
 				D28E0FB718C597700038EB48 /* SSMapView.m in Sources */,
 				D244C2F3189CEB6100E6DB16 /* main.m in Sources */,
 				D22BF0C818A471D60036783D /* Occurrence.m in Sources */,

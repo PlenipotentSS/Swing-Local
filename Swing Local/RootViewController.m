@@ -38,16 +38,17 @@
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
-    BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
     [standardDefaults setBool:YES forKey:@"newLaunch"];
+    BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
     
-    //skip tutorial
+    
+    [self performSegueWithIdentifier:@"showTutorial" sender:self];
+    
     if (skipTutorial || ![UIPageControl instancesRespondToSelector:@selector(setTintColor:)]){
         [self performSegueWithIdentifier:@"showSplitController" sender:self];
     } else {
-        [standardDefaults setBool:YES forKey:@"SkipTutorial"];
-        [self performSegueWithIdentifier:@"showSplitController" sender:self];
         [self performSegueWithIdentifier:@"showTutorial" sender:self];
+        [self performSegueWithIdentifier:@"showSplitController" sender:self];
     }
 }
 

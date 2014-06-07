@@ -78,8 +78,8 @@
     _theTableView.dataSource = self;
     _theTableView.delegate = self;
     
-    _menuItems = @[@"homeCell",@"newsCell",@"calendarCell",@"supportCell"];
-    _segueItems = @[@"showHome",@"showNews",@"showCalendar",@"showSupport"];
+    _menuItems = @[@"homeCell",@"calendarCell",@"supportCell"];
+    _segueItems = @[@"showHome",@"showCalendar",@"showSupport"];
     
     [self reloadSavedCities];
 }
