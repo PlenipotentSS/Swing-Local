@@ -66,6 +66,9 @@
     [self.titles addObject:@"Building a Community"];
     
     
+    NSMutableDictionary *hello = [[NSMutableDictionary alloc] initWithDictionary:@{@"Hello": @"World"}];
+    
+    
     self.descriptions = [[NSMutableArray alloc] init];
     [self.descriptions addObject:@"We do all the research for your city so you can do more dancing and less venue hunting."];
     

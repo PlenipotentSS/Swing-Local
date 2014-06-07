@@ -135,20 +135,20 @@
 		D23181F918A5A96E00A251B6 /* DateRangeSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateRangeSelector.xib; sourceTree = "<group>"; };
 		D23181FB18A5B7CA00A251B6 /* NSDate+SwingLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SwingLocal.h"; sourceTree = "<group>"; };
 		D23181FC18A5B7CA00A251B6 /* NSDate+SwingLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SwingLocal.m"; sourceTree = "<group>"; };
-		D244C2E3189CEB6100E6DB16 /* Swing Local-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D244C2E3189CEB6100E6DB16 /* Swing Local.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swing Local.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C2E6189CEB6100E6DB16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D244C2E8189CEB6100E6DB16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D244C2EA189CEB6100E6DB16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D244C2EE189CEB6100E6DB16 /* Swing Local-Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing Local-Dev-Info.plist"; sourceTree = "<group>"; };
+		D244C2EE189CEB6100E6DB16 /* Swing Local-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing Local-Info.plist"; sourceTree = "<group>"; };
 		D244C2F0189CEB6100E6DB16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D244C2F2189CEB6100E6DB16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D244C2F4189CEB6100E6DB16 /* Swing Local-Dev-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swing Local-Dev-Prefix.pch"; sourceTree = "<group>"; };
+		D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swing Local-Prefix.pch"; sourceTree = "<group>"; };
 		D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
 		D244C2FE189CEB6100E6DB16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D244C304189CEB6100E6DB16 /* Swing Local-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swing Local-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D244C304189CEB6100E6DB16 /* Swing LocalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swing LocalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C305189CEB6100E6DB16 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D244C30D189CEB6100E6DB16 /* Swing Local-DevTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing Local-DevTests-Info.plist"; sourceTree = "<group>"; };
+		D244C30D189CEB6100E6DB16 /* Swing LocalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing LocalTests-Info.plist"; sourceTree = "<group>"; };
 		D244C30F189CEB6100E6DB16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D244C311189CEB6100E6DB16 /* Swing_LocalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swing_LocalTests.m; sourceTree = "<group>"; };
 		D244C31F189CEB9000E6DB16 /* HomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 		D244C2E4189CEB6100E6DB16 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D244C2E3189CEB6100E6DB16 /* Swing Local-Dev.app */,
-				D244C304189CEB6100E6DB16 /* Swing Local-DevTests.xctest */,
+				D244C2E3189CEB6100E6DB16 /* Swing Local.app */,
+				D244C304189CEB6100E6DB16 /* Swing LocalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -383,10 +383,10 @@
 			isa = PBXGroup;
 			children = (
 				D2779B4718B5327F0062D34C /* Crashlytics.h */,
-				D244C2EE189CEB6100E6DB16 /* Swing Local-Dev-Info.plist */,
+				D244C2EE189CEB6100E6DB16 /* Swing Local-Info.plist */,
 				D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */,
 				D244C2F2189CEB6100E6DB16 /* main.m */,
-				D244C2F4189CEB6100E6DB16 /* Swing Local-Dev-Prefix.pch */,
+				D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */,
 				D2F450E618A2C4AB00ABD1C8 /* Constants.h */,
 			);
 			name = "Supporting Files";
@@ -404,7 +404,7 @@
 		D244C30C189CEB6100E6DB16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D244C30D189CEB6100E6DB16 /* Swing Local-DevTests-Info.plist */,
+				D244C30D189CEB6100E6DB16 /* Swing LocalTests-Info.plist */,
 				D244C30E189CEB6100E6DB16 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -688,9 +688,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D244C2E2189CEB6100E6DB16 /* Swing Local-Dev */ = {
+		D244C2E2189CEB6100E6DB16 /* Swing Local */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D244C315189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local-Dev" */;
+			buildConfigurationList = D244C315189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local" */;
 			buildPhases = (
 				925D8FD12970430DA1B35C8D /* Check Pods Manifest.lock */,
 				D244C2DF189CEB6100E6DB16 /* Sources */,
@@ -703,14 +703,14 @@
 			);
 			dependencies = (
 			);
-			name = "Swing Local-Dev";
+			name = "Swing Local";
 			productName = "Swing Local";
-			productReference = D244C2E3189CEB6100E6DB16 /* Swing Local-Dev.app */;
+			productReference = D244C2E3189CEB6100E6DB16 /* Swing Local.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D244C303189CEB6100E6DB16 /* Swing Local-DevTests */ = {
+		D244C303189CEB6100E6DB16 /* Swing LocalTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D244C318189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local-DevTests" */;
+			buildConfigurationList = D244C318189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing LocalTests" */;
 			buildPhases = (
 				D244C300189CEB6100E6DB16 /* Sources */,
 				D244C301189CEB6100E6DB16 /* Frameworks */,
@@ -721,9 +721,9 @@
 			dependencies = (
 				D244C30A189CEB6100E6DB16 /* PBXTargetDependency */,
 			);
-			name = "Swing Local-DevTests";
+			name = "Swing LocalTests";
 			productName = "Swing LocalTests";
-			productReference = D244C304189CEB6100E6DB16 /* Swing Local-DevTests.xctest */;
+			productReference = D244C304189CEB6100E6DB16 /* Swing LocalTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -744,7 +744,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D244C2DE189CEB6100E6DB16 /* Build configuration list for PBXProject "Swing Local-Dev" */;
+			buildConfigurationList = D244C2DE189CEB6100E6DB16 /* Build configuration list for PBXProject "Swing Local" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -757,8 +757,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D244C2E2189CEB6100E6DB16 /* Swing Local-Dev */,
-				D244C303189CEB6100E6DB16 /* Swing Local-DevTests */,
+				D244C2E2189CEB6100E6DB16 /* Swing Local */,
+				D244C303189CEB6100E6DB16 /* Swing LocalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -922,7 +922,7 @@
 /* Begin PBXTargetDependency section */
 		D244C30A189CEB6100E6DB16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D244C2E2189CEB6100E6DB16 /* Swing Local-Dev */;
+			target = D244C2E2189CEB6100E6DB16 /* Swing Local */;
 			targetProxy = D244C309189CEB6100E6DB16 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -963,7 +963,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Steven Stevenson (2S283D3328)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Steven Stevenson (2S283D3328)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -981,6 +982,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "1420FFBF-9F71-4BFE-9D79-4F43136D7EF3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1001,7 +1003,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Steven Stevenson (2S283D3328)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Steven Stevenson (2S283D3328)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1012,6 +1015,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "1420FFBF-9F71-4BFE-9D79-4F43136D7EF3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1030,10 +1034,10 @@
 					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Dev-Prefix.pch";
-				INFOPLIST_FILE = "Swing Local/Swing Local-Dev-Info.plist";
+				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
+				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "Swing Local-Dev";
+				PRODUCT_NAME = "Swing Local";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1053,10 +1057,10 @@
 					"/Users/plenipotence/Dropbox/Laptop\\ Files/Documents/Swing\\ Local/Swing\\ Local",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Dev-Prefix.pch";
-				INFOPLIST_FILE = "Swing Local/Swing Local-Dev-Info.plist";
+				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
+				INFOPLIST_FILE = "Swing Local/Swing Local-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "Swing Local-Dev";
+				PRODUCT_NAME = "Swing Local";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1078,8 +1082,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Swing LocalTests/Swing Local-DevTests-Info.plist";
-				PRODUCT_NAME = "Swing Local-DevTests";
+				INFOPLIST_FILE = "Swing LocalTests/Swing LocalTests-Info.plist";
+				PRODUCT_NAME = "Swing LocalTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1096,8 +1100,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Swing Local/Swing Local-Prefix.pch";
-				INFOPLIST_FILE = "Swing LocalTests/Swing Local-DevTests-Info.plist";
-				PRODUCT_NAME = "Swing Local-DevTests";
+				INFOPLIST_FILE = "Swing LocalTests/Swing LocalTests-Info.plist";
+				PRODUCT_NAME = "Swing LocalTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1106,7 +1110,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D244C2DE189CEB6100E6DB16 /* Build configuration list for PBXProject "Swing Local-Dev" */ = {
+		D244C2DE189CEB6100E6DB16 /* Build configuration list for PBXProject "Swing Local" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D244C313189CEB6100E6DB16 /* Debug */,
@@ -1115,7 +1119,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D244C315189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local-Dev" */ = {
+		D244C315189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D244C316189CEB6100E6DB16 /* Debug */,
@@ -1124,7 +1128,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D244C318189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing Local-DevTests" */ = {
+		D244C318189CEB6100E6DB16 /* Build configuration list for PBXNativeTarget "Swing LocalTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D244C319189CEB6100E6DB16 /* Debug */,

@@ -138,6 +138,7 @@
     self.menuStateInView = MenuOpened;
 }
 
+
 - (void)hideMenu {
     CGRect newFrontFrame = self.frontViewController.view.frame;
     newFrontFrame.origin.x = 0.f;
