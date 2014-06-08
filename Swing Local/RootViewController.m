@@ -41,11 +41,11 @@
     [standardDefaults setBool:YES forKey:@"newLaunch"];
     BOOL skipTutorial = [standardDefaults boolForKey:@"SkipTutorial"];
     
-    
     [self performSegueWithIdentifier:@"showTutorial" sender:self];
     
     if (skipTutorial || ![UIPageControl instancesRespondToSelector:@selector(setTintColor:)]){
         [self performSegueWithIdentifier:@"showSplitController" sender:self];
+        [standardDefaults setBool:NO forKey:@"Skiptutorial"];
     } else {
         [self performSegueWithIdentifier:@"showTutorial" sender:self];
         [self performSegueWithIdentifier:@"showSplitController" sender:self];

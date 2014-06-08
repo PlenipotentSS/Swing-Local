@@ -111,8 +111,8 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
-//    [super viewDidAppear:animated];
-//    
+    [super viewDidAppear:animated];
+//
 //    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
 //                                                      owner:self
 //                                                    options:nil];
@@ -176,8 +176,8 @@
 
 -(void) resetProgress
 {
-    [self.progressView setProgress:0.05f animated:NO];
-    self.progressView.hidden = NO;
+//    [self.progressView setProgress:0.05f animated:NO];
+//    self.progressView.hidden = NO;
 }
 
 #pragma mark - updating data and UI
@@ -185,8 +185,8 @@
 -(void) updatePageViews
 {
     [self resetProgress];
-    self.titleLabel.text = @"Your Saved Cities";
-    
+//    self.titleLabel.text = @"Your Saved Cities";
+//    
 //    NSMutableArray *mapPins = [NSMutableArray new];
 //    
 //    __block NSInteger counter = 1;
@@ -210,125 +210,125 @@
 //        }];
 //    }
 //    
-    [self.contentModel setCities:self.cities];
+//    [self.contentModel setCities:self.cities];
 }
 
--(void) updateMapPinForOccurrence:(Occurrence *)thisOccurrence
-{
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder geocodeAddressString:thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (!error) {
-            CLPlacemark *locationPlacemark = [placemarks lastObject];
-            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
-            OccAnnotation *occAnnotation = [[OccAnnotation alloc] init];
-            occAnnotation.title = thisOccurrence.updatedTitle;
-            occAnnotation.coordinate = cityLocation;
-            if (![self.pinnedAddresses containsObject:thisOccurrence.address]) {
-                [self.mapView addAnnotation:occAnnotation];
-                [self.pinnedAddresses addObject:thisOccurrence.address];
-                if ([MKMapView instancesRespondToSelector:@selector(showAnnotations:animated:)]) {
-                    [self.mapView showAnnotations:self.mapView.annotations animated:NO];
-                }
-            }
-        } else {
-            NSLog(@"error: %@ at: %@",error,thisOccurrence.address);
-        }
-    }];
-}
+//-(void) updateMapPinForOccurrence:(Occurrence *)thisOccurrence
+//{
+//    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+//    [geoCoder geocodeAddressString:thisOccurrence.address completionHandler:^(NSArray *placemarks, NSError *error) {
+//        if (!error) {
+//            CLPlacemark *locationPlacemark = [placemarks lastObject];
+//            CLLocationCoordinate2D cityLocation = CLLocationCoordinate2DMake(locationPlacemark.location.coordinate.latitude,locationPlacemark.location.coordinate.longitude);
+//            OccAnnotation *occAnnotation = [[OccAnnotation alloc] init];
+//            occAnnotation.title = thisOccurrence.updatedTitle;
+//            occAnnotation.coordinate = cityLocation;
+//            if (![self.pinnedAddresses containsObject:thisOccurrence.address]) {
+//                [self.mapView addAnnotation:occAnnotation];
+//                [self.pinnedAddresses addObject:thisOccurrence.address];
+//                if ([MKMapView instancesRespondToSelector:@selector(showAnnotations:animated:)]) {
+//                    [self.mapView showAnnotations:self.mapView.annotations animated:NO];
+//                }
+//            }
+//        } else {
+//            NSLog(@"error: %@ at: %@",error,thisOccurrence.address);
+//        }
+//    }];
+//}
 
-#pragma mark - present detail view controller for occurrence!
--(void) showControllerWithOccurrence: (NSNotification*) notification
-{
-    self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
-    [self.detailView setAlpha:0.f];
-    if ([UIView instancesRespondToSelector:@selector(setTintColor:)]) {
-        [self.detailView setTintColor:[UIColor offWhiteScheme]];
-    }
-    
-    [self.view addSubview:self.detailView];
-    [UIView animateWithDuration:.4f animations:^{
-        [self.detailView setAlpha:1.f];
-    }];
-}
+//#pragma mark - present detail view controller for occurrence!
+//-(void) showControllerWithOccurrence: (NSNotification*) notification
+//{
+//    self.detailView.thisOccurrence = (Occurrence*)[[notification userInfo] objectForKey:@"occurrence"];
+//    [self.detailView setAlpha:0.f];
+//    if ([UIView instancesRespondToSelector:@selector(setTintColor:)]) {
+//        [self.detailView setTintColor:[UIColor offWhiteScheme]];
+//    }
+//    
+//    [self.view addSubview:self.detailView];
+//    [UIView animateWithDuration:.4f animations:^{
+//        [self.detailView setAlpha:1.f];
+//    }];
+//}
 
-#pragma mark - action to change date
-- (IBAction)dateControlChanged:(id)sender
-{
-    
-    [self resetProgress];
-    [self.pinnedAddresses removeAllObjects];
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    UISegmentedControl *control =(UISegmentedControl*)sender;
-    if (control.selectedSegmentIndex == 0) {
-        [self.contentModel setDatesToSearch:[NSArray new]];
-    } else if (control.selectedSegmentIndex == 1){
-        NSMutableArray *mutableDates = [NSMutableArray new];
-        
-        NSDate *now = [NSDate date];
-        for (int i=0; i <= 7 ;i++ ) {
-            NSDateComponents *components = [[NSDateComponents alloc] init];
-            [components setDay:i];
-            
-            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            
-            NSDate *newDate2 = [gregorian dateByAddingComponents:components toDate:now options:0];
-            [mutableDates addObject:newDate2];
-        }
-        [self.contentModel setDatesToSearch:[NSArray arrayWithArray:mutableDates]];
-    } else if (control.selectedSegmentIndex == 2 ) {
-        //load hub to select beginning date and end date!
-        [self showDateRangeSelector];
-    }
-    
-    [self.contentModel setCities:self.cities];
-}
+//#pragma mark - action to change date
+//- (IBAction)dateControlChanged:(id)sender
+//{
+//    
+//    [self resetProgress];
+//    [self.pinnedAddresses removeAllObjects];
+//    [self.mapView removeAnnotations:self.mapView.annotations];
+//    UISegmentedControl *control =(UISegmentedControl*)sender;
+//    if (control.selectedSegmentIndex == 0) {
+//        [self.contentModel setDatesToSearch:[NSArray new]];
+//    } else if (control.selectedSegmentIndex == 1){
+//        NSMutableArray *mutableDates = [NSMutableArray new];
+//        
+//        NSDate *now = [NSDate date];
+//        for (int i=0; i <= 7 ;i++ ) {
+//            NSDateComponents *components = [[NSDateComponents alloc] init];
+//            [components setDay:i];
+//            
+//            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            
+//            NSDate *newDate2 = [gregorian dateByAddingComponents:components toDate:now options:0];
+//            [mutableDates addObject:newDate2];
+//        }
+//        [self.contentModel setDatesToSearch:[NSArray arrayWithArray:mutableDates]];
+//    } else if (control.selectedSegmentIndex == 2 ) {
+//        //load hub to select beginning date and end date!
+//        [self showDateRangeSelector];
+//    }
+//    
+//    [self.contentModel setCities:self.cities];
+//}
 
-#pragma mark - present date range view
--(void) showDateRangeSelector
-{
-    [self.dateSelectorView setAlpha:0.f];
-    [self.shadowBoxBackground setAlpha:0.f];
-    [self.dateSelectorView setDelegate:self];
-    self.dateSelectorView.center = self.view.center;
-    
-    [self.view addSubview:self.shadowBoxBackground];
-    [self.view addSubview:self.dateSelectorView];
-    [UIView animateWithDuration:.4f animations:^{
-        [self.dateSelectorView setAlpha:1.f];
-        [self.shadowBoxBackground setAlpha:1.f];
-    }];
-}
+//#pragma mark - present date range view
+//-(void) showDateRangeSelector
+//{
+//    [self.dateSelectorView setAlpha:0.f];
+//    [self.shadowBoxBackground setAlpha:0.f];
+//    [self.dateSelectorView setDelegate:self];
+//    self.dateSelectorView.center = self.view.center;
+//    
+//    [self.view addSubview:self.shadowBoxBackground];
+//    [self.view addSubview:self.dateSelectorView];
+//    [UIView animateWithDuration:.4f animations:^{
+//        [self.dateSelectorView setAlpha:1.f];
+//        [self.shadowBoxBackground setAlpha:1.f];
+//    }];
+//}
 
-#pragma mark - DateRangeSelector Delegate methods
--(void) updateTableViewWithBeginDateDate:(NSDate*) startDate toEndDate: (NSDate*) endDate {
-    [self.miscQueue addOperationWithBlock:^{
-        NSMutableArray *mutableDates = [NSMutableArray new];
-        
-        int counter = 0;
-        
-        NSDate *nextDate;
-        do {
-            NSDateComponents *components = [[NSDateComponents alloc] init];
-            [components setDay:counter];
-            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
-            
-            counter++;
-            
-            [mutableDates addObject:nextDate];
-            if ( [NSDate dateA:nextDate isSameDayAsDateB:endDate]) {
-                break;
-            }
-        } while ( [NSDate dateA:nextDate isBeforeDateB:endDate] );
-        
-        NSArray *searchDates = [NSArray arrayWithArray:mutableDates];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.contentModel setDatesToSearch:searchDates];
-            [self.contentModel setCities:self.cities];
-            self.dateSelectRangeControl.selectedSegmentIndex = -1;
-        }];
-    }];
-    
-}
+//#pragma mark - DateRangeSelector Delegate methods
+//-(void) updateTableViewWithBeginDateDate:(NSDate*) startDate toEndDate: (NSDate*) endDate {
+//    [self.miscQueue addOperationWithBlock:^{
+//        NSMutableArray *mutableDates = [NSMutableArray new];
+//        
+//        int counter = 0;
+//        
+//        NSDate *nextDate;
+//        do {
+//            NSDateComponents *components = [[NSDateComponents alloc] init];
+//            [components setDay:counter];
+//            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            nextDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
+//            
+//            counter++;
+//            
+//            [mutableDates addObject:nextDate];
+//            if ( [NSDate dateA:nextDate isSameDayAsDateB:endDate]) {
+//                break;
+//            }
+//        } while ( [NSDate dateA:nextDate isBeforeDateB:endDate] );
+//        
+//        NSArray *searchDates = [NSArray arrayWithArray:mutableDates];
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            [self.contentModel setDatesToSearch:searchDates];
+//            [self.contentModel setCities:self.cities];
+//            self.dateSelectRangeControl.selectedSegmentIndex = -1;
+//        }];
+//    }];
+//    
+//}
 
 @end

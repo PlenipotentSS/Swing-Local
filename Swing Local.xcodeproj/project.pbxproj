@@ -10,6 +10,7 @@
 		3BD514E919440256006D059D /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514E819440256006D059D /* MapManager.m */; };
 		3BD514EB194427C7006D059D /* swing-dance-fun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BD514EA194427C7006D059D /* swing-dance-fun.jpg */; };
 		3BD514EE19442C4A006D059D /* BackgroundImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514ED19442C4A006D059D /* BackgroundImageManager.m */; };
+		3BD514F219445BD8006D059D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD514F119445BD8006D059D /* Images.xcassets */; };
 		850EA0662F1A4443888886AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C876B9746D5484BBC958FD8 /* libPods.a */; };
 		D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CD189F942300F461CE /* DoActionSheet.m */; };
 		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
@@ -30,7 +31,6 @@
 		D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */; };
 		D244C2F3189CEB6100E6DB16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C2F2189CEB6100E6DB16 /* main.m */; };
 		D244C2F7189CEB6100E6DB16 /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */; };
-		D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D244C2FE189CEB6100E6DB16 /* Images.xcassets */; };
 		D244C306189CEB6100E6DB16 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C305189CEB6100E6DB16 /* XCTest.framework */; };
 		D244C307189CEB6100E6DB16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2E6189CEB6100E6DB16 /* Foundation.framework */; };
 		D244C308189CEB6100E6DB16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244C2EA189CEB6100E6DB16 /* UIKit.framework */; };
@@ -109,6 +109,7 @@
 		3BD514EA194427C7006D059D /* swing-dance-fun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "swing-dance-fun.jpg"; sourceTree = "<group>"; };
 		3BD514EC19442C4A006D059D /* BackgroundImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundImageManager.h; sourceTree = "<group>"; };
 		3BD514ED19442C4A006D059D /* BackgroundImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImageManager.m; sourceTree = "<group>"; };
+		3BD514F119445BD8006D059D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7C876B9746D5484BBC958FD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAECE47F4C444FF4AFCE578C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D20B26CC189F942300F461CE /* DoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoActionSheet.h; path = "Swing Local/DoActionSheet/DoActionSheet.h"; sourceTree = SOURCE_ROOT; };
@@ -146,7 +147,6 @@
 		D244C2F4189CEB6100E6DB16 /* Swing Local-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swing Local-Prefix.pch"; sourceTree = "<group>"; };
 		D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
-		D244C2FE189CEB6100E6DB16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D244C304189CEB6100E6DB16 /* Swing LocalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swing LocalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244C305189CEB6100E6DB16 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D244C30D189CEB6100E6DB16 /* Swing LocalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Swing LocalTests-Info.plist"; sourceTree = "<group>"; };
@@ -387,7 +387,7 @@
 				D244C345189CEC6500E6DB16 /* Views */,
 				D224C526189D017A00923370 /* Controllers */,
 				D2E6890B18A02ECA00A6BD51 /* Other Projs */,
-				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
+				3BD514F119445BD8006D059D /* Images.xcassets */,
 				D244C33A189CEBEA00E6DB16 /* Images */,
 				D244C2ED189CEB6100E6DB16 /* Supporting Files */,
 			);
@@ -761,7 +761,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D244C33F189CEBF100E6DB16 /* bg_02.png in Resources */,
-				D244C2FF189CEB6100E6DB16 /* Images.xcassets in Resources */,
 				D244C339189CEBE600E6DB16 /* menu@2x.png in Resources */,
 				D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
@@ -772,6 +771,7 @@
 				D28E0FBC18C599CF0038EB48 /* SwingLocalLogo-Map.png in Resources */,
 				D244C33E189CEBF100E6DB16 /* bg_01.png in Resources */,
 				D28E0FB118C596EF0038EB48 /* PhotographerCoverView.xib in Resources */,
+				3BD514F219445BD8006D059D /* Images.xcassets in Resources */,
 				D28E0FBD18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png in Resources */,
 				D28E0FAF18C596E00038EB48 /* SSMapView.xib in Resources */,
 				D28E0FBB18C599CF0038EB48 /* 51a837d5a18a756793.jpg in Resources */,
