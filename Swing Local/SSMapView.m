@@ -9,7 +9,7 @@
 #import "SSMapView.h"
 
 #define TAB_HEIGHT 50.f
-#define TAB_WIDTH 60.f
+#define TAB_WIDTH 50.f
 
 @implementation SSMapView
 
@@ -45,7 +45,8 @@
     [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame), CGRectGetMinY(frame))];
     [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame), CGRectGetMaxY(frame)-TAB_HEIGHT)];
     [bezierPath addLineToPoint: CGPointMake(CGRectGetMaxX(frame)-5, CGRectGetMaxY(frame)-TAB_HEIGHT)];
-    [[UIColor colorWithRed:0.705 green:0.194 blue:0.165 alpha:1.000] setFill];
+    //[[UIColor colorWithRed:0.705 green:0.194 blue:0.165 alpha:1.000] setFill];
+    [[UIColor whiteColor] setFill];
     [bezierPath fill];
 }
 @end

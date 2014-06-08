@@ -29,12 +29,12 @@
 {
     [super viewDidLoad];
     //load all cities from manager & compare with that in data
-    NSURL *archiveURL = [[self documentDir] URLByAppendingPathComponent:SAVED_CITY_ARCHIVE_NAME];
-    NSMutableArray *savedCities =[NSKeyedUnarchiver unarchiveObjectWithFile:[archiveURL path]];
-    if (savedCities) {
-        [EventManager sharedManager].savedCities = savedCities;
-    }
-    [[EventManager sharedManager] downloadCities];
+//    NSURL *archiveURL = [[self documentDir] URLByAppendingPathComponent:SAVED_CITY_ARCHIVE_NAME];
+//    NSMutableArray *savedCities =[NSKeyedUnarchiver unarchiveObjectWithFile:[archiveURL path]];
+//    if (savedCities) {
+//        [EventManager sharedManager].savedCities = savedCities;
+//    }
+//    [[EventManager sharedManager] downloadCities];
     
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     

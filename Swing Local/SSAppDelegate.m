@@ -30,11 +30,11 @@
 //    // Handle launching from a notification
 //    UILocalNotification *localNotif =
 //    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (!self.localNotificationManager) {
-        self.localNotificationManager = [[LocalNotificationManager alloc] init];
-    }
-    [self.localNotificationManager cancelNotification];
-    [self.localNotificationManager scheduleNotification];
+//    if (!self.localNotificationManager) {
+//        self.localNotificationManager = [[LocalNotificationManager alloc] init];
+//    }
+//    [self.localNotificationManager cancelNotification];
+//    [self.localNotificationManager scheduleNotification];
     
     
     
@@ -50,8 +50,8 @@
     // Handle the notificaton when the app is running
     NSLog(@"Recieved Notification %@",notif);
     
-    [self.localNotificationManager cancelNotification];
-    [self.localNotificationManager scheduleNotification];
+//    [self.localNotificationManager cancelNotification];
+//    [self.localNotificationManager scheduleNotification];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -69,9 +69,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [[EventManager sharedManager] downloadCities];
-    [self.localNotificationManager cancelNotification];
-    [self.localNotificationManager scheduleNotification];
+//    [[EventManager sharedManager] downloadCities];
+//    [self.localNotificationManager cancelNotification];
+//    [self.localNotificationManager scheduleNotification];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

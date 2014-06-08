@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BD514E919440256006D059D /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514E819440256006D059D /* MapManager.m */; };
+		3BD514EB194427C7006D059D /* swing-dance-fun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BD514EA194427C7006D059D /* swing-dance-fun.jpg */; };
+		3BD514EE19442C4A006D059D /* BackgroundImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514ED19442C4A006D059D /* BackgroundImageManager.m */; };
 		850EA0662F1A4443888886AC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C876B9746D5484BBC958FD8 /* libPods.a */; };
 		D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CD189F942300F461CE /* DoActionSheet.m */; };
 		D20B26D1189F942300F461CE /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = D20B26CF189F942300F461CE /* UIImage+ResizeMagick.m */; };
@@ -101,6 +104,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BD514E719440256006D059D /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
+		3BD514E819440256006D059D /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
+		3BD514EA194427C7006D059D /* swing-dance-fun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "swing-dance-fun.jpg"; sourceTree = "<group>"; };
+		3BD514EC19442C4A006D059D /* BackgroundImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundImageManager.h; sourceTree = "<group>"; };
+		3BD514ED19442C4A006D059D /* BackgroundImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImageManager.m; sourceTree = "<group>"; };
 		7C876B9746D5484BBC958FD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAECE47F4C444FF4AFCE578C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D20B26CC189F942300F461CE /* DoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoActionSheet.h; path = "Swing Local/DoActionSheet/DoActionSheet.h"; sourceTree = SOURCE_ROOT; };
@@ -273,6 +281,7 @@
 		3BD514E51943CA8D006D059D /* OLD */ = {
 			isa = PBXGroup;
 			children = (
+				3BD514E619440005006D059D /* Controllers */,
 				D2A07FA0189F537A002F11DA /* HollowButton.h */,
 				D2A07FA1189F537A002F11DA /* HollowButton.m */,
 				D2A07FBB189F8602002F11DA /* NewsView.h */,
@@ -291,6 +300,19 @@
 			name = OLD;
 			sourceTree = "<group>";
 		};
+		3BD514E619440005006D059D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
+				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
+				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
+				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
+				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
+				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		D210AA2C18CD681800575B52 /* SSPagedView */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,12 +329,6 @@
 				D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */,
 				D28E0FA518C595200038EB48 /* SSCityEventController.h */,
 				D28E0FA618C595200038EB48 /* SSCityEventController.m */,
-				D2E6890218A0292100A6BD51 /* HomeViewController.h */,
-				D2E6890318A0292100A6BD51 /* HomeViewController.m */,
-				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
-				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
-				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
-				D2E6890918A02EC000A6BD51 /* CalendarviewController.m */,
 				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
 				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
 				D224C523189D017000923370 /* SSFrontViewController.h */,
@@ -372,10 +388,6 @@
 				D224C526189D017A00923370 /* Controllers */,
 				D2E6890B18A02ECA00A6BD51 /* Other Projs */,
 				D244C2FE189CEB6100E6DB16 /* Images.xcassets */,
-				D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */,
-				D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */,
-				D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */,
-				D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */,
 				D244C33A189CEBEA00E6DB16 /* Images */,
 				D244C2ED189CEB6100E6DB16 /* Supporting Files */,
 			);
@@ -416,6 +428,11 @@
 		D244C33A189CEBEA00E6DB16 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3BD514EA194427C7006D059D /* swing-dance-fun.jpg */,
+				D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */,
+				D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */,
+				D28E0FB918C599CF0038EB48 /* SwingLocalLogo-Map.png */,
+				D28E0FBA18C599CF0038EB48 /* SwingLocalLogo-Pin_circlebg.png */,
 				D244C33B189CEBF100E6DB16 /* bg_01.png */,
 				D244C33C189CEBF100E6DB16 /* bg_02.png */,
 				D244C33D189CEBF100E6DB16 /* bg_03.png */,
@@ -544,6 +561,10 @@
 				D2F450E418A2C20500ABD1C8 /* GoogleCalendarManager.m */,
 				D2C8ED7318A94D8800164C68 /* LocalNotificationManager.h */,
 				D2C8ED7418A94D8800164C68 /* LocalNotificationManager.m */,
+				3BD514E719440256006D059D /* MapManager.h */,
+				3BD514E819440256006D059D /* MapManager.m */,
+				3BD514EC19442C4A006D059D /* BackgroundImageManager.h */,
+				3BD514ED19442C4A006D059D /* BackgroundImageManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -745,6 +766,7 @@
 				D210AA3118CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg in Resources */,
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
+				3BD514EB194427C7006D059D /* swing-dance-fun.jpg in Resources */,
 				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
 				D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */,
 				D28E0FBC18C599CF0038EB48 /* SwingLocalLogo-Map.png in Resources */,
@@ -819,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD514EE19442C4A006D059D /* BackgroundImageManager.m in Sources */,
 				D2A07FBD189F8602002F11DA /* NewsView.m in Sources */,
 				D2A07F9C189F534C002F11DA /* Event.m in Sources */,
 				D2E688FD18A014F000A6BD51 /* CustomSegue.m in Sources */,
@@ -841,6 +864,7 @@
 				D2DD655218AFC89200326DEB /* EventTableViewCell.m in Sources */,
 				D2E6891B18A0614E00A6BD51 /* GHViewController.m in Sources */,
 				D244C347189CEC7A00E6DB16 /* UIColor+SwingLocal.m in Sources */,
+				3BD514E919440256006D059D /* MapManager.m in Sources */,
 				D2A07FA5189F5382002F11DA /* EventsTableView.m in Sources */,
 				D20B26D0189F942300F461CE /* DoActionSheet.m in Sources */,
 				D2A07F9F189F535D002F11DA /* Venue.m in Sources */,

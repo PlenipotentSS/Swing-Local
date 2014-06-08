@@ -11,11 +11,13 @@
 #import "SSMapView.h"
 #import "SSPhotoBackgroundView.h"
 #import "SSEventSubWrapperView.h"
+#import "MapManager.h"
+#import "BackgroundImageManager.h"
 
 #define MAP_RATIO 3.f/4.f
 #define MAP_HEIGHT_OFFSET 69
 
-@interface SSCityEventController () <UITableViewDataSource, UITableViewDelegate>
+@interface SSCityEventController () <UITableViewDataSource, UITableViewDelegate, MapManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet SSEventSubWrapperView *contentView;
 @property (weak, nonatomic) IBOutlet SSEventTableView *theTableView;
@@ -23,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (nonatomic) NSInteger lastCell;
 @property (nonatomic) BOOL touchesMoved;
-@property (nonatomic) SSMapView *mapView;
+@property (weak, nonatomic) SSMapView *mapView;
 @property (nonatomic) BOOL mapShown;
 @property (nonatomic) UITapGestureRecognizer *tableViewHideTapRecognizer;
 @property (nonatomic) SSPhotoBackgroundView *photographyCover;
@@ -62,7 +64,7 @@
 #pragma mark - setup methods
 - (void)setupBackground
 {
-    self.photographyCover = [[[NSBundle mainBundle] loadNibNamed:@"PhotographerCoverView" owner:self options:nil] objectAtIndex:0];
+    self.photographyCover = [[BackgroundImageManager sharedManager] getBackgroundView];
     [self.photographyCover setAlpha:0.f];
     [self.photographyCover setHidden:YES];
     [self.contentView addSubview:self.photographyCover];
@@ -92,7 +94,8 @@
 
 - (void)setupMap
 {
-    self.mapView = [[[NSBundle mainBundle] loadNibNamed:@"SSMapView" owner:self options:nil] objectAtIndex:0];
+    self.mapView = [[MapManager sharedManager] getMapView];
+    [[MapManager sharedManager] setMapDelegate: self];
     CGRect mapFrame = self.mapView.frame;
     mapFrame.size.height = self.view.frame.size.height * MAP_RATIO;
     self.mapView.frame = mapFrame;
@@ -206,6 +209,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.theTableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"selected at row: %d",indexPath.row);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -217,7 +221,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

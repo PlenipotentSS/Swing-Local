@@ -79,7 +79,7 @@
     _theTableView.delegate = self;
     
     _menuItems = @[@"homeCell",@"calendarCell",@"supportCell"];
-    _segueItems = @[@"showHome",@"showCalendar",@"showSupport"];
+    _segueItems = @[@"showHome",@"showEvent",@"showSupport"];
     
     [self reloadSavedCities];
 }

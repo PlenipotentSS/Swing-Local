@@ -53,6 +53,7 @@
     if ([identifier isEqualToString:@"showSupport"]) {
         [self support];
     } else {
+        NSLog(@"%@",identifier);
         [super performSegueWithIdentifier:identifier sender:sender];
     }
 }
