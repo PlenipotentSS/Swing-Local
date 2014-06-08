@@ -111,21 +111,21 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    
-    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
-                                                      owner:self
-                                                    options:nil];
-    _dateSelectorView = [ nibViews objectAtIndex: 0];
-    _shadowBoxBackground = [nibViews objectAtIndex: 1];
-    self.pinnedAddresses = [NSMutableArray new];
-    [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
-    [self.dateSelectorView setup];
-    
-    NSArray* detailNib = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
-                                                       owner:self
-                                                     options:nil];
-    _detailView = [ detailNib objectAtIndex: 0];
+//    [super viewDidAppear:animated];
+//    
+//    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"DateRangeSelector"
+//                                                      owner:self
+//                                                    options:nil];
+//    _dateSelectorView = [ nibViews objectAtIndex: 0];
+//    _shadowBoxBackground = [nibViews objectAtIndex: 1];
+//    self.pinnedAddresses = [NSMutableArray new];
+//    [self.dateSelectorView setShadowBoxBackground:self.shadowBoxBackground];
+//    [self.dateSelectorView setup];
+//    
+//    NSArray* detailNib = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
+//                                                       owner:self
+//                                                     options:nil];
+//    _detailView = [ detailNib objectAtIndex: 0];
 }
 
 -(void) viewDidDisappear:(BOOL)animated
