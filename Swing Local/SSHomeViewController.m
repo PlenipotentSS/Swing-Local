@@ -41,7 +41,7 @@
     [super viewWillAppear:animated];
     
     self.loadLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 88.f)];
-    self.loadLogo.image = [UIImage imageNamed:@"Inline-Logo"];
+    self.loadLogo.image = [UIImage imageNamed:@"TITLE_INLINE-07"];
     [self.loadLogo setContentMode:UIViewContentModeScaleAspectFill];
     [self.view addSubview:self.loadLogo];
     BOOL newLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:@"newLaunch"];
