@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BCF99861946742F00EDC618 /* Screen Shot 2014-06-09 at 3.27.29 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF99851946742E00EDC618 /* Screen Shot 2014-06-09 at 3.27.29 PM.png */; };
 		3BD514E919440256006D059D /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514E819440256006D059D /* MapManager.m */; };
 		3BD514EB194427C7006D059D /* swing-dance-fun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BD514EA194427C7006D059D /* swing-dance-fun.jpg */; };
 		3BD514EE19442C4A006D059D /* BackgroundImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD514ED19442C4A006D059D /* BackgroundImageManager.m */; };
@@ -104,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BCF99851946742E00EDC618 /* Screen Shot 2014-06-09 at 3.27.29 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2014-06-09 at 3.27.29 PM.png"; sourceTree = "<group>"; };
 		3BD514E719440256006D059D /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
 		3BD514E819440256006D059D /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		3BD514EA194427C7006D059D /* swing-dance-fun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "swing-dance-fun.jpg"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 		D244C33A189CEBEA00E6DB16 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3BCF99851946742E00EDC618 /* Screen Shot 2014-06-09 at 3.27.29 PM.png */,
 				3BD514EA194427C7006D059D /* swing-dance-fun.jpg */,
 				D28E0FB818C599CF0038EB48 /* 51a837d5a18a756793.jpg */,
 				D210AA3018CD76F000575B52 /* 3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg */,
@@ -766,6 +769,7 @@
 				D244C336189CEBE600E6DB16 /* menu-gear.png in Resources */,
 				D244C338189CEBE600E6DB16 /* menu.png in Resources */,
 				3BD514EB194427C7006D059D /* swing-dance-fun.jpg in Resources */,
+				3BCF99861946742F00EDC618 /* Screen Shot 2014-06-09 at 3.27.29 PM.png in Resources */,
 				D2A07FAD189F542D002F11DA /* Main.storyboard in Resources */,
 				D244C2F1189CEB6100E6DB16 /* InfoPlist.strings in Resources */,
 				D28E0FBC18C599CF0038EB48 /* SwingLocalLogo-Map.png in Resources */,

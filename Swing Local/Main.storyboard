@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uL0-b5-wid">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="z1Y-zd-P5t">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -50,7 +51,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seattle, WA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oi-0z-Ffg">
-                                            <rect key="frame" x="56" y="35" width="209" height="21"/>
+                                            <rect key="frame" x="56" y="40" width="209" height="21"/>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                             <color key="textColor" red="0.63529411759999999" green="0.23137254900000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -105,9 +106,9 @@
                                 <rect key="frame" x="0.0" y="20" width="55" height="59"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggy-k6-MRW">
-                                        <rect key="frame" x="0.0" y="-6" width="55" height="45"/>
+                                        <rect key="frame" x="13" y="20" width="28" height="20"/>
                                         <color key="tintColor" red="0.63529411759999999" green="0.23137254900000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="menu">
+                                        <state key="normal" image="menu-15">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -118,10 +119,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="1pO-Fp-E0x"/>
-                                    <constraint firstAttribute="trailing" secondItem="ggy-k6-MRW" secondAttribute="trailing" id="NgL-7b-laO"/>
-                                    <constraint firstItem="ggy-k6-MRW" firstAttribute="top" secondItem="tTR-yg-WLS" secondAttribute="top" constant="-6" id="XuR-YC-iqc"/>
-                                    <constraint firstAttribute="bottom" secondItem="ggy-k6-MRW" secondAttribute="bottom" constant="20" id="cYj-H2-GiD"/>
-                                    <constraint firstItem="ggy-k6-MRW" firstAttribute="leading" secondItem="tTR-yg-WLS" secondAttribute="leading" id="ojK-Bf-L52"/>
+                                    <constraint firstAttribute="trailing" secondItem="ggy-k6-MRW" secondAttribute="trailing" constant="14" id="NgL-7b-laO"/>
+                                    <constraint firstItem="ggy-k6-MRW" firstAttribute="top" secondItem="tTR-yg-WLS" secondAttribute="top" constant="20" id="XuR-YC-iqc"/>
+                                    <constraint firstAttribute="bottom" secondItem="ggy-k6-MRW" secondAttribute="bottom" constant="19" id="cYj-H2-GiD"/>
+                                    <constraint firstItem="ggy-k6-MRW" firstAttribute="leading" secondItem="tTR-yg-WLS" secondAttribute="leading" constant="13" id="ojK-Bf-L52"/>
                                     <constraint firstAttribute="height" constant="59" id="pjm-I4-bJz"/>
                                 </constraints>
                             </view>
@@ -249,8 +250,8 @@
                                 <rect key="frame" x="0.0" y="20" width="55" height="59"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWj-xl-8rx">
-                                        <rect key="frame" x="0.0" y="0.0" width="55" height="59"/>
-                                        <state key="normal" image="menu">
+                                        <rect key="frame" x="13" y="20" width="28" height="20"/>
+                                        <state key="normal" image="menu-15">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -260,11 +261,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="DWj-xl-8rx" secondAttribute="bottom" id="C0t-Dg-2rt"/>
-                                    <constraint firstAttribute="trailing" secondItem="DWj-xl-8rx" secondAttribute="trailing" id="ePd-ap-NNi"/>
+                                    <constraint firstAttribute="bottom" secondItem="DWj-xl-8rx" secondAttribute="bottom" constant="19" id="C0t-Dg-2rt"/>
+                                    <constraint firstAttribute="trailing" secondItem="DWj-xl-8rx" secondAttribute="trailing" constant="14" id="ePd-ap-NNi"/>
                                     <constraint firstAttribute="width" constant="55" id="gSj-DG-Xyx"/>
-                                    <constraint firstItem="DWj-xl-8rx" firstAttribute="leading" secondItem="11c-xd-dVX" secondAttribute="leading" id="mcA-Mo-TL7"/>
-                                    <constraint firstItem="DWj-xl-8rx" firstAttribute="top" secondItem="11c-xd-dVX" secondAttribute="top" id="mzv-zQ-Jba"/>
+                                    <constraint firstItem="DWj-xl-8rx" firstAttribute="leading" secondItem="11c-xd-dVX" secondAttribute="leading" constant="13" id="mcA-Mo-TL7"/>
+                                    <constraint firstItem="DWj-xl-8rx" firstAttribute="top" secondItem="11c-xd-dVX" secondAttribute="top" constant="20" id="mzv-zQ-Jba"/>
                                     <constraint firstAttribute="height" constant="59" id="vZA-Bi-Gfz"/>
                                 </constraints>
                             </view>
@@ -286,7 +287,7 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="left" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Me-or-NyJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="163"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="x51-8T-daI">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swing-dance-fun.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="x51-8T-daI">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="163"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -294,7 +295,7 @@
                                                                 <constraint firstAttribute="width" constant="100" id="yGO-WR-yMo"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="51a837d5a18a756793.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="il7-9d-HIu">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2014-06-09 at 3.27.29 PM.png" translatesAutoresizingMaskIntoConstraints="NO" id="il7-9d-HIu">
                                                             <rect key="frame" x="100" y="0.0" width="220" height="163"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -302,7 +303,7 @@
                                                                 <constraint firstAttribute="width" constant="220" id="ueT-bl-dOQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="51a837d5a18a756793.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Bh-B0-zoI">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="51a837d5a18a756793.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Bh-B0-zoI">
                                                             <rect key="frame" x="320" y="0.0" width="220" height="163"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -310,7 +311,7 @@
                                                                 <constraint firstAttribute="height" constant="163" id="duY-lM-uwd"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9oG-jq-VyZ">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9oG-jq-VyZ">
                                                             <rect key="frame" x="540" y="0.0" width="100" height="163"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -318,7 +319,7 @@
                                                                 <constraint firstAttribute="height" constant="163" id="trg-S3-6sg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U8q-Mz-iqG">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U8q-Mz-iqG">
                                                             <rect key="frame" x="640" y="0.0" width="320" height="163"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -400,6 +401,7 @@
                             <constraint firstItem="11c-xd-dVX" firstAttribute="top" secondItem="xXa-AP-ZAu" secondAttribute="bottom" id="xa6-T2-UdR"/>
                         </constraints>
                     </view>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="menu_burger" destination="DWj-xl-8rx" id="To0-s7-AXs"/>
                         <outlet property="theTableView" destination="n2m-OJ-hNa" id="5hL-AK-x1c"/>
@@ -823,6 +825,7 @@
     <resources>
         <image name="3d-wallpaper-dans-3d-hd-desktop-wallpapers-romania-640x400.jpg" width="640" height="405.6337890625"/>
         <image name="51a837d5a18a756793.jpg" width="1920" height="1440"/>
+        <image name="Screen Shot 2014-06-09 at 3.27.29 PM.png" width="1101" height="463"/>
         <image name="TITLE_INLINE-07" width="1000" height="296"/>
         <image name="calendar-7" width="30" height="30"/>
         <image name="gear-multiple-7" width="30" height="30"/>
@@ -830,6 +833,7 @@
         <image name="lifebuoy-7" width="30" height="30"/>
         <image name="map-pin-7" width="30" height="30"/>
         <image name="menu" width="28" height="20"/>
+        <image name="menu-15" width="200" height="143"/>
         <image name="newspaper-7" width="30" height="30"/>
         <image name="pin_flat" width="200" height="214"/>
         <image name="plus-circle-7" width="29" height="30"/>

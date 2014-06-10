@@ -109,22 +109,23 @@
     NSString *CellIdentifier = @"";
     if ( indexPath.row == 0 ){
         CellIdentifier = @"imagePeakCell";
-    } else if (indexPath.row == 1){
-        CellIdentifier = @"savedCitiesCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        if (!self.stackView) {
-            self.stackView = (SSStackedPageView*)[cell viewWithTag:1];
-            [self.stackView setPagesHaveShadows:YES];
-            self.stackView.delegate = self;
-            self.savedCities = [[NSMutableArray alloc] init];
-            for (int i=0;i<10;i++) {
-                UIView *thisView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 200.f, 100.f)];
-                [self.savedCities addObject:thisView];
-            }
-        }
-        
-        return cell;
-    } else if (indexPath.row == 2){
+    } else {
+//    } else if (indexPath.row == 1){
+//        CellIdentifier = @"savedCitiesCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//        if (!self.stackView) {
+//            self.stackView = (SSStackedPageView*)[cell viewWithTag:1];
+//            [self.stackView setPagesHaveShadows:YES];
+//            self.stackView.delegate = self;
+//            self.savedCities = [[NSMutableArray alloc] init];
+//            for (int i=0;i<10;i++) {
+//                UIView *thisView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 200.f, 100.f)];
+//                [self.savedCities addObject:thisView];
+//            }
+//        }
+//        
+//        return cell;
+//    } else if (indexPath.row == 2){
         CellIdentifier = @"favoriteOrgsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         if (!self.pagedView) {
