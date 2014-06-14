@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="z1Y-zd-P5t">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -455,37 +454,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9W-Es-sju">
-                                <rect key="frame" x="0.0" y="30" width="55" height="35"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHA-w8-YXX">
-                                        <rect key="frame" x="3" y="7" width="49" height="22"/>
-                                        <state key="normal" image="menu">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="menuButtonPushed:" destination="rLT-2R-r3Y" eventType="touchUpInside" id="DUo-HA-W5H"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="gHA-w8-YXX" firstAttribute="top" secondItem="i9W-Es-sju" secondAttribute="top" constant="7" id="0b6-6f-dKC"/>
-                                    <constraint firstAttribute="width" constant="55" id="U24-Xv-dh2"/>
-                                    <constraint firstItem="gHA-w8-YXX" firstAttribute="leading" secondItem="i9W-Es-sju" secondAttribute="leading" constant="3" id="ZRD-jF-kgx"/>
-                                    <constraint firstAttribute="height" constant="35" id="a4d-pf-8fE"/>
-                                    <constraint firstAttribute="trailing" secondItem="gHA-w8-YXX" secondAttribute="trailing" constant="3" id="aEd-rP-w63"/>
-                                    <constraint firstAttribute="bottom" secondItem="gHA-w8-YXX" secondAttribute="bottom" constant="6" id="hWl-zt-GCb"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Hjw-bD-HQR" firstAttribute="top" secondItem="yzI-y7-I9S" secondAttribute="bottom" id="7P9-lB-VdF"/>
                             <constraint firstItem="Hjw-bD-HQR" firstAttribute="top" secondItem="yzI-y7-I9S" secondAttribute="bottom" id="PUK-zF-Y7f"/>
                             <constraint firstAttribute="trailing" secondItem="yzI-y7-I9S" secondAttribute="trailing" id="U9N-ZK-YCx"/>
-                            <constraint firstItem="i9W-Es-sju" firstAttribute="leading" secondItem="6vl-bH-Tug" secondAttribute="leading" id="Vil-lr-Xab"/>
-                            <constraint firstItem="i9W-Es-sju" firstAttribute="top" secondItem="dep-by-rmE" secondAttribute="bottom" constant="10" id="Zy3-55-amv"/>
                             <constraint firstItem="yzI-y7-I9S" firstAttribute="leading" secondItem="6vl-bH-Tug" secondAttribute="leading" id="cYx-RN-h1T"/>
                             <constraint firstItem="yzI-y7-I9S" firstAttribute="leading" secondItem="6vl-bH-Tug" secondAttribute="leading" id="df1-51-PHH"/>
                             <constraint firstItem="yzI-y7-I9S" firstAttribute="top" secondItem="6vl-bH-Tug" secondAttribute="top" id="df7-go-zvH"/>
@@ -496,7 +470,6 @@
                     <navigationItem key="navigationItem" id="sJR-Da-SqJ"/>
                     <connections>
                         <outlet property="mainView" destination="yzI-y7-I9S" id="bbf-z0-xhR"/>
-                        <outlet property="menu_burger" destination="gHA-w8-YXX" id="shD-XJ-5Cz"/>
                         <segue destination="Zfi-B3-b5Q" kind="custom" identifier="showEvent" customClass="SplitControllerSegue" id="3xt-nZ-M6H"/>
                         <segue destination="VYf-hl-aaI" kind="custom" identifier="showHome" customClass="SplitControllerSegue" id="Lqm-EF-j3Y"/>
                     </connections>
@@ -832,7 +805,6 @@
         <image name="home-7" width="30" height="30"/>
         <image name="lifebuoy-7" width="30" height="30"/>
         <image name="map-pin-7" width="30" height="30"/>
-        <image name="menu" width="28" height="20"/>
         <image name="menu-15" width="200" height="143"/>
         <image name="newspaper-7" width="30" height="30"/>
         <image name="pin_flat" width="200" height="214"/>

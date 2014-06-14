@@ -283,6 +283,11 @@
 		3BD514E51943CA8D006D059D /* OLD */ = {
 			isa = PBXGroup;
 			children = (
+				D244C345189CEC6500E6DB16 /* Views */,
+				D244C356189CECE600E6DB16 /* GHViewController.h */,
+				D292FD08189DC9ED000874FB /* DoAction */,
+				D210AA2C18CD681800575B52 /* SSPagedView */,
+				D252264118CDCFBE001A8862 /* SSStackedPageView */,
 				3BD514E619440005006D059D /* Controllers */,
 				D2A07FA0189F537A002F11DA /* HollowButton.h */,
 				D2A07FA1189F537A002F11DA /* HollowButton.m */,
@@ -300,11 +305,18 @@
 				D2A07FAE189F54EF002F11DA /* Event Models */,
 			);
 			name = OLD;
+			path = "Swing Local";
 			sourceTree = "<group>";
 		};
 		3BD514E619440005006D059D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D2CEBE6518CCDA5400ABA6D0 /* SSHomeViewController.h */,
+				D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */,
+				D28E0FA518C595200038EB48 /* SSCityEventController.h */,
+				D28E0FA618C595200038EB48 /* SSCityEventController.m */,
+				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
+				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
 				D2E6892C18A1B35200A6BD51 /* SingleCityViewController.h */,
 				D2E6892D18A1B35200A6BD51 /* SingleCityViewController.m */,
 				D2E6890818A02EC000A6BD51 /* CalendarviewController.h */,
@@ -327,12 +339,8 @@
 		D224C526189D017A00923370 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D2CEBE6518CCDA5400ABA6D0 /* SSHomeViewController.h */,
-				D2CEBE6618CCDA5400ABA6D0 /* SSHomeViewController.m */,
-				D28E0FA518C595200038EB48 /* SSCityEventController.h */,
-				D28E0FA618C595200038EB48 /* SSCityEventController.m */,
-				D244C320189CEB9000E6DB16 /* AppTutorialViewController.h */,
-				D244C32B189CEBCC00E6DB16 /* AppTutorialViewController.m */,
+				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
+				D2E688F918A013BC00A6BD51 /* RootViewController.m */,
 				D224C523189D017000923370 /* SSFrontViewController.h */,
 				D224C524189D017000923370 /* SSFrontViewController.m */,
 				D224C527189D021400923370 /* SSBackViewController.h */,
@@ -344,6 +352,7 @@
 		D244C2DA189CEB6100E6DB16 = {
 			isa = PBXGroup;
 			children = (
+				3BD514E51943CA8D006D059D /* OLD */,
 				D244C2EC189CEB6100E6DB16 /* Swing Local */,
 				D244C30B189CEB6100E6DB16 /* Swing LocalTests */,
 				D244C2E5189CEB6100E6DB16 /* Frameworks */,
@@ -379,18 +388,12 @@
 		D244C2EC189CEB6100E6DB16 /* Swing Local */ = {
 			isa = PBXGroup;
 			children = (
-				3BD514E51943CA8D006D059D /* OLD */,
-				D2A07FAC189F542D002F11DA /* Main.storyboard */,
 				D244C2F5189CEB6100E6DB16 /* SSAppDelegate.h */,
 				D244C2F6189CEB6100E6DB16 /* SSAppDelegate.m */,
-				D2E688F818A013BC00A6BD51 /* RootViewController.h */,
-				D2E688F918A013BC00A6BD51 /* RootViewController.m */,
+				D2A07FAC189F542D002F11DA /* Main.storyboard */,
 				D292FD1D189E1E8B000874FB /* Models */,
-				D244C345189CEC6500E6DB16 /* Views */,
 				D224C526189D017A00923370 /* Controllers */,
 				D2E6890B18A02ECA00A6BD51 /* Other Projs */,
-				3BD514F119445BD8006D059D /* Images.xcassets */,
-				D244C33A189CEBEA00E6DB16 /* Images */,
 				D244C2ED189CEB6100E6DB16 /* Supporting Files */,
 			);
 			path = "Swing Local";
@@ -399,6 +402,8 @@
 		D244C2ED189CEB6100E6DB16 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3BD514F119445BD8006D059D /* Images.xcassets */,
+				D244C33A189CEBEA00E6DB16 /* Images */,
 				D2779B4718B5327F0062D34C /* Crashlytics.h */,
 				D244C2EE189CEB6100E6DB16 /* Swing Local-Info.plist */,
 				D244C2EF189CEB6100E6DB16 /* InfoPlist.strings */,
@@ -650,12 +655,8 @@
 		D2E6890B18A02ECA00A6BD51 /* Other Projs */ = {
 			isa = PBXGroup;
 			children = (
-				D252264118CDCFBE001A8862 /* SSStackedPageView */,
-				D210AA2C18CD681800575B52 /* SSPagedView */,
 				D26ECBDA18ADF46400B388EA /* M13ProgressSuite */,
 				D244C352189CECBB00E6DB16 /* SplitPeekViewController */,
-				D244C356189CECE600E6DB16 /* GHViewController.h */,
-				D292FD08189DC9ED000874FB /* DoAction */,
 			);
 			name = "Other Projs";
 			sourceTree = "<group>";
